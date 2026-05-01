@@ -1,0 +1,52 @@
+[
+  {
+    "timestamp": "2026-05-01T07:20:41.385Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://www.seek.com.au/job/91792890/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "C:\\Users\\mohdr\\OneDrive\\Desktop\\Coding-Projects\\playwright-automation\\screenshots\\errors\\2026-05-01T07-20-37-737Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows questions related to work experience and right to work in Australia on a Seek application form.\n2. The error `validation_errors_blocking_continue` occurred because the bot has not answered the first two questions mentioned in the red error box about software development environments and hybrid delivery environments.\n3. To fix this, the bot needs to identify and interact with the elements corresponding to these unanswered questions. It should try to select valid options, starting by locating the question and choosing radio buttons or dropdown items nested within it by using specific selectors like `label:contains(\"Have you worked in a software\")` and then selecting an option."
+  },
+  {
+    "timestamp": "2026-05-01T07:21:14.463Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://www.seek.com.au/job/91792890/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "C:\\Users\\mohdr\\OneDrive\\Desktop\\Coding-Projects\\playwright-automation\\screenshots\\errors\\2026-05-01T07-21-11-122Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen displays the \"Review and submit\" page of a job application on Seek, showing a progress bar, an error message, and applicant's details.\n2. The `validation_errors_blocking_continue` error is caused by unanswered employer questions.\n3. The bot should locate the unanswered questions using selectors like `label:contains(\"Have you worked in a software\")` and select a radio button or an option in the dropdown nested within."
+  },
+  {
+    "timestamp": "2026-05-01T07:22:19.312Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Project Manager",
+    "company": "NRI Australia & New Zealand",
+    "url": "https://www.seek.com.au/job/91827289/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "C:\\Users\\mohdr\\OneDrive\\Desktop\\Coding-Projects\\playwright-automation\\screenshots\\errors\\2026-05-01T07-22-15-320Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows employer questions on a Seek application form, specifically questions about IT infrastructure project experience, end-to-end project delivery experience, experience managing multiple concurrent IT projects. It also shows questions about the right to work in Australia, expected base salary, and notice period.\n2. The `validation_errors_blocking_continue` error is caused by the unanswered questions listed in the red error box at the top of the page.\n3. The bot should locate elements with labels containing the unanswered questions like `\"Do you have experience delivering IT infrastructure projects\"` and interact with the dropdown or radio button nested within to select a valid option. For example, it could use `label:contains(\"Do you have experience delivering IT infrastructure projects\")` to locate the first question."
+  },
+  {
+    "timestamp": "2026-05-01T07:26:32.572Z",
+    "error_type": "unanswered_questions",
+    "job_title": "Senior Project Manager - ERP - 24 Month Fixed term",
+    "company": "Datacom",
+    "url": "https://www.seek.com.au/job/91801027/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "C:\\Users\\mohdr\\OneDrive\\Desktop\\Coding-Projects\\playwright-automation\\screenshots\\errors\\2026-05-01T07-26-26-072Z_unanswered_questions.png",
+    "analysis": "1.  The screen shows employer questions, including pronouns, First Nations identification, and military service disclosure.\n2.  The error likely occurred because the automation may have prematurely tried to proceed without filling in all required fields, or it got stuck when trying to determine what all the required fields were.\n3.  The bot should use `document.querySelector('textarea[placeholder=\"Please type here (max 200 characters)\" ]').value = \"no\"`  to answer the \"voluntary military\" question, and then move to the next question. Alternatively, it could click \"Update SEEK Profile\"."
+  },
+  {
+    "timestamp": "2026-05-01T07:33:37.322Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Engineer",
+    "company": "AJQ",
+    "url": "https://www.seek.com.au/job/91780021/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "C:\\Users\\mohdr\\OneDrive\\Desktop\\Coding-Projects\\playwright-automation\\screenshots\\errors\\2026-05-01T07-33-32-889Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen shows an error message about the application being incomplete, specifically regarding the Australian Security Clearance question. There's also a question \"Which of the following statements best describes your right to work in Australia?\" and \"Do you hold Australian Security Clearance?\".\n2.  The error is caused by the bot not answering the \"Do you hold Australian Security Clearance?\" question.\n3.  The bot should select one of the radio options for the Australian Security Clearance question, such as `input[value=\"Yes, Baseline\"]` and then click it."
+  }
+]

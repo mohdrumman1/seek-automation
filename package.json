@@ -1,0 +1,31 @@
+{
+  "name": "playwright-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "screenshot": "ts-node scripts/screenshot.ts",
+    "seek-login": "ts-node scripts/seek-login.ts",
+    "seek": "ts-node scripts/seek-apply.ts",
+    "analyze": "ts-node scripts/analyze-and-patch.ts",
+    "test": "playwright test",
+    "codegen": "playwright codegen https://www.seek.com.au",
+    "trace": "playwright show-trace"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}
