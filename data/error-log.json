@@ -58,5 +58,65 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "C:\\Users\\mohdr\\OneDrive\\Desktop\\Coding-Projects\\playwright-automation\\screenshots\\errors\\2026-05-01T07-56-33-689Z_validation_errors_blocking_continue.png",
     "analysis": "The screen is completely white. It is impossible to determine the cause of the error with a blank image. I cannot suggest a CSS selector or action without seeing the actual page content and error messages."
+  },
+  {
+    "timestamp": "2026-05-06T04:56:09.198Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Vendor Sourcing Project Manager",
+    "company": "Calleo",
+    "url": "https://au.seek.com/job/91930331/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T04-56-06-608Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen displays application questions about ICT vendor procurement projects and AGSVA security clearance, along with an error message indicating these questions require answers.\n2. The error is caused by the bot not selecting options for \"Have you worked on ICT vendor procurement projects?\" and \"Do you have an AGSVA security clearance?\".\n3. The bot should select either \"Yes\" or \"No\" for the ICT vendor question using a selector like `input[name=\"ctl00$ContentPlaceHolder1$ApplicantFormStandard$StandardForm$ApplicantQuestionList$ctl08$AnswerRadioButtonList\"][value=\"Yes\"]` or `input[name=\"ctl00$ContentPlaceHolder1$ApplicantFormStandard$StandardForm$ApplicantQuestionList$ctl08$AnswerRadioButtonList\"][value=\"No\"]`. The bot should also select one of the radio options for the AGSVA security clearance, for example,  `input[value='No, but willing to obtain (Australian Citizen)']`.  The exact name will depend on the actual HTML structure."
+  },
+  {
+    "timestamp": "2026-05-06T04:57:39.461Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Project Manager",
+    "company": "face2face Recruitment",
+    "url": "https://au.seek.com/job/91888446/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T04-57-37-577Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen shows an error message indicating that the \"Do you hold a NV1 clearance or above?\" question needs an answer. The question is displayed with \"Yes\" and \"No\" radio options.\n2.  The error is happening because the bot did not select either the Yes or No option for the \"Do you hold a NV1 clearance or above?\" question.\n3.  The bot should select either `input[value=\"No\"]` or `input[value=\"Yes\"]` and click it. After that the bot can click on the \"Continue\" button."
+  },
+  {
+    "timestamp": "2026-05-06T05:01:51.645Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Engineer – .NET, SQL & BI",
+    "company": "ICTx",
+    "url": "https://au.seek.com/job/91895782/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T05-01-49-610Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows job application questions related to right to work, salary expectations, police check, and bilingual proficiency. An error message indicates that a selection is required for the bilingual proficiency question.\n2. The error is caused by the bot not selecting the 'Yes, Japanese' radio button despite the selection being made.\n3. The bot should re-select the radio button using the selector `input[value=\"Yes, Japanese\"]` or traverse the DOM to locate the valid label for this specific radio button and click it."
+  },
+  {
+    "timestamp": "2026-05-06T05:02:09.875Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "AI Software Engineer - Contract",
+    "company": "The Recruitment Company",
+    "url": "https://au.seek.com/job/91901268/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T05-02-07-606Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows the \"Review and submit\" page with an error message indicating issues need to be addressed before continuing. The applicant's basic profile information and documents provided are also visible.\n2. The cause of the error is that there are likely unanswered mandatory questions or missing information in the earlier steps of the application process, or during the profile update process on SEEK.\n3. The bot needs to go back and ensure all mandatory fields are filled in the \"Choose documents \" and \"Update SEEK Profile\" steps. A click event on the \"edit\" button next to the \"Update SEEK Profile\" step could begin the process after which the bot should systematically identify and fill out all empty mandatory fields."
+  },
+  {
+    "timestamp": "2026-05-06T05:03:30.894Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Software Engineer",
+    "company": "Riot Games Pty Ltd",
+    "url": "https://au.seek.com/job/91901334/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T05-03-28-892Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen shows questions about right to work, years of experience and scrum agile team experience. There is an error message indicating that the \"Do you have experience working within a scrum agile team?\" question requires an answer.\n2.  The error is caused by the bot not selecting either \"Yes\" or \"No\" radio button for the scrum agile team question.\n3.  The bot should select either `input[value=\"Yes\"]` or `input[value=\"No\"]` and click it."
+  },
+  {
+    "timestamp": "2026-05-06T05:04:34.037Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Technical Lead - Appian",
+    "company": "MFTE Staffing Services",
+    "url": "https://au.seek.com/job/91930741/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T05-04-31-727Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows questions regarding SOA and TDD experience, right to work in Australia, and years of experience in various roles (technical lead, software development, design engineering).\n2. The error is caused by the bot not selecting options for the SOA and TDD experience questions.  These are likely radio button or dropdown selection questions.\n3. The bot should locate the SOA and TDD question elements (probably dropdowns based on the other questions in the image) using their labels and select appropriate values from them.  For example, if they are dropdowns, it should click the dropdown element, and then click a valid option representing 'yes' or 'no' for each question."
   }
 ]
