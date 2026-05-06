@@ -211,7 +211,15 @@ function saveApplied(applied: Set<string>): void {
 
 // ── LOGIN ────────────────────────────────────────────────────────────────────
 async function isLoggedIn(page: Page): Promise<boolean> {
-  // Look for the authenticated user menu (present on all pages when logged in)
+  // If sign-in link is visible, definitely NOT logged in
+  const signInVisible = await page
+    .locator('a[href*="oauth/login"], a[data-automation="sign-in"], a:has-text("Sign in"), button:has-text("Sign in")')
+    .first()
+    .isVisible({ timeout: 2_000 })
+    .catch(() => false);
+  if (signInVisible) return false;
+
+  // Look for authenticated user elements
   const count = await page
     .locator('[data-automation="user-menu"], [data-automation="authenticated"], [aria-label="Account"], nav [href*="/profile"]')
     .count();
@@ -225,6 +233,12 @@ async function login(page: Page): Promise<void> {
 
   if (await isLoggedIn(page)) {
     console.log('Already logged in via saved session.');
+    return;
+  }
+
+  // Automated run - can't do manual login, trust the session and proceed
+  if (!process.stdin.isTTY) {
+    console.log('Session loaded - proceeding in automated mode.');
     return;
   }
 
@@ -626,7 +640,8 @@ async function applyToJob(
   const applyPage = newPage ?? page;
   await applyPage.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
 
-  if (!applyPage.url().includes('seek.com.au')) {
+  const isSeekUrl = applyPage.url().includes('seek.com.au') || applyPage.url().includes('au.seek.com');
+  if (!isSeekUrl) {
     console.log(`  Skipping - Apply redirected to external: ${applyPage.url().slice(0, 60)}`);
     if (newPage) await newPage.close().catch(() => {});
     return false;
