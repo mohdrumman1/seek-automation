@@ -228,5 +228,65 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T10-34-39-607Z_validation_errors_blocking_continue.png",
     "analysis": "1. The screen shows employer questions, including one about experience working within a scrum agile team, which requires a selection.\n2. The error is caused by the bot not selecting either \"Yes\" or \"No\" for the \"Do you have experience working within a scrum agile team?\" question.\n3. The bot should try clicking `input[value=\"Yes\"]` or `input[value=\"No\"]` associated with the \"Do you have experience working within a scrum agile team?\" question. If that fails, click the label."
+  },
+  {
+    "timestamp": "2026-05-06T21:21:44.148Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91943661/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T21-21-42-246Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page is visible, along with an error message indicating unresolved issues preventing application continuation. Applicant profile information is also displayed.\n2.  The error is caused by the bot not fully addressing all required fields or questions in the profile or application.\n3.  The bot should click the edit profile icon (`button[aria-label=\"Edit profile\"]`) to modify the profile so that it has the correct information."
+  },
+  {
+    "timestamp": "2026-05-06T21:22:12.671Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Project Manager",
+    "company": "face2face Recruitment",
+    "url": "https://au.seek.com/job/91888446/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T21-22-10-513Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, with a prompt asking to address the issue of selecting either \"Yes\" or \"No\" for the question \"Do you hold a NV1 clearance or above?\".\n2.  The error is caused by the bot not selecting either \"Yes\" or \"No\" for the \"Do you hold a NV1 clearance or above?\" question which is a mandatory field.\n3.  The bot should try clicking either `input[value=\"Yes\"]` for the \"Yes\" radio button or `input[value=\"No\"]` for the \"No\" radio button. If that approach fails, click the corresponding label elements."
+  },
+  {
+    "timestamp": "2026-05-06T21:22:49.603Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Vendor Sourcing Project Manager",
+    "company": "Calleo",
+    "url": "https://au.seek.com/job/91930331/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T21-22-47-368Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is visible, with error messages indicating missing selections for \"Have you worked on ICT vendor procurement projects?\" and \"Do you have an AGSVA security clearance?\".\n2. The error is caused by the bot not selecting an option for the questions \"Have you worked on ICT vendor procurement projects?\" and \"Do you have an AGSVA security clearance?\".\n3. The bot should try clicking `input[value=\"Yes\"]` or `input[value=\"No\"]` associated with the \"Have you worked on ICT vendor procurement projects?\" question and `input[value=\"No, but willing to obtain (Australian Citizen)\"]` or `input[value=\"Yes, Baseline\"]` or `input[value=\"Yes, NV1/NV2\"]` associated with the \"Do you have an AGSVA security clearance?\" question or the associated labels."
+  },
+  {
+    "timestamp": "2026-05-06T21:24:31.100Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "AI Software Engineer - Contract",
+    "company": "The Recruitment Company",
+    "url": "https://au.seek.com/job/91901268/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T21-24-29-290Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is visible, along with an error message indicating unresolved issues preventing application continuation, and the applicant's profile information.\n2.  The error is caused by the bot not fully addressing all required fields or questions in the profile.\n3.  The bot should click the edit profile icon `button[aria-label=\"Edit profile\"]` to modify the profile so that it has the correct information."
+  },
+  {
+    "timestamp": "2026-05-06T21:25:06.836Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Engineer – .NET, SQL & BI",
+    "company": "ICTx",
+    "url": "https://au.seek.com/job/91895782/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T21-25-04-700Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is visible, along with a validation error message. The page is displaying questions about right to work, salary, police check, and language proficiency. The error message indicates that a selection is required for the language proficiency question.\n\n2. The error is caused by failing to make a selection for the language proficiency question.\n\n3. The bot must select `input[name=\"languageProficiency\"][value=\"No\"]` or its corresponding label element since a language is already filled in."
+  },
+  {
+    "timestamp": "2026-05-06T21:25:25.125Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Software Engineer",
+    "company": "Riot Games Pty Ltd",
+    "url": "https://au.seek.com/job/91901334/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-06T21-25-23-157Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The page displays the \"Answer employer questions\" section, including questions about right to work, experience, and scrum agile team experience, along with a validation error.\n2. The error is caused by the bot not selecting an option for the question \"Do you have experience working within a scrum agile team?\".\n3. The bot should try clicking either `input[value=\"Yes\"]` or `input[value=\"No\"]` associated with the \"Do you have experience working within a scrum agile team?\" question or the associated labels."
   }
 ]
