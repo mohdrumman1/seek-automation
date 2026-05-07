@@ -398,5 +398,75 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-07T10-44-57-005Z_validation_errors_blocking_continue.png",
     "analysis": "1. The \"Answer employer questions\" page on Seek is visible, with an error message stating that a selection is required for the question about native or bilingual proficiency in languages other than English. The question about native or bilingual proficiency in languages other than English is displayed.\n2.  The error is occurring because the bot hasn't properly registered the selection for \"Do you have native or bilingual proficiency in any languages other than English?\".\n3.  The bot should try clicking the label element directly associated with the \"Yes, Japanese\" radio input using a CSS selector targeting that specific label. Or, it can try clicking `input[value=\"Yes, Japanese\"]` again."
+  },
+  {
+    "timestamp": "2026-05-07T21:16:16.482Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91943661/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-07T21-16-14-404Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screenshot shows the \"Review and submit\" page with an error message indicating unresolved issues and the applicant's profile information.\n2.  The error is caused by unresolved issues in the profile, requiring the applicant to edit their personal info.\n3.  The bot should click the edit profile icon using the CSS selector `button[aria-label=\"Edit profile\"]`."
+  },
+  {
+    "timestamp": "2026-05-07T21:17:59.097Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Vendor Sourcing Project Manager",
+    "company": "Calleo",
+    "url": "https://au.seek.com/job/91930331/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-07T21-17-56-515Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible with error messages indicating required selections are missing. Specifically, the error message indicates the bot needs to select between \"Yes\" and \"No\" for the question \"Have you worked on ICT vendor procurement projects?\" and \"Do you have an AGSVA security clearance?\".\n2.  The error is because the bot hasn't properly registered the selection for the questions \"Have you worked on ICT vendor procurement projects?\" and \"Do you have an AGSVA security clearance?\".\n3.  The bot should try clicking the label element directly associated with the \"Yes\" or \"No\" radio input for each question, e.g., using the CSS selector `input[value=\"Yes\"]` for the ICT vendor procurement project question, and radio buttons for the \"Do you have an AGSVA security clearance?\" question."
+  },
+  {
+    "timestamp": "2026-05-07T21:19:05.081Z",
+    "error_type": "unanswered_questions",
+    "job_title": "Digital Planning Lead",
+    "company": "NEC Australia Pty Ltd",
+    "url": "https://au.seek.com/job/91969107/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-07T21-19-02-670Z_unanswered_questions.png",
+    "analysis": "1.  The screen displays employer questions, including questions about the right to work in Australia, years of experience, and security clearance.\n2.  The error likely occurred because the bot didn't fill in all the required fields/options. It appears it failed to select an option for \"How many years' experience do you have as a Planning Lead?\" and \"Do you hold Australian Security Clearance?\"\n3.  To fix, the bot should use `document.querySelector('select:nth-of-type(2)').value = \"some experience\"` and `document.querySelector('input[type=\"radio\"][value*=\"Yes, Baseline\"]').click()` to select relevant options for these questions. This should fill out the requested details and avoid the error."
+  },
+  {
+    "timestamp": "2026-05-07T21:19:11.057Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Digital Planning Lead",
+    "company": "NEC Australia Pty Ltd",
+    "url": "https://au.seek.com/job/91969107/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-07T21-19-08-146Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page on Seek.com.au is visible, displaying an error message indicating that a selection is required for the question \"Do you hold Australian Security Clearance?\". The question itself and the multiple radio button options are also visible.\n\n2.  The error is occurring because the bot hasn't registered the selection for \"Do you hold Australian Security Clearance?\".\n\n3.  The bot should try clicking the label element directly associated with one of the radio inputs, for example, the \"No\" radio input, using a CSS selector targeting the label: `label[for=\"applicant.agsvaSecurityClearance-no\"]`.  (Since the radio options don't have a consistent `value` attribute, we need to use the more specific label selector)."
+  },
+  {
+    "timestamp": "2026-05-07T21:21:09.250Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior .NET Engineer - Perm or Contract",
+    "company": "Software At Scale",
+    "url": "https://au.seek.com/job/91964258/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-07T21-21-06-847Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, specifically the first question about commercial experience with .NET Core frameworks and C#, with \"YES\" and \"NO\" radio options, and an error message saying \"Please make a selection\". The error message at the top indicates more questions need answering.\n2.  The error occurred because the bot has not selected either \"YES\" or \"NO\" for the first question shown.\n3.  The bot should try clicking the label element associated with a radio button, such as `label[for=\"applicant.doYouHaveExtensiveCommercialExperience-no\"]`. This selector targets the \"NO\" option's label, which is one possible solution."
+  },
+  {
+    "timestamp": "2026-05-07T21:21:37.238Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Engineer (Operational Systems)",
+    "company": "Deep C Holdings PTY LTD",
+    "url": "https://au.seek.com/job/91950465/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-07T21-21-34-753Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screenshot shows error messages indicating that the bot needs to rate their Mandarin language skills. It also shows questions about the right to work in Australia, years of software engineering experience, and programming language experience.\n\n2.  The error occurred because the bot has not made a selection for the Mandarin language skills question.\n\n3.  The bot should try to select from the options for the Mandarin language skill question, likely using a `select` element, and therefore could first try to click the dropdown, perhaps targeting with a CSS selector like `[aria-labelledby=\"toBeDetermind\"]`, then select an `option`. Since I cannot tell what the id will be for sure, it might be necessary to inspect the page directly."
+  },
+  {
+    "timestamp": "2026-05-07T21:23:36.470Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "AI Software Engineer - Contract",
+    "company": "The Recruitment Company",
+    "url": "https://au.seek.com/job/91901268/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-07T21-23-33-806Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page on Seek.com.au is visible, with a message indicating that the application cannot continue due to unresolved issues. We can see the current user/profile information and that documents are included, implying this step has been completed.\n2.  The bot has not provided all the needed information or answered all questions required at the previous stages(Update SEEK Profile step), causing this validation error blocking the \"Review and submit\" stage.\n3.  As it doesn't tell what is missing, the bot should go back to the \"Update SEEK Profile\" page, inspect the page and complete the profile information as requested by the platform, likely filling out required fields. The bot likely didn't complete all required questions."
   }
 ]
