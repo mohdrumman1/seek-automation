@@ -558,5 +558,85 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-08T10-03-04-152Z_validation_errors_blocking_continue.png",
     "analysis": "1. The screenshot shows the \"Answer employer questions\" page with a validation error message indicating that the question \"Have you worked in a role which requires JavaScript development experience?\" needs an answer.  A list of programming language options is visible.\n2.  The error is caused by the bot not answering the JavaScript experience question.\n3.  The bot should click the \"Yes\" button for the JavaScript question. The CSS selector could be `label:contains(\"Have you worked in a role which requires JavaScript development experience?\") + label:contains(\"Yes\")`."
+  },
+  {
+    "timestamp": "2026-05-08T21:17:05.145Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager - Transformation & Operational Improvement",
+    "company": "Ampersand",
+    "url": "https://au.seek.com/job/91984164/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-08T21-17-02-984Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screenshot shows the \"Answer employer questions\" page. A validation error message is displayed indicating that the question about experience in \"operationally complex environments\" has not been answered. The page also shows questions about right to work in Australia, notice period and experience.\n2.  The error is caused by the bot not answering the question \"Have you worked within operationally complex environments...\".\n3.  The bot should click either the \"Yes\" or \"No\" radio button. A possible CSS selector for the \"Yes\" button is `label:contains(\"Have you worked within operationally complex environments such as government, transport, infrastructure, utilities, healthcare, or large enterprise organisations?\") + label:contains(\"Yes\")`."
+  },
+  {
+    "timestamp": "2026-05-08T21:17:23.808Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Technical Implementation Project Manager",
+    "company": "Accommodations Plus International",
+    "url": "https://au.seek.com/job/91989462/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-08T21-17-21-768Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, displaying an error message and several questions about right to work in Australia, experience, and qualifications.\n2.  The error is caused by the bot not answering the question \"Do you have native or bilingual proficiency in any languages other than English?\".\n3.  The bot should select an option from the dropdown menu associated with the language proficiency question. A possible CSS selector could be `label:contains(\"Do you have native or bilingual proficiency in any languages other than English?\") + select`."
+  },
+  {
+    "timestamp": "2026-05-08T21:20:38.928Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Portfolio Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91999441/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-08T21-20-36-028Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screenshot shows the \"Review and submit\" page with a validation error message indicating that there are issues that need to be addressed before continuing the application. It also shows the applicant's details.\n2.  The error is caused by the bot not addressing required fields in the application. Based on previous analyses, this often involves questions about experience, right to work, or language proficiency.  However, the screenshot doesn't provide specific details on which question.\n3.  The bot must first go back to the \"Answer employer questions\" page to identify and answer the missing questions using the question-specific CSS selectors from previous analyses, such as `label:contains(\"Have you worked in a role which requires JavaScript development experience?\") + label:contains(\"Yes\")` or `label:contains(\"Do you have native or bilingual proficiency in any languages other than English?\") + select`. Alternatively, if there's an edit button on the user profile section, the bot can click on it using the CSS selector `div[class*=\"ProfileCard-module_heading\"] button` and update the profile details accordingly."
+  },
+  {
+    "timestamp": "2026-05-08T21:23:11.347Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Platform Engineer",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91994040/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-08T21-23-09-280Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is visible, along with a validation error and the applicant's profile details.\n2. The error is caused by missing information within the application, probably on the \"Answer employer questions\" page, or perhaps in the \"Update SEEK Profile\" section.\n3. The bot should click the edit button on the user profile section using the CSS selector `div[class*=\"ProfileCard-module_heading\"] button` to update the profile details, or navigate back to the \"Answer employer questions\" page and fill out any unanswered questions."
+  },
+  {
+    "timestamp": "2026-05-08T21:23:40.721Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Principal .NET Engineer",
+    "company": "A2B Australia",
+    "url": "https://au.seek.com/job/91969932/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-08T21-23-38-385Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, displaying a validation error message and employer questions, including one about right to work in Australia, salary expectations, and experience with technical architecture.\n2.  The error is caused by unanswered questions related to experience with technical architecture (\"Have you held responsibility...\") and  .NET/.NET Core experience (\"How many years of hands-on experience...\"). The first question has already been answered, but in needs to answer the question about .NET/.NET Core.\n3.  The bot should locate and answer the \".NET/.NET Core\" experience question; `label:contains(\"How many years of hands-on experience do you have building production systems using .NET/.NET Core?\")` could be used to identify it, followed by selecting an option."
+  },
+  {
+    "timestamp": "2026-05-08T21:24:46.884Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Developer",
+    "company": "MVSI OnBoard",
+    "url": "https://au.seek.com/job/91988277/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-08T21-24-44-699Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is displayed, along with a validation error message.\n2.  The error is caused by the missing selection for the question \"Do you have experience with Test Driven Development (TDD)?\".\n3.  The bot should select either \"Yes\" or \"No\" for the TDD question, using the CSS selectors `label:contains(\"Do you have experience with Test Driven Development (TDD)?\") + label:contains(\"Yes\")` or `label:contains(\"Do you have experience with Test Driven Development (TDD)?\") + label:contains(\"No\")`, accordingly."
+  },
+  {
+    "timestamp": "2026-05-08T21:25:06.139Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Lotus Notes Developer - HCL - IBM - Domino",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91970935/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-08T21-25-04-377Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page is visible, along with a validation error message and the applicant's profile details.\n2.  The error is caused by missing information within the application, probably in the applicant's profile.\n3.  The bot should click the edit button to update the profile details using the CSS selector `div[class*=\"ProfileCard-module_heading\"] button`."
+  },
+  {
+    "timestamp": "2026-05-08T21:25:25.381Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": ".Net Engineer",
+    "company": "West Recruitment",
+    "url": "https://au.seek.com/job/91984213/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-08T21-25-22-527Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, displaying a validation error message and employer questions. The error indicates that an answer is required to the question \"Are you currently residing in Sydney?\".\n2.  The error is caused by the bot not answering the question \"Are you currently residing in Sydney?\".\n3.  The bot should select either \"Yes\" or \"No\" using the CSS selectors `label:contains(\"Are you currently residing in Sydney?\") + label:contains(\"Yes\")` or `label:contains(\"Are you currently residing in Sydney?\") + label:contains(\"No\")`, accordingly. Alternatively the selectors `input[type=\"radio\"][value=\"Yes\"]` or `input[type=\"radio\"][value=\"No\"]` could also be used."
   }
 ]
