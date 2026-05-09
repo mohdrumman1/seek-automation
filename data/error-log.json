@@ -728,5 +728,45 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-09T05-40-16-650Z_validation_errors_blocking_continue.png",
     "analysis": "1.  The \"Answer employer questions\" page is visible, along with a validation error message, and the questions \"Are you legally entitled to work in Australia?\" and \"Have you attended an Interview with our recruitment team in the last 12 months?\".\n2.  The error is likely caused by the bot not answering the questions \"Are you legally entitled to work in Australia?\", \"::Firstname:: What is your visa type?\" and \"Have you attended an Interview with our recruitment team in the last 12 months?\".\n3.  The bot should select either \"Yes\" or \"No\" for \"Are you legally entitled to work in Australia?\". If the applicant has a visa, complete the text field \"::FirstName:: What is your visa type?\", it should also select either \"Yes\" or \"No\" for \"Have you attended an Interview with our recruitment team in the last 12 months?\". We do not have enough information to provide the exact css selectors."
+  },
+  {
+    "timestamp": "2026-05-09T21:04:18.023Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager - Transformation & Operational Improvement",
+    "company": "Ampersand",
+    "url": "https://au.seek.com/job/91984164/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-09T21-04-16-210Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, along with an error message indicating \"Have you worked within operationally complex environments...? - Please make a selection\".\n2.  The error is caused by the bot not answering the question: \"Have you worked within operationally complex environments...?\"\n3.  The bot needs to select \"Yes\" or \"No\" for that question.  Without seeing the available elements it is not possible to provide a specific CSS selector, but look for radio buttons or a dropdown associated with the question."
+  },
+  {
+    "timestamp": "2026-05-09T21:06:59.281Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Portfolio Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91999441/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-09T21-06-57-429Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is visible, along with a validation error message, and the applicant's profile information is visible.\n2. The error is likely caused by missing or incomplete information in the SEEK profile.\n3. The bot should click the edit button next to the applicant's profile using the CSS selector `button[aria-label=\"Edit profile\"]` to access the profile edit page and verify/complete all the required details."
+  },
+  {
+    "timestamp": "2026-05-09T21:09:38.743Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Developer",
+    "company": "MVSI OnBoard",
+    "url": "https://au.seek.com/job/91988277/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-09T21-09-36-548Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, along with a validation error message, and the questions \"How many years of web app development experience do you have?\", \"Which of the following statements best describes your right to work in Australia?\", \"Do you have experience with Test Driven Development (TDD)?\" and \"How many years experience do you have as a software developer?\".\n2.  The error is caused by the bot not answering the question: \"Do you have experience with Test Driven Development (TDD)?\".\n3.  The bot needs to select either \"Yes\" or \"No\" for that question.\n4.  The bot should select the \"Yes\" radio button using the CSS selector `input[type=\"radio\"][value=\"Yes\"]` or the \"No\" radio button using the CSS selector `input[type=\"radio\"][value=\"No\"]` for the question about TDD."
+  },
+  {
+    "timestamp": "2026-05-09T21:11:25.615Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Mid & Senior Full Stack Engineers - Java/React",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/91996297/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-09T21-11-23-885Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is visible, along with a validation error message and the applicant's profile information.\n2.  The error is likely caused by missing or incomplete information in the user's SEEK profile.\n3.  The bot should click the edit button next to the applicant's profile using the CSS selector `button[aria-label=\"Edit profile\"]` to access the profile edit page and verify/complete all the required details."
   }
 ]
