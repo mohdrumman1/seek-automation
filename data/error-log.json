@@ -868,5 +868,85 @@
     "page_title": "Review and submit | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T09-57-25-051Z_validation_errors_blocking_continue.png",
     "analysis": "1.  The \"Review and submit\" page is visible, along with a general error message indicating unresolved issues. The page also displays the candidate's filled name and contact details.\n2.  The error is due to unresolved issues related to profile or application form data from previous steps. Like missing information under \"Update SEEK profile\" or \"Answer employer questions\".\n3.  The bot should click the edit icon (pencil) on the \"Update SEEK Profile\" section to navigate back and fill out all required fields, then return to the \"Review and Submit\" page. A possible CSS selector for the edit icon would be `[data-automation=\"profile-edit-button\"]`."
+  },
+  {
+    "timestamp": "2026-05-10T21:06:59.827Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Technical Implementation Project Manager",
+    "company": "Accommodations Plus International",
+    "url": "https://au.seek.com/job/91989462/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T21-06-57-752Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is displayed with an error message and several dropdown questions.\n2. The error is due to the bot not answering the question \"Do you have native or bilingual proficiency in any languages other than English?\".\n3. The bot should interact with the appropriate dropdown/selection element related to the languages question.  Since I cannot see how the question is constructed from just this image, I cannot create a CSS selector. Instead the bot needs to find the element with the text that includes \"Do you have native or bilingual proficiency in any languages other than English?\" and then pick a selection for this select box."
+  },
+  {
+    "timestamp": "2026-05-10T21:07:28.249Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager - Transformation & Operational Improvement",
+    "company": "Ampersand",
+    "url": "https://au.seek.com/job/91984164/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T21-07-26-228Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, including questions about right to work in Australia, notice period, transformation project experience, and complex environment experience.\n2.  The error is caused by the bot not answering the question \"Have you worked within operationally complex environments such as government, transport, infrastructure, utilities, healthcare, or large enterprise organisations?\".\n3.  The bot should find the dropdown related to the question \"Have you worked within operationally complex environments such as government, transport, infrastructure, utilities, healthcare, or large enterprise organisations?\" and select an option. It can use `select[aria-labelledby*='operationally complex environments']` as the CSS selector, replacing `*=` with an exact match."
+  },
+  {
+    "timestamp": "2026-05-10T21:08:19.197Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Portfolio Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91999441/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T21-08-17-167Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page is displayed with a general error, along with the user's profile information.\n2.  The error is due to unresolved issues within the user's SEEK profile, likely from the \"Update SEEK Profile\" section.\n3.  The bot should click the edit icon (pencil) on the \"Update SEEK Profile\" section to navigate back and fill out any required fields. A CSS selector for this would be `[data-automation=\"profile-edit-button\"]`."
+  },
+  {
+    "timestamp": "2026-05-10T21:10:35.966Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Test Automation Engineer - long term contract (12X12X12)",
+    "company": "Helix Technology Services",
+    "url": "https://au.seek.com/job/91994509/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T21-10-33-821Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is displayed, showing questions about right to work in Australia, DevOps experience and national security clearance.  An error message is also visible, indicating a required field has not been answered.\n2.  The error is caused by the bot not selecting a radio button for the question \"Do you hold an Australian national security clearance?\".\n3. The bot should select one of the radio buttons associated with the security clearance question. A CSS selector for the first option could be `input[type=\"radio\"][value=\"no clearance\"]` and the bot could try click on this element to select it."
+  },
+  {
+    "timestamp": "2026-05-10T21:12:23.268Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Engineer",
+    "company": "B&D Group Pty Ltd",
+    "url": "https://au.seek.com/job/92015981/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T21-12-20-883Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is displayed, with questions already pre-filled, and an error message indicating that the bot needs to make a selection for questions about inventory management, software development lifecycle experience, and javascript development experience.\n2. The error is caused by the bot skipping questions about the inventory management, software development lifecycle and javascript development experience.\n3. The bot should find the dropdown related to \"inventory management\" and select any option using the CSS selector `select[aria-labelledby*='inventory management']`. The bot should select dropdown options for software development lifecycle and Javascript development experience questions, similarly."
+  },
+  {
+    "timestamp": "2026-05-10T21:13:11.303Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Developer",
+    "company": "MVSI OnBoard",
+    "url": "https://au.seek.com/job/91988277/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T21-13-08-731Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is displayed, with a validation error indicating that the \"Do you have experience with Test Driven Development (TDD)?\" question requires an answer. Other questions are also visible, and it looks like the bot has filled in some of them.\n2.  The bot skipped answering the \"Do you have experience with Test Driven Development (TDD)?\" question.\n3.  The bot should select either the \"Yes\" or \"No\" radio button using CSS selectors `input[type=\"radio\"][value=\"Yes\"]` or `input[type=\"radio\"][value=\"No\"]` respectively."
+  },
+  {
+    "timestamp": "2026-05-10T21:15:57.264Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Front End Engineer",
+    "company": "Mark My Words",
+    "url": "https://au.seek.com/job/91982879/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T21-15-55-487Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screenshot shows the \"Answer employer questions\" page with validation errors related to HTML and CSS development experience. A selection for HTML experience is attempted but is unselected, with no current selection for the CSS experience question.\n2. The error is caused by the bot skipping selecting a radio button (either \"yes\" or \"No\") for the question \"Have you worked in a role which requires CSS development experience?\".\n3. The bot should select either the \"Yes\" or \"No\" radio button using the CSS selectors `input[type=\"radio\"][value=\"yes\"]` or `input[type=\"radio\"][value=\"no\"]` that are associated with the CSS development experience question."
+  },
+  {
+    "timestamp": "2026-05-10T21:16:39.878Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "ColdFusion Developer",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91994482/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T21-16-37-540Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  A validation error message is visible indicating that there are issues to be addressed before continuing the application. The page also shows details extracted from the \"Update SEEK Profile\" step, namely the applicant's name, location, phone number, and email.\n2.  The bot has not addressed all required fields or answered all mandatory questions in the \"Update SEEK Profile\" section based on what is on the screen. \n3.  The bot should click the edit icon (`svg[data-automation=\"edit-profile\"]`) next to the applicant information to go back to the \"Update SEEK profile\" screen and look for any missing fields or unanswered mandatory questions. Afterwards, it should fill in the required information."
   }
 ]
