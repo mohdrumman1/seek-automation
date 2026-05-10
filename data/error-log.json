@@ -818,5 +818,55 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T05-51-16-349Z_validation_errors_blocking_continue.png",
     "analysis": "1.  The \"Answer employer questions\" page is visible, with a validation error message and questions regarding experience with Test Driven Development (TDD), web app development experience, right to work in Australia, and software developer experience.\n2.  The error is caused by the bot not answering the question: \"Do you have experience with Test Driven Development (TDD)?\".\n3.  The bot needs to select either the \"Yes\" or \"No\" radio button option for the TDD question.\n4.  The bot can select the \"Yes\" option using the CSS selector `input[type=\"radio\"][value=\"yes\"]` or the \"No\" option using `input[type=\"radio\"][value=\"no\"]`."
+  },
+  {
+    "timestamp": "2026-05-10T09:50:15.866Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager - Transformation & Operational Improvement",
+    "company": "Ampersand",
+    "url": "https://au.seek.com/job/91984164/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T09-50-13-720Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, along with a validation error message. The error message states \"Have you worked within operationally complex environments...? - Please make a selection\".\n2.  The error is caused by the bot not answering the question about experience within operationally complex environments.\n3.  The bot needs to select one of the answer options for the complex environments question. The bot should try clicking a radio button with either `input[type=\"radio\"][value=\"yes\"]` or `input[type=\"radio\"][value=\"no\"]` relative to the complex environment question."
+  },
+  {
+    "timestamp": "2026-05-10T09:50:45.499Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Technical Implementation Project Manager",
+    "company": "Accommodations Plus International",
+    "url": "https://au.seek.com/job/91989462/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T09-50-42-957Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, with a validation error message at the top. The questions regarding right to work in Australia, project implementation manager experience, project management experience, and project management qualification are also on the page.\n2.  The error is caused by the bot not answering the question \"Do you have native or bilingual proficiency in any languages other than English?\".\n3. The bot needs to select an option from the dropdown list for the \"languages other than English\" question. It must first open the dropdown using its arrow icon, then select one of the presented options. Thus, one possible CSS selector would be to click the dropdown's arrow icon, then click on the desired answer. Since I don't know the possible answers, I can't provide a concrete selector for the answer, only for the dropdown arrow.  A possible solution is figuring out the code used to render each option, but is probably something like `div[role=\"option\"]`."
+  },
+  {
+    "timestamp": "2026-05-10T09:51:34.876Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Portfolio Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91999441/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T09-51-32-102Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page is visible, along with an error message indicating unresolved issues. The page also displays the applicant's name and contact details.\n2.  The error is caused by unresolved issues during the application process, likely on a prior page like providing work history details or answering employer questions.\n3.  The bot needs to navigate back to the previous steps (potentially the \"Update SEEK Profile\" stage or \"Answer employer questions\" page, if present), identify the missing or incorrect information, provide the necessary details or correct the errors, and then return to the \"Review and submit\" page. Since I cannot see the specific issues causing the error, I do not have a concrete CSS selector for the fix."
+  },
+  {
+    "timestamp": "2026-05-10T09:56:36.865Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Developer",
+    "company": "MVSI OnBoard",
+    "url": "https://au.seek.com/job/91988277/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T09-56-34-822Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, with an error message indicating that the question about \"Test Driven Development (TDD)\" requires a selection.\n2.  The bot failed to answer the question about experience with Test Driven Development (TDD).\n3.  The bot should select either the \"Yes\" or \"No\" radio button for the TDD question. It can try clicking `input[type=\"radio\"][value=\"yes\"]` or `input[type=\"radio\"][value=\"no\"]` within a container specifically related to the TDD question."
+  },
+  {
+    "timestamp": "2026-05-10T09:57:27.265Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior .NET Developer",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91990910/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T09-57-25-051Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page is visible, along with a general error message indicating unresolved issues. The page also displays the candidate's filled name and contact details.\n2.  The error is due to unresolved issues related to profile or application form data from previous steps. Like missing information under \"Update SEEK profile\" or \"Answer employer questions\".\n3.  The bot should click the edit icon (pencil) on the \"Update SEEK Profile\" section to navigate back and fill out all required fields, then return to the \"Review and Submit\" page. A possible CSS selector for the edit icon would be `[data-automation=\"profile-edit-button\"]`."
   }
 ]
