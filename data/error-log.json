@@ -948,5 +948,45 @@
     "page_title": "Review and submit | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-10T21-16-37-540Z_validation_errors_blocking_continue.png",
     "analysis": "1.  A validation error message is visible indicating that there are issues to be addressed before continuing the application. The page also shows details extracted from the \"Update SEEK Profile\" step, namely the applicant's name, location, phone number, and email.\n2.  The bot has not addressed all required fields or answered all mandatory questions in the \"Update SEEK Profile\" section based on what is on the screen. \n3.  The bot should click the edit icon (`svg[data-automation=\"edit-profile\"]`) next to the applicant information to go back to the \"Update SEEK profile\" screen and look for any missing fields or unanswered mandatory questions. Afterwards, it should fill in the required information."
+  },
+  {
+    "timestamp": "2026-05-11T06:11:09.564Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/92030943/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T06-11-02-250Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page on Seek is visible, showing a validation error message and the applicant's profile information (name, contact details, and location).\n2.  The \"validation_errors_blocking_continue\" error is due to missing information in the \"Update SEEK Profile\" section. The bot skipped filling in some required fields or answering mandatory questions during the profile update.\n3.  The bot should click the edit icon (`svg[data-automation=\"edit-profile\"]`) next to the applicant information, navigate back to the \"Update SEEK profile\" screen, and ensure all required fields have been filled."
+  },
+  {
+    "timestamp": "2026-05-11T06:12:17.469Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Technical Implementation Project Manager",
+    "company": "Accommodations Plus International",
+    "url": "https://au.seek.com/job/91989462/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T06-12-15-476Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen shows the \"Answer employer questions\" page with a validation error message. Also, questions about right to work in Australia, experience as a Project Implementation Manager, amount of project management experience, and project management qualifications are visible.\n2.  The error is caused by the bot skipping the selection for the question: \"Do you have native or bilingual proficiency in any languages other than English?\".\n3.  The bot needs to select an option for the language proficiency question. Find the dropdown element probably with `div[data-automation=\"question-language-proficiency\"]` and select an option."
+  },
+  {
+    "timestamp": "2026-05-11T06:13:29.527Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager - Transformation & Operational Improvement",
+    "company": "Ampersand",
+    "url": "https://au.seek.com/job/91984164/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T06-13-26-746Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, along with a validation error message. Several questions are displayed, including right to work in Australia, notice period, and experience in transformation projects and experience in complex environments.\n2.  The error is caused by the bot skipping the selection for the question \"Have you worked within operationally complex environments such as government, transport, infrastructure, utilities, healthcare, or large enterprise organisations?\". The validation message indicates that this question requires a selection to continue.\n3.  The bot needs to locate the dropdown or radio button group associated with this question, perhaps using a CSS selector like `div:contains('Have you worked within operationally complex environments')` or `label:contains('Have you worked within operationally complex environments') + div` to identify the relevant element, and then select an appropriate option (e.g., \"Yes\" or \"No\")."
+  },
+  {
+    "timestamp": "2026-05-11T06:15:33.800Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Portfolio Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91999441/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T06-15-31-488Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page is shown with a validation error message. The applicant's information and job details are also visible.\n2.  The error is happening because required information is missing in the \"Update SEEK Profile\" section. The bot skipped filling in required sections.\n3.  The bot should click the edit icon `svg[data-automation=\"edit-profile\"]` next to the applicant information and fill in all required fields in the profile update screen. This ensures that all necessary details are provided before submitting the application."
   }
 ]
