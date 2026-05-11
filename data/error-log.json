@@ -1088,5 +1088,55 @@
     "page_title": "Review and submit | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-46-40-573Z_validation_errors_blocking_continue.png",
     "analysis": "1.  The \"Review and submit\" page is visible, but a validation error message is also present, indicating unresolved issues. The applicant's basic profile data is displayed.\n2.  The bot failed to address mandatory fields or questions on previous steps (likely on the \"Update SEEK Profile\" step based on the progress indicator).\n3.  The bot should first identify any uncompleted sections by inspecting the DOM, then use appropriate selectors and actions (like `.type()` for text fields, `.select()` for dropdowns, or `.click()` for radio buttons/checkboxes) to fill in the missing data. Investigate the \"Update SEEK Profile\" page."
+  },
+  {
+    "timestamp": "2026-05-11T21:42:54.073Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/92030943/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T21-42-51-916Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page is displayed, showing a validation error and the applicant's basic profile.\n2.  The error is caused by unresolved issues, which likely reside in the \"Update SEEK Profile\" section.\n3.  The bot should click the edit icon (pencil icon) next to the profile details using a selector that targets the edit profile button, perhaps `document.querySelector('svg[data-testid=\"EditIcon\"]').parentElement.click()`, to access the update profile section and address the errors displayed there. It then needs to fill in all required fields on the \"Update SEEK Profile\" page before proceeding."
+  },
+  {
+    "timestamp": "2026-05-11T21:43:24.955Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Managers - Policy, Risk",
+    "company": "HiTech Personnel",
+    "url": "https://au.seek.com/job/92035798/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T21-43-22-551Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows the \"Answer employer questions\" page on Seek.com.au, specifically the section asking about Australian Security Clearance. There is also a validation error message indicating a selection is required for this question.\n2.  The error is caused by the bot failing to select an option for the \"Do you hold Australian Security Clearance?\" question.\n3.  The bot should select one of the radio button options using a CSS selector like `input[type=\"radio\"][value=\"no\"]` (if the answer is \"No\", replace \"no\" with the appropriate value), then click `document.querySelector('button[type=\"submit\"]').click()` to continue."
+  },
+  {
+    "timestamp": "2026-05-11T21:44:45.053Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Technology Manager",
+    "company": "Water Technology",
+    "url": "https://au.seek.com/job/92037047/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T21-44-39-202Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows the \"Answer employer questions\" page on Seek.com.au, specifically the questions about Aboriginal/Torres Strait Islander status and LGBTQ+ community identification, along with other job application questions. There's also a validation error message indicating a selection is required for both identity questions. The bot has selected \"Yes\" for the Aboriginal question, but the error message persists.\n2.  The error is caused by the bot failing to select an option for the \"Do you identify as part of the LGTBQ+ community?\" question.\n3. The bot should select a radio button option for the LGBTQ+ question using a CSS selector like `input[type=\"radio\"][name=\"lgbtq\"][value=\"yes\"]` or `input[type=\"radio\"][name=\"lgbtq\"][value=\"no\"]`, then click the submit button."
+  },
+  {
+    "timestamp": "2026-05-11T21:48:46.856Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Full Stack Software Developer",
+    "company": "FourQuarters Recruitment",
+    "url": "https://au.seek.com/job/92039214/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T21-48-44-724Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows the \"Answer employer questions\" page with a validation error and a question asking \"Are you Immediately available?\". No option has been selected.\n2.  The error is caused by the bot failing to select either \"Yes\" or \"No\" for the availability question.\n3.  The bot should select either the \"Yes\" or \"No\" radio button (e.g., `input[type=\"radio\"][value=\"yes\"]` or `input[type=\"radio\"][value=\"no\"]`), and then click the \"Continue\" button."
+  },
+  {
+    "timestamp": "2026-05-11T21:49:05.753Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Engineer",
+    "company": "B&D Group Pty Ltd",
+    "url": "https://au.seek.com/job/92015981/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T21-49-03-370Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows validation errors about unanswered questions regarding \"experience with inventory management,\" \"understanding of the software development lifecycle,\" and \"JavaScript development experience.\" Several other questions are visible below, already answered.\n2. The bot failed to answer the questions \"Do you have experience with inventory management?\", \"Have you worked in a role which requires a sound understanding of the software development lifecycle?\", and \"Have you worked in a role which requires JavaScript development experience?\".\n3. The bot should use a CSS selector (potentially a `select` element if these are dropdown questions) to select options for each of the three unanswered questions, then click the submit button. For example, it can use `select[aria-label='Do you have experience with inventory management?']` to select the dropdown."
   }
 ]
