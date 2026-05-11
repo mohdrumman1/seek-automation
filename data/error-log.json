@@ -988,5 +988,105 @@
     "page_title": "Review and submit | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T06-15-31-488Z_validation_errors_blocking_continue.png",
     "analysis": "1.  The \"Review and submit\" page is shown with a validation error message. The applicant's information and job details are also visible.\n2.  The error is happening because required information is missing in the \"Update SEEK Profile\" section. The bot skipped filling in required sections.\n3.  The bot should click the edit icon `svg[data-automation=\"edit-profile\"]` next to the applicant information and fill in all required fields in the profile update screen. This ensures that all necessary details are provided before submitting the application."
+  },
+  {
+    "timestamp": "2026-05-11T11:38:11.594Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Technology Manager",
+    "company": "Water Technology",
+    "url": "https://au.seek.com/job/92037047/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-38-08-925Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is visible with validation errors related to Aboriginal/Torres Strait Islander and LGBTQ+ identification. Other questions regarding right to work in Australia, experience, and salary are also displayed.\n2. The error is caused by the bot skipping the selection for the question \"Do you identify as part of the LGTBQ+ community?\". A selection for \"Do you identify as Aboriginal and/or Torres Strait Islander?\" may not have registered even though a radio button is selected.\n3.  The bot should either find the radio button group associated with the LGBTQ+ question and select an option or ensure that the correct selection for `input[name=\"aboriginal_torres_strait_islander\"]`is recorded. It may also need to explicitly submit the form again."
+  },
+  {
+    "timestamp": "2026-05-11T11:39:31.891Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/92030943/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-39-29-691Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is displayed with an error message indicating that there are issues to address before continuing. Applicant information is also visible but likely incomplete, as indicated by the error.\n2.  The error is caused by the bot failing to fill in required sections in the \"Update SEEK Profile\" section. This necessitates addressing issues within the applicant's profile.\n3.  The bot should click the edit icon `svg[data-automation=\"edit-profile\"]` next to the applicant's information to navigate to the profile update screen and complete all mandatory fields."
+  },
+  {
+    "timestamp": "2026-05-11T11:39:50.942Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager - Transformation & Operational Improvement",
+    "company": "Ampersand",
+    "url": "https://au.seek.com/job/91984164/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-39-48-349Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is displayed with a validation error: \"Have you worked within operationally complex environments such as government, transport, infrastructure, utilities, healthcare, or large enterprise organisations? - Please make a selection.\"\n2.  The error is caused by the bot skipping the selection for the question about working in operationally complex environments.\n3.  The bot should locate the radio button group or dropdown associated with the question \"Have you worked within operationally complex environments...\" and select an option. Since it is a question requires a selection, it should use `document.querySelector('input[name=\"operationally_complex_environment\"][value=\"yes\"]').click()` or the appropriate selector depending on the HTML structure."
+  },
+  {
+    "timestamp": "2026-05-11T11:40:09.477Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Managers - Policy, Risk",
+    "company": "HiTech Personnel",
+    "url": "https://au.seek.com/job/92035798/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-40-07-236Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, displaying a validation error requiring a selection for the \"Do you hold Australian Security Clearance?\" question. The \"right to work\" question has been answered.\n2.  The bot skipped the selection for \"Do you hold Australian Security Clearance?\".\n3.  The bot should select a radio button from the \"Do you hold Australian Security Clearance?\" options, such as `document.querySelector('input[value=\"yes_baseline\"]').click()` or another relevant radio button. Ensure the value matches the element's actual value."
+  },
+  {
+    "timestamp": "2026-05-11T11:40:39.092Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Technical Implementation Project Manager",
+    "company": "Accommodations Plus International",
+    "url": "https://au.seek.com/job/91989462/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-40-37-034Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is displayed. An error message indicates a missing selection for the question about bilingual proficiency in languages other than English.\n2.  The bot has failed to select an option for the \"Do you have native or bilingual proficiency in any languages other than English?\" question.\n3.  The bot should locate the relevant radio button group or dropdown associated with this question and select an appropriate option (e.g., `document.querySelector('input[name=\"bilingual_proficiency\"][value=\"yes\"]').click()` or `document.querySelector('input[name=\"bilingual_proficiency\"][value=\"no\"]').click()`). The exact selector depends on the HTML structure."
+  },
+  {
+    "timestamp": "2026-05-11T11:42:48.810Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Portfolio Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/91999441/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-42-46-497Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is shown with an error message \"Before you can continue with the application, please address the following issues:\".\n2. The bot skipped answering employer questions or completing other required fields in the \"Update SEEK Profile\" step, leading to validation errors.\n3. The bot should go back to the \"Update SEEK Profile\" page and ensure all required questions are answered. Specific selectors depend on the questions, but the previous analyses suggest looking for radio buttons or dropdowns, and using `.click()` or `.select()` to choose options, filling name and number if needed."
+  },
+  {
+    "timestamp": "2026-05-11T11:44:20.347Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Full Stack Software Developer",
+    "company": "FourQuarters Recruitment",
+    "url": "https://au.seek.com/job/92039214/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-44-18-109Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible with a validation error message prompting a selection for the \"Are you Immediately available?\" question. The available options are \"Yes\" and \"No\".\n2.  The bot failed to select an option for the \"Are you Immediately available?\" question.\n3.  The bot should select either the \"Yes\" or \"No\" radio button using a selector like `document.querySelector('input[value=\"Yes\"]').click()` or `document.querySelector('input[value=\"No\"]').click()`. The correct selector will depend on the exact HTML."
+  },
+  {
+    "timestamp": "2026-05-11T11:45:54.460Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Developer",
+    "company": "MVSI OnBoard",
+    "url": "https://au.seek.com/job/91988277/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-45-51-963Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is displayed, with an error message indicating that a selection is required for the \"Do you have experience with Test Driven Development (TDD)?\" question.\n2.  The bot didn't select either \"Yes\" or \"No\" for the TDD question.\n3.  The bot should select either the \"Yes\" or \"No\" radio button using a selector like `document.querySelector('input[value=\"Yes\"]').click()` or `document.querySelector('input[value=\"No\"]').click()` for the TDD question."
+  },
+  {
+    "timestamp": "2026-05-11T11:46:24.248Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Engineer",
+    "company": "B&D Group Pty Ltd",
+    "url": "https://au.seek.com/job/92015981/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-46-21-560Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, with validation errors indicating that selections are required for \"inventory management\", \"software development lifecycle\", and \"JavaScript development experience\". Other questions are also visible and appear to be using `<select>` dropdown elements.\n2.  The bot skipped answering these questions.\n3.  The bot should use `.select()` to choose an option from the dropdown menus for each of these questions. For example, it could select \"Yes\" or \"No\" from \"Do you have experience with inventory management?\" using a selector to target this specific dropdown. Finding the exact selector will require inspecting the HTML."
+  },
+  {
+    "timestamp": "2026-05-11T11:46:48.865Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior C++ Developer",
+    "company": "Balance Recruitment",
+    "url": "https://au.seek.com/job/92014784/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-11T11-46-40-573Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page is visible, but a validation error message is also present, indicating unresolved issues. The applicant's basic profile data is displayed.\n2.  The bot failed to address mandatory fields or questions on previous steps (likely on the \"Update SEEK Profile\" step based on the progress indicator).\n3.  The bot should first identify any uncompleted sections by inspecting the DOM, then use appropriate selectors and actions (like `.type()` for text fields, `.select()` for dropdowns, or `.click()` for radio buttons/checkboxes) to fill in the missing data. Investigate the \"Update SEEK Profile\" page."
   }
 ]
