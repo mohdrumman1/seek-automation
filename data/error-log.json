@@ -1238,5 +1238,95 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T06-01-10-556Z_validation_errors_blocking_continue.png",
     "analysis": "1.  The \"Answer employer questions\" page is visible, with validation errors indicating that the bot needs to answer questions about inventory management, knowledge of the software development lifecycle, and Javascript development experience. Answers for visa status, years of experience as a software engineer, and computer science qualifications are visible.\n2.  The error is caused by the bot not selecting options for the \"inventory management\", the \"software development lifecycle\", and \"Javascript development experience\" questions.\n3.  The bot should click the dropdown elements associated with each of the questions using a CSS selector like `[aria-labelledby='question-inventory']` (after determining the ID for each question dynamically) and select an option (probably 'Yes' or 'No')., then retry proceeding. Alternately, if the questions are radio buttons or checkboxes, the bot should interact with those accordingly."
+  },
+  {
+    "timestamp": "2026-05-12T10:46:21.340Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Technology Manager",
+    "company": "Water Technology",
+    "url": "https://au.seek.com/job/92037047/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T10-46-18-416Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" is visible, along with validation errors for \"Do you identify as Aboriginal and/or Torres Strait Islander?\" and \"Do you identify as part of the LGTBQ+ community?\". Answers and selections for right to work, years of experience, expected salary, and the aboriginal question are present.\n2.  The error is likely caused by the bot not selecting an option for \"Do you identify as part of the LGTBQ+ community?\".  The earlier attempt to answer \"Do you identify as Aboriginal and/or Torres Strait Islander?\" was missed.\n3.  The bot should click either the 'Yes' or 'No' radio button for \"Do you identify as part of the LGTBQ+ community?\". The bot should use CSS selector `input[type=\"radio\"][name*='lgbtq']` to target these radio buttons. The bot appears to also need to click either 'Yes' or 'No' radio button for \"Do you identify as Aboriginal and/or Torres Strait Islander?\"."
+  },
+  {
+    "timestamp": "2026-05-12T10:47:13.008Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/92030943/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T10-47-10-676Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is visible with a validation error message indicating there are issues preventing the continuation of the application. The user's basic profile information is also displayed.\n2. The cause of the error cannot be diagnosed from this screenshot. The bot needs to address issues from a previous step. It is possible that it missed employer-specific questions or failed to complete the profile update correctly.\n3. It's not possible to advise a specific CSS selector or action without knowing the next missing information need. The bot needs to return to a previous step and address the errors presented there. Once the error in a specific update step is identified, an appropriate CSS selector can be chosen to remedy the error."
+  },
+  {
+    "timestamp": "2026-05-12T10:48:12.414Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Managers - Policy, Risk",
+    "company": "HiTech Personnel",
+    "url": "https://au.seek.com/job/92035798/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T10-48-10-242Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible with a validation error message indicating the bot needs to answer the \"Do you hold Australian Security Clearance?\" question. Options for visa status and security clearance are visible.\n2. The bot did not select an option for the \"Do you hold Australian Security Clearance?\" question.\n3.  The bot should select one of the radio button options for the security clearance question. For example, to select \"No\", the bot should use the CSS selector `input[type=\"radio\"][value=\"No\"]` and click on it. Note that you need to adjust the string after 'value=' to select the option that is desired."
+  },
+  {
+    "timestamp": "2026-05-12T10:50:52.390Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Application Engineer",
+    "company": "ESE Recruitment",
+    "url": "https://au.seek.com/job/92058392/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T10-50-49-686Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screenshot shows the \"Answer employer questions\" page with a validation error. The error message states \"Have you worked in a role which requires experience with machine learning techniques? - Please make a selection\". The bot has also already selected options for \"right to work in Australia\" and a list of programming languages.\n2.  The error is caused by the bot not answering the question about experience with machine learning techniques.\n3.  The bot needs to select a radio button (likely 'Yes' or 'No') for the machine learning experience question. The specific CSS selector depends on the HTML structure of the radio buttons, but something like `input[type=\"radio\"][name*='machine_learning'][value='Yes']` or `input[type=\"radio\"][name*='machine_learning'][value='No']` will likely work depending on what selection the user actually wants and how it is asked. The bot needs to click on the selected radio button."
+  },
+  {
+    "timestamp": "2026-05-12T10:51:17.876Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Full Stack Software Developer",
+    "company": "FourQuarters Recruitment",
+    "url": "https://au.seek.com/job/92039214/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T10-51-15-877Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is visible, with an error message indicating that the \"Are you immediately available?\" question has not been answered.\n2. The error is caused because the bot has not selected either \"Yes\" or \"No\" for the \"Are you immediately available?\" question.\n3. The bot should select one of the radio button options for the question. For example, to select \"Yes\", the bot should use the CSS selector `input[type=\"radio\"][value=\"Yes\"]` and click on it."
+  },
+  {
+    "timestamp": "2026-05-12T10:51:44.908Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Engineer",
+    "company": "B&D Group Pty Ltd",
+    "url": "https://au.seek.com/job/92015981/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T10-51-40-886Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is visible with a validation error message. Several unanswered questions are highlighted: inventory management experience, understanding of software development lifecycle, and JavaScript development experience. Some fields, like right to work in Australia, years of experience as software engineer, and computer science qualification, have already been answered.\n2. The bot failed to answer questions about inventory management experience, understanding of software development lifecycle, and JavaScript development experience.\n3. The bot should use CSS selectors to select appropriate options (Yes/No or other values) from the dropdowns for each of those questions. For example, for \"Do you have experience with inventory management?\", it could use a selector to target the dropdown and then select \"Yes\" or \"No\". A suitable CSS selector may look like `#inventory-management-question-id option[value=\"Yes\"]` to select \"Yes\", but this needs adjustment based on actual HTML."
+  },
+  {
+    "timestamp": "2026-05-12T10:52:03.068Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Programmer",
+    "company": "Vision InfoSoft",
+    "url": "https://au.seek.com/job/92056885/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T10-52-00-885Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, with a validation error message about JavaScript development experience. The bot has answered the \"Right to work\" and \"Years of experience as a software developer\" questions.\n2.  The bot failed to answer the \"Have you worked in a role which requires JavaScript development experience?\" question.\n3.  The bot should select either \"Yes\" or \"No\" for the JavaScript experience question, depending on the desired behaviour. To select \"Yes\", use the CSS selector `input[type=\"radio\"][value=\"Yes\"]` and click; for \"No\", use `input[type=\"radio\"][value=\"No\"]` and click."
+  },
+  {
+    "timestamp": "2026-05-12T10:52:49.856Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Software Engineer (Simulation)",
+    "company": "Applied Virtual Simulation Pty Ltd",
+    "url": "https://au.seek.com/job/92052050/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T10-52-47-934Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is visible with a validation error message indicating that the \"Do you hold Australian Security Clearance?\" question has not been answered.\n2. The bot failed to select an option for the Security Clearance question.\n3. To fix this, the bot should select one of the radio button options for the question. For example, to select \"No\", the bot should use the CSS selector `input[type=\"radio\"][value=\"No\"]` and click on it."
+  },
+  {
+    "timestamp": "2026-05-12T10:53:43.499Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Backend Engineer",
+    "company": "Skylight Technologies Australia",
+    "url": "https://au.seek.com/job/92039863/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T10-53-40-971Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, with a validation error message requiring answers to questions about RDBMS experience, software design pattern experience, and Java Enterprise development experience. The \"Right to work\" and \"Years of experience\" questions have already been answered. The programming language question is visible with \"Java Script\" and \"HTML\" checked, however, the programming language section is not part of the validation error message.\n2.  The bot failed to answer the RDBMS, software design patterns, and Java Enterprise development experience questions.\n3.  To fix this, the bot should use CSS selectors to select appropriate options (Yes/No or other values) from the dropdowns for each of those questions. For example, for the RDBMS question, it could use a selector to target the dropdown and select \"Yes\" or \"No\". A suitable CSS selector would need to be determined based on the HTML structure."
   }
 ]
