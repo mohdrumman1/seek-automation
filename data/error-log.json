@@ -1408,5 +1408,65 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-12T21-50-04-671Z_validation_errors_blocking_continue.png",
     "analysis": "1.  The \"Answer employer questions\" page is visible with an error message related to machine learning experience and a multiple-choice question about programming languages.\n2.  The bot failed to select an option for the \"Have you worked in a role which requires experience with machine learning techniques?\" question.\n3.  The bot should select either \"Yes\" or \"No\". It could try to click the radio button using a CSS selector like `input[type=\"radio\"][aria-label=\"Yes\"]` or  `input[type=\"radio\"][aria-label=\"No\"]`. Note: the aria label might need to be adjusted to reflect the real values on the page."
+  },
+  {
+    "timestamp": "2026-05-13T05:59:48.119Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Technology Manager",
+    "company": "Water Technology",
+    "url": "https://au.seek.com/job/92037047/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-13T05-59-45-752Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, with validation errors indicating that answers are needed for questions about Aboriginal/Torres Strait Islander and LGBTQ+ identity.\n2.  The bot has not yet selected an option (Yes/No) for the \"Do you identify as part of the LGTBQ+ community?\" question, causing the validation error.\n3.  The bot should locate the radio buttons for this question, potentially using CSS selectors like `input[type=\"radio\"][aria-label=\"Yes\"][name*='lgbtq']` or `input[type=\"radio\"][aria-label=\"No\"][name*='lgbtq']` (adjusting aria-label if needed), and click on one of them."
+  },
+  {
+    "timestamp": "2026-05-13T06:00:37.217Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/92030943/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-13T06-00-34-812Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page is visible, along with an error message indicating issues need to be addressed before continuing. The applicant's name, location, phone number, and email are also shown. \"Documents included\" is also about to be visible.\n2.  The error is likely caused by missing required information in the Seek profile or resume content, given the previous similar errors relating to employer questions. The bot needs to inspect the \"Update SEEK Profile\" section.\n3.  The bot should first click on the `a[aria-label=\"Edit profile\"]` element to edit the profile and determine what information is missing/invalid. Or it should inspect the page source to determine the exact message."
+  },
+  {
+    "timestamp": "2026-05-13T06:01:20.726Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Managers - Policy, Risk",
+    "company": "HiTech Personnel",
+    "url": "https://au.seek.com/job/92035798/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-13T06-01-18-776Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Answer employer questions\" page is visible, with a validation error indicating the bot needs to answer the question \"Do you hold Australian Security Clearance?\".\n2.  The bot has not selected an option for the \"Do you hold Australian Security Clearance?\" question.\n3.  The bot should select one of the radio buttons for this question using a CSS selector, for example, `input[type=\"radio\"][aria-label=\"Yes, Baseline\"]` or`input[type=\"radio\"][aria-label=\"No\"]` ."
+  },
+  {
+    "timestamp": "2026-05-13T06:02:21.668Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Project Officer",
+    "company": "Recruitment Hive",
+    "url": "https://au.seek.com/job/92073062/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-13T06-02-15-293Z_validation_errors_blocking_continue.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-05-13T06:05:18.186Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Full Stack Software Developer",
+    "company": "FourQuarters Recruitment",
+    "url": "https://au.seek.com/job/92039214/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-13T06-05-16-246Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is visible, with a validation error message saying \"Are you Immediately available? - Please make a selection\". The options \"Yes\" and \"No\" are displayed.\n2.  The error is caused by the bot not selecting an option for the \"Are you Immediately available?\" question.\n3.  The bot should select either the \"Yes\" or \"No\" radio button using a CSS selector like `input[type=\"radio\"][value=\"Yes\"]` or `input[type=\"radio\"][value=\"No\"]`."
+  },
+  {
+    "timestamp": "2026-05-13T06:05:59.314Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Engineer",
+    "company": "B&D Group Pty Ltd",
+    "url": "https://au.seek.com/job/92015981/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-13T06-05-56-652Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Answer employer questions\" page is visible, with validation errors related to questions about inventory management, software development lifecycle, and Javascript development experience.\n2.  The bot has not answered the questions \"Do you have experience with inventory management?\", \"Have you worked in a role which requires a sound understanding of the software development lifecycle?\" and \"Have you worked in a role which requires JavaScript development experience?\".\n3.  The bot needs to select an option from the dropdown menus for each of these questions.  The bot should use `div[aria-labelledby*='inventory management'] select` to find options for the first dropdown, `div[aria-labelledby*='software development lifecycle'] select` to find options for the second dropdown and `div[aria-labelledby*='JavaScript development experience'] select` to find options for the third dropdown."
   }
 ]
