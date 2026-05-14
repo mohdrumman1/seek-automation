@@ -1858,5 +1858,75 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-14T10-41-48-377Z_validation_errors_blocking_continue.png",
     "analysis": "1. A form is visible with questions about the right to work in Australia, years of experience as a ServiceNow Developer, expected salary, and security clearance. A validation error message indicates that the \"Do you have a security clearance?\" question has not been answered.\n2.  The error is caused by the bot not selecting any of the radio button options for the security clearance question.\n3.  The bot should select one of the \"No\" radio buttons for the security clearance question using CSS selector `input[type=\"radio\"][name*='security_clearance'][value='No']`."
+  },
+  {
+    "timestamp": "2026-05-14T21:37:15.320Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://au.seek.com/job/92113480/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-14T21-37-08-334Z_validation_errors_blocking_continue.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-05-14T21:37:38.682Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/92104157/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-14T21-37-35-870Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen shows a form on Seek.com.au with questions about cyber initiatives, right to work in Australia, notice period, and cyber program experience. Validation errors are displayed indicating mandatory questions regarding scam prevention and cyber security initiatives were not answered.\n2.  The bot failed to select options for the \"Have you worked on any scam prevention...\" and \"Have you delivered cyber security initiatives...\" questions.\n3.  The bot should identify these questions, then use the appropriate CSS selectors (likely dropdown menus) and select viable options to populate the form, such as `//label[contains(text(), 'Have you worked on any scam prevention')]/following-sibling::select` and then select an option within the select tag."
+  },
+  {
+    "timestamp": "2026-05-14T21:38:05.059Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Converge International",
+    "url": "https://au.seek.com/job/92088418/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-14T21-38-02-358Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screenshot shows a validation error message on a Seek application page, listing several questions that require an answer before proceeding. These include questions about working rights in Australia, proficiency in Microsoft Office, PMP certification, consent to a background check, and acknowledgement of the privacy policy.\n\n2.  The error is caused by the bot failing to answer several mandatory questions on the application form.\n\n3.  The bot should identify the radio buttons, dropdown, or other input elements associated with each question and select appropriate options. For the \"working rights in Australia\" question using a radio button it could be `input[type=\"radio\"][name*='working_rights'][value='Yes']`, then similarly to the \"Project Management Professional certification?\" it could be `//label[contains(text(), 'Project Management Professional certification')]/following-sibling::select` and then make a valid selection."
+  },
+  {
+    "timestamp": "2026-05-14T21:40:42.034Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Software Engineer",
+    "company": "Beyond Electrical Engineering",
+    "url": "https://au.seek.com/job/92090047/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-14T21-40-39-810Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen displays a Seek application form with questions about JavaScript development experience, software engineering and development experience, right to work, and programming languages. An error message indicates that the question \"Have you worked in a role which requires JavaScript development experience?\" needs to be answered.\n2.  The error is likely caused by the bot not selecting an option for the \"JavaScript development experience\" question, which is mandatory.\n3.  The bot should locate the dropdown or radio button group associated with the question \"Have you worked in a role which requires JavaScript development experience?\" using a selector like `//label[contains(text(), 'Have you worked in a role which requires JavaScript development')]/following-sibling::select` and select a valid option."
+  },
+  {
+    "timestamp": "2026-05-14T21:41:47.801Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Application Engineer",
+    "company": "Datacom",
+    "url": "https://au.seek.com/job/92109873/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-14T21-41-45-528Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen displays an application form requiring answers to mandatory questions on Seek.com.au. Specifically, questions about identifying as First Nations People and citizenship status are highlighted as unresolved.\n2.  The error is caused by the bot failing to select options for the \"Do you identify as First Nations People\" and the \"Are you a citizen of Australia\" questions.\n3.  The bot should select one of the radio buttons for the First Nations question, for example, `input[type=\"radio\"][name*='first_nations'][value='Yes']`. It must also address the citizenship question, which is not presently shown in the screenshot."
+  },
+  {
+    "timestamp": "2026-05-14T21:42:14.417Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Application Engineer",
+    "company": "Datacom",
+    "url": "https://au.seek.com/job/92109814/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-14T21-42-12-057Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen shows an application form with unanswered questions related to First Nations identification and Australian citizenship status, resulting in validation errors. A 'Pronouns' select box and 'First Nations People' radio buttons are visible, along with a question about military service.\n2.  The error is caused by the bot not selecting an option for the \"Do you identify as First Nations People\" question and failing to answer the \"Are you a citizen of Australia\" question (not fully visible but mentioned in the validation error).\n3.  To answer the \"First Nations People\" question, the bot should select one of the radio buttons using a selector like `input[type=\"radio\"][name*='first_nations'][value='Yes']` (or 'No' or 'Do not wish to disclose'). To answer the citizenship question (not visible) is missing on the cropped image, therefore, the bot needs to find the input element and fill the response."
+  },
+  {
+    "timestamp": "2026-05-14T21:43:06.884Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Ruby Developer",
+    "company": "Retail Food Group",
+    "url": "https://au.seek.com/job/92100524/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-14T21-43-04-571Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen shows a Seek application form with a question about Australian working rights, annual salary expectations, and reasons for joining RFG. An error message indicates that the working rights question needs to be answered.\n2.  The error is caused by the bot not selecting an option for the \"Which of the following best describes your working rights within Australia?\" question, which is mandatory.\n3.  The bot should locate the radio button group associated with the question using a selector like `input[type=\"radio\"][name*='working-rights']` and select a valid option (e.g., `input[type=\"radio\"][name*='working-rights'][value='Australian Citizen']`)."
   }
 ]
