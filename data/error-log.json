@@ -2068,5 +2068,85 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T10-47-15-999Z_validation_errors_blocking_continue.png",
     "analysis": "1. The screen displays an error message about machine learning experience, a 'right to work' dropdown, and a list of programming languages with checkboxes, with some already selected.\n\n2. The error is due to the bot failing to answer the question: \"Have you worked in a role which requires experience with machine learning techniques?\".\n\n3. The bot should locate the radio button group or dropdown associated with the machine learning question and then select either \"Yes\" or \"No\". It might use selectors like `input[type=\"radio\"][name*='machine learning techniques'][value='Yes']` or `input[type=\"radio\"][name*='machine learning techniques'][value='No']` followed by `.click()` or, if it's a dropdown, should select an option."
+  },
+  {
+    "timestamp": "2026-05-15T21:19:32.546Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://au.seek.com/job/92113480/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T21-19-30-374Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen shows questions about right to work in Australia, project management experience, understanding of the product development lifecycle, and Prince2 certification. An error message is displayed because the question about experience with the product development lifecycle has not been answered.\n2.  The error is caused by the bot failing to select either \"Yes\" or \"No\" for the question: \"Have you worked in a role which requires a sound understanding of the product development lifecycle?\".\n3.  The bot should select either the \"Yes\" or \"No\" radio button, for example, by using the selector `input[type=\"radio\"][name*='product development lifecycle'][value='Yes']` or `input[type=\"radio\"][name*='product development lifecycle'][value='No']` followed by `.click()`."
+  },
+  {
+    "timestamp": "2026-05-15T21:19:52.119Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/92104157/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T21-19-49-072Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screenshot shows an error message indicating that two questions related to cyber initiatives are unanswered. There are also questions about right to work in Australia, notice period, and cyber program experience.\n2.  The error is caused by the bot not answering the dropdown question \"Have you worked on any scam prevention, financial crime, fraud, or regulatory-driven cyber initiatives?\" and \"Have you delivered cyber security initiatives that involved implementing security controls (not just managing timelines or reporting progress)?\".\n3.  The bot should select an option from both dropdowns related to the \"Have you worked on any scam prevention, financial crime, fraud, or regulatory-driven cyber initiatives?\" question, and \"Have you delivered cyber security initiatives that involved implementing security controls (not just managing timelines or reporting progress)?\". For example it can use a selector like `#question-xxx > div > div > div > div > select`, where xxx is a dynamic question number and then use `.select_by_value()` to select an option. Check the dynamic Id `question-xxx` from the page source based on the attribute `aria-labelledby`."
+  },
+  {
+    "timestamp": "2026-05-15T21:21:34.993Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Converge International",
+    "url": "https://au.seek.com/job/92088418/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T21-21-32-782Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen displays a list of unanswered questions, preventing application continuation. Questions include working rights, proficiency in Microsoft Office, PMP certification, consent to a background check, and acknowledgement of privacy policy.\n2.  The bot failed to answer several required questions related to eligibility and consent.\n3.  The bot should locate the radio buttons or dropdowns associated with each question and select an appropriate option (e.g., `input[type=\"radio\"][name*='working rights'][value='Yes']` or `select[aria-labelledby*='privacy policy']`). The specific selectors will depend on the exact HTML structure. The bot must iterate through the questions."
+  },
+  {
+    "timestamp": "2026-05-15T21:23:59.721Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Software Engineer",
+    "company": "Beyond Electrical Engineering",
+    "url": "https://au.seek.com/job/92090047/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T21-23-57-276Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen shows an error message indicating the \"JavaScript development experience\" question needs to be answered, along with other questions about experience, right to work, and programming languages.\n2.  The bot failed to answer the question \"Have you worked in a role which requires JavaScript development experience?\". There are likely radio buttons or a dropdown menu for \"Yes\" or \"No\" that were not selected.\n3.  The bot should locate the radio buttons or drop-down associated with the \"JavaScript development experience\" question and select an appropriate option (e.g., `input[type=\"radio\"][name*='javascript development experience'][value='Yes']` or `select[aria-labelledby*='javascript development experience']`). The exact selector depends on the HTML."
+  },
+  {
+    "timestamp": "2026-05-15T21:25:37.273Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior DevOps Engineer",
+    "company": "Shield Recruitment",
+    "url": "https://au.seek.com/job/92132455/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T21-25-34-743Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen displays validation errors regarding unanswered questions about infrastructure project experience and Australian Security Clearance. It also shows questions about right to work in Australia, DevOps & Cloud Platform Engineer experience, and a selection of \"Roads\" for the infrastructure experience question.\n2.  The bot did not select an option for the \"infrastructure project experience\" and \"Australian Security Clearance\" questions.\n3.  The bot should locate the the radio button group for \"infrastructure project experience\", and select one (e.g., `input[type=\"radio\"][name*='infrastructure'][value='xxx']`), also locate the element for security clearance, and select it (e.g., `input[type=\"radio\"][name*='security clearance'][value='yes']`)."
+  },
+  {
+    "timestamp": "2026-05-15T21:27:13.664Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Application Developer (DevOps)",
+    "company": "face2face Recruitment",
+    "url": "https://au.seek.com/job/92112868/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T21-27-11-438Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows the \"Answer employer questions\" section, with a validation error related to the \"baseline security clearance\" question. The error message states the user must make a selection. There are radio button options for \"Yes\" and \"No\".\n\n2.  The error is caused by the bot failing to select either \"Yes\" or \"No\" for the baseline security clearance question.\n\n3.  The bot should select one of the radio buttons using a CSS selector like `input[type=\"radio\"][name*='baseline security clearance'][value='Yes']` or `input[type=\"radio\"][name*='baseline security clearance'][value='No']`. The bot should choose one of these based on a pre-determined logic."
+  },
+  {
+    "timestamp": "2026-05-15T21:27:31.776Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Application Engineer",
+    "company": "Datacom",
+    "url": "https://au.seek.com/job/92109784/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T21-27-29-749Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows validation errors for \"First Nations People\" and \"Citizen of Australia\" questions, along with the questions themselves.\n2. The bot failed to answer the \"Do you identify as First Nations People\" question and the \"Citizen of Australia\" question.\n3. The bot should select one of the radio buttons for \"First Nations People\" using a CSS selector like `input[type=\"radio\"][name*='first nations'][value='Yes']` or `input[type=\"radio\"][name*='first nations'][value='No']` or  `input[type=\"radio\"][name*='first nations'][value='Do not wish to disclose']`, and it should select an answer to \"Citizen of Australia\" as well."
+  },
+  {
+    "timestamp": "2026-05-15T21:28:41.568Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Software Engineer - Python/Node",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/92138457/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T21-28-39-097Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen shows the \"Review and submit\" page with a blocking validation error message. Also visible is the applicant's details (Mohammed Rumman Riyaz) and the application progress bar.\n2. The error is caused because there are employer questions which were not answered, hence the validation error blocking progress to the review and submit stage. This is based on the previous analyses of this error.\n3. The bot should navigate back to the \"Answer employer questions\" section and answer all mandatory questions, likely radio button selections, using the relevant CSS selectors for each question (e.g., `input[type=\"radio\"][name*='question-identifier'][value='answer']`). After that it should try submitting again."
   }
 ]
