@@ -1978,5 +1978,95 @@
     "page_title": "Answer employer questions | SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T06-13-52-420Z_validation_errors_blocking_continue.png",
     "analysis": "1.  A Seek application form is visible, with an error message indicating that the \"Microsoft Azure certifications\" question needs to be answered. The form also contains questions about the right to work in Australia and years of experience as a full stack developer\n2.  The error is caused by the bot not selecting a Microsoft Azure certification.\n3.  The bot should locate the radio buttons associated with the question using a selector like `input[type=\"radio\"][name*='Microsoft Azure certifications']` and select one of the options using `.click()`."
+  },
+  {
+    "timestamp": "2026-05-15T10:39:41.831Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://au.seek.com/job/92113480/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T10-39-39-694Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen displays a Seek application form with an error message indicating the question \"Have you worked in a role which requires a sound understanding of the product development lifecycle?\" needs to be answered.\n2.  The error is caused by the bot not selecting either \"Yes\" or \"No\" for the product development lifecycle question.\n3.  The bot should use `input[type=\"radio\"][name*='product development lifecycle'][value='Yes']` or `input[type=\"radio\"][name*='product development lifecycle'][value='No']` and `.click()` to select an option."
+  },
+  {
+    "timestamp": "2026-05-15T10:41:14.159Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/92104157/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T10-41-11-638Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  A Seek application form is displayed, with error messages indicating that two questions related to cyber initiatives need to be answered. The form also includes questions about the right to work and notice period, which have already been answered.\n2.  The bot did not answer the questions about scam prevention/financial crime/fraud/regulatory-driven cyber initiatives and cyber security initiatives involving security controls.\n3.  The bot should locate the radio button groups associated with these questions, likely using selectors like `input[type=\"radio\"][name*='scam prevention']` and `input[type=\"radio\"][name*='cyber security initiatives']`, and select either \"Yes\" or \"No\" for each using `.click()`. It will probably need to expand a dropdown to reveal radio buttons."
+  },
+  {
+    "timestamp": "2026-05-15T10:42:18.837Z",
+    "error_type": "unanswered_questions",
+    "job_title": "Senior Project Manager / Program Manager – OT & IT",
+    "company": "PM-Partners Group",
+    "url": "https://au.seek.com/job/92138620/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T10-42-16-403Z_unanswered_questions.png",
+    "analysis": "1. The screen shows the \"Answer employer questions\" section of a SEEK job application. Two questions are visible: \"Are you currently employed?\" and \"Are you available for short term contract work?\" Radio button options (\"Yes\" and \"No\") are available for each question.\n2.  The error is caused by the bot failing to select answers for these questions before proceeding. \n3.  The bot should use `document.querySelector('input[type=\"radio\"][name=\"employed\"][value=\"Yes\"]').click()` or `document.querySelector('input[type=\"radio\"][name=\"employed\"][value=\"No\"]').click()` to answer the first question, and similarly for the second question, substituting the correct name and value attributes."
+  },
+  {
+    "timestamp": "2026-05-15T10:42:24.916Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Project Manager / Program Manager – OT & IT",
+    "company": "PM-Partners Group",
+    "url": "https://au.seek.com/job/92138620/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T10-42-21-798Z_validation_errors_blocking_continue.png",
+    "analysis": "1. Radio button questions about current employment status and availability for short-term contract work are visible, along with a notice period dropdown. Both of the initial radio button questions are not selected, and error messages are displayed.\n\n2. The bot did not select an option for \"Are you currently employed?\" and \"Are you available for short term contract work?\".\n\n3. The bot should use `input[type=\"radio\"][name*='currently employed'][value='Yes']` or `input[type=\"radio\"][name*='currently employed'][value='No']` and `input[type=\"radio\"][name*='short term contract work'][value='Yes']` or `input[type=\"radio\"][name*='short term contract work'][value='No']` and `.click()` to select an option for each question."
+  },
+  {
+    "timestamp": "2026-05-15T10:43:55.913Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Project Manager",
+    "company": "Converge International",
+    "url": "https://au.seek.com/job/92088418/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T10-43-51-086Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen displays a list of unanswered questions, preventing continuation of the application.\n2. The error is caused by the bot not answering several questions, including \"Do you have working rights in Australia\",\"Are you proficient in using Microsoft Office Suite\", \"Do you have a Project Management Professional certification\", \"confirmation for completing a background check\" and \"acknowledgement of our Privacy Policy\".\n3. The bot should use selectors like `input[type=\"radio\"][name*='working rights in Australia'][value='Yes']`, `input[type=\"radio\"][name*='Microsoft Office Suite'][value='Yes']`, `input[type=\"radio\"][name*='Project Management Professional certification'][value='Yes']`, confirm background check, and confirm privacy policy to select either \"Yes\" or \"No\" (or whichever options are available) and `.click()` to select an option for each question. For confirmation options, `input[type='checkbox']` might be needed."
+  },
+  {
+    "timestamp": "2026-05-15T10:44:34.768Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Software Engineer",
+    "company": "Beyond Electrical Engineering",
+    "url": "https://au.seek.com/job/92090047/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T10-44-32-563Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen displays an error message indicating the bot needs to answer a question about JavaScript development experience. It also shows questions about experience, right to work, and programming languages.\n2. The error is caused by the bot not answering the question \"Have you worked in a role which requires JavaScript development experience?\".\n3. The bot should locate the radio button group or dropdown associated with the question and select either \"Yes\" or \"No\". A possible selector could be `input[type=\"radio\"][name*='JavaScript development experience'][value='Yes']` or `input[type=\"radio\"][name*='JavaScript development experience'][value='No']` followed by `.click()`. If it's a dropdown, it should select an appropriate option."
+  },
+  {
+    "timestamp": "2026-05-15T10:45:33.509Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Software Engineer - Python/Node",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/92138457/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T10-45-30-708Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is displayed, but an error message indicates there are unresolved issues preventing continuation. Personal details are visible and the process is at the \"Review and submit\" step.\n2. The error is caused by the bot skipping questions in the \"Answer employer questions\" and/or \"Update SEEK Profile\" steps.\n3. The bot should revisit the \"Answer employer questions\" and \"Update SEEK Profile\" steps to answer questions, using selectors similar to those suggested in previous analyses, such as `input[type=\"radio\"][name*='question_name'][value='Yes']` or `input[type=\"radio\"][name*='question_name'][value='No']` for radio buttons and `input[type='checkbox'][name*='confirmation_name']` for confirmations, followed by `.click()`. It should also handle dropdowns by selecting the appropriate option."
+  },
+  {
+    "timestamp": "2026-05-15T10:46:58.974Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Software Engineer",
+    "company": "EPE Trusted to Protect",
+    "url": "https://au.seek.com/job/92104874/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T10-46-56-248Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The screen displays the \"Answer employer questions\" page on Seek, with an error message indicating that the \"Do you hold Australian Security Clearance?\" question is unanswered. There are also dropdowns related to \"right to work\" and experience and several radio button options for answering the security clearance question.\n2.  The error is caused by the bot not selecting a radio button option for the \"Do you hold Australian Security Clearance?\" question.\n3.  The bot should select one of the radio buttons for the security clearance question, for example, by using the selector `input[type=\"radio\"][name*='Security Clearance'][value='Yes, Baseline']` and then `.click()`ing it."
+  },
+  {
+    "timestamp": "2026-05-15T10:47:24.021Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Application Engineer",
+    "company": "ESE Recruitment",
+    "url": "https://au.seek.com/job/92058392/apply/role-requirements",
+    "page_title": "Answer employer questions | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-15T10-47-15-999Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The screen displays an error message about machine learning experience, a 'right to work' dropdown, and a list of programming languages with checkboxes, with some already selected.\n\n2. The error is due to the bot failing to answer the question: \"Have you worked in a role which requires experience with machine learning techniques?\".\n\n3. The bot should locate the radio button group or dropdown associated with the machine learning question and then select either \"Yes\" or \"No\". It might use selectors like `input[type=\"radio\"][name*='machine learning techniques'][value='Yes']` or `input[type=\"radio\"][name*='machine learning techniques'][value='No']` followed by `.click()` or, if it's a dropdown, should select an option."
   }
 ]
