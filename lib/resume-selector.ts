@@ -20,6 +20,10 @@ const SE_TITLE_PATTERNS = [
   /\bcloud engineer\b/i,
   /\bdevops engineer\b/i,
   /\bweb developer\b/i,
+  /\bai engineer\b/i,
+  /\bartificial intelligence engineer\b/i,
+  /\bmachine learning engineer\b/i,
+  /\bml engineer\b/i,
 ];
 
 const PM_HINTS = /delivery|stakeholder|programme?|coordination|governance|roadmap/i;
@@ -32,9 +36,11 @@ export function resolveResumeVariant(jobTitle: string, searchName: string): Resu
   if (PM_TITLE_PATTERNS.some((r) => r.test(title))) return 'pm';
   if (SE_TITLE_PATTERNS.some((r) => r.test(title))) return 'se';
 
-  if (/ai integration consultant|automation consultant|integration specialist/i.test(title)) {
+  // For consultant/advisory titles, try to determine technical vs delivery focus
+  // from surrounding context words. Default to SE if still ambiguous.
+  if (/ai (integration |solution |technology )?consultant|automation consultant|integration specialist|ai advisor/i.test(title)) {
     if (PM_HINTS.test(ctx)) return 'pm';
-    if (SE_HINTS.test(ctx)) return 'se';
+    return 'se'; // AI consultant with no PM signals → SE resume
   }
 
   if (PM_TITLE_PATTERNS.some((r) => r.test(searchName))) return 'pm';

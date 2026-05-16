@@ -88,6 +88,16 @@ const SEARCHES: Array<{ name: string; url: string; resumeVariant: ResumeVariant 
     url: 'https://www.seek.com.au/cloud-engineer-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
     resumeVariant: 'se',
   },
+  {
+    name: 'AI Engineer',
+    url: 'https://www.seek.com.au/ai-engineer-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'se',
+  },
+  {
+    name: 'AI Consultant',
+    url: 'https://www.seek.com.au/jobs?keywords=AI+consultant&classification=6281&daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'se',
+  },
 ];
 
 const MAX_APPS_PER_SEARCH = Number(process.env.MAX_APPS_PER_SEARCH ?? 10);
