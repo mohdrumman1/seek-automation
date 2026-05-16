@@ -105,14 +105,24 @@ export async function saveSession(context: BrowserContext): Promise<void> {
   const slimB64 = Buffer.from(JSON.stringify(slim), 'utf8').toString('base64');
   const sizeKb = Math.round((slimB64.length / 1024) * 10) / 10;
 
+  // Write b64 to a dedicated file the workflow reads — NOT to stdout/logs so
+  // it is never captured in bot.log and never leaked via artifact upload.
+  const b64Path = path.resolve(__dirname, '../tmp/seek-cookies.b64');
+  try {
+    const tmpDir = path.dirname(b64Path);
+    if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
+    fs.writeFileSync(b64Path, slimB64, 'utf8');
+  } catch (err) {
+    logger.error('saveSession: could not write slim session b64 file', { b64Path }, err);
+  }
+
   logger.info('seek session saved', {
     fullPath: FULL_SESSION_PATH,
     slimPath: SLIM_SESSION_PATH,
+    b64Path,
     seekCookies: slim.cookies.length,
     slimBase64Kb: sizeKb,
   });
-
-  process.stdout.write(`[SESSION_COOKIES_B64] ${slimB64}\n`);
 }
 
 export async function isSessionExpired(page: Page): Promise<boolean> {

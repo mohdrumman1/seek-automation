@@ -2,11 +2,15 @@ name: Seek Auto Apply
 
 on:
   schedule:
-    # 6:17am, 12:17pm, 6:17pm AEST (UTC+10)
+    # 6:17am, 12:17pm, 6:17pm AEST (UTC+10) — note: times shift 1h during AEDT (Oct–Apr)
     - cron: '17 20 * * *'
     - cron: '17 2 * * *'
     - cron: '17 8 * * *'
   workflow_dispatch:
+
+concurrency:
+  group: seek-apply
+  cancel-in-progress: false
 
 jobs:
   apply:
@@ -54,49 +58,33 @@ jobs:
       - name: Ensure runtime directories exist
         run: mkdir -p data/sessions tmp
 
-      - name: Restore session cookies from secret
-        if: env.SEEK_SESSION_COOKIES != ''
-        run: |
-          echo "$SEEK_SESSION_COOKIES" | base64 -d > data/sessions/seek-cookies.json
-          echo "Restored $(wc -c < data/sessions/seek-cookies.json) bytes of session cookies."
-
       - name: Run bot
         id: bot
+        # pipefail ensures the step fails if npm run seek exits non-zero,
+        # even when piped through tee. The cookies b64 is written to
+        # tmp/seek-cookies.b64 by saveSession — NOT captured in the log.
+        shell: bash -eo pipefail {0}
         run: npm run seek 2>&1 | tee tmp/bot.log
 
-      - name: Capture refreshed session cookies
-        if: always()
-        id: capture_cookies
-        run: |
-          if [ -f tmp/bot.log ]; then
-            line=$(grep -m1 '^\[SESSION_COOKIES_B64\] ' tmp/bot.log || true)
-            if [ -n "$line" ]; then
-              b64="${line#'[SESSION_COOKIES_B64] '}"
-              echo "$b64" > tmp/seek-cookies.b64
-              echo "captured=true" >> "$GITHUB_OUTPUT"
-              echo "Captured refreshed session cookies ($(wc -c < tmp/seek-cookies.b64) bytes base64)."
-            else
-              echo "captured=false" >> "$GITHUB_OUTPUT"
-              echo "No [SESSION_COOKIES_B64] line found in bot log."
-            fi
-          else
-            echo "captured=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Update SEEK_SESSION_COOKIES secret
-        if: steps.capture_cookies.outputs.captured == 'true'
+        if: always()
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
+          if [ ! -f tmp/seek-cookies.b64 ]; then
+            echo "::warning::tmp/seek-cookies.b64 not found — session was not refreshed this run."
+            exit 0
+          fi
           if [ -z "$GH_PAT" ]; then
             echo "::warning::GH_PAT secret not set — cannot rotate SEEK_SESSION_COOKIES. Add a fine-grained PAT with repo + secrets scopes named GH_PAT."
             exit 0
           fi
           echo "$GH_PAT" | gh auth login --with-token
           gh secret set SEEK_SESSION_COOKIES --body "$(cat tmp/seek-cookies.b64)" --repo "${GITHUB_REPOSITORY}"
-          echo "SEEK_SESSION_COOKIES rotated."
+          echo "SEEK_SESSION_COOKIES rotated ($(wc -c < tmp/seek-cookies.b64) bytes base64)."
 
       - name: Run maintenance patch
+        shell: bash -eo pipefail {0}
         run: npm run analyze 2>&1 | tee tmp/analyze.log
 
       - name: Commit updated data back to repo
@@ -116,14 +104,18 @@ jobs:
             git push
           fi
 
-      - name: Upload screenshots on failure
+      - name: Upload logs on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: seek-screenshots
+          name: seek-bot-logs
           path: |
-            screenshots/
-            tmp/*.log
+            tmp/bot.log
+            tmp/analyze.log
+            screenshots/errors/
+          # Explicitly exclude seek-cookies.b64 — it contains live auth tokens.
+          # The glob above only matches *.log and screenshots/, so it is already
+          # excluded, but this comment documents the intent clearly.
           if-no-files-found: ignore
           retention-days: 7
 

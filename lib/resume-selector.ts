@@ -56,10 +56,18 @@ export async function selectResume(page: Page, variant: ResumeVariant): Promise<
     logger.debug('resume mode: change selected');
   }
 
-  const dropdown = page.locator('select').first();
+  // Prefer a resume-specific select (by name/id/data attribute) before falling
+  // back to the first <select> on the page — avoids matching employer-question
+  // dropdowns that may appear earlier in the DOM.
+  const resumeSelectLocator = page.locator(
+    'select[name*="resume" i], select[id*="resume" i], select[data-automation*="resume" i]'
+  );
+  const hasSpecificSelect = (await resumeSelectLocator.count()) > 0;
+  const dropdown = hasSpecificSelect ? resumeSelectLocator.first() : page.locator('select').first();
+
   const dropdownReady = await dropdown.waitFor({ timeout: 8_000 }).then(() => true).catch(() => false);
   if (!dropdownReady) {
-    logger.warn('resume dropdown not found', { variant });
+    logger.warn('resume dropdown not found', { variant, usedSpecificSelector: hasSpecificSelect });
     return;
   }
 
@@ -69,8 +77,11 @@ export async function selectResume(page: Page, variant: ResumeVariant): Promise<
     return;
   }
 
+  // Detect placeholder options so we never accidentally select them as fallback.
+  const PLACEHOLDER_RE = /^(select|choose|pick|--|---|please select|--select--|\s*)$/i;
+  const firstRealIdx = options.findIndex((o) => o.trim() && !PLACEHOLDER_RE.test(o.trim()));
   const keywords = KEYWORDS[variant];
-  let bestIdx = options.length > 1 ? 1 : 0;
+  let bestIdx = firstRealIdx >= 0 ? firstRealIdx : 0;
   let bestScore = 0;
 
   options.forEach((text, i) => {
@@ -86,11 +97,11 @@ export async function selectResume(page: Page, variant: ResumeVariant): Promise<
   });
 
   if (bestScore === 0) {
-    logger.warn('no resume option matched variant — falling back to first non-placeholder', {
+    logger.warn('no resume option matched variant — falling back to first non-placeholder option', {
       variant,
       options,
       chosenIndex: bestIdx,
-      chosenLabel: options[bestIdx],
+      chosenLabel: options[bestIdx] ?? '(none)',
     });
   } else {
     logger.info('resume selected', {

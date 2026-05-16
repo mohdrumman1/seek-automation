@@ -804,10 +804,8 @@ async function main() {
     dryRun: process.env.DRY_RUN === 'true',
   });
 
-  if (!process.env.OPENROUTER_API_KEY) {
-    logger.error('OPENROUTER_API_KEY is missing — aborting');
-    process.exit(1);
-  }
+  // Note: OPENROUTER_API_KEY is validated at module import time in lib/openrouter.ts.
+  // A missing key will throw before reaching here with a clear error message.
 
   const baseCoverLetter = readBaseCoverLetter();
   const applied = loadApplied();

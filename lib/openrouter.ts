@@ -18,8 +18,10 @@ export async function callOpenRouter(prompt: string): Promise<string> {
     signal: AbortSignal.timeout(30_000),
   });
   if (!res.ok) throw new Error(`OpenRouter ${res.status}: ${await res.text()}`);
-  const data = (await res.json()) as { choices: { message: { content: string } }[] };
-  return data.choices[0].message.content.trim();
+  const data = (await res.json()) as { choices?: { message?: { content?: string } }[] };
+  const content = data.choices?.[0]?.message?.content;
+  if (!content) throw new Error(`OpenRouter returned empty content: ${JSON.stringify(data).slice(0, 200)}`);
+  return content.trim();
 }
 
 export async function callOpenRouterVision(prompt: string, imageBase64: string): Promise<string> {
@@ -45,8 +47,10 @@ export async function callOpenRouterVision(prompt: string, imageBase64: string):
     signal: AbortSignal.timeout(30_000),
   });
   if (!res.ok) throw new Error(`OpenRouter vision ${res.status}: ${await res.text()}`);
-  const data = (await res.json()) as { choices: { message: { content: string } }[] };
-  return data.choices[0].message.content.trim();
+  const data = (await res.json()) as { choices?: { message?: { content?: string } }[] };
+  const content = data.choices?.[0]?.message?.content;
+  if (!content) throw new Error(`OpenRouter vision returned empty content: ${JSON.stringify(data).slice(0, 200)}`);
+  return content.trim();
 }
 
 export async function tailorCoverLetter(
