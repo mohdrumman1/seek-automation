@@ -1,6 +1,34 @@
+# Env
 .env
+.env.local
+.env.*.local
+
+# Node / build
 node_modules/
 dist/
+*.tsbuildinfo
+
+# Playwright
 playwright-report/
 test-results/
 screenshots/
+.playwright/
+
+# Session / auth (NEVER commit these)
+data/sessions/
+data/seek-session.json
+data/seek-cookies.json
+data/*.session.json
+*.cookies.json
+
+# Scratch / runtime
+tmp/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
