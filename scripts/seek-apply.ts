@@ -384,6 +384,13 @@ async function getJobDetails(
   return { title: title.trim(), company: company.trim(), description };
 }
 
+// ── SECURITY CLEARANCE CHECK ──────────────────────────────────────────────────
+const CLEARANCE_RE = /\b(NV1|NV2|NV-1|NV-2|AGSVA|baseline clearance|negative vetting|security clearance required|must hold.{0,20}clearance|clearance required|active.{0,10}clearance|top secret)\b/i;
+
+function requiresSecurityClearance(description: string): boolean {
+  return CLEARANCE_RE.test(description);
+}
+
 // ── EXTERNAL CHECK ────────────────────────────────────────────────────────────
 async function isExternal(page: Page): Promise<boolean> {
   if ((await page.locator('[data-automation="job-detail-apply-external"]').count()) > 0) {
@@ -636,6 +643,7 @@ async function clickContinue(page: Page): Promise<boolean> {
     'review and submit', 'answer employer', 'update seek', 'choose document',
     'with apple', 'with google', 'sign in with', 'continue with apple',
     'sign in with iphone', 'use passkey',
+    'submit', // never accidentally submit via fallback — handled explicitly above
   ];
 
   // Primary: strict continue/next/proceed (excludes review/submit)
@@ -692,6 +700,12 @@ async function applyToJob(
   const { title, company, description } = await getJobDetails(page);
   currentJobCtx = { job_title: title, company };
   console.log(`  Applying: ${title} @ ${company}`);
+
+  if (requiresSecurityClearance(description)) {
+    console.log('  Skipping - job requires security clearance');
+    logger.info('skip: security clearance required', { title, company });
+    return false;
+  }
 
   const applyBtn = page
     .locator(
@@ -759,6 +773,18 @@ async function applyToJob(
   // Pages 2-5: Questions → Review → Submit
   for (let attempt = 0; attempt < 5; attempt++) {
     await applyPage.waitForTimeout(2_000);
+
+    // Detect success page first — can happen if SEEK auto-advanced after a prior click
+    const isSuccessPage =
+      applyPage.url().includes('/apply/success') ||
+      applyPage.url().includes('/applied') ||
+      (await applyPage.locator('text=Application sent').isVisible().catch(() => false)) ||
+      (await applyPage.locator('[data-automation="application-sent"]').isVisible().catch(() => false));
+    if (isSuccessPage) {
+      console.log('  Applied! (success page detected)');
+      if (newPage) await newPage.close().catch(() => {});
+      return true;
+    }
 
     const submitBtn = applyPage
       .locator('[data-automation="summary-submit"]')
