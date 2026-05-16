@@ -1,8 +1,17 @@
 // Usage: npm run seek
-// Automates job applications on seek.com.au for Project Manager and Software Engineer roles.
-// Migrated from seek_bot.py (Selenium) to Playwright with two key bug fixes:
-//   1. BrowserContext never crashes mid-session (fixes NoSuchWindowException)
-//   2. locator.isVisible() never throws on detached elements (fixes NoneType.is_displayed())
+// Automates job applications on seek.com.au for PM and Software Engineering roles.
+//
+// Phase 1 capabilities:
+//   - Multi-search loop (PM, Technical PM, Delivery, SE, Full Stack, Backend, Cloud)
+//   - Per-search resume variant selection (lib/resume-selector.ts)
+//   - Structured JSON logging (lib/logger.ts)
+//   - MAX_APPS_PER_RUN hard cap across all searches
+//   - Circuit breaker: bail a search after 3 consecutive failures
+//   - Session loaded from SEEK_SESSION_COOKIES env var in CI, file on disk locally
+//
+// Inherited Playwright fixes (vs the retired Selenium version):
+//   1. context.waitForEvent('page') instead of window_handles juggling
+//   2. locator.isVisible().catch(() => false) for detached-element safety
 
 import 'dotenv/config';
 import { chromium, Browser, BrowserContext, Page, Locator } from '@playwright/test';
@@ -12,8 +21,10 @@ import * as readline from 'readline';
 import { readBaseCoverLetter } from '../lib/cover-letter';
 import { tailorCoverLetter, callOpenRouter } from '../lib/openrouter';
 import { loadKB, saveKB, findKBAnswer, aiAnswerQuestion, selectBestOption } from '../lib/questions-kb';
-import { getOrCreateSession, saveSession } from '../lib/seek-session';
+import { getOrCreateSession, saveSession, isSessionExpired } from '../lib/seek-session';
 import { captureAndAnalyze, getPastAnalyses } from '../lib/error-analyzer';
+import { logger } from '../lib/logger';
+import { selectResume, resolveResumeVariant, ResumeVariant } from '../lib/resume-selector';
 
 // ── CONFIG (from seek_bot.py lines 22-70) ─────────────────────────────────────
 const SEEK_EMAIL = process.env.SEEK_EMAIL ?? 'mohdrumman1@gmail.com';
@@ -21,10 +32,10 @@ const APPLIED_LOG = path.resolve(__dirname, '../data/applied_jobs.json');
 
 const CANDIDATE_PROFILE = `
 Name: Rumman Riyaz
-Location: Sydney, Australia (open to on-site and hybrid)
+Location: Newcastle/Sydney/Brisbane, NSW and QLD (open to remote and hybrid)
 Work rights: Family/partner visa with no restrictions
 Notice period: 2 weeks
-Expected salary: $110,000 - $150,000 AUD + superannuation
+Expected salary: $120,000 - $150,000 AUD + superannuation
 Years of project management experience: 5 years
 Years of software engineering experience: 4 years
 Education: Bachelor of Computer Systems Engineering, University of Newcastle
@@ -38,24 +49,51 @@ Skills: Agile/Scrum, Waterfall, hybrid delivery, stakeholder management, risk ma
   budget/CAPEX/OPEX tracking, vendor management, Python, C#, React, AWS, MS Project, Jira
 Tools: MS Project, Jira, Confluence, ServiceNow, Azure DevOps, GitHub, AWS console
 ERP/systems experience: ServiceNow, Azure DevOps; limited SAP exposure
-Willing to relocate: No (Sydney-based)
+Willing to relocate: Open to hybrid/remote within NSW and QLD only
 `;
 
-const SEARCHES = [
+const SEARCHES: Array<{ name: string; url: string; resumeVariant: ResumeVariant }> = [
   {
-    name: 'Project Manager',
-    url: 'https://www.seek.com.au/project-manager-jobs-in-information-communication-technology?daterange=3&pos=1&salaryrange=100000-&salarytype=annual&savedsearchid=f85ff02f-5cbb-4b3d-bc6e-37fa4520d6fc&sitekey=AU-Main&workarrangement=2%2C3&worktype=242%2C244',
-    resumeName: 'Rumman_Riyaz_Project_Manager_Resume',
+    name: 'Project Manager (ICT)',
+    url: 'https://www.seek.com.au/project-manager-jobs-in-information-communication-technology?daterange=3&pos=1&salaryrange=120000-&salarytype=annual&sitekey=AU-Main&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'pm',
   },
   {
-    name: 'Software Engineer',
-    url: 'https://www.seek.com.au/software-engineer-jobs-in-information-communication-technology?daterange=3&salaryrange=100000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
-    resumeName: 'Rumman_Riyaz_SE_Role',
+    name: 'Technical Project Manager',
+    url: 'https://www.seek.com.au/technical-project-manager-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'pm',
+  },
+  {
+    name: 'Delivery Manager / Lead',
+    url: 'https://www.seek.com.au/delivery-manager-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'pm',
+  },
+  {
+    name: 'Software Engineer (ICT)',
+    url: 'https://www.seek.com.au/software-engineer-jobs-in-information-communication-technology?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'se',
+  },
+  {
+    name: 'Full Stack Developer',
+    url: 'https://www.seek.com.au/full-stack-developer-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'se',
+  },
+  {
+    name: 'Backend Developer',
+    url: 'https://www.seek.com.au/backend-developer-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'se',
+  },
+  {
+    name: 'Cloud Engineer',
+    url: 'https://www.seek.com.au/cloud-engineer-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'se',
   },
 ];
 
-const MAX_APPS_PER_SEARCH = 10;
+const MAX_APPS_PER_SEARCH = Number(process.env.MAX_APPS_PER_SEARCH ?? 10);
+const MAX_APPS_PER_RUN = Number(process.env.MAX_APPS_PER_RUN ?? 20);
 const DELAY_BETWEEN_APPS_MS = 6_000;
+const CIRCUIT_BREAKER_THRESHOLD = 3;
 // ──────────────────────────────────────────────────────────────────────────────
 
 // Set by applyToJob so error-analyzer helpers have context without threading it everywhere
@@ -388,43 +426,6 @@ async function getQuestionLabel(page: Page, locator: Locator): Promise<string> {
   return text ?? '';
 }
 
-// ── RESUME SELECT ─────────────────────────────────────────────────────────────
-async function selectResume(page: Page, resumeName: string): Promise<void> {
-  const changeRadio = page.locator('input[name="resume-method"][value="change"]');
-  if (await changeRadio.isVisible().catch(() => false)) {
-    await changeRadio.click();
-    await page.waitForTimeout(500);
-    console.log('  Resume mode: use uploaded resume');
-  }
-
-  const dropdown = page.locator('select').first();
-  if (!(await dropdown.waitFor({ timeout: 8_000 }).then(() => true).catch(() => false))) {
-    console.log('  Resume dropdown not found');
-    await captureAndAnalyze(page, 'resume_dropdown_not_found', currentJobCtx);
-    return;
-  }
-
-  const options = await dropdown.locator('option').allTextContents();
-  const keywords = new Set(
-    resumeName
-      .toLowerCase()
-      .split(/[_\s.]+/)
-      .filter((w) => !['rumman', 'riyaz', 'docx', ''].includes(w))
-  );
-  let bestIdx = options.length > 1 ? 1 : 0;
-  let bestScore = 0;
-  options.forEach((text, i) => {
-    const words = new Set(text.toLowerCase().split(/[_\s.\-]+/));
-    const score = [...keywords].filter((k) => words.has(k)).length;
-    if (score > bestScore) {
-      bestScore = score;
-      bestIdx = i;
-    }
-  });
-  await dropdown.selectOption({ index: bestIdx });
-  console.log(`  Resume selected: ${options[bestIdx] ?? bestIdx}`);
-}
-
 // ── COVER LETTER FILL ─────────────────────────────────────────────────────────
 async function fillCoverLetter(page: Page, text: string): Promise<boolean> {
   const selectors = [
@@ -602,7 +603,8 @@ async function clickContinue(page: Page): Promise<boolean> {
 async function applyToJob(
   page: Page,
   context: BrowserContext,
-  resumeName: string,
+  variant: ResumeVariant,
+  searchName: string,
   baseCoverLetter: string,
   kb: ReturnType<typeof loadKB>
 ): Promise<boolean> {
@@ -653,7 +655,9 @@ async function applyToJob(
   await applyPage.waitForTimeout(2_000);
 
   // Page 1: Resume + Cover Letter
-  await selectResume(applyPage, resumeName);
+  const resolvedVariant = resolveResumeVariant(title, searchName);
+  const finalVariant: ResumeVariant = resolvedVariant ?? variant;
+  await selectResume(applyPage, finalVariant);
   await applyPage.waitForTimeout(500);
 
   const clChangeRadio = applyPage.locator('input[name="coverLetter-method"][value="change"]');
@@ -792,13 +796,26 @@ async function getValidationErrors(page: Page): Promise<string[]> {
 
 // ── MAIN ──────────────────────────────────────────────────────────────────────
 async function main() {
-  console.log('=== Seek Auto Apply Bot (Playwright) ===');
+  const runStart = Date.now();
+  logger.info('seek bot starting', {
+    maxAppsPerRun: MAX_APPS_PER_RUN,
+    maxAppsPerSearch: MAX_APPS_PER_SEARCH,
+    searches: SEARCHES.map((s) => s.name),
+    dryRun: process.env.DRY_RUN === 'true',
+  });
+
+  if (!process.env.OPENROUTER_API_KEY) {
+    logger.error('OPENROUTER_API_KEY is missing — aborting');
+    process.exit(1);
+  }
 
   const baseCoverLetter = readBaseCoverLetter();
   const applied = loadApplied();
   const kb = loadKB();
-  console.log(`Previously applied to ${applied.size} jobs (will skip these)`);
-  console.log(`Questions KB loaded: ${kb.length} entries\n`);
+  logger.info('state loaded', {
+    previouslyApplied: applied.size,
+    kbEntries: kb.length,
+  });
 
   const interactive = process.stdin.isTTY === true;
   const browser: Browser = await chromium.launch({
@@ -809,32 +826,60 @@ async function main() {
   const context = await getOrCreateSession(browser);
   const page = await context.newPage();
 
+  let total = 0;
+  let runFailed = false;
+
   try {
     await page.goto('https://www.seek.com.au');
     await page.waitForTimeout(1_000);
     await login(page);
+
+    if (await isSessionExpired(page)) {
+      logger.error('seek session expired after login attempt — aborting run', {
+        hint: 'Re-run `npm run seek-login` locally to refresh data/sessions/seek-session.json, then update the SEEK_SESSION_COOKIES GitHub secret with the [SESSION_COOKIES_B64] line printed by saveSession.',
+      });
+      runFailed = true;
+      return;
+    }
+
     await saveSession(context);
 
-    let total = 0;
-
     for (const search of SEARCHES) {
-      console.log(`\n=== ${search.name} ===`);
+      if (total >= MAX_APPS_PER_RUN) {
+        logger.info('hit MAX_APPS_PER_RUN — stopping', { total, cap: MAX_APPS_PER_RUN });
+        break;
+      }
+
+      logger.info('search starting', { name: search.name, variant: search.resumeVariant });
       await page.goto(search.url);
       await page.waitForTimeout(2_000);
 
       const links = await getJobLinks(page);
-      console.log(`Found ${links.length} jobs on this page`);
+      logger.info('search jobs found', { name: search.name, count: links.length });
 
-      let count = 0;
+      let countThisSearch = 0;
+      let consecutiveFailures = 0;
+
       for (const url of links) {
-        if (count >= MAX_APPS_PER_SEARCH) {
-          console.log(`  Reached max ${MAX_APPS_PER_SEARCH} for this search.`);
+        if (total >= MAX_APPS_PER_RUN) {
+          logger.info('hit MAX_APPS_PER_RUN inside search', { name: search.name, total });
+          break;
+        }
+        if (countThisSearch >= MAX_APPS_PER_SEARCH) {
+          logger.info('hit MAX_APPS_PER_SEARCH', { name: search.name, cap: MAX_APPS_PER_SEARCH });
+          break;
+        }
+        if (consecutiveFailures >= CIRCUIT_BREAKER_THRESHOLD) {
+          logger.warn('circuit breaker tripped — moving to next search', {
+            name: search.name,
+            consecutiveFailures,
+          });
           break;
         }
 
         const jobId = url.match(/\/job\/(\d+)/)?.[1] ?? url;
         if (applied.has(jobId)) {
-          console.log(`  Already applied to ${jobId} - skipping`);
+          logger.debug('already applied — skipping', { jobId });
           continue;
         }
 
@@ -843,31 +888,56 @@ async function main() {
 
         let success = false;
         try {
-          success = await applyToJob(page, context, search.resumeName, baseCoverLetter, kb);
+          success = await applyToJob(
+            page,
+            context,
+            search.resumeVariant,
+            search.name,
+            baseCoverLetter,
+            kb
+          );
         } catch (e) {
-          console.error(`  Error on ${url}: ${(e as Error).message}`);
+          logger.error('apply threw', { jobId, url }, e);
           await captureAndAnalyze(page, 'unexpected_error', currentJobCtx).catch(() => {});
         }
 
-        // Close any stray tabs that weren't cleaned up inside applyToJob
         for (const p of context.pages()) {
           if (p !== page) await p.close().catch(() => {});
         }
 
         if (success) {
-          applied.add(jobId);
-          saveApplied(applied);
-          count++;
+          if (process.env.DRY_RUN !== 'true') {
+            applied.add(jobId);
+            saveApplied(applied);
+          }
+          countThisSearch++;
           total++;
+          consecutiveFailures = 0;
+          logger.info('applied', { jobId, search: search.name, totalThisRun: total });
           await page.waitForTimeout(DELAY_BETWEEN_APPS_MS);
+        } else {
+          consecutiveFailures++;
+          logger.warn('apply did not succeed', {
+            jobId,
+            search: search.name,
+            consecutiveFailures,
+          });
         }
       }
     }
-
-    console.log(`\n=== Done. Applied to ${total} jobs this run. ===`);
+  } catch (err) {
+    runFailed = true;
+    logger.error('main loop crashed', {}, err);
   } finally {
-    await saveSession(context);
+    try {
+      await saveSession(context);
+    } catch (err) {
+      logger.error('saveSession failed in finally', {}, err);
+    }
     await browser.close();
+    const durationSec = Math.round((Date.now() - runStart) / 1000);
+    logger.info('seek bot done', { applied: total, durationSec, failed: runFailed });
+    if (runFailed) process.exit(1);
   }
 }
 
