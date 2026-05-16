@@ -560,6 +560,72 @@ async function answerEmployerQuestions(
     }
   }
 
+  // Radio button groups — covers Yes/No, single-choice, and custom option sets.
+  // SEEK renders these as `input[type="radio"]` grouped by `name` attribute.
+  const radioNames = new Set<string>();
+  for (const radio of await page.locator('input[type="radio"]').all()) {
+    if (!(await radio.isVisible().catch(() => false))) continue;
+    const name = await radio.getAttribute('name').catch(() => null);
+    if (name) radioNames.add(name);
+  }
+
+  for (const name of radioNames) {
+    const radios = page.locator(`input[type="radio"][name="${name}"]`);
+    const count = await radios.count();
+    if (count === 0) continue;
+
+    // Skip group if already answered
+    const anyChecked = await Promise.all(
+      Array.from({ length: count }, (_, i) => radios.nth(i).isChecked().catch(() => false))
+    );
+    if (anyChecked.some(Boolean)) continue;
+
+    const label = await getQuestionLabel(page, radios.first());
+    if (!label) continue;
+
+    // Collect option labels: prefer label[for=id], then aria-label, then value
+    const optionLabels: string[] = [];
+    for (let i = 0; i < count; i++) {
+      const radio = radios.nth(i);
+      const id = await radio.getAttribute('id').catch(() => null);
+      let optLabel = '';
+      if (id) optLabel = (await page.locator(`label[for="${id}"]`).textContent().catch(() => '')) ?? '';
+      if (!optLabel.trim()) optLabel = (await radio.getAttribute('aria-label').catch(() => null)) ?? '';
+      if (!optLabel.trim()) optLabel = (await radio.getAttribute('value').catch(() => '')) ?? '';
+      optionLabels.push(optLabel.trim());
+    }
+
+    const answer =
+      findKBAnswer(label, kb) ??
+      (await aiAnswerQuestion(label, optionLabels.filter(Boolean), kb, CANDIDATE_PROFILE));
+
+    if (!answer) {
+      unanswered.push({ label, type: 'select', options: optionLabels.filter(Boolean) });
+      continue;
+    }
+
+    const best = selectBestOption(optionLabels.filter(Boolean), answer);
+    let clicked = false;
+    for (let i = 0; i < count; i++) {
+      if (optionLabels[i].toLowerCase() !== best.toLowerCase()) continue;
+      const radio = radios.nth(i);
+      const id = await radio.getAttribute('id').catch(() => null);
+      // Prefer clicking the label (styled radios hide the input)
+      if (id) {
+        const lbl = page.locator(`label[for="${id}"]`);
+        if (await lbl.isVisible().catch(() => false)) {
+          await lbl.click().catch(() => {});
+          clicked = true;
+          break;
+        }
+      }
+      await radio.click().catch(() => {});
+      clicked = true;
+      break;
+    }
+    if (!clicked) unanswered.push({ label, type: 'select', options: optionLabels.filter(Boolean) });
+  }
+
   return unanswered;
 }
 
@@ -637,6 +703,7 @@ async function applyToJob(
 
   if (!(await applyBtn.waitFor({ timeout: 10_000 }).then(() => true).catch(() => false))) {
     console.log('  Apply button not found - skipping');
+    await captureAndAnalyze(page, 'apply_button_not_found', currentJobCtx);
     return false;
   }
 
@@ -655,6 +722,7 @@ async function applyToJob(
   const isSeekUrl = applyPage.url().includes('seek.com.au') || applyPage.url().includes('au.seek.com');
   if (!isSeekUrl) {
     console.log(`  Skipping - Apply redirected to external: ${applyPage.url().slice(0, 60)}`);
+    await captureAndAnalyze(applyPage, 'redirected_to_external_ats', currentJobCtx);
     if (newPage) await newPage.close().catch(() => {});
     return false;
   }
@@ -778,12 +846,14 @@ async function applyToJob(
         }
         break;
       } else if (stillBlocked) {
+        await captureAndAnalyze(applyPage, 'auto_skip_still_blocked', currentJobCtx);
         break;
       }
     }
   }
 
   console.log('  Could not reach Submit after 5 pages - skipping');
+  await captureAndAnalyze(applyPage, 'auto_skip_page_limit', currentJobCtx);
   if (newPage) await newPage.close().catch(() => {});
   return false;
 }
