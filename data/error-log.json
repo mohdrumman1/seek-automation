@@ -2868,5 +2868,695 @@
     "page_title": "Facebook",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T10-18-12-955Z_auto_skip_page_limit.png",
     "analysis": "1. The Facebook login page is visible, showing fields for email and password, along with a \"Log in\" button. The email field is pre-filled.\n2. The bot failed to input the password and click the login button.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]` and then click the login button using the selector `button[name=\"login\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:05:40.387Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://login.seek.com/login?state=hKFo2SBtejFkVDlEUHhaU282am00T1R1REhNUThNb0FYaXZtUqFupWxvZ2luo3RpZNkgUV9adnRSWENWOTlYYzRDTzM0TmlyYjNsVWlGTjR6MGqjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92113480%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=eVlrYXNtWm40MU5GOUJyNEx3SVVuNEFxR2R2N3pGTFBybVB6LU9HMFNTUA%3D%3D&code_challenge=daMr5tDV3Q2ZHPGSDi1KagcjPBfr7Y148_J4tq6_xqg&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92113480&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-05-38-233Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, displaying options to use Google, Facebook, or Apple to sign in, as well as an email address input and a \"Verify you are human\" checkbox.\n2. The error occurred because the bot hasn't filled the email field or clicked the \"Verify you are human\" checkbox.\n3. The bot should fill the email field using the selector `input[type='email']` and then click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:06:17.407Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DOh7RvcbTgO8Jl8VA0SVtvTtlH9NI_lRo%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D6ef9f9f6-32e3-4000-a903-82f7b6557ce4%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DOh7RvcbTgO8Jl8VA0SVtvTtlH9NI_lRo%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-06-13-539Z_continue_button_not_found.png",
+    "analysis": "1.  The standard Facebook login page is visible with a pre-filled email/phone field, a password field, and a \"Log in\" button.\n\n2.  The error occurred because the bot searched for a \"Continue\" button which does not exist on the standard login form displayed.\n\n3.  The bot should fill the password field using CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button using its text \"Log in\"."
+  },
+  {
+    "timestamp": "2026-05-16T21:06:19.446Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DOh7RvcbTgO8Jl8VA0SVtvTtlH9NI_lRo%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D6ef9f9f6-32e3-4000-a903-82f7b6557ce4%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DOh7RvcbTgO8Jl8VA0SVtvTtlH9NI_lRo%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-06-17-414Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, including the email field (pre-filled), password field, and the \"Log in\" button.\n2. The bot failed to input the password and click the login button.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]` and then click the login button using the selector `button[name=\"login\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:06:52.790Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Project Manager",
+    "company": "Peoplebank Australia VIC",
+    "url": "https://login.seek.com/login?state=hKFo2SAyQWZfUlVZR0N0Qy02Um5lcjE0Nk1mYm1XanhTUHA2RKFupWxvZ2luo3RpZNkgX2pWUF9XTHo2ZXBzWG05Yzc1SXUwbnd2NjJxeGl2MHajY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92103784%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=RFFCb35sQnNSdGNKTzVOMGlVSWRhSkhPLWtGfndyX213Mkc0WS44UX5yeQ%3D%3D&code_challenge=FaV9DWOEmxNbx3-5zkN6RM2-Ofch2CEpItHC_IXuBGo&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92103784&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-06-50-796Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, with options to sign in using Google, Facebook, or Apple, as well as an email address field and a \"Verify you are human\" checkbox.\n2.  The error occurred because the bot has not interacted with any of the page elements like filling the email address input or clicking the \"Verify you are human\" checkbox.\n3.  The bot should first fill the email address input field using the selector `input[type='email']`.\n4.  Then, the bot should click \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:07:27.507Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Project Manager",
+    "company": "Peoplebank Australia VIC",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DoKvc6bDNwGHUeP3vh3hIph_H4p3RsZ2y%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0901753b-a492-42a9-8e89-402106acebda%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DoKvc6bDNwGHUeP3vh3hIph_H4p3RsZ2y%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-07-25-955Z_continue_button_not_found.png",
+    "analysis": "1.  A standard Facebook login page is visible with the email address pre-filled; there's also a password field and \"Log in\" button.\n\n2.  The bot searched for a \"Continue\" button, which isn't present on this login form.\n\n3.  The bot should fill the password field using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button using the CSS selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:07:29.070Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Project Manager",
+    "company": "Peoplebank Australia VIC",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DoKvc6bDNwGHUeP3vh3hIph_H4p3RsZ2y%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0901753b-a492-42a9-8e89-402106acebda%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DoKvc6bDNwGHUeP3vh3hIph_H4p3RsZ2y%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-07-27-513Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is displayed, with the email field pre-filled. The password field and \"Log in\" button are also visible.\n2. The bot failed to input the password and click the login button.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]` and then click the login button using the selector `button[name=\"login\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:08:05.109Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://login.seek.com/login?state=hKFo2SBLWkxwSmxhWG55b0o5cmpuNGhfQzFZaDZGRC1EU2tFcKFupWxvZ2luo3RpZNkgNlMtRFFHQjdrWWdhVDV1UVFsZ0MxYXBod1NJUExQbUijY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92104157%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=enRNT2hfdnd%2BMTlGNnc3T2t4TDAyNVA0a29FMGVKdVBLfnNfY2FtRmp%2BVg%3D%3D&code_challenge=bZP7RBn4kPEOZHrAJSTrL_vpp-wcmKtLUDu6oOdfZIA&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92104157&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-08-03-355Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, showing options to sign in with Google, Facebook, or Apple, along with an email address field and a \"Verify you are human\" checkbox.\n2.  The error is happening because the bot has not interacted with the email field or clicked the \"Verify you are human\" checkbox yet.\n3.  First, fill the email address input field using the selector `input[type='email']`, then click the \"Verify you are human\" checkbox using selector `[aria-label=\"Verify you are human\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:08:40.004Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DlIm894Y6myDUCj_KVIzX2HUF7D3J5sbg%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D56c9f7ea-e12e-4ef2-b6f5-60a7d89ddf5b%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DlIm894Y6myDUCj_KVIzX2HUF7D3J5sbg%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-08-38-212Z_continue_button_not_found.png",
+    "analysis": "1. The standard Facebook login page is visible, with the email field pre-filled.\n2. The bot searched for a \"Continue\" button, which isn't present.\n3. The bot should fill the password field using CSS selector `input[name=\"pass\"]` and click the \"Log in\" button using its text."
+  },
+  {
+    "timestamp": "2026-05-16T21:08:41.564Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DlIm894Y6myDUCj_KVIzX2HUF7D3J5sbg%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D56c9f7ea-e12e-4ef2-b6f5-60a7d89ddf5b%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DlIm894Y6myDUCj_KVIzX2HUF7D3J5sbg%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-08-40-010Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with the email field pre-filled. The password field and \"Log in\" button are also visible.\n2. The bot failed to input the password and click the login button.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]` and then click the login button using the selector `button[name=\"login\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:09:23.205Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://login.seek.com/login?state=hKFo2SA0dWZXX1RDdVJOTVA5YzRlZnNLUjBQWXhhcmJMRHlUaaFupWxvZ2luo3RpZNkgSmwtbE8yOVJlMTFhREY4QVBDS2NZWU05d1lMQ3J2M3WjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92113480%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=aEJ6Zm0wTF9IR35yOUZkNHFKflk5YllBUXJHSWNLWTJIMDVRQkg3VEYzTQ%3D%3D&code_challenge=Y2kz8UsdZgvDS4ycpmpzptlMxpkh8Ya9DFv4unTdg6Y&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92113480&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-09-21-452Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, displaying options to sign in with Google, Facebook, or Apple, as well as an email field and a \"Verify you are human\" checkbox.\n2. The error occurred because the bot hasn't filled the email field or clicked the \"Verify you are human\" checkbox.\n3. The bot should first fill the email field using the selector `input[type='email']`.\n4. Following that, it should click the \"Verify you are human\" checkbox using the selector `[aria-label=\"Verify you are human\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:09:57.860Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DyKOH_IsrExqEhSEVLEIKLObjP3T-PTMO%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dbf60dba4-1b18-4d01-b6b8-a1669385fd6e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DyKOH_IsrExqEhSEVLEIKLObjP3T-PTMO%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-09-56-026Z_continue_button_not_found.png",
+    "analysis": "1. The standard Facebook login page is visible, with an email address pre-filled, a password field, and a \"Log in\" button.\n2. The bot searched for a \"Continue\" button, which isn't present.\n3. The bot should fill the password field using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button using the CSS selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:09:59.581Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DyKOH_IsrExqEhSEVLEIKLObjP3T-PTMO%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dbf60dba4-1b18-4d01-b6b8-a1669385fd6e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DyKOH_IsrExqEhSEVLEIKLObjP3T-PTMO%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-09-57-866Z_auto_skip_page_limit.png",
+    "analysis": "1.  The Facebook login page is visible, including the pre-filled email field, the password field, and the \"Log in\" button.\n\n2.  The bot failed to input the password and click the login button.\n\n3.  The bot should input the password using the CSS selector `input[name=\"pass\"]` and then click the login button using the selector `button[name=\"login\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:10:33.139Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "ICT Project Manager",
+    "company": "Mirait Technologies Australia",
+    "url": "https://login.seek.com/login?state=hKFo2SBuaTRzNDlpbXYzdl95VXVKeng5TTBMMXRmaGlVZXA0bKFupWxvZ2luo3RpZNkgZzFpOE1uaTd4YUpmWlNqaEZkb3V3aWdlYnc2bS1NNDejY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92100379%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=R3J4dWJvd0NpcjB2aDdGZ3ozVVhQVUJxMWhBYVVLYkhILi5IajVfRTVkaA%3D%3D&code_challenge=6NugcUv8oJsclgh4Q8JqV5FatX9It3Oz3OuD2dGFYII&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92100379&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-10-31-298Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, displaying options to sign in with Google, Facebook, or Apple, as well as an email field and a \"Verify you are human\" checkbox.\n2.  The error occurred because the bot has not interacted with any of the page elements, specifically filling the email address input or clicking the \"Verify you are human\" checkbox.\n3.  The bot should first fill the email address input field using the selector `input[type='email']`.\n4.  Then, the bot should click \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:11:07.664Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "ICT Project Manager",
+    "company": "Mirait Technologies Australia",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DzqxRtUbDt6Ow3iI8VVvX9B1wvczi2oRA%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De2d4148a-25cd-4590-8f73-e7683faea66a%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DzqxRtUbDt6Ow3iI8VVvX9B1wvczi2oRA%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-11-06-016Z_continue_button_not_found.png",
+    "analysis": "1.  A standard Facebook login page is displayed, with pre-filled email and a password field.\n\n2.  The bot incorrectly searched for a \"Continue\" button, which isn't present on this login form.\n\n3.  The bot should fill the password field using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button using its text."
+  },
+  {
+    "timestamp": "2026-05-16T21:11:09.772Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "ICT Project Manager",
+    "company": "Mirait Technologies Australia",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DzqxRtUbDt6Ow3iI8VVvX9B1wvczi2oRA%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De2d4148a-25cd-4590-8f73-e7683faea66a%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DzqxRtUbDt6Ow3iI8VVvX9B1wvczi2oRA%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-11-07-671Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is shown, displaying the pre-filled email field, the password field, and the \"Log in\" button.\n2. The bot failed to enter the password and click the login button.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]` and click the login button using the selector `button[name=\"login\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:11:45.070Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://login.seek.com/login?state=hKFo2SAwZFRoRm15VVJKZDBOSVBNbWUyX21faVpiX242LWo3WKFupWxvZ2luo3RpZNkgdlUtalpzTTZCTERYMEwxZTJncjFoTEJoUlRod3lGTWijY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92104157%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=TTRVWFBxYl80N0lnLWJNaE9CSVlpTlZRRFk5bDF%2BRURGd3lad3FFMi5ucw%3D%3D&code_challenge=Tr91OzKYD5lTRYUlXpYgqYUwg57yPlf9vVserFeylGE&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92104157&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-11-43-366Z_cover_letter_fill_failed.png",
+    "analysis": "1.  The Seek sign-in page is visible, showing options to sign in with Google, Facebook, or Apple, along with an email address field and a \"Verify you are human\" checkbox.\n2.  The error occurred because the bot has not interacted with the email address input or clicked the \"Verify you are human\" checkbox.\n3.  The bot should first fill the email address input field using the selector `input[type='email']`.\n4.  Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:12:19.438Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3D4PAkqxJoEXLlDTp79lGQNrThXEiuN15g%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D3feec73d-401c-4647-b5ab-ae67957bd5fb%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D4PAkqxJoEXLlDTp79lGQNrThXEiuN15g%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-12-17-866Z_continue_button_not_found.png",
+    "analysis": "1.  The Facebook login page is visible, with an email pre-filled. A password field and \"Log in\" button are also present.\n2.  The bot searched for a \"Continue\" button, which doesn't exist on this standard login form. \n3.  The bot should fill the password field using the CSS selector `input[name=\"pass\"]` and click the \"Log in\" button with text \"Log in”."
+  },
+  {
+    "timestamp": "2026-05-16T21:12:21.304Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Project Manager",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3D4PAkqxJoEXLlDTp79lGQNrThXEiuN15g%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D3feec73d-401c-4647-b5ab-ae67957bd5fb%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D4PAkqxJoEXLlDTp79lGQNrThXEiuN15g%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-12-19-445Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with the email field pre-filled, password field empty, and the \"Log in\" button.\n2. The bot failed to input the password and click the login button.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]` and then click the login button using the correct selector for the login button. `button[name=\"login\"]` might work or a different selector for 'Log in' need to be found."
+  },
+  {
+    "timestamp": "2026-05-16T21:13:03.016Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://login.seek.com/login?state=hKFo2SBjT0N3NnJnWVpmS0tubHVYbGtqQ2dpVWptNV9tUnJueaFupWxvZ2luo3RpZNkgaUVEUlZadW9zYzd6MWVydEs2ellydTRMa1dKV0N3UUOjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92113480%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=NXBTZ0V0NTRkcE9jNXhLeWxIYXVhTHhUfmtOVVByOXpmTmJnMnlCQjZUaw%3D%3D&code_challenge=w5r-E1-Bnk6Kgr2EMPU6hvXuxLgPIrLT8GBdVFyyves&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92113480&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-13-01-382Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, displaying options to sign in with Google, Facebook, or Apple, along with an email address input field and a \"Verify you are human\" checkbox.\n2.  The error occurred because the bot has not interacted with the email address input or clicked the \"Verify you are human\" checkbox.\n3.  The bot should first fill the email address input field using the selector `input[type='email']`.\n4.  Then, the bot should click the \"Verify you are human\" checkbox using the selector `[aria-label=\"Verify you are human\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:13:37.961Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DBdMewO0DHcgjVVJj9a0NSslcf5VXv7Ns%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D82cb0350-aa7d-4804-b957-c516f223c7aa%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DBdMewO0DHcgjVVJj9a0NSslcf5VXv7Ns%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-13-35-938Z_continue_button_not_found.png",
+    "analysis": "1. A standard Facebook login page is visible with an email address pre-filled. The password field and \"Log in\" button are also present.\n2. The bot searched for a \"Continue\" button, which isn't present on this standard login form.\n3. The bot should fill the password field using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button using the CSS selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:13:40.062Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Program Manager",
+    "company": "Netcomm Wireless",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DBdMewO0DHcgjVVJj9a0NSslcf5VXv7Ns%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D82cb0350-aa7d-4804-b957-c516f223c7aa%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DBdMewO0DHcgjVVJj9a0NSslcf5VXv7Ns%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-13-37-965Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with the email field pre-filled, the password field empty, and the \"Log in\" button.\n2. The bot failed to input the password and click the login button.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]` and then click the login button using the CSS selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:14:16.007Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Head of Delivery & Transformation",
+    "company": "xceltium",
+    "url": "https://login.seek.com/login?state=hKFo2SA0d2Z1V3ROS1NBdDRwRHZ1dlFZTFpudDc2bm9WOWw2caFupWxvZ2luo3RpZNkgN0ZtWm80THJsRGFscmE4ZmhXVkRlX1FHTXV3bTdpWDWjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92145299%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=RXJ3Tk4wLVN5N1dNNjh5anBKQmZfWl9MSFB1OHVNT1BCR194Y01IYXNuRw%3D%3D&code_challenge=nb6rFssCkLO71phykCIoaJna30omqmycQF03GyrVp0w&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92145299&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-14-14-207Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, showing options to sign in with Google, Facebook, or Apple, an email address field, and a \"Verify you are human\" checkbox.\n2. The error occurred because the bot has not yet interacted with the email address input or clicked the \"Verify you are human\" checkbox before attempting to upload the cover letter.\n3. The bot should first fill the email address input field using the selector `input[type='email']`.\n4. Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:14:50.492Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Head of Delivery & Transformation",
+    "company": "xceltium",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3D1ph3ietvWF_ETuTIrefuYHZz1cWnoVzi%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd8962d70-3f8d-4605-8503-fb968cfc3124%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D1ph3ietvWF_ETuTIrefuYHZz1cWnoVzi%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-14-48-813Z_continue_button_not_found.png",
+    "analysis": "1. A standard Facebook login page is displayed, with the email field prefilled. It also has a password field and a \"Log In\" button.\n2. The bot incorrectly searched for a \"Continue\" button, which is not present on this login form.\n3. The bot should fill the password field using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button using the CSS selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:14:52.098Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Head of Delivery & Transformation",
+    "company": "xceltium",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3D1ph3ietvWF_ETuTIrefuYHZz1cWnoVzi%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd8962d70-3f8d-4605-8503-fb968cfc3124%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D1ph3ietvWF_ETuTIrefuYHZz1cWnoVzi%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-14-50-497Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, including the pre-filled email field, an empty password field, and the \"Log in\" button.\n2. The bot failed to input the password and click the login button.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]` and then click the login button using either the selector `button[type=\"submit\"]` or `button[name=\"login\"]`, retrying both."
+  },
+  {
+    "timestamp": "2026-05-16T21:15:27.988Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Head of Digital & AI Delivery",
+    "company": "Lanson Partners",
+    "url": "https://login.seek.com/login?state=hKFo2SBEZ0wwUkVIdk9KU1hGMTVqWWNZUWtfRXh3emVPaEZtd6FupWxvZ2luo3RpZNkgMmZnbWQ5X2lCX0FIN2xlajNhOFp1M3BkLW9NZ2NEd2KjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92143674%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=aEF3SloyNWYuOEpjWkdvdGFqYm4uYjhiNEZRNThEM0RTbmJXUGt%2BUXMyZA%3D%3D&code_challenge=Umz4jeVEMau-YBP_7xwnybbCy3yjO_V-iOYDQpQfraU&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92143674&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-15-26-046Z_cover_letter_fill_failed.png",
+    "analysis": "1.  The Seek sign-in page is visible with options to sign in using Google, Facebook, Apple, or email, including a \"Verify you are human\" checkbox.\n2.  The error occurred because the bot hasn't interacted with email address field and the \"Verify you are human\" checkbox.\n3.  The bot should first fill the email address input field using the selector `input[type='email']`.\n4.  Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:16:02.898Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Head of Digital & AI Delivery",
+    "company": "Lanson Partners",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DuH4-WZnNkUTtxpaRpZUa3gpFSJmUDw4m%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D38aa8d14-3c08-40ab-bb5c-68e3715c5758%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DuH4-WZnNkUTtxpaRpZUa3gpFSJmUDw4m%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-16-00-943Z_continue_button_not_found.png",
+    "analysis": "1. The standard Facebook login page is displayed, with the email field prefilled. A password field and \"Log in\" button are visible.\n2. The bot searched for a \"Continue\" button, which is not on this login form.\n3.  The bot should enter the password using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button using the CSS selector `button[type=\"submit\"]` or `button:contains(\"Log in\")`."
+  },
+  {
+    "timestamp": "2026-05-16T21:16:04.698Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Head of Digital & AI Delivery",
+    "company": "Lanson Partners",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DuH4-WZnNkUTtxpaRpZUa3gpFSJmUDw4m%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D38aa8d14-3c08-40ab-bb5c-68e3715c5758%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DuH4-WZnNkUTtxpaRpZUa3gpFSJmUDw4m%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-16-02-904Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, displaying the pre-filled email/phone number, an empty password field, and the \"Log in\" button. \n2. The bot failed to input the password and click the login button.\n3. The bot should first input the password using the CSS selector `input[name=\"pass\"]`.\n4. After inputting the password, the bot should click the login button using the CSS selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:16:44.995Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Software Engineer",
+    "company": "FYI SOFTWARE PTY LTD",
+    "url": "https://login.seek.com/login?state=hKFo2SBLM2ktaEpuMUpDNXVDMk5hSlBsVy14bVVyem1aWkRYaqFupWxvZ2luo3RpZNkgVDRNU2huWDZhRlpuVmhQLURKMktXUzBTNHV6UmptNFKjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92140049%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=d2w4NV85VEQ0ZDNDcndyX3JPQl9IU0pXUW5uT1RiZTFCb2Nyanc0Y2Vkcw%3D%3D&code_challenge=juizSI8S--TFR1ijMJwYi_SfE4nXYsG3zsLiC_IZZu0&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92140049&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-16-43-231Z_cover_letter_fill_failed.png",
+    "analysis": "1.  The Seek sign-in page is visible, displaying options to sign in with Google, Facebook, or Apple, along with an email address input field and a \"Verify you are human\" checkbox.\n2.  The error occurred because the bot has not interacted with the email address input or clicked the \"Verify you are human\" checkbox.\n3.  The bot should first fill the email address input field using the selector `input[type='email']`.\n4.  Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:17:19.504Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Software Engineer",
+    "company": "FYI SOFTWARE PTY LTD",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DO-jm7Eu7WFxUgVpbjivzw-w-HpcmXtnX%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Deb8d665b-54f8-444d-a4d4-9f453477474c%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DO-jm7Eu7WFxUgVpbjivzw-w-HpcmXtnX%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-17-17-840Z_continue_button_not_found.png",
+    "analysis": "1.  The standard Facebook login page is displayed, with the email field prefilled. The password field and \"Log in\" buttons are visible.\n2.  The bot searched for a \"Continue\" button, which is not present on the displayed login form.\n3.  The bot should try entering a password into the `input[name=\"pass\"]` field and then clicking the `button[type=\"submit\"]` button."
+  },
+  {
+    "timestamp": "2026-05-16T21:17:21.397Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Software Engineer",
+    "company": "FYI SOFTWARE PTY LTD",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DO-jm7Eu7WFxUgVpbjivzw-w-HpcmXtnX%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Deb8d665b-54f8-444d-a4d4-9f453477474c%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DO-jm7Eu7WFxUgVpbjivzw-w-HpcmXtnX%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-17-19-510Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with the email/phone number field pre-filled, the password field empty, and the \"Log in\" button.\n2. The bot failed to input the password and click the login button.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]`.\n4. After inputting the password, it should then click the login button using the CSS selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:17:59.232Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Software Engineer (Java / React)",
+    "company": "Sharp & Carter Digital and Technology",
+    "url": "https://login.seek.com/login?state=hKFo2SBXSlNxQVprS1VsTkdmazJVYlc3bzJLdm9jeXVKQV9vNaFupWxvZ2luo3RpZNkgdC1RWGJtemdCNldZWVRUZGktdkVxUzRIWEtaQ0h0S0ajY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92150809%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=b2dtSGw4SWxCdERRZ29nOWFVZzNDOENxU3dMcXZJTDRNSE5NQn5LekNxVg%3D%3D&code_challenge=WtpeltYI2XkpcqjUg92uxZ1VRgC9P-aAU6zLFLg1N5E&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92150809&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-17-57-479Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, displaying options to sign in with Google, Facebook, or Apple, along with an email address input field and a \"Verify you are human\" checkbox.\n2. The error occurred because the bot attempted to upload the cover letter before interacting with the email address input field and the \"Verify you are human\" checkbox.\n3. The bot should first fill the email address input field using the selector `input[type='email']`.\n4. Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:18:33.847Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Software Engineer (Java / React)",
+    "company": "Sharp & Carter Digital and Technology",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3D73cTaf9NbBcaWKRmlu3jRI2b3v_02e5P%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd6b0891f-0b6f-4427-9a42-f770efb3ba02%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D73cTaf9NbBcaWKRmlu3jRI2b3v_02e5P%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-18-32-108Z_continue_button_not_found.png",
+    "analysis": "1. The standard Facebook login form is visible, with the email field prefilled.\n2. The bot is looking for a \"Continue\" button which is not present on this form, leading to the error.\n3. The bot should enter the password using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button using the CSS selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:18:35.639Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Software Engineer (Java / React)",
+    "company": "Sharp & Carter Digital and Technology",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3D73cTaf9NbBcaWKRmlu3jRI2b3v_02e5P%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd6b0891f-0b6f-4427-9a42-f770efb3ba02%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D73cTaf9NbBcaWKRmlu3jRI2b3v_02e5P%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-18-33-853Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with pre-filled email/phone number and a blank password field. The \"Log in\" button is also visible.\n2. The bot failed to input the password, as observed in prior analyses.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]`. After that, the bot should click the \"Log in\" button, by targeting the `button[type=\"submit\"]` selector."
+  },
+  {
+    "timestamp": "2026-05-16T21:19:13.554Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Full Stack Developer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://login.seek.com/login?state=hKFo2SBWRlZoYzBxMGRaRHhidmNFVHg2bzc2WDJsWG52LUFCQqFupWxvZ2luo3RpZNkgREV4M2ZiOFFZRGwzYnpQLVlydEM4WENjMkFpbmxYeGijY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92135692%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=SGczNGhwQnVpQVhwQi5jen5RMGQzUF83VWpSckZmVy50S1BST1BBSi1PLg%3D%3D&code_challenge=032kgRsGGdQ4MLyRpXyXPOA7eUGC11OQamoiJzrCiP0&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92135692&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-19-11-708Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, displaying options to sign in with Google, Facebook, or Apple, along with an email address input field and a \"Verify you are human\" checkbox.\n2. The error occurred because the bot attempted to upload the cover letter before interacting with the email address input field and the \"Verify you are human\" checkbox.\n3. The bot should first fill the email address input field using the selector `input[type='email']`.\n4. Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:19:47.949Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Full Stack Developer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3D7mA1BPFp2YR679bpFI4BV5Z2Tma8AiD6%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Db71fb938-6d21-4b8a-81e4-9b99cd969f66%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D7mA1BPFp2YR679bpFI4BV5Z2Tma8AiD6%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-19-46-363Z_continue_button_not_found.png",
+    "analysis": "1. The standard Facebook login page is displayed with the email field prefilled. The password field and \"Log in\" button are visible.\n2. The bot searched for a \"Continue\" button, which is absent from the standard login form.\n3. The bot should enter the password using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button using `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:19:49.426Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Full Stack Developer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3D7mA1BPFp2YR679bpFI4BV5Z2Tma8AiD6%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Db71fb938-6d21-4b8a-81e4-9b99cd969f66%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D7mA1BPFp2YR679bpFI4BV5Z2Tma8AiD6%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-19-47-955Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible with the email field pre-filled and a blank password field.\n2. The bot failed to input the password.\n3. It should enter the password using the CSS selector `input[name=\"pass\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:20:24.826Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Full Stack Developer (Data and Analytics)",
+    "company": "LMC Digital Pty Ltd",
+    "url": "https://login.seek.com/login?state=hKFo2SA0QkZMX0FVTzZ3OC1DM0QwbVZkazFiWi1nWUhaRmV3Y6FupWxvZ2luo3RpZNkgYVVLbF94TWtNblUxSkNwTTFlNVhDUEJjbS1hS1RwUWGjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92131675%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=aVhEcW5jc1BuYVYwN3FIaGhPaVF3bEpqQ1ZBUW1tdWJKV09lV05pNnBGVQ%3D%3D&code_challenge=wdMcKAqhlJkxFIveFtOcMRZ66aj83Q8kyuhOaexC3Fo&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92131675&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-20-23-106Z_cover_letter_fill_failed.png",
+    "analysis": "1.  The Seek sign-in page is visible, displaying options to sign in with Google, Facebook, or Apple, along with an email address input field and a \"Verify you are human\" checkbox.\n2.  The error occurred because the bot attempted to upload the cover letter before interacting with the email address input field and the \"Verify you are human\" checkbox.\n3.  The bot should first fill the email address input field using the selector `input[type='email']`.\n4.  Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:20:59.774Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Full Stack Developer (Data and Analytics)",
+    "company": "LMC Digital Pty Ltd",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Dt57tV3eUGrSAVfe7PC5BTM9L3a889Smv%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D89587b0d-d807-4719-b67a-41d49c86f26b%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dt57tV3eUGrSAVfe7PC5BTM9L3a889Smv%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-20-57-983Z_continue_button_not_found.png",
+    "analysis": "1. The standard Facebook login form is displayed, with the email field prefilled. The password field and \"Log in\" button are visible.\n2. The bot is looking for a \"Continue\" button, which is not present on the login form.\n3. The bot should enter the password using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:21:01.406Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Full Stack Developer (Data and Analytics)",
+    "company": "LMC Digital Pty Ltd",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Dt57tV3eUGrSAVfe7PC5BTM9L3a889Smv%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D89587b0d-d807-4719-b67a-41d49c86f26b%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dt57tV3eUGrSAVfe7PC5BTM9L3a889Smv%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-20-59-780Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with the email/phone number field pre-filled, and the password field blank. The Log In button is also visible.\n2. The bot failed to input the password.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]`. After that, the bot should click the \"Log in\" button, by targeting the `button[type=\"submit\"]` selector."
+  },
+  {
+    "timestamp": "2026-05-16T21:21:34.828Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Full Stack Developer",
+    "company": "Randstad Digital",
+    "url": "https://login.seek.com/login?state=hKFo2SBNeDd5TE5ralI3VTI3X2t1MEtVQWlfTDNDQUw4djcwcKFupWxvZ2luo3RpZNkgWEhBM2FwX29aUjlNLUFPU2dmYWJOc28xQ2xtak45bVqjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92134706%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=MTBiWU11SGdUYVE5ZWlMdzI2ekt6LVJrb0g0NEpsRGFEVVpsUU9qWlJWWQ%3D%3D&code_challenge=94fi2E7cXLkNbYcp0ShVToWrnjaZMu21ZrCFbJQboEw&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92134706&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-21-32-733Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, displaying options to sign in with Google, Facebook, or Apple, along with an email address input field and a \"Verify you are human\" checkbox.\n2. The error likely occurred because the bot tried to upload the cover letter or proceed to the next step without first filling in the email address and clicking the \"Verify you are human\" checkbox.\n3. The bot should first fill the email address input field using the selector `input[type='email']`.\n4. Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:22:09.592Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Full Stack Developer",
+    "company": "Randstad Digital",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DFrWoajXddTj9Lz16QQWkd4lCadmCyvrb%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Da4a45081-1abd-46c7-a7aa-57b39ac73d78%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DFrWoajXddTj9Lz16QQWkd4lCadmCyvrb%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-22-07-647Z_continue_button_not_found.png",
+    "analysis": "1. The standard Facebook login form is visible, with the email field prefilled, and fields for password and \"Log in\" button are present.\n2. The bot is looking for a \"Continue\" button, which is not present on this form.\n3. The bot should enter the password using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button, likely using the selector `button[type=\"submit\"]` or a similar selector that targets the \"Log in\" button."
+  },
+  {
+    "timestamp": "2026-05-16T21:22:11.231Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Full Stack Developer",
+    "company": "Randstad Digital",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DFrWoajXddTj9Lz16QQWkd4lCadmCyvrb%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Da4a45081-1abd-46c7-a7aa-57b39ac73d78%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DFrWoajXddTj9Lz16QQWkd4lCadmCyvrb%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-22-09-598Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is displayed, with the email field pre-filled, and the password field is visible but blank.\n2. The bot failed because it did not input the password.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]`. After inputting the password, the bot should click the \"Log in\" button, targeting the `button[type=\"submit\"]` selector."
+  },
+  {
+    "timestamp": "2026-05-16T21:22:49.377Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Full Stack Developer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://login.seek.com/login?state=hKFo2SBxT1BEbzN3enZ4NHlicFpLc0RDS2pGUkpuajFOM2g4R6FupWxvZ2luo3RpZNkgZUZXdmF2QjdxMFVwSGo0cTF4bzlPMnpMV2JDWTFYaGGjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92135692%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=SkkySFhuZ1lNUll1N2VBNWpWS2IxZ0tMMUxuRW8xLjdXSGp5MHJHR0xSVA%3D%3D&code_challenge=EvzCcIEqrfMuyKmeMlvizkJVEP3TxYMX3mGGPXfLu38&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92135692&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-22-47-748Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, with options to sign in via Google, Facebook, Apple, or email.  It also displays the \"Verify you are human\" checkbox.\n2. The error likely occurred because the bot tried to upload the cover letter or proceed without first filling in the email address and clicking the \"Verify you are human\" checkbox.\n3. The bot should first fill the email address input field using the selector `input[type='email']`.\n4. Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:23:24.122Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Full Stack Developer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3D5E1IvvEamWqe77FqVmW4o9VXb7WLHpCW%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D07bda2fc-7ab1-4474-b1b2-061d75e5c8b0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D5E1IvvEamWqe77FqVmW4o9VXb7WLHpCW%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-23-22-194Z_continue_button_not_found.png",
+    "analysis": "1.  The standard Facebook login form is displayed, with email prefilled, and password and \"Log in\" button present.\n2.  The bot is looking for a \"Continue\" button, not present in this standard login form.\n3.  Enter password using `input[name=\"pass\"]` and click \"Log in\" with `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:23:25.685Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Full Stack Developer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3D5E1IvvEamWqe77FqVmW4o9VXb7WLHpCW%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D07bda2fc-7ab1-4474-b1b2-061d75e5c8b0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D5E1IvvEamWqe77FqVmW4o9VXb7WLHpCW%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-23-24-128Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with the email field pre-filled and the password field blank.\n2. The bot failed to input the password.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]`. After providing the password, click the \"Log in\" button by targeting the selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:23:59.144Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Software Engineer (Java / React)",
+    "company": "Sharp & Carter Digital and Technology",
+    "url": "https://login.seek.com/login?state=hKFo2SB3MWljcEhrOVdLNVp0ZHV4Vm1zNDhqR3hQTm5aOUhmYqFupWxvZ2luo3RpZNkgYUdCUmFPZzRIZEY2SVFhcmtUWDJtaFY0VVluTm8tcDOjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92150809%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=RnNJXzEtalJOWWRiRTJYbzdRVmJMLkF3NWFqR2dYRTMtbTJqQzAtZi5CTg%3D%3D&code_challenge=qOf8fInIxCIDz1112WbB6OGuOiF4q8kavnDt8QiM_9w&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92150809&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-23-57-511Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, showing options to sign in via Google, Facebook, Apple, or email, along with a \"Verify you are human\" checkbox.\n2. The error likely occurred because the bot attempted to proceed without first filling in the email address field and clicking the \"Verify you are human\" checkbox.\n3. The bot should first fill the email address input field using a suitable selector like `input[type='email']`.\n4.  Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:24:33.826Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Software Engineer (Java / React)",
+    "company": "Sharp & Carter Digital and Technology",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DOD5_O0cX138HixxGtESpSUziostIINlp%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dbff43d4a-24da-42c8-9152-6eb93635ee3b%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DOD5_O0cX138HixxGtESpSUziostIINlp%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-24-31-976Z_continue_button_not_found.png",
+    "analysis": "1.  The standard Facebook login form is visible, with the email field prefilled. The password field and \"Log in\" button are present.\n\n2.  The bot is looking for a \"Continue\" button, which is not present on this form.\n\n3.  The bot should enter the password using the CSS selector `input[name=\"pass\"]` and then click the \"Log in\" button with the selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:24:35.505Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Software Engineer (Java / React)",
+    "company": "Sharp & Carter Digital and Technology",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DOD5_O0cX138HixxGtESpSUziostIINlp%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dbff43d4a-24da-42c8-9152-6eb93635ee3b%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DOD5_O0cX138HixxGtESpSUziostIINlp%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-24-33-833Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible with the email or mobile number field pre-filled and the password field blank.  The \"Log in\" button is also visible.\n2. The bot failed to input the password.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]`. After, it should click the \"Log in\" button, targeting the `button[type=\"submit\"]` selector."
+  },
+  {
+    "timestamp": "2026-05-16T21:25:08.438Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Software Engineer",
+    "company": "FYI SOFTWARE PTY LTD",
+    "url": "https://login.seek.com/login?state=hKFo2SBaM2VJRmh5RGlHVzRHQ2NMWmJyS0pSTkFrSjRKM3Y0MaFupWxvZ2luo3RpZNkgRW9SWU50MExUUkdoZjJTTGpodHNGMHJud3RCbDFpZlKjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92140049%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=bWkxYVJTb2R0VmFvR3RGMFE0VWFSYVg1bnRlSEVJcjlKTXNzLlZTRDZVeA%3D%3D&code_challenge=fkynvjwy7b-TfWpx3JHtk42Xrca-wVFNVu-8iFCS_MM&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92140049&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-25-06-745Z_cover_letter_fill_failed.png",
+    "analysis": "1.  The Seek sign-in page is visible, including options to sign in with Google, Facebook, Apple, or email, along with a \"Verify you are human\" checkbox.\n2.  The error likely occurred because the bot tried to upload the cover letter or proceed without first filling in the email address and clicking the \"Verify you are human\" checkbox.\n3.  The bot should first fill the email address field using the selector `input[type='email']`.\n4.  Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:25:42.978Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Software Engineer",
+    "company": "FYI SOFTWARE PTY LTD",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DhH3V9GlY1QtWeR38Gzk-kjSRG1Bxg4yT%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D991a45a8-6a4f-48d1-b15d-eed17cdadf3e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DhH3V9GlY1QtWeR38Gzk-kjSRG1Bxg4yT%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-25-41-279Z_continue_button_not_found.png",
+    "analysis": "1.  The standard Facebook login form is visible, with the email field prefilled, and the password field and \"Log in\" button are present.\n2.  The bot is looking for a \"Continue\" button, which is not present on this form.\n3.  The bot should enter the password using the CSS selector `input[name=\"pass\"]` and click the \"Log in\" button using a selector like `button[type=\"submit\"]` or a more specific selector."
+  },
+  {
+    "timestamp": "2026-05-16T21:25:44.614Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Software Engineer",
+    "company": "FYI SOFTWARE PTY LTD",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DhH3V9GlY1QtWeR38Gzk-kjSRG1Bxg4yT%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D991a45a8-6a4f-48d1-b15d-eed17cdadf3e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DhH3V9GlY1QtWeR38Gzk-kjSRG1Bxg4yT%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-25-42-984Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with the email/phone field pre-filled, and the password field is blank.\n2. The bot encountered an error because it did not input the password.\n3. The bot should input the password into the `input[name=\"pass\"]` field and then click the `button[type=\"submit\"]` \"Log in\" button."
+  },
+  {
+    "timestamp": "2026-05-16T21:26:36.790Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "AI Engineer | Audit & Assurance",
+    "company": "Deloitte",
+    "url": "https://login.seek.com/login?state=hKFo2SBSSXBxeDNlaVZHTEpnbzVTNXZiWTlSWk1fTk1MSzdiM6FupWxvZ2luo3RpZNkgSkxSNHlRVThoYkdTVFRSbVp4Skl5VU1MTi1peVlYVlSjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92108581%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=eS1rVk9CMmtwb1E0NlR5T1I3N3pZdl96LjNqS0ZUcGVjeWd1QjNBRC5JbA%3D%3D&code_challenge=YrHpfonm9GGxjFRtt7pMzta3N54ZqW5DnAbYe3zDewE&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92108581&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-26-34-959Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, showing options to sign in via Google, Facebook, Apple, or email, with a \"Verify you are human\" checkbox.\n2. The bot likely failed because it tried to upload the cover letter without first filling in the email address and clicking the \"Verify you are human\" checkbox.\n3. The bot should first fill the email address input field using the selector `input[type='email']`. \n4. Then, it should click the \"Verify you are human\" checkbox with selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:27:11.209Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "AI Engineer | Audit & Assurance",
+    "company": "Deloitte",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DjYAZsdpTD0zVqxNmoFhqsHGUCjEL3Cq6%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D47319b9d-ce88-4ae6-a753-4f8d05533dc1%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DjYAZsdpTD0zVqxNmoFhqsHGUCjEL3Cq6%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-27-09-642Z_continue_button_not_found.png",
+    "analysis": "1. The standard Facebook login form is visible, with the email field prefilled. The password field and \"Log In\" button are also present.\n2. The bot incorrectly attempted to find a \"Continue\" button, which is not present in this standard login form.\n3. The bot should enter the password using the CSS selector `input[name=\"pass\"]` and then click the \"Log In\" button using the CSS selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:27:12.865Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "AI Engineer | Audit & Assurance",
+    "company": "Deloitte",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DjYAZsdpTD0zVqxNmoFhqsHGUCjEL3Cq6%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D47319b9d-ce88-4ae6-a753-4f8d05533dc1%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DjYAZsdpTD0zVqxNmoFhqsHGUCjEL3Cq6%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-27-11-215Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with the email field pre-filled and the password field blank. The \"Log in\" button is also visible.\n2. The bot failed to input the password.\n3. The bot should input the password into the `input[name=\"pass\"]` field.\n4. After providing the password, click the \"Log in\" button by targeting the selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:27:48.941Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Security Design Engineer - Artificial Intelligence (AI)",
+    "company": "Genesis IT Recruitment",
+    "url": "https://login.seek.com/login?state=hKFo2SBYb24tUzllT0V5VFdVeWVBVTZLV09SUzlucGF4bEZQNqFupWxvZ2luo3RpZNkgdDR5NGptZVM4WFBQRlhlN3lYTnFvYTZXSVFKNW85bEejY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92101518%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=dmNldnRfM09YNnFtb2JMZnZhLnFnfnVmZktPLnB4SldwNG1hUl9uTmdIbw%3D%3D&code_challenge=y4vDNBcU3SmBSIqnHn_cPqxKlZZRYwMIbtAMik9--Bs&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92101518&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-27-46-368Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, displaying options to sign in with Google, Facebook, Apple, or email, along with an email address field and a \"Verify you are human\" checkbox.\n2. The error likely occurred because the bot attempted to upload the cover letter or proceed without first filling in the email address and clicking the \"Verify you are human\" checkbox.\n3. The bot should first fill the email address input field using the selector `input[type='email']`.\n4. Then, the bot should click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:28:24.468Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Security Design Engineer - Artificial Intelligence (AI)",
+    "company": "Genesis IT Recruitment",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DHDzarXZWy65m04EllydjC_6gGtYlmKpT%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D998903e2-eefc-456a-8722-33162f4e7119%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DHDzarXZWy65m04EllydjC_6gGtYlmKpT%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-28-22-692Z_continue_button_not_found.png",
+    "analysis": "1.  The standard Facebook login form is visible with a prefilled email, a password field, and a \"Log in\" button.\n2.  The bot incorrectly searched for a \"Continue\" button, which is absent on this login form.\n3.  Enter the password using the CSS selector `input[name=\"pass\"]` and click the \"Log in\" button using `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:28:26.362Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Security Design Engineer - Artificial Intelligence (AI)",
+    "company": "Genesis IT Recruitment",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DHDzarXZWy65m04EllydjC_6gGtYlmKpT%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D998903e2-eefc-456a-8722-33162f4e7119%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DHDzarXZWy65m04EllydjC_6gGtYlmKpT%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-28-24-474Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible with the email or phone number field pre-filled and the password field blank. The \"Log in\" button is also visible.\n2. The bot failed to input the password.\n3. The bot should input the password using the CSS selector `input[name=\"pass\"]`. After, it should click the \"Log in\" button, targeting the `button[type=\"submit\"]` selector."
+  },
+  {
+    "timestamp": "2026-05-16T21:28:59.520Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Lead AI Engineer",
+    "company": "Profusion PAC Pty Ltd",
+    "url": "https://login.seek.com/login?state=hKFo2SBGYnl4eXRINUxXazBuSHZzMXZSSFFZWENGZ0ZpREVjQ6FupWxvZ2luo3RpZNkgQjFFVEx1dllYNnVDT1VtRkZPM1E4S1RrdHM1bUJ6QVWjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92139951%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=RHU4cWJHVWRXOVBmaG5ZbFd1NUVoTUFsRTFuLWw0YkNlWWdTcnpWeHJybw%3D%3D&code_challenge=-EwjHT5gF_Gwmt8MwImI5rge0kkGS0mxWukSIJI7boQ&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92139951&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-28-57-690Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, displaying options to sign in with Google, Facebook, Apple, or email, along with an email address field and a \"Verify you are human\" checkbox.\n2. The error likely occurred because the bot attempted to upload the cover letter or proceed without first filling in the email address and clicking the \"Verify you are human\" checkbox.\n3. The bot should first fill the email address input field using the selector `input[type='email']`.\n4. Then, the bot should click the \"Verify you are human\" checkbox with selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:29:35.189Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Lead AI Engineer",
+    "company": "Profusion PAC Pty Ltd",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DAs3m4KlUrdlpI6TMs4bBrGkukJWildPA%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D2ac95aec-6d3b-40bf-a758-4c0a4b3e280d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DAs3m4KlUrdlpI6TMs4bBrGkukJWildPA%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-29-33-234Z_continue_button_not_found.png",
+    "analysis": "1.  The standard Facebook login form with a prefilled email or phone number field and a password field is visible.\n2.  The bot incorrectly looked for a \"Continue\" button which is not present on this login form.\n3.  The bot should next enter the password using the CSS selector `input[name=\"pass\"]` and click the \"Log in\" button using a selector like `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:29:37.023Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Lead AI Engineer",
+    "company": "Profusion PAC Pty Ltd",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DAs3m4KlUrdlpI6TMs4bBrGkukJWildPA%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D2ac95aec-6d3b-40bf-a758-4c0a4b3e280d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DAs3m4KlUrdlpI6TMs4bBrGkukJWildPA%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-29-35-196Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with the email/phone field pre-filled, and the password field is blank.\n2. The bot failed to input the password.\n3. The bot should input the password into the `input[name=\"pass\"]` field.\n4. After providing the password, click the \"Log in\" button by targeting the selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:30:18.580Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Head of Digital & AI Delivery",
+    "company": "Lanson Partners",
+    "url": "https://login.seek.com/login?state=hKFo2SBMbU12WTRNb19FSy1FREFqc3Rja2MzdGhWTG44a0ZWeaFupWxvZ2luo3RpZNkgbEg1RHlJMkVQVTJZRmkwNmZsT0xDeUNIbldycmJsNFajY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92143674%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=cDdjZVZEUF9KSXIzVUxTZzZEN2hLdHlDRnNpX0xRRm5%2BeUpxdGRSejlNYQ%3D%3D&code_challenge=MPr2VP46BVsBrblt34yyETKl4y55ClZjW8bwcJPwddM&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92143674&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-30-16-580Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, with options to sign in via Google, Facebook, Apple, or email. An email address field and a \"Verify you are human\" checkbox are also displayed.\n2. The error likely occurred because the bot attempted to upload the cover letter before filling in the email address and clicking the \"Verify you are human\" checkbox.\n3. The bot should first fill the email address input field using the selector `input[type='email']`.\n4. Then, the bot should click the \"Verify you are human\" checkbox with selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:30:53.453Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Head of Digital & AI Delivery",
+    "company": "Lanson Partners",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DRz71KOQ0TnzYGUq_hqjVpQ3TTMMCvdkP%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1a4ad655-013a-4efe-bf3b-bf5782ffa883%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DRz71KOQ0TnzYGUq_hqjVpQ3TTMMCvdkP%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-30-51-385Z_continue_button_not_found.png",
+    "analysis": "1.  The standard Facebook login form is visible, with a prefilled email/phone number field.\n2.  The bot incorrectly looked for a \"Continue\" button, which isn't present on this login form, and instead should have focused on the standard login elements.\n3.  The bot should now enter the password using the CSS selector `input[name=\"pass\"]` and then click the \"Log In\" button using a selector like `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:30:55.240Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "Head of Digital & AI Delivery",
+    "company": "Lanson Partners",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DRz71KOQ0TnzYGUq_hqjVpQ3TTMMCvdkP%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1a4ad655-013a-4efe-bf3b-bf5782ffa883%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DRz71KOQ0TnzYGUq_hqjVpQ3TTMMCvdkP%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-30-53-460Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible, with the email field pre-filled, and the password field blank. The \"Log in\" button is also visible.\n2. The bot failed to input the password into the password field.\n3. The bot should input the password into the `input[name=\"pass\"]` field.\n4. After providing the password, it should click the \"Log in\" button by targeting the selector `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:31:27.931Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "AI Engineer | Audit & Assurance",
+    "company": "Deloitte",
+    "url": "https://login.seek.com/login?state=hKFo2SBWSXdGRW9jQUlGS0R1ZmVRVm1PbXRremlsY1BidmNXU6FupWxvZ2luo3RpZNkgVklSeXpFMW43SFUtc2c5cWtzMjZOVG9fQVQzcTlCOVejY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92108581%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=a1FpanFNeVFZWDc2WTU5eTB1UEJoX1JGflIyRTBZRUYtcXRIOS1Jd2x0UA%3D%3D&code_challenge=ubWT1KalJ4_iXLFGjHXNBQpPs-kjXW4Nwtplez8Wzxw&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92108581&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-31-26-360Z_cover_letter_fill_failed.png",
+    "analysis": "1. The screenshot shows the Seek sign-in page with options to sign in using Google, Facebook, Apple, or email. There's an email address input field and a \"Verify you are human\" checkbox.\n2. The error likely happened because the bot tried to proceed to the cover letter step without first filling the email address and clicking the \"Verify you are human\" checkbox.\n3. The bot should first fill the email address input field using a selector like `input[type='email']` and then click the \"Verify you are human\" checkbox using the selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:32:02.634Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "AI Engineer | Audit & Assurance",
+    "company": "Deloitte",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DZHXJ5qmz0VYChbRvxk7hby5mY8l6O2Kj%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dc6387501-22b9-44b0-b857-64335173e491%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DZHXJ5qmz0VYChbRvxk7hby5mY8l6O2Kj%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-32-01-097Z_continue_button_not_found.png",
+    "analysis": "1. The standard Facebook login form is visible, with a prefilled email/phone number field.\n2. The bot incorrectly looked for a \"Continue\" button, which isn't present on this standard login form.\n3. The bot should now enter the password using the CSS selector `input[name=\"pass\"]` and then click the \"Log In\" button using a selector like `button[type=\"submit\"]`."
+  },
+  {
+    "timestamp": "2026-05-16T21:32:04.441Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "AI Engineer | Audit & Assurance",
+    "company": "Deloitte",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DZHXJ5qmz0VYChbRvxk7hby5mY8l6O2Kj%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dc6387501-22b9-44b0-b857-64335173e491%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DZHXJ5qmz0VYChbRvxk7hby5mY8l6O2Kj%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-32-02-641Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible with the email or phone number field pre-filled and the password field blank. The \"Log in\" button is also visible.\n2. The bot failed to input the password.\n3. The bot should input the password into the `input[name=\"pass\"]` field. After, it should click the \"Log in\" button, targeting the `button[type=\"submit\"]` selector."
+  },
+  {
+    "timestamp": "2026-05-16T21:32:39.872Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "AI Product Lead",
+    "company": "Pathway Search",
+    "url": "https://login.seek.com/login?state=hKFo2SBpVzc3U3UwYVVLX2JURGtjdUZHVkhha0ZFTHRDQU00NaFupWxvZ2luo3RpZNkgMW9xN2kxeW9RWk5tSjJxTUZsZmRkN2FScHhVQjU0T3OjY2lk2SBHQ1Eya1ZhWkZuQWtWWllLa2d3cUNxN29GZmlZWVVmQQ&client=GCQ2kVaZFnAkVZYKkgwqCq7oFfiYYUfA&protocol=oauth2&scope=openid%20profile%20email%20offline_access&redirect_uri=https%3A%2F%2Fau.seek.com%2Foauth%2Fcallback%2F&audience=https%3A%2F%2Fseek%2Fapi%2Fcandidate&ui_locales=en&language=en-AU&fragment=%2Foauth%2Flogin%3Fnudge%3Dapply%253A92135267%26locale%3Dau%26language%3Den%26realm%3DUsername-Password-Authentication%26da_cdt%3Dvisid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c&JobseekerSessionId=6b0b2f98-25ef-486f-8a1e-eced35db2abc&response_type=code&response_mode=query&nonce=bEtoSy1wbG02SUNpc3lod2E3V05MZXFGZmZKZUNlUVNXenViSlJyQWJycA%3D%3D&code_challenge=vvbD-CgDLvziLXMUpTK6rMq2uk_9A2tSlmWmjeVxYxE&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjIuMTkuMiJ9#/login?nudge=apply%3A92135267&locale=au&language=en&realm=Username-Password-Authentication&da_cdt=visid_019e30334d74000621a877fa6dd10006f00140670086e-sesid_1778965486889-hbvid_60d460a6_12c8_4c5b_a7d9_32497de78e9c-tempAcqSessionId_1778965486928-tempAcqVisitorId_60d460a612c84c5ba7d932497de78e9c",
+    "page_title": "Candidate Sign In - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-32-37-868Z_cover_letter_fill_failed.png",
+    "analysis": "1. The Seek sign-in page is visible, presenting options to sign in with Google, Facebook, Apple, or email, along with an email address field and a \"Verify you are human\" checkbox.\n2. The error likely occurred because the bot attempted to upload the cover letter or proceed without first filling in the email address and clicking the \"Verify you are human\" checkbox.\n3. First, the bot should fill the email address input field using the selector `input[type='email']`.\n4. Then, the bot should click the \"Verify you are human\" checkbox with selector `input[type='checkbox']`."
+  },
+  {
+    "timestamp": "2026-05-16T21:33:14.438Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "AI Product Lead",
+    "company": "Pathway Search",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DUt3lAdliFvV9O03nTJsEjHuOGgjrhJvJ%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Df5213963-1815-4770-8f1f-5b0062892147%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DUt3lAdliFvV9O03nTJsEjHuOGgjrhJvJ%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-33-12-855Z_continue_button_not_found.png",
+    "analysis": "1.  The standard Facebook login form with prefilled email/phone is visible.\n2.  The bot incorrectly searched for a \"Continue\" button.\n3.  The bot should enter password using selector `input[name=\"pass\"]` and click the \"Log in\" button."
+  },
+  {
+    "timestamp": "2026-05-16T21:33:16.224Z",
+    "error_type": "auto_skip_page_limit",
+    "job_title": "AI Product Lead",
+    "company": "Pathway Search",
+    "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=2667213013568587&kid_directed_site=0&app_id=2667213013568587&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Flogin.seek.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DUt3lAdliFvV9O03nTJsEjHuOGgjrhJvJ%26client_id%3D2667213013568587%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Df5213963-1815-4770-8f1f-5b0062892147%26tp%3Dunspecified&cancel_url=https%3A%2F%2Flogin.seek.com%2Flogin%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DUt3lAdliFvV9O03nTJsEjHuOGgjrhJvJ%23_%3D_&display=page&locale=en_US&pl_dbl=0&is_business_login=0",
+    "page_title": "Facebook",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-16T21-33-14-445Z_auto_skip_page_limit.png",
+    "analysis": "1. The Facebook login page is visible with the email/phone field pre-filled but the password field is blank. The \"Log in\" button is also visible and enabled.\n2. The error was likely caused by the bot failing to input the password into the password field.\n3. The bot should input the password into the `input[name=\"pass\"]` field, and then click the \"Log in\" button using selector `button[type=\"submit\"]`."
   }
 ]
