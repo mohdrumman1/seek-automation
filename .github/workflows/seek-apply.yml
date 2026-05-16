@@ -6,13 +6,24 @@ on:
     - cron: '17 20 * * *'
     - cron: '17 2 * * *'
     - cron: '17 8 * * *'
-  workflow_dispatch: # allow manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
   apply:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      SEEK_EMAIL: ${{ secrets.SEEK_EMAIL }}
+      SEEK_SESSION_COOKIES: ${{ secrets.SEEK_SESSION_COOKIES }}
+      MAX_APPS_PER_RUN: '20'
+      MAX_APPS_PER_SEARCH: '10'
+      RESUME_TAILORING_ENABLED: 'true'
+      AUTO_SUBMIT_ENABLED: 'true'
+      DRY_RUN: 'false'
+      LOG_LEVEL: 'info'
 
     steps:
       - uses: actions/checkout@v4
@@ -27,26 +38,101 @@ jobs:
       - name: Install Playwright + system deps
         run: npx playwright install --with-deps chromium
 
-      - name: Create .env
+      - name: Create .env from secrets
         run: |
-          echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" > .env
-          echo "SEEK_EMAIL=${{ secrets.SEEK_EMAIL }}" >> .env
+          {
+            echo "OPENROUTER_API_KEY=${OPENROUTER_API_KEY}"
+            echo "SEEK_EMAIL=${SEEK_EMAIL}"
+            echo "MAX_APPS_PER_RUN=${MAX_APPS_PER_RUN}"
+            echo "MAX_APPS_PER_SEARCH=${MAX_APPS_PER_SEARCH}"
+            echo "RESUME_TAILORING_ENABLED=${RESUME_TAILORING_ENABLED}"
+            echo "AUTO_SUBMIT_ENABLED=${AUTO_SUBMIT_ENABLED}"
+            echo "DRY_RUN=${DRY_RUN}"
+            echo "LOG_LEVEL=${LOG_LEVEL}"
+          } > .env
 
-      - name: Ensure data directory exists
-        run: mkdir -p data
+      - name: Ensure runtime directories exist
+        run: mkdir -p data/sessions tmp
+
+      - name: Restore session cookies from secret
+        if: env.SEEK_SESSION_COOKIES != ''
+        run: |
+          echo "$SEEK_SESSION_COOKIES" | base64 -d > data/sessions/seek-cookies.json
+          echo "Restored $(wc -c < data/sessions/seek-cookies.json) bytes of session cookies."
 
       - name: Run bot
-        run: npm run seek
-        continue-on-error: true
+        id: bot
+        run: npm run seek 2>&1 | tee tmp/bot.log
 
-      - name: Run maintenance patch (update KB from review queue)
-        run: npm run analyze
-        continue-on-error: true
+      - name: Capture refreshed session cookies
+        if: always()
+        id: capture_cookies
+        run: |
+          if [ -f tmp/bot.log ]; then
+            line=$(grep -m1 '^\[SESSION_COOKIES_B64\] ' tmp/bot.log || true)
+            if [ -n "$line" ]; then
+              b64="${line#'[SESSION_COOKIES_B64] '}"
+              echo "$b64" > tmp/seek-cookies.b64
+              echo "captured=true" >> "$GITHUB_OUTPUT"
+              echo "Captured refreshed session cookies ($(wc -c < tmp/seek-cookies.b64) bytes base64)."
+            else
+              echo "captured=false" >> "$GITHUB_OUTPUT"
+              echo "No [SESSION_COOKIES_B64] line found in bot log."
+            fi
+          else
+            echo "captured=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Update SEEK_SESSION_COOKIES secret
+        if: steps.capture_cookies.outputs.captured == 'true'
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -z "$GH_PAT" ]; then
+            echo "::warning::GH_PAT secret not set — cannot rotate SEEK_SESSION_COOKIES. Add a fine-grained PAT with repo + secrets scopes named GH_PAT."
+            exit 0
+          fi
+          echo "$GH_PAT" | gh auth login --with-token
+          gh secret set SEEK_SESSION_COOKIES --body "$(cat tmp/seek-cookies.b64)" --repo "${GITHUB_REPOSITORY}"
+          echo "SEEK_SESSION_COOKIES rotated."
+
+      - name: Run maintenance patch
+        run: npm run analyze 2>&1 | tee tmp/analyze.log
 
       - name: Commit updated data back to repo
+        if: always()
         run: |
           git config user.name "seek-bot"
           git config user.email "seek-bot@noreply.github.com"
-          git add data/ 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "bot: update data [skip ci]"
-          git push
+          git add \
+            data/applied_jobs.json \
+            data/questions_kb.json \
+            data/review-queue.json \
+            data/error-log.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "bot: update data [skip ci]"
+            git push
+          fi
+
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seek-screenshots
+          path: |
+            screenshots/
+            tmp/*.log
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Tail logs on failure
+        if: failure()
+        run: |
+          for f in tmp/bot.log tmp/analyze.log; do
+            if [ -f "$f" ]; then
+              echo "===== last 50 lines of $f ====="
+              tail -n 50 "$f"
+            fi
+          done
