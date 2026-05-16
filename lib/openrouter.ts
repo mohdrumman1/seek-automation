@@ -1,4 +1,7 @@
-const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY!;
+if (!process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY.trim() === '') {
+  throw new Error('Missing OPENROUTER_API_KEY. Add it to .env locally or GitHub Actions secrets.');
+}
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const MODEL = 'google/gemini-2.0-flash-001';
 
 export async function callOpenRouter(prompt: string): Promise<string> {
