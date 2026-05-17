@@ -12,7 +12,13 @@ export default defineConfig({
     video: 'off',
   },
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    // Unit tests — no browser needed
+    {
+      name: 'unit',
+      testMatch: ['**/tracker.spec.ts'],
+      use: {},
+    },
+    // Browser tests
+    { name: 'chromium', testMatch: ['**/example.spec.ts'], use: { ...devices['Desktop Chrome'] } },
   ],
 });
