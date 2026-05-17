@@ -25,6 +25,7 @@ import { getOrCreateSession, saveSession, isSessionExpired } from '../lib/seek-s
 import { captureAndAnalyze, getPastAnalyses } from '../lib/error-analyzer';
 import { logger } from '../lib/logger';
 import { selectResume, resolveResumeVariant, ResumeVariant } from '../lib/resume-selector';
+import * as tracker from '../lib/tracker';
 
 // ── CONFIG (from seek_bot.py lines 22-70) ─────────────────────────────────────
 const SEEK_EMAIL = process.env.SEEK_EMAIL ?? 'mohdrumman1@gmail.com';
@@ -106,8 +107,22 @@ const DELAY_BETWEEN_APPS_MS = 6_000;
 const CIRCUIT_BREAKER_THRESHOLD = 3;
 // ──────────────────────────────────────────────────────────────────────────────
 
-// Set by applyToJob so error-analyzer helpers have context without threading it everywhere
-let currentJobCtx: { job_title?: string; company?: string } = {};
+// Set by applyToJob so error-analyzer helpers and tracker have context without threading it everywhere
+let currentJobCtx: {
+  job_title?: string;
+  company?: string;
+  location?: string;
+  salary_text?: string;
+  work_type?: string;
+} = {};
+
+interface ApplyResult {
+  success: boolean;
+  variant?: ResumeVariant;
+  skipReason?: string;
+  failureReason?: string;
+  requiresManualReview?: boolean;
+}
 
 interface UnansweredQuestion {
   label: string;
@@ -366,7 +381,7 @@ async function getJobLinks(page: Page): Promise<string[]> {
 // ── JOB DETAILS ──────────────────────────────────────────────────────────────
 async function getJobDetails(
   page: Page
-): Promise<{ title: string; company: string; description: string }> {
+): Promise<{ title: string; company: string; description: string; location: string; salaryText: string; workType: string }> {
   const title = await page
     .locator('[data-automation="job-detail-title"], h1')
     .first()
@@ -381,7 +396,29 @@ async function getJobDetails(
     .locator('[data-automation="jobAdDetails"]')
     .textContent()
     .catch(() => '') ?? '';
-  return { title: title.trim(), company: company.trim(), description };
+  const location = await page
+    .locator('[data-automation="job-detail-location"], [data-automation="location"]')
+    .first()
+    .textContent()
+    .catch(() => '') ?? '';
+  const salaryText = await page
+    .locator('[data-automation="job-detail-salary"], [data-automation="salary"]')
+    .first()
+    .textContent()
+    .catch(() => '') ?? '';
+  const workType = await page
+    .locator('[data-automation="job-detail-work-type"], [data-automation="work-type"]')
+    .first()
+    .textContent()
+    .catch(() => '') ?? '';
+  return {
+    title: title.trim(),
+    company: company.trim(),
+    description,
+    location: location.trim(),
+    salaryText: salaryText.trim(),
+    workType: workType.trim(),
+  };
 }
 
 // ── SECURITY CLEARANCE CHECK ──────────────────────────────────────────────────
@@ -691,20 +728,22 @@ async function applyToJob(
   searchName: string,
   baseCoverLetter: string,
   kb: ReturnType<typeof loadKB>
-): Promise<boolean> {
+): Promise<ApplyResult> {
+  // Get job details first so currentJobCtx is always populated for tracking
+  const { title, company, description, location, salaryText, workType } = await getJobDetails(page);
+  currentJobCtx = { job_title: title, company, location, salary_text: salaryText, work_type: workType };
+
   if (await isExternal(page)) {
     console.log('  Skipping - external application (advertiser\'s site)');
-    return false;
+    return { success: false, skipReason: 'external_apply' };
   }
 
-  const { title, company, description } = await getJobDetails(page);
-  currentJobCtx = { job_title: title, company };
   console.log(`  Applying: ${title} @ ${company}`);
 
   if (requiresSecurityClearance(description)) {
     console.log('  Skipping - job requires security clearance');
     logger.info('skip: security clearance required', { title, company });
-    return false;
+    return { success: false, skipReason: 'security_clearance_required' };
   }
 
   const applyBtn = page
@@ -718,7 +757,7 @@ async function applyToJob(
   if (!(await applyBtn.waitFor({ timeout: 10_000 }).then(() => true).catch(() => false))) {
     console.log('  Apply button not found - skipping');
     await captureAndAnalyze(page, 'apply_button_not_found', currentJobCtx);
-    return false;
+    return { success: false, skipReason: 'apply_button_not_found' };
   }
 
   // Bug Fix 1: Use context.waitForEvent to handle new tabs cleanly
@@ -738,7 +777,7 @@ async function applyToJob(
     console.log(`  Skipping - Apply redirected to external: ${applyPage.url().slice(0, 60)}`);
     await captureAndAnalyze(applyPage, 'redirected_to_external_ats', currentJobCtx);
     if (newPage) await newPage.close().catch(() => {});
-    return false;
+    return { success: false, skipReason: 'redirected_to_external_ats' };
   }
 
   // Tailor cover letter while form loads
@@ -771,6 +810,7 @@ async function applyToJob(
   if (errsAfter.length) console.log(`  Validation errors after Continue (page 1 blocked): ${errsAfter.slice(0, 3)}`);
 
   // Pages 2-5: Questions → Review → Submit
+  let earlyFailureReason: string | undefined;
   for (let attempt = 0; attempt < 5; attempt++) {
     await applyPage.waitForTimeout(2_000);
 
@@ -783,7 +823,7 @@ async function applyToJob(
     if (isSuccessPage) {
       console.log('  Applied! (success page detected)');
       if (newPage) await newPage.close().catch(() => {});
-      return true;
+      return { success: true, variant: finalVariant };
     }
 
     const submitBtn = applyPage
@@ -796,7 +836,7 @@ async function applyToJob(
       await submitBtn.click();
       console.log('  Applied!');
       if (newPage) await newPage.close().catch(() => {});
-      return true;
+      return { success: true, variant: finalVariant };
     }
 
     const unanswered = await answerEmployerQuestions(applyPage, kb);
@@ -826,6 +866,7 @@ async function applyToJob(
     if (isAuthPage) {
       console.log('  Landed on an auth page - skipping this job');
       await captureAndAnalyze(applyPage, 'unexpected_auth_page', currentJobCtx);
+      earlyFailureReason = 'unexpected_auth_page';
       break;
     }
 
@@ -843,6 +884,7 @@ async function applyToJob(
           continue;
         }
       }
+      earlyFailureReason = 'continue_button_not_found';
       break;
     }
 
@@ -873,15 +915,18 @@ async function applyToJob(
         break;
       } else if (stillBlocked) {
         await captureAndAnalyze(applyPage, 'auto_skip_still_blocked', currentJobCtx);
+        earlyFailureReason = 'validation_still_blocked';
         break;
       }
     }
   }
 
-  console.log('  Could not reach Submit after 5 pages - skipping');
-  await captureAndAnalyze(applyPage, 'auto_skip_page_limit', currentJobCtx);
+  if (!earlyFailureReason) {
+    console.log('  Could not reach Submit after 5 pages - skipping');
+    await captureAndAnalyze(applyPage, 'auto_skip_page_limit', currentJobCtx);
+  }
   if (newPage) await newPage.close().catch(() => {});
-  return false;
+  return { success: false, failureReason: earlyFailureReason ?? 'page_limit_exceeded' };
 }
 
 // ── VALIDATION ERRORS ─────────────────────────────────────────────────────────
@@ -903,6 +948,7 @@ async function getValidationErrors(page: Page): Promise<string[]> {
 // ── MAIN ──────────────────────────────────────────────────────────────────────
 async function main() {
   const runStart = Date.now();
+  const runId = new Date(runStart).toISOString();
   logger.info('seek bot starting', {
     maxAppsPerRun: MAX_APPS_PER_RUN,
     maxAppsPerSearch: MAX_APPS_PER_SEARCH,
@@ -931,6 +977,8 @@ async function main() {
   const page = await context.newPage();
 
   let total = 0;
+  let runSkipped = 0;
+  let runFailedCount = 0;
   let runFailed = false;
 
   try {
@@ -990,9 +1038,9 @@ async function main() {
         await page.goto(url);
         await page.waitForTimeout(2_000);
 
-        let success = false;
+        let result: ApplyResult = { success: false, failureReason: 'unexpected_error' };
         try {
-          success = await applyToJob(
+          result = await applyToJob(
             page,
             context,
             search.resumeVariant,
@@ -1009,21 +1057,49 @@ async function main() {
           if (p !== page) await p.close().catch(() => {});
         }
 
-        if (success) {
+        const jobMeta: tracker.JobMeta = {
+          jobId,
+          platform: 'seek',
+          title: currentJobCtx.job_title ?? '',
+          company: currentJobCtx.company ?? '',
+          location: currentJobCtx.location ?? '',
+          salaryText: currentJobCtx.salary_text ?? '',
+          workType: currentJobCtx.work_type ?? '',
+          runId,
+        };
+
+        if (result.success) {
           if (process.env.DRY_RUN !== 'true') {
             applied.add(jobId);
             saveApplied(applied);
+            tracker.recordApplication({ ...jobMeta, resumeVariant: result.variant ?? search.resumeVariant });
           }
           countThisSearch++;
           total++;
           consecutiveFailures = 0;
           logger.info('applied', { jobId, search: search.name, totalThisRun: total });
           await page.waitForTimeout(DELAY_BETWEEN_APPS_MS);
+        } else if (result.skipReason) {
+          if (process.env.DRY_RUN !== 'true') {
+            tracker.recordSkip({ ...jobMeta, skipReason: result.skipReason });
+          }
+          runSkipped++;
+          // Skips don't trigger the circuit breaker — the job itself was ineligible
+          logger.info('skip', { jobId, search: search.name, skipReason: result.skipReason });
         } else {
+          if (process.env.DRY_RUN !== 'true') {
+            tracker.recordFailure({
+              ...jobMeta,
+              failureReason: result.failureReason ?? 'unknown',
+              requiresManualReview: result.requiresManualReview,
+            });
+          }
+          runFailedCount++;
           consecutiveFailures++;
           logger.warn('apply did not succeed', {
             jobId,
             search: search.name,
+            failureReason: result.failureReason,
             consecutiveFailures,
           });
         }
@@ -1040,7 +1116,18 @@ async function main() {
     }
     await browser.close();
     const durationSec = Math.round((Date.now() - runStart) / 1000);
-    logger.info('seek bot done', { applied: total, durationSec, failed: runFailed });
+    logger.info('seek bot done', { applied: total, skipped: runSkipped, failed: runFailedCount, durationSec, runFailed });
+    if (process.env.DRY_RUN !== 'true') {
+      tracker.recordRun({
+        runId,
+        startedAt: new Date(runStart).toISOString(),
+        applied: total,
+        skipped: runSkipped,
+        failed: runFailedCount,
+        dryRun: false,
+        status: runFailed ? 'failed' : 'success',
+      });
+    }
     if (runFailed) process.exit(1);
   }
 }
