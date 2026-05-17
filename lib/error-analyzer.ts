@@ -19,7 +19,9 @@ const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
       'The login() function now logs a warning in CI when cookies are loaded but isLoggedIn() ' +
       'returns false. isSessionExpired() now does a positive authenticated-element check. ' +
       'If this error still fires: the SEEK_SESSION_COOKIES GitHub secret needs to be refreshed — ' +
-      'run `npm run seek-login` locally, copy the printed base64, update the Actions secret.',
+      'run `npm run seek-login` locally, then `cat tmp/seek-cookies.b64` and paste the raw base64 (do NOT decode it) into the Actions secret. ' +
+      'NOTE: a prior version of isSessionExpired() used Promise.any (bug — always returned expired); ' +
+      'if the bot aborts immediately without even trying any jobs, verify you are on commit ea84466 or later.',
   },
   validation_errors_blocking_continue: {
     date: '2026-05-18',
