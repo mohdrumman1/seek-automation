@@ -147,6 +147,8 @@ export async function isSessionExpired(page: Page): Promise<boolean> {
 
   // Positive check: if no authenticated indicator is present, treat as expired.
   // This catches cases where the sign-in button isn't rendered but the user isn't logged in.
+  // Allow extra time for SEEK's React app to render the auth state.
+  await page.waitForTimeout(2_000);
   const authedSelectors = [
     '[data-automation="user-menu"]',
     '[data-automation="authenticated"]',
@@ -154,10 +156,11 @@ export async function isSessionExpired(page: Page): Promise<boolean> {
     'nav [href*="/profile"]',
     'a[href*="/dashboard"]',
   ];
-  const authed = await Promise.any(
+  const authedResults = await Promise.all(
     authedSelectors.map((sel) =>
       page.locator(sel).first().isVisible({ timeout: 3_000 }).catch(() => false)
     )
-  ).catch(() => false);
+  );
+  const authed = authedResults.some(Boolean);
   return !authed;
 }
