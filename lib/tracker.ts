@@ -2,7 +2,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const DATA_DIR = path.resolve(__dirname, '../data');
+export const DATA_DIR = path.resolve(__dirname, '../data');
 
 function escapeCsv(val: unknown): string {
   const s = String(val ?? '');
@@ -51,8 +51,8 @@ const RUN_HEADERS = [
   'applied', 'skipped', 'failed', 'dry_run', 'status',
 ];
 
-export function recordApplication(meta: JobMeta & { resumeVariant: string }): void {
-  appendRow(path.join(DATA_DIR, 'applications.csv'), APP_HEADERS, {
+export function recordApplication(meta: JobMeta & { resumeVariant: string }, _dataDir = DATA_DIR): void {
+  appendRow(path.join(_dataDir, 'applications.csv'), APP_HEADERS, {
     job_id: meta.jobId,
     platform: meta.platform,
     title: meta.title,
@@ -66,8 +66,8 @@ export function recordApplication(meta: JobMeta & { resumeVariant: string }): vo
   });
 }
 
-export function recordSkip(meta: JobMeta & { skipReason: string }): void {
-  appendRow(path.join(DATA_DIR, 'skipped_jobs.csv'), SKIP_HEADERS, {
+export function recordSkip(meta: JobMeta & { skipReason: string }, _dataDir = DATA_DIR): void {
+  appendRow(path.join(_dataDir, 'skipped_jobs.csv'), SKIP_HEADERS, {
     job_id: meta.jobId,
     platform: meta.platform,
     title: meta.title,
@@ -86,9 +86,10 @@ export function recordFailure(
     failureReason: string;
     requiresManualReview?: boolean;
     screenshotPath?: string;
-  }
+  },
+  _dataDir = DATA_DIR
 ): void {
-  appendRow(path.join(DATA_DIR, 'failed_jobs.csv'), FAIL_HEADERS, {
+  appendRow(path.join(_dataDir, 'failed_jobs.csv'), FAIL_HEADERS, {
     job_id: meta.jobId,
     platform: meta.platform,
     title: meta.title,
@@ -112,9 +113,9 @@ export function recordRun(data: {
   failed: number;
   dryRun: boolean;
   status: 'success' | 'failed';
-}): void {
+}, _dataDir = DATA_DIR): void {
   const startMs = new Date(data.startedAt).getTime();
-  appendRow(path.join(DATA_DIR, 'runs.csv'), RUN_HEADERS, {
+  appendRow(path.join(_dataDir, 'runs.csv'), RUN_HEADERS, {
     run_id: data.runId,
     started_at: data.startedAt,
     ended_at: new Date().toISOString(),
