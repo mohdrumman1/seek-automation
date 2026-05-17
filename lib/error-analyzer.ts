@@ -6,6 +6,33 @@ import { callOpenRouterVision } from './openrouter';
 const ERROR_LOG_PATH = path.resolve(__dirname, '../data/error-log.json');
 const SCREENSHOT_DIR = path.resolve(__dirname, '../screenshots/errors');
 
+// When a fix is deployed, add an entry here so the AI analysis prompt knows
+// what was already tried. If the error persists after the fix date, the AI
+// will call it out explicitly rather than re-diagnosing the same root cause.
+const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
+  session_expired: {
+    date: '2026-05-18',
+    description:
+      'Added early sign-in redirect detection in applyToJob (lib/platforms/seek.ts). ' +
+      'If the apply page URL contains /oauth/login or shows a sign-in element, the job is ' +
+      'immediately skipped with failureReason: session_expired instead of wasting 60s. ' +
+      'The login() function now logs a warning in CI when cookies are loaded but isLoggedIn() ' +
+      'returns false. isSessionExpired() now does a positive authenticated-element check. ' +
+      'If this error still fires: the SEEK_SESSION_COOKIES GitHub secret needs to be refreshed — ' +
+      'run `npm run seek-login` locally, copy the printed base64, update the Actions secret.',
+  },
+  validation_errors_blocking_continue: {
+    date: '2026-05-18',
+    description:
+      'Radio button and checkbox groups are now handled in answerEmployerQuestions() ' +
+      '(grouped by name attribute, label-first click via label[for=id] with force:true fallback, ' +
+      '300ms wait + isChecked() confirmation). getFieldsetLegend() reads fieldset>legend for group labels. ' +
+      'If validation is still blocked, check: (1) is the failing question a radio/checkbox not covered by name-grouping? ' +
+      '(2) did the label click not register — check for "(unconfirmed)" in logs? ' +
+      '(3) is it a different field type entirely (e.g. date picker, file upload)?',
+  },
+};
+
 export interface ErrorEntry {
   timestamp: string;
   error_type: string;
@@ -67,12 +94,18 @@ export async function captureAndAnalyze(
     ? `\nPrevious analyses for this same error:\n${past.map((a, i) => `${i + 1}. ${a}`).join('\n')}`
     : '';
 
+  const knownFix = KNOWN_FIXES[errorType];
+  const knownFixSection = knownFix
+    ? `\nKNOWN FIX APPLIED (${knownFix.date}): ${knownFix.description}\nIf this error is still occurring after that date, the fix did not fully resolve it — describe what specifically is still failing.\n`
+    : '';
+
   const prompt =
     `You are diagnosing a browser automation error on Seek.com.au.\n\n` +
     `Error type: ${errorType}\n` +
     `Page title: ${pageTitle}\n` +
     `URL: ${url}\n` +
     `Job: ${context?.job_title ?? 'unknown'} @ ${context?.company ?? 'unknown'}` +
+    knownFixSection +
     pastSection +
     `\n\nLook at this screenshot and answer:\n` +
     `1. What is visible on screen right now?\n` +

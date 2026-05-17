@@ -144,5 +144,20 @@ export async function isSessionExpired(page: Page): Promise<boolean> {
     const visible = await page.locator(sel).first().isVisible().catch(() => false);
     if (visible) return true;
   }
-  return false;
+
+  // Positive check: if no authenticated indicator is present, treat as expired.
+  // This catches cases where the sign-in button isn't rendered but the user isn't logged in.
+  const authedSelectors = [
+    '[data-automation="user-menu"]',
+    '[data-automation="authenticated"]',
+    '[aria-label="Account"]',
+    'nav [href*="/profile"]',
+    'a[href*="/dashboard"]',
+  ];
+  const authed = await Promise.any(
+    authedSelectors.map((sel) =>
+      page.locator(sel).first().isVisible({ timeout: 3_000 }).catch(() => false)
+    )
+  ).catch(() => false);
+  return !authed;
 }

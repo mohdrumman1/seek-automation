@@ -126,7 +126,7 @@ interface ApplyResult {
 
 interface UnansweredQuestion {
   label: string;
-  type: 'select' | 'textarea' | 'input';
+  type: 'select' | 'textarea' | 'input' | 'radio' | 'checkbox';
   options?: string[];
 }
 
@@ -191,6 +191,58 @@ async function fillFieldByLabel(
       await inp.fill(answer).catch(() => {});
       console.log(`  Filled "${q.label}" with "${answer}"`);
       return true;
+    }
+  }
+  if (q.type === 'radio') {
+    const options = q.options ?? [];
+    const best = options.length ? selectBestOption(options, answer) : answer;
+    const radios = await page.locator('input[type="radio"]').all();
+    for (const r of radios) {
+      if (!(await r.isVisible().catch(() => false))) continue;
+      const lbl = await getOptionLabel(page, r);
+      if (lbl.toLowerCase().trim() === best.toLowerCase().trim()) {
+        const groupLabel = (await getFieldsetLegend(r)) || (await getQuestionLabel(page, r));
+        if (!labelMatch(groupLabel)) continue;
+        const id = await r.getAttribute('id').catch(() => null);
+        if (id) {
+          const labelEl = page.locator(`label[for="${id}"]`);
+          if (await labelEl.isVisible().catch(() => false)) {
+            await labelEl.click().catch(() => {});
+          } else {
+            await r.click({ force: true }).catch(() => {});
+          }
+        } else {
+          await r.click({ force: true }).catch(() => {});
+        }
+        console.log(`  Filled radio "${q.label}" with "${best}"`);
+        return true;
+      }
+    }
+  }
+  if (q.type === 'checkbox') {
+    const options = q.options ?? [];
+    const best = options.length ? selectBestOption(options, answer) : answer;
+    const checkboxes = await page.locator('input[type="checkbox"]').all();
+    for (const cb of checkboxes) {
+      if (!(await cb.isVisible().catch(() => false))) continue;
+      const lbl = await getOptionLabel(page, cb);
+      if (lbl.toLowerCase().trim() === best.toLowerCase().trim()) {
+        const groupLabel = (await getFieldsetLegend(cb)) || (await getQuestionLabel(page, cb));
+        if (!labelMatch(groupLabel)) continue;
+        const id = await cb.getAttribute('id').catch(() => null);
+        if (id) {
+          const labelEl = page.locator(`label[for="${id}"]`);
+          if (await labelEl.isVisible().catch(() => false)) {
+            await labelEl.click().catch(() => {});
+          } else {
+            await cb.click({ force: true }).catch(() => {});
+          }
+        } else {
+          await cb.click({ force: true }).catch(() => {});
+        }
+        console.log(`  Filled checkbox "${q.label}" with "${best}"`);
+        return true;
+      }
     }
   }
   return false;
@@ -480,6 +532,40 @@ async function getQuestionLabel(page: Page, locator: Locator): Promise<string> {
   return text ?? '';
 }
 
+// Returns the legend text of the nearest ancestor <fieldset> (radio/checkbox group label).
+async function getFieldsetLegend(input: Locator): Promise<string> {
+  return input
+    .evaluate((el: Element) => {
+      let node = el.parentElement;
+      while (node) {
+        if (node.tagName === 'FIELDSET') {
+          const legend = node.querySelector(':scope > legend');
+          if (legend) {
+            const t = legend.textContent?.trim() ?? '';
+            if (t && t.length < 400) return t;
+          }
+        }
+        node = node.parentElement;
+      }
+      return '';
+    })
+    .catch(() => '');
+}
+
+// Returns the display label for a single radio/checkbox option (label[for=id] → aria-label → value).
+async function getOptionLabel(page: Page, input: Locator): Promise<string> {
+  const aria = await input.getAttribute('aria-label').catch(() => null);
+  if (aria?.trim()) return aria.trim();
+  const id = await input.getAttribute('id').catch(() => null);
+  if (id) {
+    const lbl = await page.locator(`label[for="${id}"]`).textContent().catch(() => '');
+    if (lbl?.trim()) return lbl.trim();
+  }
+  const val = await input.getAttribute('value').catch(() => null);
+  if (val?.trim()) return val.trim();
+  return '';
+}
+
 // ── COVER LETTER FILL ─────────────────────────────────────────────────────────
 async function fillCoverLetter(page: Page, text: string): Promise<boolean> {
   const selectors = [
@@ -604,70 +690,127 @@ async function answerEmployerQuestions(
     }
   }
 
-  // Radio button groups — covers Yes/No, single-choice, and custom option sets.
-  // SEEK renders these as `input[type="radio"]` grouped by `name` attribute.
-  const radioNames = new Set<string>();
-  for (const radio of await page.locator('input[type="radio"]').all()) {
+  // Radio groups — group by name attribute, skip if already answered
+  const allRadios = await page.locator('input[type="radio"]').all();
+  const radioGroups = new Map<string, Locator[]>();
+  for (const radio of allRadios) {
     if (!(await radio.isVisible().catch(() => false))) continue;
-    const name = await radio.getAttribute('name').catch(() => null);
-    if (name) radioNames.add(name);
+    const name = (await radio.getAttribute('name').catch(() => '')) ?? '';
+    if (!name) continue;
+    if (!radioGroups.has(name)) radioGroups.set(name, []);
+    radioGroups.get(name)!.push(radio);
   }
+  for (const [, radios] of radioGroups) {
+    const alreadyChecked = (
+      await Promise.all(radios.map((r) => r.isChecked().catch(() => false)))
+    ).some(Boolean);
+    if (alreadyChecked) continue;
 
-  for (const name of radioNames) {
-    const radios = page.locator(`input[type="radio"][name="${name}"]`);
-    const count = await radios.count();
-    if (count === 0) continue;
+    const groupLabel =
+      (await getFieldsetLegend(radios[0])) ||
+      (await getQuestionLabel(page, radios[0]));
+    if (!groupLabel) continue;
 
-    // Skip group if already answered
-    const anyChecked = await Promise.all(
-      Array.from({ length: count }, (_, i) => radios.nth(i).isChecked().catch(() => false))
-    );
-    if (anyChecked.some(Boolean)) continue;
-
-    const label = await getQuestionLabel(page, radios.first());
-    if (!label) continue;
-
-    // Collect option labels: prefer label[for=id], then aria-label, then value
-    const optionLabels: string[] = [];
-    for (let i = 0; i < count; i++) {
-      const radio = radios.nth(i);
-      const id = await radio.getAttribute('id').catch(() => null);
-      let optLabel = '';
-      if (id) optLabel = (await page.locator(`label[for="${id}"]`).textContent().catch(() => '')) ?? '';
-      if (!optLabel.trim()) optLabel = (await radio.getAttribute('aria-label').catch(() => null)) ?? '';
-      if (!optLabel.trim()) optLabel = (await radio.getAttribute('value').catch(() => '')) ?? '';
-      optionLabels.push(optLabel.trim());
+    const options: string[] = [];
+    for (const r of radios) {
+      const lbl = await getOptionLabel(page, r);
+      if (lbl) options.push(lbl);
     }
 
     const answer =
-      findKBAnswer(label, kb) ??
-      (await aiAnswerQuestion(label, optionLabels.filter(Boolean), kb, CANDIDATE_PROFILE));
+      findKBAnswer(groupLabel, kb) ??
+      (await aiAnswerQuestion(groupLabel, options, kb, CANDIDATE_PROFILE));
 
-    if (!answer) {
-      unanswered.push({ label, type: 'select', options: optionLabels.filter(Boolean) });
-      continue;
-    }
-
-    const best = selectBestOption(optionLabels.filter(Boolean), answer);
-    let clicked = false;
-    for (let i = 0; i < count; i++) {
-      if (optionLabels[i].toLowerCase() !== best.toLowerCase()) continue;
-      const radio = radios.nth(i);
-      const id = await radio.getAttribute('id').catch(() => null);
-      // Prefer clicking the label (styled radios hide the input)
-      if (id) {
-        const lbl = page.locator(`label[for="${id}"]`);
-        if (await lbl.isVisible().catch(() => false)) {
-          await lbl.click().catch(() => {});
+    if (answer) {
+      const best = selectBestOption(options, answer);
+      let clicked = false;
+      for (const r of radios) {
+        const lbl = await getOptionLabel(page, r);
+        if (lbl.toLowerCase().trim() === best.toLowerCase().trim()) {
+          // SEEK uses React controlled inputs — clicking the label is more reliable
+          // than clicking the input directly, which may not fire the change event.
+          const id = await r.getAttribute('id').catch(() => null);
+          if (id) {
+            const labelEl = page.locator(`label[for="${id}"]`);
+            if (await labelEl.isVisible().catch(() => false)) {
+              await labelEl.click().catch(() => {});
+            } else {
+              await r.click({ force: true }).catch(() => {});
+            }
+          } else {
+            await r.click({ force: true }).catch(() => {});
+          }
+          await page.waitForTimeout(300);
+          const confirmed = await r.isChecked().catch(() => false);
+          console.log(`  Filled radio "${groupLabel.slice(0, 60)}" → "${best}"${confirmed ? '' : ' (unconfirmed)'}`);
           clicked = true;
           break;
         }
       }
-      await radio.click().catch(() => {});
-      clicked = true;
-      break;
+      if (!clicked) unanswered.push({ label: groupLabel, type: 'radio', options });
+    } else {
+      unanswered.push({ label: groupLabel, type: 'radio', options });
     }
-    if (!clicked) unanswered.push({ label, type: 'select', options: optionLabels.filter(Boolean) });
+  }
+
+  // Checkbox groups — group by name, skip if any already checked
+  const allCheckboxes = await page.locator('input[type="checkbox"]').all();
+  const checkboxGroups = new Map<string, Locator[]>();
+  for (const cb of allCheckboxes) {
+    if (!(await cb.isVisible().catch(() => false))) continue;
+    const name = (await cb.getAttribute('name').catch(() => '')) ?? '';
+    if (!name) continue;
+    if (!checkboxGroups.has(name)) checkboxGroups.set(name, []);
+    checkboxGroups.get(name)!.push(cb);
+  }
+  for (const [, checkboxes] of checkboxGroups) {
+    const alreadyChecked = (
+      await Promise.all(checkboxes.map((c) => c.isChecked().catch(() => false)))
+    ).some(Boolean);
+    if (alreadyChecked) continue;
+
+    const groupLabel =
+      (await getFieldsetLegend(checkboxes[0])) ||
+      (await getQuestionLabel(page, checkboxes[0]));
+    if (!groupLabel) continue;
+
+    const options: string[] = [];
+    for (const cb of checkboxes) {
+      const lbl = await getOptionLabel(page, cb);
+      if (lbl) options.push(lbl);
+    }
+
+    const answer =
+      findKBAnswer(groupLabel, kb) ??
+      (await aiAnswerQuestion(groupLabel, options, kb, CANDIDATE_PROFILE));
+
+    if (answer) {
+      const best = selectBestOption(options, answer);
+      let clicked = false;
+      for (const cb of checkboxes) {
+        const lbl = await getOptionLabel(page, cb);
+        if (lbl.toLowerCase().trim() === best.toLowerCase().trim()) {
+          const id = await cb.getAttribute('id').catch(() => null);
+          if (id) {
+            const labelEl = page.locator(`label[for="${id}"]`);
+            if (await labelEl.isVisible().catch(() => false)) {
+              await labelEl.click().catch(() => {});
+            } else {
+              await cb.click({ force: true }).catch(() => {});
+            }
+          } else {
+            await cb.click({ force: true }).catch(() => {});
+          }
+          await page.waitForTimeout(300);
+          console.log(`  Filled checkbox "${groupLabel.slice(0, 60)}" → "${best}"`);
+          clicked = true;
+          break;
+        }
+      }
+      if (!clicked) unanswered.push({ label: groupLabel, type: 'checkbox', options });
+    } else {
+      unanswered.push({ label: groupLabel, type: 'checkbox', options });
+    }
   }
 
   return unanswered;

@@ -452,7 +452,13 @@ async function login(page: Page): Promise<void> {
   await page.goto('https://www.seek.com.au', { waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(3_000);
   if (await isLoggedIn(page)) { console.log('Already logged in via saved session.'); return; }
-  if (!process.stdin.isTTY) { console.log('Session loaded - proceeding in automated mode.'); return; }
+  // In CI, we can't interactively re-authenticate — flag clearly and let loginAndVerify abort.
+  if (!process.stdin.isTTY) {
+    logger.warn('seek session: cookies loaded but SEEK reports not logged in — session likely expired', {
+      hint: 'Re-run `npm run seek-login` locally, update SEEK_SESSION_COOKIES secret.',
+    });
+    return;
+  }
 
   console.log('\nNot logged in. Opening Seek login page...');
   await page.goto('https://www.seek.com.au/oauth/login?returnUrl=https%3A%2F%2Fwww.seek.com.au%2F', { waitUntil: 'domcontentloaded' });
@@ -596,6 +602,23 @@ export class SeekPlatform implements JobPlatform {
       await captureAndAnalyze(applyPage, 'redirected_to_external_ats', ctx);
       if (newPage) await newPage.close().catch(() => {});
       return { success: false, skipReason: 'redirected_to_external_ats' };
+    }
+
+    // Bail immediately if SEEK forced us to a sign-in page (expired session).
+    // Without this, the bot wastes ~60s per job trying to fill a login form.
+    const applyUrl = applyPage.url();
+    const isSignInPage =
+      applyUrl.includes('/oauth/login') ||
+      applyUrl.includes('appleid.apple.com') ||
+      applyUrl.includes('accounts.google.com') ||
+      (await applyPage.locator('[data-automation="sign in"], a:has-text("Sign in to apply"), h1:has-text("Sign in")').first().isVisible({ timeout: 3_000 }).catch(() => false));
+    if (isSignInPage) {
+      logger.error('apply redirected to sign-in — session expired', {
+        url: applyUrl,
+        hint: 'Re-run `npm run seek-login` locally and update SEEK_SESSION_COOKIES secret.',
+      });
+      if (newPage) await newPage.close().catch(() => {});
+      return { success: false, failureReason: 'session_expired' };
     }
 
     const tailored = await tailorCoverLetter(config.baseCoverLetter, details.title, details.company, details.description);
