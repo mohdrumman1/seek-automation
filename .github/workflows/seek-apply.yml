@@ -99,7 +99,11 @@ jobs:
             data/applied_jobs.json \
             data/questions_kb.json \
             data/review-queue.json \
-            data/error-log.json 2>/dev/null || true
+            data/error-log.json \
+            data/applications.csv \
+            data/skipped_jobs.csv \
+            data/failed_jobs.csv \
+            data/runs.csv 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No data changes to commit."
           else
