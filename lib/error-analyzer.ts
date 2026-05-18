@@ -25,6 +25,17 @@ const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
       'before that, Promise.any bug always returned expired (fixed ea84466). ' +
       'DOM selector approach failed when SEEK changed their authenticated nav element attributes.',
   },
+  braid_modal_blocks_click: {
+    date: '2026-05-19',
+    description:
+      'After uploadTailoredResume(), SEEK leaves div#braid-modal-container open, intercepting all pointer events. ' +
+      'Symptom: locator.click Timeout — element found, visible, stable, but "subtree intercepts pointer events". ' +
+      'Fix: dismissBraidModal() in seek.ts waits for #braid-modal-container to clear (waitForFunction), ' +
+      'falls back to Escape key + close button. Called in applyToJob() after resume upload and after page load. ' +
+      'If this recurs: (1) check if SEEK added a new modal type that Escape doesn\'t close; ' +
+      '(2) check #braid-modal-container children for a new close button selector; ' +
+      '(3) consider adding a longer initial wait after setInputFiles().',
+  },
   validation_errors_blocking_continue: {
     date: '2026-05-18',
     description:

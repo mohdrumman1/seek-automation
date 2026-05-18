@@ -157,6 +157,38 @@ async function getQuestionLabel(page: Page, locator: Locator): Promise<string> {
   return text ?? '';
 }
 
+// ── MODAL DISMISSAL ───────────────────────────────────────────────────────────
+
+// SEEK uses a div#braid-modal-container that intercepts pointer events while any
+// dialog is open. After a file upload it can remain open, blocking all clicks.
+// This function waits for the container to clear, falling back to Escape + close button.
+async function dismissBraidModal(page: Page): Promise<void> {
+  try {
+    await page.waitForFunction(
+      () => {
+        const c = document.getElementById('braid-modal-container');
+        return !c || !c.firstElementChild;
+      },
+      { timeout: 3_000 },
+    );
+    return;
+  } catch {
+    // Still present — try to dismiss
+  }
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(500);
+  const closeBtn = page
+    .locator('#braid-modal-container')
+    .locator(
+      'button[aria-label*="close" i], button:has-text("Close"), button:has-text("Done"), button:has-text("OK"), button:has-text("Got it"), button:has-text("Confirm")',
+    )
+    .first();
+  if (await closeBtn.isVisible({ timeout: 1_000 }).catch(() => false)) {
+    await closeBtn.click().catch(() => {});
+    await page.waitForTimeout(500);
+  }
+}
+
 // ── FIELD FILL ────────────────────────────────────────────────────────────────
 
 async function fillFieldByLabel(
@@ -630,6 +662,7 @@ export class SeekPlatform implements JobPlatform {
       return { success: false, failureReason: 'session_expired' };
     }
 
+    await dismissBraidModal(applyPage);
     const tailoredCoverLetter = await tailorCoverLetter(config.baseCoverLetter, details.title, details.company, details.description);
     await applyPage.waitForTimeout(2_000);
 
@@ -667,6 +700,7 @@ export class SeekPlatform implements JobPlatform {
       await selectResume(applyPage, finalVariant);
     }
     await applyPage.waitForTimeout(500);
+    await dismissBraidModal(applyPage);
 
     const clChangeRadio = applyPage.locator('input[name="coverLetter-method"][value="change"]');
     if (await clChangeRadio.isVisible().catch(() => false)) {
