@@ -2,81 +2,69 @@
 
 ## Status
 
-**Phase 1: Core bot** — Complete ✅  
-Pushed to `develop`, merged to `main`. Running 3×/day via GitHub Actions (6:17am, 12:17pm, 6:17pm AEST).
+**Phase 1–3: Core bot, tracking, platform abstraction** — Complete ✅  
+Running 3×/day via GitHub Actions (6:17am, 12:17pm, 6:17pm AEST).  
+268 applications submitted as of 2026-05-18.
 
 ---
 
 ## What's Working
 
-- SEEK session management (loads from `SEEK_SESSION_COOKIES` env / disk, saves slim session back to GitHub Secret after each run)
+- SEEK session management (loads from `SEEK_SESSION_COOKIES` env / disk, saves slim session back after each run)
+- Session validity check via URL-redirect on `/my-activity` — immune to SEEK DOM changes
 - 9 job searches across PM and SE roles, NSW + QLD, salary filter $120k+
 - Resume variant selection (`pm` / `se`) by job title pattern matching
 - Cover letter tailoring per job via OpenRouter (Gemini 2.0 Flash)
-- Employer question answering via KB lookup + AI fallback
+- Employer question answering: KB lookup → AI fallback, with auto-save to KB
+- Radio button and checkbox group handling (grouped by `name` attribute, label-first click)
+- Dropdown selection with correct numeric proximity matching (comma-aware) and `\xa0` normalisation
 - Circuit breaker: bails a search after 3 consecutive failures, resets on success
 - Run cap (`MAX_APPS_PER_RUN=20`) and per-search cap (`MAX_APPS_PER_SEARCH=10`)
-- `DRY_RUN=true` mode: fills everything, never submits, never writes to applied_jobs.json
-- Structured JSON logging to stdout/stderr
-- Screenshots + AI analysis on validation errors and unexpected states
-- Auto-skip (no hang) when running headless in CI (no TTY)
-- Data committed back to repo after each run: `applied_jobs.json`, `questions_kb.json`, `review-queue.json`, `error-log.json`
+- `DRY_RUN=true` mode: fills everything, never submits, never writes state
+- Structured JSON logging, screenshots + AI error analysis on failures
+- CSV tracking: `applications.csv`, `skipped_jobs.csv`, `failed_jobs.csv`, `runs.csv`
+- `npm run weekly-review` — AI-generated markdown summary of the week's applications
+- Auto-skip (no hang) when running headless in CI
 
 ---
 
-## Known Gaps (actively improving)
+## Known Gaps
 
 | Gap | Notes |
 |---|---|
-| Yes/No radio buttons not clicked | SEEK renders Yes/No as `input[type="radio"]` — not yet handled |
-| Employer questions with radio groups often block continue | Same root cause as above |
-| Screenshots missing at some auto-skip points | Being added progressively |
-| External apply jobs always skipped | Needs ATS detection engine (Phase 5) |
+| External apply jobs always skipped | 78% of skips — needs ATS engine (Phase 5) |
+| Resume not tailored per job | Env var `RESUME_TAILORING_ENABLED` is set — implementation is Phase 4 |
+| OpenRouter calls have no retry/backoff | 429/5xx failures are silent — Phase 7 |
+| `error-log.json` grows unbounded | Needs rotation at ~500 entries — Phase 7 |
+| Date pickers / file upload fields | Not handled — those jobs will always fail |
 
 ---
 
-## Phase 2 — Tracking & Reporting
+## Phase 4 — Resume Tailoring ← Next
 
-**Goal:** Know what the bot did at a glance without reading raw JSON.
+**Goal:** Send a per-job tailored resume, not just a tailored cover letter.
 
-- CSV files: `data/applications.csv`, `data/skipped_jobs.csv`, `data/failed_jobs.csv`, `data/runs.csv`
-- Fields: job_id, platform, title, company, location, salary_text, work_type, applied_at, status, resume_variant_used, cover_letter_used, skip_reason, failure_reason, requires_manual_review, screenshot_path
-- `npm run weekly-review` → `reports/weekly-review-YYYY-MM-DD.md` (AI-generated summary of the week's applications, top rejection patterns, suggested KB improvements)
-- Migrate `applied_jobs.json` → CSV or keep as index + CSV for reporting
-
----
-
-## Phase 3 — Platform Abstraction
-
-**Goal:** Clean interface so adding a new platform doesn't require touching the SEEK-specific code.
-
-- `lib/platforms/types.ts` — `JobPlatform` interface (search, apply, isExternal, detectATS)
-- `lib/platforms/seek.ts` — extract current SEEK logic
-- `scripts/apply.ts` — replaces `seek-apply.ts`, supports:
-  - `--platform seek|indeed|glassdoor`
-  - `--url "<job url>"` to apply to a single job directly
-  - `--dry-run`, `--no-submit`, `--max <n>`
-
----
-
-## Phase 4 — Resume Tailoring
-
-**Goal:** Customise bullet points per job, not just the cover letter.
-
-- OpenRouter analyses job description → selects most relevant experience bullets
-- Outputs `tmp/current-tailored-resume.docx` (preserves formatting)
+- OpenRouter analyses job description → selects most relevant experience bullets from base resume
+- Outputs `tmp/current-tailored-resume.docx` (preserves formatting via `docx` or `python-docx`)
 - Validation step: AI confirms no invented experience before applying
-- Falls back to base resume if tailoring fails or confidence is low
+- Falls back to base resume variant (`pm` / `se`) if tailoring fails or confidence is low
+- Hooks into `RESUME_TAILORING_ENABLED` env var already wired in the workflow
 
 ---
 
 ## Phase 5 — External Apply (ATS Engine)
 
-**Goal:** Handle jobs that redirect to external ATS (currently always skipped).
+**Goal:** Handle jobs that redirect to external ATS (currently 78% of skips).
 
-- Detect ATS provider: Workday, Greenhouse, Lever, SmartRecruiters, Ashby, iCIMS, PageUp
-- Generic form fill for standard fields (name, email, phone, resume upload, cover letter)
-- Safety check before submit: flag if any PII-sensitive fields appear
+Priority ATS platforms for Australian PM/SE roles:
+- **PageUp** — government, infrastructure, large enterprise (most common in AU)
+- **Workday** — large corporates
+- **Greenhouse** — tech companies
+
+For each:
+- Detect ATS provider from URL or page fingerprint
+- Generic form fill: name, email, phone, resume upload, cover letter
+- Safety check before submit: flag if any PII-sensitive fields appear (TFN, DOB, bank details)
 - Log `ats_provider_detected` and `external_apply_url` in tracking CSV
 
 ---
@@ -93,9 +81,9 @@ Pushed to `develop`, merged to `main`. Running 3×/day via GitHub Actions (6:17a
 
 ## Phase 7 — Hardening
 
-- Unit tests: KB lookup, fit scoring, CSV writing, weekly report generation, ATS detection
+- Unit tests: KB lookup, fit scoring, CSV writing, weekly report, ATS detection
 - Integration test: dry-run end-to-end against a known SEEK job URL
-- PII redaction in logger (mask email, phone, TFN if they accidentally appear in logs)
+- PII redaction in logger (mask email, phone, TFN if accidentally in logs)
 - Retry + backoff in OpenRouter calls (429/5xx)
 - `error-log.json` rotation (cap at 500 entries)
 - Replace `waitForTimeout` with `waitForLoadState` where possible
@@ -120,7 +108,7 @@ Pushed to `develop`, merged to `main`. Running 3×/day via GitHub Actions (6:17a
 
 ---
 
-## Secrets Setup (one-time)
+## Secrets Setup
 
 | Secret | What |
 |---|---|
