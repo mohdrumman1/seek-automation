@@ -28,12 +28,14 @@ const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
   validation_errors_blocking_continue: {
     date: '2026-05-18',
     description:
-      'Radio button and checkbox groups are now handled in answerEmployerQuestions() ' +
-      '(grouped by name attribute, label-first click via label[for=id] with force:true fallback, ' +
-      '300ms wait + isChecked() confirmation). getFieldsetLegend() reads fieldset>legend for group labels. ' +
-      'If validation is still blocked, check: (1) is the failing question a radio/checkbox not covered by name-grouping? ' +
-      '(2) did the label click not register — check for "(unconfirmed)" in logs? ' +
-      '(3) is it a different field type entirely (e.g. date picker, file upload)?',
+      'Radio/checkbox groups handled in answerEmployerQuestions() via name-attribute grouping, label-first click, isChecked() confirmation. ' +
+      'selectBestOption() fixed to strip commas before numeric parsing (so $120,000 parses as 120000 not 120). ' +
+      'selectOption() filled check now trusts non-throw rather than inputValue() (SEEK options often have value="" causing false negatives). ' +
+      'selectBestOption() normalizes \\xa0 non-breaking spaces before matching. ' +
+      'If validation still blocks: (1) check review-queue.json for the exact label+options of the failing question; ' +
+      '(2) add a KB entry with keywords matching that label and the correct option text as the answer; ' +
+      '(3) if a radio/checkbox, verify label-click confirmation logs show "(unconfirmed)"; ' +
+      '(4) date pickers and file uploads are not handled — those jobs will always fail.',
   },
 };
 

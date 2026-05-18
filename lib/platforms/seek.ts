@@ -263,7 +263,12 @@ async function answerEmployerQuestions(
     if (answer) {
       const best = selectBestOption(options, answer);
       let filled = false;
-      try { await sel.selectOption({ label: best }); filled = !!(await sel.inputValue().catch(() => '')); } catch {}
+      try {
+        // selectOption throws if no matching option is found — that's our filled signal.
+        // inputValue() is unreliable when option value attributes are empty strings.
+        await sel.selectOption({ label: best });
+        filled = true;
+      } catch {}
       if (!filled) unanswered.push({ label, type: 'select', options: options.filter((o) => o.trim()) });
     } else {
       unanswered.push({ label, type: 'select', options: options.filter((o) => o.trim()) });

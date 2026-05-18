@@ -71,23 +71,28 @@ export async function aiAnswerQuestion(
 }
 
 export function selectBestOption(options: string[], answer: string): string {
-  const a = answer.toLowerCase().trim();
-  // Exact match
+  // Normalize: collapse non-breaking spaces and trim
+  const norm = (s: string) => s.replace(/\xa0/g, ' ').toLowerCase().trim();
+  const a = norm(answer);
+
+  // Exact match (tolerates \xa0 in option labels)
   for (const opt of options) {
-    if (opt.toLowerCase().trim() === a) return opt;
+    if (norm(opt) === a) return opt;
   }
   // Contains match
   for (const opt of options) {
-    if (a.includes(opt.toLowerCase()) || opt.toLowerCase().includes(a)) return opt;
+    const o = norm(opt);
+    if (a.includes(o) || o.includes(a)) return opt;
   }
-  // Numeric proximity (e.g. salary ranges)
-  const answerNums = answer.match(/\d+/);
+  // Numeric proximity (e.g. salary ranges like "$120,000 - $130,000").
+  // Strip commas before parsing so "120,000" parses as 120000, not 120.
+  const answerNums = answer.replace(/,/g, '').match(/\d+/);
   if (answerNums) {
     const target = parseInt(answerNums[0], 10);
     let bestOpt = options[1] ?? options[0];
     let bestDiff = Infinity;
     for (const opt of options.slice(1)) {
-      const nums = opt.match(/\d+/);
+      const nums = opt.replace(/,/g, '').match(/\d+/);
       if (nums) {
         const diff = Math.abs(parseInt(nums[0], 10) - target);
         if (diff < bestDiff) {
