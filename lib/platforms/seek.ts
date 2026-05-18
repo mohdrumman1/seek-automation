@@ -441,11 +441,12 @@ async function getValidationErrors(page: Page): Promise<string[]> {
 // ── LOGIN ─────────────────────────────────────────────────────────────────────
 
 async function isLoggedIn(page: Page): Promise<boolean> {
+  // isSessionExpired() uses the reliable URL-redirect check on /my-activity.
+  // This helper does a lighter inline check on whatever page is already loaded.
   const signInVisible = await page
     .locator('a[href*="oauth/login"], a[data-automation="sign-in"], a:has-text("Sign in"), button:has-text("Sign in")')
     .first().isVisible({ timeout: 2_000 }).catch(() => false);
-  if (signInVisible) return false;
-  return (await page.locator('[data-automation="user-menu"], [data-automation="authenticated"], [aria-label="Account"], nav [href*="/profile"]').count()) > 0;
+  return !signInVisible;
 }
 
 async function login(page: Page): Promise<void> {

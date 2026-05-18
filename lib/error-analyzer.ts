@@ -13,15 +13,17 @@ const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
   session_expired: {
     date: '2026-05-18',
     description:
-      'Added early sign-in redirect detection in applyToJob (lib/platforms/seek.ts). ' +
-      'If the apply page URL contains /oauth/login or shows a sign-in element, the job is ' +
-      'immediately skipped with failureReason: session_expired instead of wasting 60s. ' +
-      'The login() function now logs a warning in CI when cookies are loaded but isLoggedIn() ' +
-      'returns false. isSessionExpired() now does a positive authenticated-element check. ' +
-      'If this error still fires: the SEEK_SESSION_COOKIES GitHub secret needs to be refreshed — ' +
-      'run `npm run seek-login` locally, then `cat tmp/seek-cookies.b64` and paste the raw base64 (do NOT decode it) into the Actions secret. ' +
-      'NOTE: a prior version of isSessionExpired() used Promise.any (bug — always returned expired); ' +
-      'if the bot aborts immediately without even trying any jobs, verify you are on commit ea84466 or later.',
+      'isSessionExpired() (lib/seek-session.ts) now uses URL-redirect detection: navigates to ' +
+      'https://www.seek.com.au/my-activity (a protected page) and checks the final URL. ' +
+      'If redirected to /oauth/login → expired; if still on /my-activity → valid session. ' +
+      'This is immune to SEEK DOM changes that broke the previous selector-based approach. ' +
+      'isLoggedIn() (lib/platforms/seek.ts) simplified to lightweight sign-in-button-only check. ' +
+      'If this error still fires: (1) confirm cookies were copied raw (cat tmp/seek-cookies.b64) not decoded; ' +
+      '(2) check if SEEK now redirects /my-activity somewhere other than /oauth/login — update the URL check; ' +
+      '(3) the SEEK_SESSION_COOKIES secret may be genuinely expired — re-run npm run seek-login. ' +
+      'HISTORY: prior version used DOM selector positive check (Promise.all + .some(Boolean)); ' +
+      'before that, Promise.any bug always returned expired (fixed ea84466). ' +
+      'DOM selector approach failed when SEEK changed their authenticated nav element attributes.',
   },
   validation_errors_blocking_continue: {
     date: '2026-05-18',

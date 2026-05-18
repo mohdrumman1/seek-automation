@@ -126,41 +126,37 @@ export async function saveSession(context: BrowserContext): Promise<void> {
 }
 
 export async function isSessionExpired(page: Page): Promise<boolean> {
+  // Navigate to a protected SEEK page — if the session is valid, SEEK serves the page;
+  // if expired, SEEK redirects to /oauth/login. URL-based detection is immune to DOM changes.
   try {
-    await page.goto('https://www.seek.com.au', { waitUntil: 'domcontentloaded', timeout: 20_000 });
+    await page.goto('https://www.seek.com.au/my-activity', { waitUntil: 'domcontentloaded', timeout: 20_000 });
   } catch (err) {
     logger.error('isSessionExpired: navigation failed — assuming expired', {}, err);
     return true;
   }
 
-  const signInSelectors = [
-    '[data-automation="sign in"]',
-    'a[href*="/oauth/login"]',
-    'a:has-text("Sign in")',
-    'button:has-text("Sign in")',
-  ];
+  const finalUrl = page.url();
 
-  for (const sel of signInSelectors) {
-    const visible = await page.locator(sel).first().isVisible().catch(() => false);
-    if (visible) return true;
+  // Clearly redirected to login
+  if (finalUrl.includes('/oauth/login') || finalUrl.includes('/login')) {
+    logger.info('isSessionExpired: redirected to login page', { finalUrl });
+    return true;
   }
 
-  // Positive check: if no authenticated indicator is present, treat as expired.
-  // This catches cases where the sign-in button isn't rendered but the user isn't logged in.
-  // Allow extra time for SEEK's React app to render the auth state.
-  await page.waitForTimeout(2_000);
-  const authedSelectors = [
-    '[data-automation="user-menu"]',
-    '[data-automation="authenticated"]',
-    '[aria-label="Account"]',
-    'nav [href*="/profile"]',
-    'a[href*="/dashboard"]',
-  ];
-  const authedResults = await Promise.all(
-    authedSelectors.map((sel) =>
-      page.locator(sel).first().isVisible({ timeout: 3_000 }).catch(() => false)
-    )
-  );
-  const authed = authedResults.some(Boolean);
-  return !authed;
+  // Stayed on /my-activity or a related authenticated page
+  if (
+    finalUrl.includes('/my-activity') ||
+    finalUrl.includes('/my-profile') ||
+    finalUrl.includes('/dashboard') ||
+    finalUrl.includes('/profile')
+  ) {
+    return false;
+  }
+
+  // Unexpected URL — fall back to sign-in element check
+  logger.warn('isSessionExpired: unexpected final URL, falling back to element check', { finalUrl });
+  for (const sel of ['[data-automation="sign in"]', 'a[href*="/oauth/login"]', 'a:has-text("Sign in")', 'button:has-text("Sign in")']) {
+    if (await page.locator(sel).first().isVisible().catch(() => false)) return true;
+  }
+  return false;
 }
