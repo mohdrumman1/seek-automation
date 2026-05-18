@@ -12,6 +12,9 @@ import { getOrCreateSession, saveSession, isSessionExpired } from '../seek-sessi
 import { captureAndAnalyze, getPastAnalyses } from '../error-analyzer';
 import { findKBAnswer, aiAnswerQuestion, selectBestOption } from '../questions-kb';
 import { tailorCoverLetter, callOpenRouter } from '../openrouter';
+import { tailorResume, TailoredContent } from '../resume-tailor';
+import { generateTailoredDocx } from '../resume-generator';
+import { cleanTailoredResumes, uploadTailoredResume } from '../resume-manager';
 import { logger } from '../logger';
 import { readBaseCoverLetter } from '../cover-letter';
 
@@ -627,12 +630,42 @@ export class SeekPlatform implements JobPlatform {
       return { success: false, failureReason: 'session_expired' };
     }
 
-    const tailored = await tailorCoverLetter(config.baseCoverLetter, details.title, details.company, details.description);
+    const tailoredCoverLetter = await tailorCoverLetter(config.baseCoverLetter, details.title, details.company, details.description);
     await applyPage.waitForTimeout(2_000);
 
     const resolvedVariant = resolveResumeVariant(details.title, config.searchName);
     const finalVariant: ResumeVariant = resolvedVariant ?? config.resumeVariant;
-    await selectResume(applyPage, finalVariant);
+
+    // Resume tailoring — generate a per-job DOCX and upload it to the apply form.
+    // Falls back to selecting from the SEEK dropdown if tailoring is disabled or fails.
+    const tailoringEnabled = process.env.RESUME_TAILORING_ENABLED === 'true';
+    let resumeUploaded = false;
+    if (tailoringEnabled) {
+      const jobId = applyUrl.match(/\/job\/(\d+)/)?.[1] ?? Date.now().toString();
+      const tailoredResume = await tailorResume(
+        finalVariant,
+        details.title,
+        details.company,
+        details.description,
+        applyUrl,
+      );
+      if (tailoredResume) {
+        const docxPath = await generateTailoredDocx(tailoredResume, jobId).catch((err) => {
+          logger.warn('resume-generator: DOCX generation failed', { error: String(err) });
+          return null;
+        });
+        if (docxPath) {
+          resumeUploaded = await uploadTailoredResume(applyPage, docxPath);
+          if (!resumeUploaded) {
+            logger.warn('resume-manager: upload failed — falling back to dropdown selection');
+          }
+        }
+      }
+    }
+
+    if (!resumeUploaded) {
+      await selectResume(applyPage, finalVariant);
+    }
     await applyPage.waitForTimeout(500);
 
     const clChangeRadio = applyPage.locator('input[name="coverLetter-method"][value="change"]');
@@ -642,7 +675,7 @@ export class SeekPlatform implements JobPlatform {
       console.log('  Cover letter mode: enter text');
     }
 
-    await fillCoverLetter(applyPage, tailored, ctx);
+    await fillCoverLetter(applyPage, tailoredCoverLetter, ctx);
 
     const errsBefore = await getValidationErrors(applyPage);
     if (errsBefore.length) console.log(`  Form errors before Continue: ${errsBefore.slice(0, 3)}`);
@@ -762,6 +795,11 @@ export class SeekPlatform implements JobPlatform {
         hint: 'Re-run `npm run seek-login` locally to refresh the session.',
       });
       return false;
+    }
+    // Clean up tailored resumes from previous runs so SEEK's 5-document limit
+    // does not block uploads during this run.
+    if (process.env.RESUME_TAILORING_ENABLED === 'true') {
+      await cleanTailoredResumes(page);
     }
     return true;
   }
