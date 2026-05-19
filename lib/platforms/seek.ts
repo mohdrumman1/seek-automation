@@ -650,6 +650,7 @@ export class SeekPlatform implements JobPlatform {
     const applyUrl = applyPage.url();
     const isSignInPage =
       applyUrl.includes('/oauth/login') ||
+      applyUrl.includes('login.seek.com') ||
       applyUrl.includes('appleid.apple.com') ||
       applyUrl.includes('accounts.google.com') ||
       (await applyPage.locator('[data-automation="sign in"], a:has-text("Sign in to apply"), h1:has-text("Sign in")').first().isVisible({ timeout: 3_000 }).catch(() => false));

@@ -11,19 +11,19 @@ const SCREENSHOT_DIR = path.resolve(__dirname, '../screenshots/errors');
 // will call it out explicitly rather than re-diagnosing the same root cause.
 const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
   session_expired: {
-    date: '2026-05-18',
+    date: '2026-05-19',
     description:
-      'isSessionExpired() (lib/seek-session.ts) now uses URL-redirect detection: navigates to ' +
-      'https://www.seek.com.au/my-activity (a protected page) and checks the final URL. ' +
-      'If redirected to /oauth/login → expired; if still on /my-activity → valid session. ' +
-      'This is immune to SEEK DOM changes that broke the previous selector-based approach. ' +
-      'isLoggedIn() (lib/platforms/seek.ts) simplified to lightweight sign-in-button-only check. ' +
-      'If this error still fires: (1) confirm cookies were copied raw (cat tmp/seek-cookies.b64) not decoded; ' +
-      '(2) check if SEEK now redirects /my-activity somewhere other than /oauth/login — update the URL check; ' +
-      '(3) the SEEK_SESSION_COOKIES secret may be genuinely expired — re-run npm run seek-login. ' +
-      'HISTORY: prior version used DOM selector positive check (Promise.all + .some(Boolean)); ' +
-      'before that, Promise.any bug always returned expired (fixed ea84466). ' +
-      'DOM selector approach failed when SEEK changed their authenticated nav element attributes.',
+      'SEEK uses two auth layers: (1) a browsing session cookie valid for /my-activity and most profile pages; ' +
+      '(2) an Auth0 token (login.seek.com) required for the apply flow. ' +
+      'isSessionExpired() checking /my-activity only validates layer 1 — the bot can appear "logged in" ' +
+      'while every apply attempt redirects to login.seek.com/login because the Auth0 token is expired. ' +
+      'Fixes applied 2026-05-19: (a) apply.ts now aborts the entire run on the first session_expired failure ' +
+      '(no more 27 wasted attempts across 9 searches); (b) isSignInPage in seek.ts now explicitly matches ' +
+      'login.seek.com for immediate detection without waiting for element selectors. ' +
+      'The underlying cause is always a genuinely expired SEEK_SESSION_COOKIES secret. ' +
+      'To fix: re-run npm run seek-login locally and push the new SEEK_SESSION_COOKIES secret to GitHub. ' +
+      'HISTORY: prior /my-activity check only looked for /oauth/login redirect pattern; SEEK later started ' +
+      'using login.seek.com/login (Auth0) for apply-flow auth separately from browsing-session auth.',
   },
   braid_modal_blocks_click: {
     date: '2026-05-19',

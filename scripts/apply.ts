@@ -257,6 +257,13 @@ async function main() {
           runFailedCount++;
           consecutiveFailures++;
           logger.warn('apply did not succeed', { jobId, search: search.name, failureReason: result.failureReason, consecutiveFailures });
+          if (result.failureReason === 'session_expired') {
+            logger.error('session expired mid-run — aborting all remaining searches', {
+              hint: 'Re-run `npm run seek-login` locally and update the SEEK_SESSION_COOKIES secret.',
+            });
+            runFailed = true;
+            throw new Error('session_expired');
+          }
         }
       }
     }
