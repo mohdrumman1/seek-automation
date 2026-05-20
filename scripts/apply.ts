@@ -157,7 +157,16 @@ async function main() {
   try {
     if (seekPlatform.loginAndVerify) {
       const ok = await seekPlatform.loginAndVerify(page);
-      if (!ok) { runFailed = true; return; }
+      if (!ok) {
+        runFailed = true;
+        // Mark so CI doesn't overwrite the secret with stale cookies from this run
+        try {
+          const flagDir = path.resolve(__dirname, '../tmp');
+          if (!fs.existsSync(flagDir)) fs.mkdirSync(flagDir, { recursive: true });
+          fs.writeFileSync(path.join(flagDir, 'session-expired'), '');
+        } catch {}
+        return;
+      }
     }
     await platform.persistSession(context);
 
@@ -261,6 +270,13 @@ async function main() {
             logger.error('session expired mid-run — aborting all remaining searches', {
               hint: 'Re-run `npm run seek-login` locally and update the SEEK_SESSION_COOKIES secret.',
             });
+            // Write marker so the CI workflow does NOT overwrite SEEK_SESSION_COOKIES
+            // with these stale cookies — preserves whatever valid cookies were set before.
+            try {
+              const flagDir = path.resolve(__dirname, '../tmp');
+              if (!fs.existsSync(flagDir)) fs.mkdirSync(flagDir, { recursive: true });
+              fs.writeFileSync(path.join(flagDir, 'session-expired'), '');
+            } catch {}
             runFailed = true;
             throw new Error('session_expired');
           }

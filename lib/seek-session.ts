@@ -126,10 +126,11 @@ export async function saveSession(context: BrowserContext): Promise<void> {
 }
 
 export async function isSessionExpired(page: Page): Promise<boolean> {
-  // Navigate to a protected SEEK page — if the session is valid, SEEK serves the page;
-  // if expired, SEEK redirects to /oauth/login. URL-based detection is immune to DOM changes.
+  // SEEK's SPA renders /my-activity without a server-side redirect even when the
+  // session is expired — it shows a login prompt client-side instead. Using 'load'
+  // gives React time to execute and render the auth state before we check.
   try {
-    await page.goto('https://www.seek.com.au/my-activity', { waitUntil: 'domcontentloaded', timeout: 20_000 });
+    await page.goto('https://www.seek.com.au/my-activity', { waitUntil: 'load', timeout: 30_000 });
   } catch (err) {
     logger.error('isSessionExpired: navigation failed — assuming expired', {}, err);
     return true;
@@ -137,13 +138,30 @@ export async function isSessionExpired(page: Page): Promise<boolean> {
 
   const finalUrl = page.url();
 
-  // Clearly redirected to login
+  // Server-side redirect to login = definitely expired
   if (finalUrl.includes('/oauth/login') || finalUrl.includes('/login')) {
     logger.info('isSessionExpired: redirected to login page', { finalUrl });
     return true;
   }
 
-  // Stayed on /my-activity or a related authenticated page
+  // Even if the URL stayed on /my-activity, the SPA may have rendered a login
+  // prompt client-side. Wait briefly for React to settle then check DOM.
+  await page.waitForTimeout(3_000);
+  const signInSelectors = [
+    'a[href*="/oauth/login"]',
+    'a:has-text("Sign in")',
+    'button:has-text("Sign in")',
+    '[data-automation="sign-in"]',
+    'h1:has-text("Sign in")',
+    'h2:has-text("Sign in to")',
+  ];
+  for (const sel of signInSelectors) {
+    if (await page.locator(sel).first().isVisible({ timeout: 1_000 }).catch(() => false)) {
+      logger.info('isSessionExpired: sign-in element visible on /my-activity — session expired', { selector: sel });
+      return true;
+    }
+  }
+
   if (
     finalUrl.includes('/my-activity') ||
     finalUrl.includes('/my-profile') ||
@@ -153,10 +171,6 @@ export async function isSessionExpired(page: Page): Promise<boolean> {
     return false;
   }
 
-  // Unexpected URL — fall back to sign-in element check
-  logger.warn('isSessionExpired: unexpected final URL, falling back to element check', { finalUrl });
-  for (const sel of ['[data-automation="sign in"]', 'a[href*="/oauth/login"]', 'a:has-text("Sign in")', 'button:has-text("Sign in")']) {
-    if (await page.locator(sel).first().isVisible().catch(() => false)) return true;
-  }
-  return false;
+  logger.warn('isSessionExpired: unexpected final URL — assuming expired', { finalUrl });
+  return true;
 }

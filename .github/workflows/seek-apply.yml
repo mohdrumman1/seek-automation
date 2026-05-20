@@ -74,6 +74,13 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
+          # If session expired during this run, do NOT overwrite the secret — doing so
+          # would replace any valid manually-set cookies with the stale cookies from
+          # this failed run, locking out all future runs until a manual refresh.
+          if [ -f tmp/session-expired ]; then
+            echo "::warning::Session expired mid-run — SEEK_SESSION_COOKIES secret preserved. Re-run seek-login locally and update the secret manually."
+            exit 0
+          fi
           if [ ! -f tmp/seek-cookies.b64 ]; then
             echo "::warning::tmp/seek-cookies.b64 not found — session was not refreshed this run."
             exit 0
