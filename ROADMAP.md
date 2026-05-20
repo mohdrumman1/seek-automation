@@ -40,7 +40,7 @@ Running 3×/day via GitHub Actions (6:17am, 12:17pm, 6:17pm AEST).
 
 ---
 
-## Phase 4 — Resume Tailoring ← Next
+## Phase 4 — Resume Tailoring ✅
 
 **Goal:** Send a per-job tailored resume, not just a tailored cover letter.
 
@@ -79,7 +79,20 @@ For each:
 
 ---
 
-## Phase 7 — Hardening
+## Phase 7 — On-Demand Single-Job Apply
+
+**Goal:** Trigger the bot to apply to one specific job by pasting a URL — no search loop.
+
+Single-URL mode already exists locally via `ts-node scripts/apply.ts --url <job-url>` and `npm run seek -- --url <job-url>`. What's needed is a convenient remote trigger:
+
+- Add a `workflow_dispatch` input field `job_url` to the GitHub Actions workflow — paste a SEEK URL into the GitHub UI and click Run
+- The bot applies to that single job and exits; full logs available in the Actions run
+- Could also accept an `au.seek.com` or `seek.com.au` job URL and normalise the domain automatically
+- Longer term: a lightweight webhook or Slack slash command so it can be triggered from mobile
+
+---
+
+## Phase 8 — Hardening
 
 - Unit tests: KB lookup, fit scoring, CSV writing, weekly report, ATS detection
 - Integration test: dry-run end-to-end against a known SEEK job URL
