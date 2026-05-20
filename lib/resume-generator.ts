@@ -119,6 +119,7 @@ function buildSkillParagraphs(skillsText: string): Paragraph[] {
 export async function generateTailoredDocx(
   tailored: TailoredContent,
   jobId: string,
+  company?: string,
 ): Promise<string> {
   if (!fs.existsSync(TMP_DIR)) fs.mkdirSync(TMP_DIR, { recursive: true });
 
@@ -223,7 +224,11 @@ export async function generateTailoredDocx(
   });
 
   const buffer = await Packer.toBuffer(doc);
-  const outputPath = path.join(TMP_DIR, `tailored-${jobId}.docx`);
+  const date = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  const safeCo = company
+    ? company.replace(/[^a-zA-Z0-9]/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '').slice(0, 40)
+    : jobId;
+  const outputPath = path.join(TMP_DIR, `Rumman_${safeCo}_${date}.docx`);
   fs.writeFileSync(outputPath, buffer);
   return outputPath;
 }

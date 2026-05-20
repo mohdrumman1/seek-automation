@@ -684,7 +684,7 @@ export class SeekPlatform implements JobPlatform {
         applyUrl,
       );
       if (tailoredResume) {
-        const docxPath = await generateTailoredDocx(tailoredResume, jobId).catch((err) => {
+        const docxPath = await generateTailoredDocx(tailoredResume, jobId, details.company).catch((err) => {
           logger.warn('resume-generator: DOCX generation failed', { error: String(err) });
           return null;
         });
