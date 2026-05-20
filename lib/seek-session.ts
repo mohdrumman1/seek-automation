@@ -46,10 +46,18 @@ function isSeekCookie(c: Record<string, unknown>): boolean {
   return domain.includes('seek.com.au') || domain.includes('seek.com');
 }
 
+function isSeekOrigin(o: Record<string, unknown>): boolean {
+  const origin = (o.origin as string | undefined) ?? '';
+  return origin.includes('seek.com.au') || origin.includes('seek.com');
+}
+
 function slimDown(state: StorageState): StorageState {
+  // Auth0 SPA SDK (used by SEEK) stores access tokens and refresh tokens in
+  // localStorage, not cookies. Stripping origins breaks the apply flow even
+  // when session cookies are valid for browsing.
   return {
     cookies: state.cookies.filter(isSeekCookie),
-    origins: [],
+    origins: state.origins.filter(isSeekOrigin),
   };
 }
 
@@ -121,6 +129,7 @@ export async function saveSession(context: BrowserContext): Promise<void> {
     slimPath: SLIM_SESSION_PATH,
     b64Path,
     seekCookies: slim.cookies.length,
+    seekOrigins: slim.origins.length,
     slimBase64Kb: sizeKb,
   });
 }
