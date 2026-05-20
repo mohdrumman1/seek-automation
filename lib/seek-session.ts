@@ -46,18 +46,26 @@ function isSeekCookie(c: Record<string, unknown>): boolean {
   return domain.includes('seek.com.au') || domain.includes('seek.com');
 }
 
-function isSeekOrigin(o: Record<string, unknown>): boolean {
-  const origin = (o.origin as string | undefined) ?? '';
-  return origin.includes('seek.com.au') || origin.includes('seek.com');
-}
-
 function slimDown(state: StorageState): StorageState {
-  // Auth0 SPA SDK (used by SEEK) stores access tokens and refresh tokens in
-  // localStorage, not cookies. Stripping origins breaks the apply flow even
-  // when session cookies are valid for browsing.
+  // Auth0 SPA SDK (used by SEEK) stores access/refresh tokens in localStorage
+  // under keys prefixed with @@auth0spajs@@. Keep only those entries — the rest
+  // of SEEK's localStorage is SPA cache (job listings, profile data) that can
+  // be large and is not needed for authentication.
+  const authOrigins = state.origins
+    .map((o: Record<string, unknown>) => {
+      const origin = (o.origin as string | undefined) ?? '';
+      const isSeek = origin.includes('seek.com.au') || origin.includes('seek.com');
+      if (!isSeek) return null;
+      const ls = (o.localStorage as Array<{ name: string; value: string }> | undefined) ?? [];
+      const authEntries = ls.filter((entry) => entry.name.startsWith('@@auth0spajs@@'));
+      if (authEntries.length === 0) return null;
+      return { origin, localStorage: authEntries };
+    })
+    .filter(Boolean);
+
   return {
     cookies: state.cookies.filter(isSeekCookie),
-    origins: state.origins.filter(isSeekOrigin),
+    origins: authOrigins,
   };
 }
 
