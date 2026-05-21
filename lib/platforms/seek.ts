@@ -10,7 +10,7 @@ import { JobPlatform, JobDetails, SearchConfig, ApplyResult, ApplyConfig } from 
 import { selectResume, resolveResumeVariant, ResumeVariant } from '../resume-selector';
 import { getOrCreateSession, saveSession, isSessionExpired } from '../seek-session';
 import { captureAndAnalyze, getPastAnalyses } from '../error-analyzer';
-import { findKBAnswer, aiAnswerQuestion, selectBestOption } from '../questions-kb';
+import { findKBAnswer, aiAnswerQuestion, aiAnswerCheckboxes, selectBestOption } from '../questions-kb';
 import { tailorCoverLetter, callOpenRouter } from '../openrouter';
 import { tailorResume, TailoredContent } from '../resume-tailor';
 import { generateTailoredDocx } from '../resume-generator';
@@ -27,6 +27,7 @@ Location: Newcastle/Sydney/Brisbane, NSW and QLD (open to remote and hybrid)
 Work rights: Family/partner visa with no restrictions
 Notice period: 2 weeks
 Expected salary: $120,000 - $150,000 AUD + superannuation
+Expected daily rate (contract/day rate roles): $700 AUD per day (range $650 - $750), excluding GST
 Years of project management experience: 5 years
 Years of software engineering experience: 4 years
 Education: Bachelor of Computer Systems Engineering, University of Newcastle
@@ -120,7 +121,7 @@ function saveToReviewQueue(url: string, unanswered: UnansweredQuestion[], ctx: {
 
 interface UnansweredQuestion {
   label: string;
-  type: 'select' | 'textarea' | 'input';
+  type: 'select' | 'textarea' | 'input' | 'checkbox';
   options?: string[];
 }
 
@@ -226,6 +227,40 @@ async function fillFieldByLabel(
       return true;
     }
   }
+  if (q.type === 'checkbox') {
+    const names = new Set<string>();
+    for (const cb of await page.locator('input[type="checkbox"]').all()) {
+      const n = await cb.getAttribute('name').catch(() => null);
+      if (n) names.add(n);
+    }
+    for (const name of names) {
+      const boxes = page.locator(`input[type="checkbox"][name="${name}"]`);
+      const count = await boxes.count();
+      if (count === 0) continue;
+      const lbl = await getQuestionLabel(page, boxes.first()).catch(() => '');
+      if (!labelMatch(lbl)) continue;
+      const selections = answer.split(',').map((s) => s.trim().toLowerCase()).filter(Boolean);
+      for (let i = 0; i < count; i++) {
+        const box = boxes.nth(i);
+        const id = await box.getAttribute('id').catch(() => null);
+        let optLabel = '';
+        if (id) optLabel = (await page.locator(`label[for="${id}"]`).textContent().catch(() => '')) ?? '';
+        if (!optLabel.trim()) optLabel = (await box.getAttribute('aria-label').catch(() => null)) ?? '';
+        if (!optLabel.trim()) optLabel = (await box.getAttribute('value').catch(() => '')) ?? '';
+        const o = optLabel.trim().toLowerCase();
+        if (!o) continue;
+        if (selections.some((s) => o === s || o.includes(s) || s.includes(o))) {
+          if (await box.isChecked().catch(() => false)) continue;
+          if (id) {
+            const l = page.locator(`label[for="${id}"]`);
+            if (await l.isVisible().catch(() => false)) { await l.click().catch(() => {}); continue; }
+          }
+          await box.click().catch(() => {});
+        }
+      }
+      return true;
+    }
+  }
   return false;
 }
 
@@ -243,12 +278,14 @@ async function handleUnansweredQuestions(
     console.log(`  ${unanswered.length} unanswered question(s) - attempting autonomous AI answers`);
     for (const q of unanswered) {
       const optionsList = q.options?.filter((o) => o.trim()).join(' | ') ?? '';
+      const isCheckbox = q.type === 'checkbox';
       const prompt =
         `You are completing a job application form for this candidate:\n${CANDIDATE_PROFILE}\n\n` +
         `Question: "${q.label}"\n` +
         (optionsList ? `Available options: ${optionsList}\n` : '') +
-        `Return ONLY the exact answer text (matching one of the options if provided). ` +
-        `For Yes/No questions always return "Yes" or "No". No explanation.`;
+        (isCheckbox
+          ? `Select ALL that apply and separate multiple answers with commas. Return only the comma-separated option texts, nothing else.`
+          : `Return ONLY the exact answer text (matching one of the options if provided). For Yes/No questions always return "Yes" or "No". No explanation.`);
       const answer = await callOpenRouter(prompt).catch(() => '');
       if (answer.trim()) {
         const keywords = q.label.toLowerCase().split(/\W+/).filter((w) => w.length > 3).slice(0, 6);
@@ -328,7 +365,7 @@ async function answerEmployerQuestions(
     const answer = findKBAnswer(label, kb) ?? (await aiAnswerQuestion(label, null, kb, CANDIDATE_PROFILE));
     if (answer) {
       const type = await inp.getAttribute('type');
-      if (type === 'number') { const nums = answer.match(/\d+/); await inp.fill(nums ? nums[0] : answer).catch(() => {}); }
+      if (type === 'number') { const cleaned = answer.replace(/[$,\s]/g, ''); const nums = cleaned.match(/\d+/); await inp.fill(nums ? nums[0] : answer).catch(() => {}); }
       else await inp.fill(answer).catch(() => {});
     } else {
       unanswered.push({ label, type: 'input' });
@@ -376,6 +413,61 @@ async function answerEmployerQuestions(
       break;
     }
     if (!clicked) unanswered.push({ label, type: 'select', options: optionLabels.filter(Boolean) });
+  }
+
+  // Checkbox groups (multi-select skill/tool questions).
+  // Single standalone checkboxes (count < 2) are skipped to avoid force-checking consent boxes.
+  const checkboxNames = new Set<string>();
+  for (const cb of await page.locator('input[type="checkbox"]').all()) {
+    if (!(await cb.isVisible().catch(() => false))) continue;
+    const name = await cb.getAttribute('name').catch(() => null);
+    if (name) checkboxNames.add(name);
+  }
+  for (const name of checkboxNames) {
+    const boxes = page.locator(`input[type="checkbox"][name="${name}"]`);
+    const count = await boxes.count();
+    if (count < 2) continue;
+    const anyChecked = await Promise.all(
+      Array.from({ length: count }, (_, i) => boxes.nth(i).isChecked().catch(() => false)),
+    );
+    if (anyChecked.some(Boolean)) continue;
+    const label = await getQuestionLabel(page, boxes.first());
+    if (!label) continue;
+    const optionLabels: string[] = [];
+    for (let i = 0; i < count; i++) {
+      const box = boxes.nth(i);
+      const id = await box.getAttribute('id').catch(() => null);
+      let optLabel = '';
+      if (id) optLabel = (await page.locator(`label[for="${id}"]`).textContent().catch(() => '')) ?? '';
+      if (!optLabel.trim()) optLabel = (await box.getAttribute('aria-label').catch(() => null)) ?? '';
+      if (!optLabel.trim()) optLabel = (await box.getAttribute('value').catch(() => '')) ?? '';
+      optionLabels.push(optLabel.trim());
+    }
+    const validOptions = optionLabels.filter(Boolean);
+    if (validOptions.length === 0) continue;
+    const selections = await aiAnswerCheckboxes(label, validOptions, CANDIDATE_PROFILE);
+    let clickedAny = false;
+    for (const sel of selections) {
+      const s = sel.toLowerCase();
+      for (let i = 0; i < count; i++) {
+        const opt = optionLabels[i].toLowerCase();
+        if (!opt) continue;
+        if (opt === s || opt.includes(s) || s.includes(opt)) {
+          const box = boxes.nth(i);
+          if (await box.isChecked().catch(() => false)) break;
+          const id = await box.getAttribute('id').catch(() => null);
+          let done = false;
+          if (id) {
+            const lbl = page.locator(`label[for="${id}"]`);
+            if (await lbl.isVisible().catch(() => false)) { await lbl.click().catch(() => {}); done = true; }
+          }
+          if (!done) await box.click().catch(() => {});
+          clickedAny = true;
+          break;
+        }
+      }
+    }
+    if (!clickedAny) unanswered.push({ label, type: 'checkbox', options: validOptions });
   }
 
   return unanswered;

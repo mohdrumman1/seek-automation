@@ -48,6 +48,30 @@ const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
       '(3) if a radio/checkbox, verify label-click confirmation logs show "(unconfirmed)"; ' +
       '(4) date pickers and file uploads are not handled — those jobs will always fail.',
   },
+  auto_skip_still_blocked: {
+    date: '2026-05-22',
+    description:
+      'Root cause: multi-select checkbox groups (skills/tools/certs like "front-end libraries", ' +
+      '"data visualisation tools", "Microsoft Azure certifications") were completely unhandled — ' +
+      'answerEmployerQuestions() had no input[type=checkbox] handling. ' +
+      'Fix 2026-05-22: added checkbox group block after radio handling in answerEmployerQuestions(). ' +
+      'Groups detected by name attribute (count>=2 guard to skip consent checkboxes). ' +
+      'AI answer via aiAnswerCheckboxes() returns comma-separated list of applicable options. ' +
+      'fillFieldByLabel() and handleUnansweredQuestions() also updated with checkbox branch. ' +
+      'If still blocked: (1) check if the question name attribute exists on the checkboxes; ' +
+      '(2) verify optionLabels are being extracted (label[for=id] chain); ' +
+      '(3) check if the AI is returning any selections in the log.',
+  },
+  unanswered_questions: {
+    date: '2026-05-22',
+    description:
+      'Two root causes: ' +
+      '(1) Salary/rate number fields: answer.match(/\\d+/) truncated "$120,000" to "120" (stopped at comma). ' +
+      'Fix 2026-05-22: strip $, comma, whitespace before matching — "$120,000" now fills "120000". ' +
+      '(2) Daily/contract rate: CANDIDATE_PROFILE had no day rate — AI invented "$60/day". ' +
+      'Fix 2026-05-22: added "Expected daily rate: $700 AUD per day (range $650 - $750)" to profile. ' +
+      'If recurs: check what label the failing field uses; add a KB entry with exact keywords from that label.',
+  },
 };
 
 export interface ErrorEntry {

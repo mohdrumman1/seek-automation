@@ -70,6 +70,34 @@ export async function aiAnswerQuestion(
   }
 }
 
+export async function aiAnswerCheckboxes(
+  question: string,
+  options: string[],
+  candidateProfile: string,
+): Promise<string[]> {
+  const optionsStr = options.map((o) => `- ${o}`).join('\n');
+  const prompt =
+    `Answer this multi-select job application question for the candidate below.\n\n` +
+    `CANDIDATE:\n${candidateProfile}\n\n` +
+    `QUESTION (select ALL that apply): ${question}\n\n` +
+    `OPTIONS:\n${optionsStr}\n\n` +
+    `Rules:\n` +
+    `- Return ONLY the exact text of every option the candidate genuinely matches\n` +
+    `- Separate multiple selections with a comma\n` +
+    `- Do not fabricate experience; if none apply, return an empty response\n` +
+    `- Return only the comma-separated option texts, nothing else`;
+  try {
+    const raw = await callOpenRouter(prompt);
+    return raw
+      .split(/[,\n]/)
+      .map((s) => s.replace(/^[-•\s]+/, '').trim())
+      .filter(Boolean);
+  } catch (e) {
+    console.error(`  AI checkbox answering failed (${e})`);
+    return [];
+  }
+}
+
 export function selectBestOption(options: string[], answer: string): string {
   // Normalize: collapse non-breaking spaces and trim
   const norm = (s: string) => s.replace(/\xa0/g, ' ').toLowerCase().trim();
