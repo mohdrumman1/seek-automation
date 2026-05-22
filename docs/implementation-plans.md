@@ -10,6 +10,32 @@ Conventions used throughout:
 
 ---
 
+## Status
+
+| Phase | Status | Implemented |
+|-------|--------|-------------|
+| Phase 5 — External ATS Engine | ✅ Implemented | 2026-05-22 |
+| Phase 7 — On-Demand Single-Job Apply | ✅ Implemented | 2026-05-22 |
+
+### Phase 5 implementation summary (2026-05-22)
+- `lib/ats/` created: types.ts, detect.ts, common.ts, index.ts, workday.ts, cornerstone.ts, jobadder.ts, teamtailor.ts, pageup.ts, smartrecruiters.ts, dayforce.ts (stub), successfactors.ts (stub), taleo.ts (stub), randstad.ts (stub)
+- `lib/platforms/types.ts`: ApplyResult extended with `atsProvider?`, `externalUrl?`
+- `lib/tracker.ts`: JobMeta + APP/SKIP/FAIL_HEADERS extended with `ats_provider`, `external_url`
+- `lib/platforms/seek.ts`: `filterByLocation()` added, ATS dispatch wired in place of early-return, CANDIDATE_PROFILE updated with phone/linkedin/website
+- `scripts/apply.ts`: atsProvider/externalUrl threaded through jobMeta; summary banner added to single-URL mode
+- `scripts/seek-sr.ts`: SmartRecruiters local queue runner (`npm run seek-sr`)
+- `scripts/normalise-url.js`: SEEK URL normaliser for workflow_dispatch
+- `.github/workflows/seek-apply.yml`: CANDIDATE_PHONE/LINKEDIN/WEBSITE env vars; workflow_dispatch inputs (job_url, dry_run); Run bot step updated for single-job mode
+- `.env`: CANDIDATE_PHONE, CANDIDATE_LINKEDIN, CANDIDATE_WEBSITE added
+
+### Phase 7 implementation summary (2026-05-22)
+- `workflow_dispatch` inputs: `job_url`, `dry_run`
+- `scripts/normalise-url.js`: URL normaliser (bare id, au.seek.com, query-strip)
+- Run bot step: builds `$ARGS`, passes `--url` and `--dry-run` through to apply.ts
+- Summary banner added to `applyToSingleUrl` in apply.ts
+
+---
+
 ## Section 1: Phase 5 — External ATS Engine
 
 ### 1.0 Goal & current behaviour

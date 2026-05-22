@@ -98,9 +98,18 @@ async function applyToSingleUrl(
 
   console.log(result.success ? '  Applied!' : `  Not applied — ${result.skipReason ?? result.failureReason ?? 'unknown'}`);
 
+  console.log(`\n===== RESULT: ${result.success ? 'APPLIED' : 'NOT APPLIED'} — ${details.title || url} @ ${details.company || '?'} =====\n`);
+  if (!result.success && result.requiresManualReview) {
+    console.log(`  Manual review required: ${result.failureReason}`);
+  }
+
   if (!dryRun) {
     const jobId = url.match(/\/job\/(\d+)/)?.[1] ?? url;
-    const jobMeta = { jobId, platform: platform.name, ...details, runId };
+    const jobMeta = {
+      jobId, platform: platform.name, ...details, runId,
+      atsProvider: result.atsProvider,
+      externalUrl: result.externalUrl,
+    };
     if (result.success) {
       tracker.recordApplication({ ...jobMeta, resumeVariant: result.variant ?? 'pm' });
     } else if (result.skipReason) {
@@ -237,6 +246,8 @@ async function main() {
           salaryText: details.salaryText,
           workType: details.workType,
           runId,
+          atsProvider: result.atsProvider,
+          externalUrl: result.externalUrl,
         };
 
         if (result.success) {

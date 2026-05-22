@@ -7,6 +7,16 @@ on:
     - cron: '17 2 * * *'
     - cron: '17 8 * * *'
   workflow_dispatch:
+    inputs:
+      job_url:
+        description: 'SEEK job URL to apply to (leave blank for normal search loop)'
+        required: false
+        type: string
+      dry_run:
+        description: 'Dry run — fill but do not submit'
+        required: false
+        type: boolean
+        default: false
 
 concurrency:
   group: seek-apply
@@ -25,6 +35,9 @@ jobs:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       SEEK_EMAIL: ${{ secrets.SEEK_EMAIL }}
       SEEK_SESSION_COOKIES: ${{ secrets.SEEK_SESSION_COOKIES }}
+      CANDIDATE_PHONE: ${{ secrets.CANDIDATE_PHONE }}
+      CANDIDATE_LINKEDIN: ${{ secrets.CANDIDATE_LINKEDIN }}
+      CANDIDATE_WEBSITE: ${{ secrets.CANDIDATE_WEBSITE }}
       MAX_APPS_PER_RUN: '100'
       MAX_APPS_PER_SEARCH: '30'
       RESUME_TAILORING_ENABLED: 'true'
@@ -50,6 +63,9 @@ jobs:
           {
             echo "OPENROUTER_API_KEY=${OPENROUTER_API_KEY}"
             echo "SEEK_EMAIL=${SEEK_EMAIL}"
+            echo "CANDIDATE_PHONE=${CANDIDATE_PHONE}"
+            echo "CANDIDATE_LINKEDIN=${CANDIDATE_LINKEDIN}"
+            echo "CANDIDATE_WEBSITE=${CANDIDATE_WEBSITE}"
             echo "MAX_APPS_PER_RUN=${MAX_APPS_PER_RUN}"
             echo "MAX_APPS_PER_SEARCH=${MAX_APPS_PER_SEARCH}"
             echo "RESUME_TAILORING_ENABLED=${RESUME_TAILORING_ENABLED}"
@@ -67,7 +83,20 @@ jobs:
         # even when piped through tee. The cookies b64 is written to
         # tmp/seek-cookies.b64 by saveSession — NOT captured in the log.
         shell: bash -eo pipefail {0}
-        run: npm run seek 2>&1 | tee tmp/bot.log
+        env:
+          JOB_URL: ${{ github.event.inputs.job_url }}
+          DRY_RUN_INPUT: ${{ github.event.inputs.dry_run }}
+        run: |
+          ARGS=""
+          if [ -n "$JOB_URL" ]; then
+            NORMALISED="$(node scripts/normalise-url.js "$JOB_URL")"
+            echo "Single-job mode for: $NORMALISED"
+            ARGS="--url $NORMALISED"
+          fi
+          if [ "$DRY_RUN_INPUT" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          npm run seek -- $ARGS 2>&1 | tee tmp/bot.log
 
       - name: Update SEEK_SESSION_COOKIES secret
         if: always()
@@ -110,7 +139,8 @@ jobs:
             data/applications.csv \
             data/skipped_jobs.csv \
             data/failed_jobs.csv \
-            data/runs.csv 2>/dev/null || true
+            data/runs.csv \
+            data/sr-queue.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No data changes to commit."
           else

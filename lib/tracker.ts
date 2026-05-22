@@ -32,19 +32,21 @@ export interface JobMeta {
   salaryText: string;
   workType: string;
   runId: string;
+  atsProvider?: string;
+  externalUrl?: string;
 }
 
 const APP_HEADERS = [
   'job_id', 'platform', 'title', 'company', 'location', 'salary_text', 'work_type',
-  'applied_at', 'resume_variant', 'run_id',
+  'applied_at', 'resume_variant', 'run_id', 'ats_provider', 'external_url',
 ];
 const SKIP_HEADERS = [
   'job_id', 'platform', 'title', 'company', 'location', 'salary_text', 'work_type',
-  'skipped_at', 'skip_reason', 'run_id',
+  'skipped_at', 'skip_reason', 'run_id', 'ats_provider', 'external_url',
 ];
 const FAIL_HEADERS = [
   'job_id', 'platform', 'title', 'company', 'location', 'salary_text', 'work_type',
-  'failed_at', 'failure_reason', 'requires_manual_review', 'screenshot_path', 'run_id',
+  'failed_at', 'failure_reason', 'requires_manual_review', 'screenshot_path', 'run_id', 'ats_provider', 'external_url',
 ];
 const RUN_HEADERS = [
   'run_id', 'started_at', 'ended_at', 'duration_sec',
@@ -63,6 +65,8 @@ export function recordApplication(meta: JobMeta & { resumeVariant: string }, _da
     applied_at: new Date().toISOString(),
     resume_variant: meta.resumeVariant,
     run_id: meta.runId,
+    ats_provider: meta.atsProvider ?? '',
+    external_url: meta.externalUrl ?? '',
   });
 }
 
@@ -78,6 +82,8 @@ export function recordSkip(meta: JobMeta & { skipReason: string }, _dataDir = DA
     skipped_at: new Date().toISOString(),
     skip_reason: meta.skipReason,
     run_id: meta.runId,
+    ats_provider: meta.atsProvider ?? '',
+    external_url: meta.externalUrl ?? '',
   });
 }
 
@@ -102,6 +108,8 @@ export function recordFailure(
     requires_manual_review: meta.requiresManualReview ? 'true' : 'false',
     screenshot_path: meta.screenshotPath ?? '',
     run_id: meta.runId,
+    ats_provider: meta.atsProvider ?? '',
+    external_url: meta.externalUrl ?? '',
   });
 }
 

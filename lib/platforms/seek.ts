@@ -17,12 +17,17 @@ import { generateTailoredDocx } from '../resume-generator';
 import { cleanTailoredResumes, uploadTailoredResume } from '../resume-manager';
 import { logger } from '../logger';
 import { readBaseCoverLetter } from '../cover-letter';
+import { applyViaATS } from '../ats/index';
 
 const SEEK_EMAIL = process.env.SEEK_EMAIL ?? 'mohdrumman1@gmail.com';
 const REVIEW_QUEUE_PATH = path.resolve(__dirname, '../../data/review-queue.json');
 
 const CANDIDATE_PROFILE = `
 Name: Rumman Riyaz
+Phone: ${process.env.CANDIDATE_PHONE ?? '0474199245'}
+Email: ${process.env.SEEK_EMAIL ?? 'mohdrumman1@gmail.com'}
+LinkedIn: ${process.env.CANDIDATE_LINKEDIN ?? 'https://www.linkedin.com/in/rumman-riyaz/'}
+Website: ${process.env.CANDIDATE_WEBSITE ?? 'https://rummanriyaz.com/'}
 Location: Newcastle/Sydney/Brisbane, NSW and QLD (open to remote and hybrid)
 Work rights: Family/partner visa with no restrictions
 Notice period: 2 weeks
@@ -620,6 +625,23 @@ async function login(page: Page): Promise<void> {
   else console.log('Warning: could not confirm login. Proceeding anyway.');
 }
 
+// ── LOCATION FILTER ───────────────────────────────────────────────────────────
+
+// Remote roles: any location OK. Hybrid/on-site: must be NSW or QLD.
+function filterByLocation(details: JobDetails): { ok: boolean; reason?: string } {
+  const text = `${details.location} ${details.workType} ${details.title}`.toLowerCase();
+  const isRemote = /\bremote\b/.test(text) && !/hybrid/.test(text);
+  if (isRemote) return { ok: true };
+
+  const loc = details.location.toLowerCase();
+  const allowed = /\b(nsw|new south wales|sydney|newcastle|wollongong|qld|queensland|brisbane|gold coast|sunshine coast)\b/.test(loc);
+  const blocked = /\b(vic|victoria|melbourne|wa|western australia|perth|sa|south australia|adelaide|act|canberra|tas|tasmania|hobart|nt|northern territory|darwin)\b/.test(loc);
+  if (allowed && !blocked) return { ok: true };
+  if (blocked) return { ok: false, reason: 'location_out_of_region' };
+  // No clear state signal — allow; SEEK search already filters by work arrangement.
+  return { ok: true };
+}
+
 // ── SEEK PLATFORM ─────────────────────────────────────────────────────────────
 
 export class SeekPlatform implements JobPlatform {
@@ -685,6 +707,14 @@ export class SeekPlatform implements JobPlatform {
   ): Promise<ApplyResult> {
     const ctx = { job_title: details.title, company: details.company };
 
+    // Location filter — must be first so it short-circuits both SEEK-native and ATS paths.
+    const locCheck = filterByLocation(details);
+    if (!locCheck.ok) {
+      console.log(`  Skipping - ${locCheck.reason}: ${details.location}`);
+      logger.info('skip: location out of region', { location: details.location, workType: details.workType, title: details.title });
+      return { success: false, skipReason: locCheck.reason };
+    }
+
     // External apply check
     const isExt =
       (await page.locator('[data-automation="job-detail-apply-external"]').count()) > 0 ||
@@ -731,10 +761,29 @@ export class SeekPlatform implements JobPlatform {
 
     const isSeekUrl = applyPage.url().includes('seek.com.au') || applyPage.url().includes('au.seek.com');
     if (!isSeekUrl) {
-      console.log(`  Skipping - Apply redirected to external: ${applyPage.url().slice(0, 60)}`);
-      await captureAndAnalyze(applyPage, 'redirected_to_external_ats', ctx);
+      const externalUrl = applyPage.url();
+      console.log(`  External ATS redirect: ${externalUrl.slice(0, 80)}`);
+
+      // Build tailored resume + cover letter for the ATS handler.
+      const atsCoverLetter = await tailorCoverLetter(config.baseCoverLetter, details.title, details.company, details.description);
+      let atsResumePath: string | null = null;
+      if (process.env.RESUME_TAILORING_ENABLED === 'true') {
+        const variant = resolveResumeVariant(details.title, config.searchName) ?? config.resumeVariant;
+        const jobId = externalUrl.match(/(\d{5,})/)?.[1] ?? Date.now().toString();
+        const tailored = await tailorResume(variant, details.title, details.company, details.description, externalUrl).catch(() => null);
+        if (tailored) {
+          atsResumePath = await generateTailoredDocx(tailored as TailoredContent, jobId, details.company).catch(() => null);
+        }
+      }
+
+      const { result, provider } = await applyViaATS(applyPage, externalUrl, details, config, atsResumePath, atsCoverLetter);
       if (newPage) await newPage.close().catch(() => {});
-      return { success: false, skipReason: 'redirected_to_external_ats' };
+
+      const atsMeta = { atsProvider: provider ?? undefined, externalUrl };
+      if (result.status === 'applied')             return { success: true,  variant: config.resumeVariant, ...atsMeta };
+      if (result.status === 'needs_manual_review') return { success: false, failureReason: result.reason, requiresManualReview: true, ...atsMeta };
+      if (result.status === 'failed')              return { success: false, failureReason: result.reason ?? 'ats_failed', ...atsMeta };
+      return { success: false, skipReason: result.reason ?? 'redirected_to_external_ats', ...atsMeta };
     }
 
     // Bail immediately if SEEK forced us to a sign-in page (expired session).

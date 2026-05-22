@@ -34,6 +34,8 @@ export interface ApplyResult {
   skipReason?: string;
   failureReason?: string;
   requiresManualReview?: boolean;
+  atsProvider?: string;
+  externalUrl?: string;
 }
 
 export interface JobPlatform {

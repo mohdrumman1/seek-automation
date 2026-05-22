@@ -48,6 +48,50 @@ const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
       '(3) if a radio/checkbox, verify label-click confirmation logs show "(unconfirmed)"; ' +
       '(4) date pickers and file uploads are not handled — those jobs will always fail.',
   },
+  location_out_of_region: {
+    date: '2026-05-22',
+    description:
+      'filterByLocation() in seek.ts blocked hybrid/on-site roles outside NSW/QLD. ' +
+      'Rule: remote roles are always ok; hybrid/on-site require NSW, QLD, Sydney, Newcastle, Brisbane, etc. ' +
+      'VIC/WA/SA/ACT/TAS/NT trigger the block. No clear state signal → allow (false-negative risk is low because ' +
+      'SEEK search already filters workarrangement=2,3). ' +
+      'If valid NSW/QLD hybrid roles are being blocked: check if SEEK changed the location format ' +
+      'or if the location string is missing the state (add it to the allowed regex).',
+  },
+  ats_requires_account: {
+    date: '2026-05-22',
+    description:
+      'ATS (usually Workday or PageUp classic) requires account creation before allowing apply. ' +
+      'No guest/manual path offered. Bot returns ats_requires_account skip. ' +
+      'If a tenant later offers "Apply Manually": check for [data-automation-id="applyManually"] ' +
+      'in workday.ts or "Continue as guest" / "Apply without an account" in pageup.ts.',
+  },
+  ats_workday_no_submit: {
+    date: '2026-05-22',
+    description:
+      'Workday wizard loop exhausted without reaching a success page. ' +
+      'Common causes: (1) required field missed (check screenshot for red validation errors); ' +
+      '(2) CAPTCHA or bot-detection triggered; (3) "Next" button selector changed. ' +
+      'Fix: (1) check which field is highlighted in error; add a CANDIDATE_PROFILE or KB entry; ' +
+      '(2) if CAPTCHA, return needs_manual_review; (3) update [data-automation-id="bottom-navigation-next-button"].',
+  },
+  ats_jobadder_no_submit: {
+    date: '2026-05-22',
+    description:
+      'JobAdder submit button not found or form not submitted successfully. ' +
+      'Common causes: (1) Cloudflare Turnstile CAPTCHA on submit (bot should have returned ats_captcha); ' +
+      '(2) required field missed — check screenshot for inline validation; ' +
+      '(3) JobAdder updated their submit button selector. ' +
+      'Fix: check screenshot, inspect DOM for submit button, update selector in jobadder.ts.',
+  },
+  ats_teamtailor_no_submit: {
+    date: '2026-05-22',
+    description:
+      'Teamtailor submit button not found or application not confirmed. ' +
+      'Common cause: GDPR consent checkbox not ticked (required to enable submit). ' +
+      'Fix: verify the consent checkbox regex (/i agree|consent|privacy|gdpr/i) matches the label; ' +
+      'add additional label patterns if needed. Also check for new custom-question types.',
+  },
   auto_skip_still_blocked: {
     date: '2026-05-22',
     description:
