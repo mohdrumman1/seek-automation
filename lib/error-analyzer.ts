@@ -66,6 +66,37 @@ const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
       'If a tenant later offers "Apply Manually": check for [data-automation-id="applyManually"] ' +
       'in workday.ts or "Continue as guest" / "Apply without an account" in pageup.ts.',
   },
+  ats_workday_account_failed: {
+    date: '2026-05-22',
+    description:
+      'Workday sign-in and account-creation both failed. ' +
+      'signInOrCreateAccount() tried: (1) [data-automation-id="signInLink"] with mohdrumman1@gmail.com + WORKDAY_PASSWORD; ' +
+      '(2) [data-automation-id="createAccountLink"] with the same credentials. ' +
+      'Possible causes: (a) WORKDAY_PASSWORD env var not set in GitHub secrets; ' +
+      '(b) Workday tenant requires a different login method (SSO/Google only); ' +
+      '(c) create-account form has unexpected required fields blocking submit. ' +
+      'Check screenshot for the exact page state. Ensure WORKDAY_PASSWORD secret is set in GitHub.',
+  },
+  ats_workday_verify_email: {
+    date: '2026-05-22',
+    description:
+      'Workday account created successfully but the tenant requires email verification before applying. ' +
+      'Bot detected "verify your email" / "check your email" text and returned needs_manual_review. ' +
+      'Fix: check mohdrumman1@gmail.com for the verification link and click it. ' +
+      'On the next run the bot will sign in to the verified account and proceed automatically. ' +
+      'If this keeps triggering for the same company: the account was already verified — ' +
+      'check if Workday is sending verification again due to a session/cookie issue.',
+  },
+  ats_workday_wall_mid_apply: {
+    date: '2026-05-22',
+    description:
+      'Workday account wall appeared mid-application (after sign-in or account creation succeeded). ' +
+      'The bot was inside the wizard loop when the wall selector became visible again. ' +
+      'Possible causes: (a) session cookie expired between wizard pages; ' +
+      '(b) navigation triggered a re-login on a cross-tenant Workday page. ' +
+      'Check the screenshot URL — if it contains "signIn" the session was dropped. ' +
+      'No automatic recovery implemented; job is marked ats_requires_account.',
+  },
   ats_workday_no_submit: {
     date: '2026-05-22',
     description:

@@ -28,6 +28,7 @@ jobs:
     # prevents accidental workflow_dispatch runs from develop or feature branches.
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     permissions:
       contents: write
 
@@ -38,6 +39,7 @@ jobs:
       CANDIDATE_PHONE: ${{ secrets.CANDIDATE_PHONE }}
       CANDIDATE_LINKEDIN: ${{ secrets.CANDIDATE_LINKEDIN }}
       CANDIDATE_WEBSITE: ${{ secrets.CANDIDATE_WEBSITE }}
+      WORKDAY_PASSWORD: ${{ secrets.WORKDAY_PASSWORD }}
       MAX_APPS_PER_RUN: '100'
       MAX_APPS_PER_SEARCH: '30'
       RESUME_TAILORING_ENABLED: 'true'
@@ -66,6 +68,7 @@ jobs:
             echo "CANDIDATE_PHONE=${CANDIDATE_PHONE}"
             echo "CANDIDATE_LINKEDIN=${CANDIDATE_LINKEDIN}"
             echo "CANDIDATE_WEBSITE=${CANDIDATE_WEBSITE}"
+            echo "WORKDAY_PASSWORD=${WORKDAY_PASSWORD}"
             echo "MAX_APPS_PER_RUN=${MAX_APPS_PER_RUN}"
             echo "MAX_APPS_PER_SEARCH=${MAX_APPS_PER_SEARCH}"
             echo "RESUME_TAILORING_ENABLED=${RESUME_TAILORING_ENABLED}"
@@ -145,6 +148,10 @@ jobs:
             echo "No data changes to commit."
           else
             git commit -m "bot: update data [skip ci]"
+            # Pull --rebase before pushing so the bot's data commit lands on top
+            # of any code changes pushed while the run was in progress.
+            # Data files (JSON/CSV) never conflict with code files (ts/yml).
+            git pull --rebase origin main
             git push
           fi
 

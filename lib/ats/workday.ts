@@ -4,10 +4,15 @@ import { ATSResult } from './types';
 import {
   ATS_CONTACT, acceptCookies, fillTextByHints, fillCoverLetter,
   uploadResumeFile, getBaseResumePath, hasSensitiveRequiredField,
-  answerGenericQuestions, isSuccessPage,
+  answerGenericQuestions, isSuccessPage, getQuestionLabel,
 } from './common';
 import { captureAndAnalyze } from '../error-analyzer';
 import { logger } from '../logger';
+
+const WALL_SEL =
+  '[data-automation-id="createAccountLink"], [data-automation-id="signInLink"], ' +
+  'a:has-text("Create Account"), button:has-text("Create Account"), ' +
+  'h1:has-text("Sign In"), h2:has-text("Create an Account")';
 
 export async function applyWorkday(
   page: Page,
@@ -31,11 +36,7 @@ export async function applyWorkday(
   }
 
   // Check for account creation / sign-in wall.
-  const wallSel =
-    '[data-automation-id="createAccountLink"], [data-automation-id="signInLink"], ' +
-    'a:has-text("Create Account"), button:has-text("Create Account"), ' +
-    'h1:has-text("Sign In"), h2:has-text("Create an Account")';
-  const hasWall = await page.locator(wallSel).first().isVisible({ timeout: 3_000 }).catch(() => false);
+  const hasWall = await page.locator(WALL_SEL).first().isVisible({ timeout: 3_000 }).catch(() => false);
 
   if (hasWall) {
     // Prefer the "Apply Manually" guest path if offered.
@@ -47,8 +48,22 @@ export async function applyWorkday(
       await page.waitForLoadState('networkidle', { timeout: 10_000 }).catch(() => {});
       await page.waitForTimeout(1_000);
     } else {
-      logger.info('ats: workday — account wall with no manual path', ctx);
-      return { status: 'skipped', reason: 'ats_requires_account' };
+      // No guest path — sign in with existing account or create a new one.
+      const accountResult = await signInOrCreateAccount(page, ctx);
+      if (accountResult === 'verify_email') {
+        await captureAndAnalyze(page, 'ats_workday_verify_email', ctx);
+        return { status: 'needs_manual_review', reason: 'workday_account_verify_email' };
+      }
+      if (accountResult !== 'ok') {
+        await captureAndAnalyze(page, 'ats_workday_account_failed', ctx);
+        return { status: 'skipped', reason: 'ats_requires_account' };
+      }
+      // After sign-in Workday sometimes redirects back to the job listing — click Apply again.
+      if (await applyBtn.isVisible({ timeout: 3_000 }).catch(() => false)) {
+        await applyBtn.click().catch(() => {});
+        await page.waitForLoadState('networkidle', { timeout: 10_000 }).catch(() => {});
+        await page.waitForTimeout(1_000);
+      }
     }
   }
 
@@ -66,8 +81,9 @@ export async function applyWorkday(
       return { status: 'applied' };
     }
 
-    // Account wall can reappear after navigation.
-    if (await page.locator(wallSel).first().isVisible({ timeout: 1_000 }).catch(() => false)) {
+    // Account wall can reappear after navigation (different Workday tenant behaviour).
+    if (await page.locator(WALL_SEL).first().isVisible({ timeout: 1_000 }).catch(() => false)) {
+      await captureAndAnalyze(page, 'ats_workday_wall_mid_apply', ctx);
       return { status: 'skipped', reason: 'ats_requires_account' };
     }
 
@@ -81,6 +97,7 @@ export async function applyWorkday(
     // Safety gate: never fill sensitive required fields.
     const sensitive = await hasSensitiveRequiredField(page);
     if (sensitive) {
+      await captureAndAnalyze(page, 'ats_workday_sensitive_field', ctx);
       return { status: 'needs_manual_review', reason: `sensitive_field:${sensitive.slice(0, 60)}` };
     }
 
@@ -119,13 +136,150 @@ export async function applyWorkday(
       await navBtn.click().catch(() => {});
       await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
     } else {
-      // No navigation button found — we may be stuck or done.
+      // No navigation button found — capture for debugging.
+      await captureAndAnalyze(page, 'ats_workday_no_nav_button', ctx);
       break;
     }
   }
 
   await captureAndAnalyze(page, 'ats_workday_no_submit', ctx);
   return { status: 'failed', reason: 'ats_workday_no_submit' };
+}
+
+// Sign in with existing credentials, or create a new account if needed.
+// Returns: 'ok' (ready to apply), 'verify_email' (need to verify inbox), 'failed' (unrecoverable).
+async function signInOrCreateAccount(
+  page: Page,
+  ctx: { job_title?: string; company?: string },
+): Promise<'ok' | 'verify_email' | 'failed'> {
+  const pwd = process.env.WORKDAY_PASSWORD ?? '';
+
+  // ── Try Sign In first (account may already exist from a prior run) ─────────
+  const signInLink = page.locator(
+    '[data-automation-id="signInLink"], a:has-text("Sign In"), button:has-text("Sign In")'
+  ).first();
+
+  if (await signInLink.isVisible({ timeout: 2_000 }).catch(() => false)) {
+    await signInLink.click().catch(() => {});
+    await page.waitForTimeout(1_500);
+
+    const emailField = page.locator(
+      '[data-automation-id="signInEmail"], input[autocomplete="username"], input[type="email"]'
+    ).first();
+    const passField = page.locator(
+      '[data-automation-id="password"], input[type="password"]'
+    ).first();
+
+    if (await emailField.isVisible({ timeout: 3_000 }).catch(() => false)) {
+      await emailField.fill(ATS_CONTACT.email).catch(() => {});
+    }
+    if (await passField.isVisible({ timeout: 3_000 }).catch(() => false)) {
+      await passField.fill(pwd).catch(() => {});
+    }
+
+    const signInSubmit = page.locator(
+      '[data-automation-id="signInSubmitButton"], ' +
+      'button:has-text("Sign In"):not([data-automation-id="signInLink"]), ' +
+      'input[type="submit"][value*="Sign In" i]'
+    ).first();
+    if (await signInSubmit.isVisible({ timeout: 3_000 }).catch(() => false)) {
+      await signInSubmit.click().catch(() => {});
+      await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+      await page.waitForTimeout(2_000);
+    }
+
+    const hasError = await page.locator(
+      '[data-automation-id="signInGlobalErrorMessage"], ' +
+      '[role="alert"]:has-text("incorrect"), [role="alert"]:has-text("invalid")'
+    ).first().isVisible({ timeout: 2_000 }).catch(() => false);
+    const stillOnSignIn = await page.locator(
+      '[data-automation-id="signInSubmitButton"]'
+    ).isVisible({ timeout: 1_000 }).catch(() => false);
+
+    if (!hasError && !stillOnSignIn) {
+      logger.info('ats: workday — signed in to existing account', ctx);
+      return 'ok';
+    }
+    logger.info('ats: workday — sign in failed, trying create account', ctx);
+  }
+
+  // ── Try Create Account ─────────────────────────────────────────────────────
+  const createLink = page.locator(
+    '[data-automation-id="createAccountLink"], ' +
+    'a:has-text("Create Account"), button:has-text("Create Account"), ' +
+    'a:has-text("Create an Account"), button:has-text("Create an Account")'
+  ).first();
+
+  if (!await createLink.isVisible({ timeout: 3_000 }).catch(() => false)) {
+    logger.warn('ats: workday — no sign-in or create-account option found', ctx);
+    return 'failed';
+  }
+
+  await createLink.click().catch(() => {});
+  await page.waitForLoadState('networkidle', { timeout: 10_000 }).catch(() => {});
+  await page.waitForTimeout(1_500);
+
+  // Fill registration form.
+  await fillTextByHints(page, [/e-?mail/i, /username/i], ATS_CONTACT.email);
+  await fillTextByHints(page, [/verify.{0,10}email|confirm.{0,10}email|re.?enter.{0,10}email/i], ATS_CONTACT.email);
+  await fillTextByHints(page, [/first.?name|given name/i], ATS_CONTACT.firstName);
+  await fillTextByHints(page, [/last.?name|surname|family name/i], ATS_CONTACT.lastName);
+
+  // Fill all password inputs (password + confirm-password).
+  for (const inp of await page.locator('input[type="password"]').all()) {
+    if (!(await inp.isVisible().catch(() => false))) continue;
+    const existing = await inp.inputValue().catch(() => '');
+    if (!existing) await inp.fill(pwd).catch(() => {});
+  }
+
+  // Tick any terms / privacy checkboxes required to enable the submit button.
+  for (const cb of await page.locator('input[type="checkbox"]').all()) {
+    if (!(await cb.isVisible().catch(() => false))) continue;
+    if (await cb.isChecked().catch(() => false)) continue;
+    const id = await cb.getAttribute('id').catch(() => null);
+    let cbLabel = '';
+    if (id) cbLabel = (await page.locator(`label[for="${id}"]`).textContent().catch(() => '')) ?? '';
+    if (!cbLabel) {
+      cbLabel = await cb.evaluate((el: Element) => el.closest('label')?.textContent ?? '').catch(() => '');
+    }
+    if (/terms|privacy|consent|agree/i.test(cbLabel)) {
+      await cb.click().catch(() => {});
+    }
+  }
+
+  const submitBtn = page.locator(
+    '[data-automation-id="createAccountSubmitButton"], ' +
+    'button:has-text("Create Account"), ' +
+    'button[type="submit"]:has-text("Create"), ' +
+    'input[type="submit"][value*="Create" i]'
+  ).first();
+  if (await submitBtn.isVisible({ timeout: 4_000 }).catch(() => false)) {
+    await submitBtn.click().catch(() => {});
+    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+    await page.waitForTimeout(2_000);
+  }
+
+  // Email verification gate — user must click the link in mohdrumman1@gmail.com.
+  const verifyGate = await page.locator(
+    'text=/verify your email/i, text=/check your email/i, text=/confirmation email/i, ' +
+    'text=/email has been sent/i'
+  ).first().isVisible({ timeout: 3_000 }).catch(() => false);
+  if (verifyGate) {
+    logger.info('ats: workday — account created but email verification required (check mohdrumman1@gmail.com)', ctx);
+    return 'verify_email';
+  }
+
+  // Any error shown on the page means account creation failed.
+  const createError = await page.locator(
+    '[data-automation-id="createAccountError"], [role="alert"], .error-message'
+  ).first().isVisible({ timeout: 2_000 }).catch(() => false);
+  if (createError) {
+    logger.warn('ats: workday — create account error on page', ctx);
+    return 'failed';
+  }
+
+  logger.info('ats: workday — new account created successfully', ctx);
+  return 'ok';
 }
 
 async function fillNameAndContact(page: Page): Promise<void> {
