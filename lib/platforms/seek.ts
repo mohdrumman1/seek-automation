@@ -588,7 +588,7 @@ async function isLoggedIn(page: Page): Promise<boolean> {
 
 async function login(page: Page): Promise<void> {
   await page.goto('https://www.seek.com.au', { waitUntil: 'domcontentloaded' });
-  await page.waitForTimeout(3_000);
+  await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
   if (await isLoggedIn(page)) { console.log('Already logged in via saved session.'); return; }
   // In CI, we can't interactively re-authenticate — flag clearly and let loginAndVerify abort.
   if (!process.stdin.isTTY) {
@@ -964,7 +964,7 @@ export class SeekPlatform implements JobPlatform {
   /** Run login flow and session setup. Called from scripts/apply.ts before the main loop. */
   async loginAndVerify(page: Page): Promise<boolean> {
     await page.goto('https://www.seek.com.au');
-    await page.waitForTimeout(1_000);
+    await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
     await login(page);
     if (await isSessionExpired(page)) {
       logger.error('seek session expired after login attempt — aborting run', {

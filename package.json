@@ -16,6 +16,7 @@
     "analyze": "ts-node scripts/analyze-and-patch.ts",
     "weekly-review": "ts-node scripts/weekly-review.ts",
     "test": "playwright test",
+    "test:unit": "vitest run",
     "codegen": "playwright codegen https://www.seek.com.au",
     "trace": "playwright show-trace"
   },
@@ -26,7 +27,8 @@
     "@playwright/test": "^1.59.1",
     "@types/node": "^25.6.0",
     "ts-node": "^10.9.2",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
     "docx": "^9.6.1",

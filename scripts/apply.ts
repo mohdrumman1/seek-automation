@@ -83,7 +83,7 @@ async function applyToSingleUrl(
   runId: string,
 ): Promise<void> {
   await page.goto(url);
-  await page.waitForTimeout(2_000);
+  await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
 
   let details: JobDetails = { title: '', company: '', description: '', location: '', salaryText: '', workType: '' };
   try { details = await platform.getJobDetails(page); } catch {}
@@ -194,7 +194,7 @@ async function main() {
 
       logger.info('search starting', { name: search.name, variant: search.resumeVariant });
       await page.goto(search.url);
-      await page.waitForTimeout(2_000);
+      await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
 
       const links = await platform.getJobLinks(page);
       logger.info('search jobs found', { name: search.name, count: links.length });
@@ -214,7 +214,7 @@ async function main() {
         if (applied.has(jobId)) { logger.debug('already applied — skipping', { jobId }); continue; }
 
         await page.goto(url);
-        await page.waitForTimeout(2_000);
+        await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
 
         // Fetch details before applyToJob so tracker always has full metadata
         let details: JobDetails = { title: '', company: '', description: '', location: '', salaryText: '', workType: '' };

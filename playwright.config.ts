@@ -20,5 +20,11 @@ export default defineConfig({
     },
     // Browser tests
     { name: 'chromium', testMatch: ['**/example.spec.ts'], use: { ...devices['Desktop Chrome'] } },
+    // Integration tests — spawn their own process, no browser context needed
+    {
+      name: 'integration',
+      testMatch: ['**/integration/**/*.spec.ts'],
+      use: {},
+    },
   ],
 });

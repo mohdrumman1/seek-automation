@@ -5,6 +5,7 @@ import { callOpenRouterVision } from './openrouter';
 
 const ERROR_LOG_PATH = path.resolve(__dirname, '../data/error-log.json');
 const SCREENSHOT_DIR = path.resolve(__dirname, '../screenshots/errors');
+const MAX_ERROR_LOG_ENTRIES = 500;
 
 // When a fix is deployed, add an entry here so the AI analysis prompt knows
 // what was already tried. If the error persists after the fix date, the AI
@@ -160,6 +161,10 @@ export interface ErrorEntry {
   analysis: string;
 }
 
+export function trimErrorLog(log: ErrorEntry[], max = MAX_ERROR_LOG_ENTRIES): ErrorEntry[] {
+  return log.length > max ? log.slice(log.length - max) : log;
+}
+
 export function loadErrorLog(): ErrorEntry[] {
   if (!fs.existsSync(ERROR_LOG_PATH)) return [];
   try {
@@ -170,7 +175,7 @@ export function loadErrorLog(): ErrorEntry[] {
 }
 
 function saveErrorLog(log: ErrorEntry[]): void {
-  fs.writeFileSync(ERROR_LOG_PATH, JSON.stringify(log, null, 2), 'utf-8');
+  fs.writeFileSync(ERROR_LOG_PATH, JSON.stringify(trimErrorLog(log), null, 2), 'utf-8');
 }
 
 // Returns the AI analyses from the last N occurrences of a given error type

@@ -92,14 +92,38 @@ Single-URL mode already exists locally via `ts-node scripts/apply.ts --url <job-
 
 ---
 
-## Phase 8 — Hardening
+## Phase 8 — Hardening ✅
 
-- Unit tests: KB lookup, fit scoring, CSV writing, weekly report, ATS detection
-- Integration test: dry-run end-to-end against a known SEEK job URL
-- PII redaction in logger (mask email, phone, TFN if accidentally in logs)
-- Retry + backoff in OpenRouter calls (429/5xx)
-- `error-log.json` rotation (cap at 500 entries)
-- Replace `waitForTimeout` with `waitForLoadState` where possible
+- Unit tests: KB lookup, CSV writing, ATS detection, select-best-option (28 passing) ✅
+- Integration test: dry-run end-to-end against a known SEEK job URL (skips if no cookies) ✅
+- PII redaction in logger (mask email, phone, TFN if accidentally in logs) ✅
+- Retry + backoff in OpenRouter calls (429/5xx — 3 retries, exponential backoff + jitter) ✅
+- `error-log.json` rotation (cap at 500 entries, oldest-first trim) ✅
+- Replace nav-follow `waitForTimeout` with `waitForLoadState` (seek.ts + apply.ts) ✅
+
+---
+
+## Phase 9 — Universal Job Link Apply
+
+**Goal:** Accept any job URL from any site — not just SEEK — and apply to it autonomously.
+
+Current limitation: the bot only accepts SEEK URLs (`seek.com.au/job/XXXXX`). If you paste a direct company careers page or external ATS URL, the bot can't scrape job details and the SEEK-specific "Apply" button flow doesn't exist.
+
+**What needs to be built:**
+
+1. **Universal job scraper** — given any URL (LinkedIn, Seek, Indeed, company careers page, Workday listing, etc.), extract: job title, company name, full job description, location, work type, salary. Use LLM vision/HTML extraction as fallback when structured selectors aren't available.
+
+2. **Decouple job details from SEEK** — `applyToSingleUrl` currently calls `platform.getJobDetails(page)` which is SEEK-specific. This needs a platform-agnostic `extractJobDetails(page, url)` that picks the right extractor by URL pattern (SEEK, LinkedIn, raw Workday listing, generic HTML).
+
+3. **Direct ATS entry** — if the URL is already an ATS application page (Workday, JobAdder, Teamtailor, etc.), skip the job listing page entirely and jump straight to the ATS handler with the scraped/provided job details.
+
+4. **Resume + cover letter generation** — same tailoring pipeline as existing (already works), but now seeded from the universally-scraped job details.
+
+5. **`normalise-url.js` upgrade** — extend to pass non-SEEK URLs through to the new universal path rather than normalising to `seek.com.au`.
+
+6. **Workflow input** — no change needed; `job_url` input in `workflow_dispatch` already accepts any string.
+
+**Priority extractors to support first:** SEEK (done), direct Workday listing page (`company.myworkdayjobs.com/jobs/...`), LinkedIn job posting, raw company careers page (generic HTML + LLM).
 
 ---
 

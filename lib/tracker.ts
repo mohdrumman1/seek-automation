@@ -4,7 +4,7 @@ import * as path from 'path';
 
 export const DATA_DIR = path.resolve(__dirname, '../data');
 
-function escapeCsv(val: unknown): string {
+export function escapeCsv(val: unknown): string {
   const s = String(val ?? '');
   if (s.includes(',') || s.includes('"') || s.includes('\n') || s.includes('\r')) {
     return '"' + s.replace(/"/g, '""') + '"';
