@@ -18,7 +18,8 @@ async function withRetry<T>(fn: () => Promise<T>, label: string): Promise<T> {
       const msg = (err as Error).message ?? '';
       const statusMatch = msg.match(/OpenRouter(?:\s+vision)?\s+(\d{3})/i);
       const status = statusMatch ? parseInt(statusMatch[1], 10) : 0;
-      const retryable = status === 429 || status >= 500 || status === 0;
+      const emptyContent = msg.includes('returned empty content');
+      const retryable = status === 429 || status >= 500 || status === 0 || emptyContent;
       if (!retryable || attempt === maxRetries) throw err;
       const delayMs = Math.min(baseMs * 2 ** attempt, 8000) + Math.random() * 250;
       logger.warn('openrouter retry', { label, attempt: attempt + 1, status: status || 'network', delayMs: Math.round(delayMs) });

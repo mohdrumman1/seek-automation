@@ -935,7 +935,14 @@ export class SeekPlatform implements JobPlatform {
           await handleUnansweredQuestions(applyPage, blocked, config.kb, ctx);
           saveToReviewQueue(applyPage.url(), blocked, ctx);
         }
-        const stillBlocked = await applyPage.locator('text=Before you can continue').isVisible().catch(() => false);
+        let stillBlocked = await applyPage.locator('text=Before you can continue').isVisible().catch(() => false);
+        if (stillBlocked) {
+          // One more Continue attempt after re-answering — covers cases where the
+          // AI fill succeeds but the form hasn't been re-validated yet.
+          await clickContinue(applyPage, ctx);
+          await applyPage.waitForTimeout(1_500);
+          stillBlocked = await applyPage.locator('text=Before you can continue').isVisible().catch(() => false);
+        }
         if (stillBlocked && process.stdin.isTTY) {
           const action = await askUser('  Still blocked. [r = 15s to fix manually | Enter = skip job]: ');
           if (action.trim().toLowerCase() === 'r') {
