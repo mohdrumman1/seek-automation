@@ -1,685 +1,5 @@
 [
   {
-    "timestamp": "2026-05-20T11:33:57.967Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Tech Lead",
-    "company": "Mustard Creative Media PTY. LTD.",
-    "url": "https://au.seek.com/job/92221237/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-33-55-853Z_auto_skip_still_blocked.png",
-    "analysis": "1.  The screen shows a form with questions about work rights, technical lead experience, and front-end development skills. An error message indicates that the \"front end development libraries and frameworks\" question requires a selection.\n2.  The error is caused by the bot failing to select an option from the list of front-end development libraries (jQuery, Bootstrap, Angular.js, Backbone.js).\n3.  The bot should select one of the radio buttons using selectors like `input[type=\"radio\"][value='jQuery']`, `input[type=\"radio\"][value='Bootstrap']`, etc. depending on desired answer."
-  },
-  {
-    "timestamp": "2026-05-20T11:36:21.404Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Senior Project Manager",
-    "company": "EML Group",
-    "url": "https://eml.wd105.myworkdayjobs.com/en-US/EML/job/Sydney-New-South-Wales/Senior-Project-Manager_JR5679?seek-token=Wy5NSCfi28bTjY5wFrnKXN",
-    "page_title": "Senior Project Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-36-18-095Z_redirected_to_external_ats.png",
-    "analysis": "1. The job description page on EML's career site for a Senior Project Manager role is visible.\n2. The error likely occurred because the bot didn't interact with the page after redirect. It needs to click the \"Apply\" button.\n3. The bot should attempt to click the \"Apply\" button using the CSS selector `button:contains(\"Apply\")`."
-  },
-  {
-    "timestamp": "2026-05-20T11:38:41.674Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Team Lead Projects",
-    "company": "Reserve Bank of Australia",
-    "url": "https://rba.wd105.myworkdayjobs.com/RBA_Careers/job/Sydney/Team-Lead-Projects_JR4500/apply?seek-token=399h2QpD1hHqxpanAhsjZR&source=seek_oz",
-    "page_title": "Team Lead Projects",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-38-39-373Z_redirected_to_external_ats.png",
-    "analysis": "1. The screen shows the \"Start Your Application\" page on the Reserve Bank of Australia's Workday careers site, with options to \"Autofill with Resume\", \"Apply Manually\", and \"Use My Last Application\".\n2. The error occurred because the bot likely only checked for a single \"Apply\" button and did not account for the multiple application method options.\n3. The bot should try to click the `button:contains(\"Apply Manually\")` or `button:contains(\"Autofill with Resume\")` to start the application process."
-  },
-  {
-    "timestamp": "2026-05-20T11:41:42.464Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Project Manager - Cyber Security, BeyondTrust Rollout",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/92222079/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-41-33-912Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Review and submit\" page is displayed, showing a validation error message.\n2. The error is caused by unresolved validation errors on the \"Answer employer questions\" page, likely the same working rights/police check questions from previous analyses, or potentially the front-end frameworks question.\n3. The bot should go back to the \"Answer employer questions\" page and retry answering the \"Do you hold full working rights in Australia?\" and \"Do you have, or are willing to obtain, a current Police Check (National Police Certificate) for employment?\" questions with \"Yes\", followed by checking for and answering the front-end frameworks question. If that fails, inspect review-queue.json."
-  },
-  {
-    "timestamp": "2026-05-20T11:41:50.371Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Project Manager - Cyber Security, BeyondTrust Rollout",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/92222079/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-41-42-482Z_auto_skip_still_blocked.png",
-    "analysis": "1.  The \"Review and submit\" page is displayed, but an error message indicates unresolved issues prevent continuing the application. The page also shows the applicant's profile information.\n2.  The error is caused by unresolved issues in either the \"Answer employer questions\" or \"Update SEEK Profile\" steps.\n3.  The bot should navigate back to these steps and ensure all mandatory questions and fields are correctly filled, likely by clicking the edit icon next to the \"Mohammed Rumman Riyaz\" section or using selectors like `input[type=\"radio\"]`, `select`, and `input[type=\"text\"]` to interact with form fields."
-  },
-  {
-    "timestamp": "2026-05-20T11:42:13.377Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Principal ICT Project Manager",
-    "company": "NSW Department of Customer Service",
-    "url": "https://nswconnect.csod.com/ux/ats/careersite/2/home/requisition/51301?c=nswconnect&seek-token=UtzeqmT2Fni7w8KQ4tSUzn&source=seek_oz",
-    "page_title": "Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-42-04-111Z_redirected_to_external_ats.png",
-    "analysis": "1. The job description page for \"Principal ICT Project Manager\" at the NSW Department of Customer Service is visible.\n2. The error likely occurred because the bot didn't click the \"Apply now\" button after the redirect.\n3. The bot should try to click the \"Apply now\" button using the CSS selector `button:contains(\"Apply now\")`."
-  },
-  {
-    "timestamp": "2026-05-20T11:43:45.973Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Manager, Portfolio Systems and Reporting",
-    "company": "Great Southern Bank",
-    "url": "https://gsb.csod.com/ux/ats/careersite/1/home/requisition/6344?c=gsb&seek-token=7ggSstupohp9CcsJr8Yj29&source=seek_oz",
-    "page_title": "Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-43-43-515Z_redirected_to_external_ats.png",
-    "analysis": "1. The job description page for \"Manager, Portfolio Systems and Reporting\" at Great Southern Bank is visible.\n2. The error likely occurred because the bot didn't click the \"Apply now\" button after the redirect.\n3. The bot should try to click the \"Apply now\" button using the CSS selector `button:contains(\"Apply now\")`."
-  },
-  {
-    "timestamp": "2026-05-20T11:44:35.300Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Project Manager",
-    "company": "Precision Sourcing",
-    "url": "https://au.seek.com/job/92197923",
-    "page_title": "Project Manager Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-44-32-835Z_apply_button_not_found.png",
-    "analysis": "1. The screen shows the job details for a Project Manager position at Precision Sourcing.\n2. The \"apply_button_not_found\" error likely occurred because the apply button is not immediately visible and may be located further down the page, or not available at location of screenshot.\n3. The bot should scroll down the page and search for an `a` tag with `href` attribute containing \"apply\", using `a[href*=\"apply\"]`. It should also look for button elements containing texts similar to \"Apply now\"."
-  },
-  {
-    "timestamp": "2026-05-20T11:46:09.581Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Tech Lead",
-    "company": "Mustard Creative Media PTY. LTD.",
-    "url": "https://au.seek.com/job/92221237/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-46-07-186Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible, displaying questions about working rights, technical lead experience, and front-end frameworks proficiency. A validation error message indicates to make a selection for front-end frameworks.\n2. The error is caused by not selecting an option for the \"Which of the following front end development libraries and frameworks are you proficient in?\" question.\n3. The bot should select one of the radio buttons for the front-end frameworks question, for example, by clicking the label \"jQuery\" associated with the input: `label[for=\"FRONT_END_FRAMEWORKS_0\"]` (assuming \"FRONT_END_FRAMEWORKS_0\" is the id of the jQuery radio button and it's consistent). Also, it should ensure `isChecked()` confirmation succeeds."
-  },
-  {
-    "timestamp": "2026-05-20T11:46:11.768Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Tech Lead",
-    "company": "Mustard Creative Media PTY. LTD.",
-    "url": "https://au.seek.com/job/92221237/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-46-09-620Z_auto_skip_still_blocked.png",
-    "analysis": "1.  The screen shows a form with questions that require answers, including one where a radio button selection is needed for front-end development libraries/frameworks.\n2.  The bot failed to select one of the available radio button options, preventing the application from continuing.\n3.  The bot should select one of the radio buttons using a selector like `input[type=\"radio\"][value='jQuery']`, `input[type=\"radio\"][value='Bootstrap']`, or similar. Prioritize clicking radio buttons matching the skills mentioned in job description."
-  },
-  {
-    "timestamp": "2026-05-20T11:48:09.480Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Project Manager",
-    "company": "Sensei",
-    "url": "https://au.seek.com/job/92199642/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-48-07-399Z_unanswered_questions.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible, displaying questions about salary expectations, notice period, and right to work. Notice period and right to work have answers selected.\n2.  The bot likely proceeded to the next page without filling in the mandatory salary question, resulting in the error.\n3.  The bot should use `document.querySelector('select:nth-of-type(1)').value = \"[Desired option]\";` ensuring the salary question is answered."
-  },
-  {
-    "timestamp": "2026-05-20T11:49:29.088Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Project Manager (PMO)",
-    "company": "The Recruitment Company",
-    "url": "https://au.seek.com/job/92202307/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-49-26-648Z_validation_errors_blocking_continue.png",
-    "analysis": "1.  The screenshot shows the \"Review and submit\" page with a validation error message indicating issues that need to be addressed before continuing the application.\n2.  The error is caused by unresolved validation errors, most likely from the \"Answer employer questions\" page (front-end frameworks, working rights, police check).\n3.  The bot should navigate back to the \"Answer employer questions\" page and retry answering the questions, paying special attention to isChecked() confirmation on any checkboxes/radio buttons, or inspect review-queue.json for exact failing prompt labels."
-  },
-  {
-    "timestamp": "2026-05-20T11:49:31.901Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Project Manager (PMO)",
-    "company": "The Recruitment Company",
-    "url": "https://au.seek.com/job/92202307/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-49-29-106Z_auto_skip_still_blocked.png",
-    "analysis": "1.  The screenshot shows the \"Review and submit\" page with an error message indicating unresolved issues, alongside the applicant's profile information.\n2.  The error is likely due to missing or incorrect information in either the \"Answer employer questions\" or \"Update SEEK Profile\" steps.\n3.  The bot should click the edit icon next to the applicant's name (using a selector like `[aria-label=\"Edit Mohammed Rumman Riyaz\"]`) or navigate back to previous steps using the navigation bar, and ensure all mandatory fields are correctly filled. The selectors to fill in data are `input[type=\"radio\"]`, `select`, and `input[type=\"text\"]`."
-  },
-  {
-    "timestamp": "2026-05-20T11:49:42.810Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Program Delivery Manager",
-    "company": "Chandler Macleod",
-    "url": "https://applr.io/l/05c475a3?portal=amw&seek-token=8ULe3ypaMMH2Z5jk6oG9S2",
-    "page_title": "Program Delivery Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-49-40-662Z_redirected_to_external_ats.png",
-    "analysis": "1.  A Chandler Macleod application form for the \"Program Delivery Manager\" role is visible, with options to \"Apply with SEEK\" or \"Upload CV\".\n2.  The bot likely stopped after the redirect because it was expecting to find a standard \"Apply now\" button, but instead found a form.\n3.  The bot should attempt to either click `button:contains(\"Apply with SEEK\")` or `button:contains(\"Upload CV\")` to proceed. Alternatively, it could fill out the form fields and submit."
-  },
-  {
-    "timestamp": "2026-05-20T11:50:31.635Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Senior Project Manager",
-    "company": "Motion Recruitment",
-    "url": "https://au.seek.com/job/92226493",
-    "page_title": "Senior Project Manager Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-50-29-089Z_apply_button_not_found.png",
-    "analysis": "1.  The screen displays the job posting header, including company logo, job title (Senior Project Manager), company name (Motion Recruitment), location (Sydney), and job type (Contract/Temp).\n2.  The \"apply_button_not_found\" error likely means the button is either lower on the page or loaded dynamically after initial page load.\n3.  The bot should scroll down the page and search for elements with \"Apply now\" text. Additionally, it should search for `a` tags with `href*=\"apply\"`."
-  },
-  {
-    "timestamp": "2026-05-20T11:50:52.406Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Principal ICT Project Manager",
-    "company": "NSW Department of Customer Service",
-    "url": "https://nswconnect.csod.com/ux/ats/careersite/2/home/requisition/51301?c=nswconnect&seek-token=6WTDurAQ1Rn643US6geBw5&source=seek_oz",
-    "page_title": "Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-50-46-308Z_redirected_to_external_ats.png",
-    "analysis": "1.  The job description page for \"Principal ICT Project Manager\" at the NSW Department of Customer Service is visible, including an \"Apply now\" button.\n2.  The error likely occurred because the bot did not attempt to click the \"Apply now\" button after the redirect.\n3.  The bot should click the \"Apply now\" button using the CSS selector `button:contains(\"Apply now\")`."
-  },
-  {
-    "timestamp": "2026-05-20T11:51:40.667Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Senior Project Manager",
-    "company": "EML Group",
-    "url": "https://eml.wd105.myworkdayjobs.com/en-US/EML/job/Sydney-New-South-Wales/Senior-Project-Manager_JR5679?seek-token=QRzs35LJNMnrLGWvh2YvY7",
-    "page_title": "Senior Project Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-51-35-616Z_redirected_to_external_ats.png",
-    "analysis": "1. The job description page for \"Senior Project Manager\" at EML Group is visible, including an \"Apply\" button.\n2. The bot likely stopped after the redirect because it did not click the \"Apply\" button.\n3. The bot should click the \"Apply\" button using the CSS selector `button:contains(\"Apply\")`."
-  },
-  {
-    "timestamp": "2026-05-20T11:53:15.006Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Project Manager - Cyber Security, BeyondTrust Rollout",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/92222079/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-53-12-531Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Review and submit\" page is shown, with a validation error.\n2. The bot is unable to proceed because there are unresolved validation errors from the \"Answer employer questions\" step. It is likely related to the front-end frameworks, working rights, or police check questions, as previously seen.\n3. The bot should navigate back to the \"Answer employer questions\" page. Rretry answering the questions, paying special attention to isChecked() confirmation on checkboxes or inspecting review-queue.json for question specifics."
-  },
-  {
-    "timestamp": "2026-05-20T11:53:16.927Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Project Manager - Cyber Security, BeyondTrust Rollout",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/92222079/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-53-15-022Z_auto_skip_still_blocked.png",
-    "analysis": "1.  The screen shows the \"Review and submit\" page on Seek, with an error message indicating unresolved issues preventing application submission, along with the applicant's profile summary.\n2.  The error is caused by missing or incorrect information in either the \"Answer employer questions\" or \"Update SEEK Profile\" steps.\n3.  The bot should click the edit icon next to the applicant's name using the selector `[aria-label=\"Edit Mohammed Rumman Riyaz\"]` to go back to update profile."
-  },
-  {
-    "timestamp": "2026-05-20T11:54:01.585Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Team Lead Projects",
-    "company": "Reserve Bank of Australia",
-    "url": "https://rba.wd105.myworkdayjobs.com/RBA_Careers/job/Sydney/Team-Lead-Projects_JR4500/apply?seek-token=No5ewQC5dvhnjw8TngX1q2&source=seek_oz",
-    "page_title": "Team Lead Projects",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-53-59-550Z_redirected_to_external_ats.png",
-    "analysis": "1.  The screen shows a \"Start Your Application\" form with options \"Autofill with Resume\", \"Apply Manually\", and \"Use My Last Application\".\n2.  The bot stopped because it was redirected to the application form and didn't know which button to press next.\n3.  The bot should click `button:contains(\"Autofill with Resume\")` or `button:contains(\"Apply Manually\")` to proceed."
-  },
-  {
-    "timestamp": "2026-05-20T11:54:46.448Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Delivery Specialist Lead",
-    "company": "Central Coast Council NSW",
-    "url": "https://centralcoast-master.applynow.net.au/jobs/CEN4529?seek-token=6TukUVJh8GEnfwYe3KrjT3",
-    "page_title": "Delivery Specialist Lead - Central Coast Council",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-54-43-357Z_redirected_to_external_ats.png",
-    "analysis": "1.  The Central Coast Council job description page for \"Delivery Specialist Lead\" is visible.\n2.  The bot stopped after the redirect and didn't click the \"Apply now\" or similar button on the page.\n3.  The bot should try to find and click a button or link that contains \"Apply\" or \"Start Application,\" using a CSS selector like `a:contains(\"Apply\")` or `a:contains(\"Start Application\")`. It can also find button via `button:contains(\"Apply\")` or `button:contains(\"Start Application\")`."
-  },
-  {
-    "timestamp": "2026-05-20T11:55:31.661Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Associate Director, Product and Process",
-    "company": "Optus",
-    "url": "https://groupcareers.singtel.com/job/Associate-Director%2C-Product-and-Process-Sydn/1361595866/?utm_campaign=seek&utm_source=seek&applySourceOverride=Seek",
-    "page_title": "Associate Director, Product and Process Job Details | Singtel Group",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-55-28-553Z_redirected_to_external_ats.png",
-    "analysis": "1.  The screen shows the job description page on the Singtel career site, along with a chatbot window that is interfering with the regular content of the page.\n2.  The bot stopped because it was redirected to a careers site and hasn't been told to scroll lower in the page or close the chatbot or find an application button.\n3.  The bot should first try to close the chatbot overlay by clicking the element with the aria-label attribute \"close\". After that it might need to scroll further down and try to find the button which contains text similar to that mentioned in previous analysis e.g. \"Apply\". Alternatively, the bot can attempt to interact with the chatbot and provide a response to the prompt."
-  },
-  {
-    "timestamp": "2026-05-20T11:55:48.082Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Senior Engineering Manager, Corporate Technology – Product Engineering",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Senior-Engineering-Manager--Corporate-Technology---Product-Engineering-_REQ252506?seek-token=4jTFJ7BQtnRBe17oC1dBTH",
-    "page_title": "Senior Engineering Manager, Corporate Technology – Product Engineering  - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-55-45-348Z_redirected_to_external_ats.png",
-    "analysis": "1.  The job description page for \"Senior Engineering Manager, Corporate Technology – Product Engineering\" on the Commonwealth Bank career site is visible.\n2.  The bot was redirected to the external ATS job page and stopped because it didn't know what action to take next.\n3.  The bot should click the \"Apply\" button using the CSS selector `button:contains(\"Apply\")`."
-  },
-  {
-    "timestamp": "2026-05-20T11:57:43.643Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Program Delivery Manager",
-    "company": "Chandler Macleod",
-    "url": "https://applr.io/l/05c475a3?portal=amw&seek-token=LzCmHzyUMnHSz6XqXGAtWP",
-    "page_title": "Program Delivery Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-57-40-947Z_redirected_to_external_ats.png",
-    "analysis": "1.  The applr.io page for Chandler Macleod is visible, displaying an application form for the Program Delivery Manager role.\n2.  The bot was redirected to an external ATS (applr.io) and stopped because it didn't know how to proceed with the application form.\n3.  The bot should click either \"Apply with SEEK\" using the CSS selector `button:contains(\"Apply with SEEK\")` or \"Upload CV\" button with the `button:contains(\"Upload CV\")` selector. Then, if needed, fill in the rest of the application form details."
-  },
-  {
-    "timestamp": "2026-05-20T11:58:32.535Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Delivery Manager - Dynamics (BAU)",
-    "company": "FinXL IT Professional Services",
-    "url": "https://au.seek.com/job/92226957",
-    "page_title": "Delivery Manager - Dynamics (BAU) Job in Melbourne VIC - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-58-30-275Z_apply_button_not_found.png",
-    "analysis": "1.  The screenshot shows the job title, company, location, job type, and a \"How you match\" section. It also indicates the user has already applied.\n2.  The apply button is likely located below the current screen view or doesn't appear because the application has already been submitted.\n3.  The bot should initially scroll down to fully load the page, then search for the apply button using `a[href*=\"apply\"]` or a button with text like \"Apply now.\" If that fails and the \"You applied on\" message is present, stop and log that."
-  },
-  {
-    "timestamp": "2026-05-20T11:58:48.969Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Project Manager",
-    "company": "Precision Sourcing",
-    "url": "https://au.seek.com/job/92197923",
-    "page_title": "Project Manager Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-58-45-984Z_apply_button_not_found.png",
-    "analysis": "1.  The screen shows the job header, including the company logo, job title, company name, location, a brief desription and job type.\n2.  The \"apply_button_not_found\" error likely occurred because the apply button isn't visible in the initial view and requires scrolling, or because the button is loaded dynamically, or because the button is missing on this specific job.\n3.  The bot should scroll down the page and search for elements with \"Apply now\" text, `a[href*=\"apply\"]`, or button elements containing texts similar to \"Apply now\", or a button with class containing `\"apply\"`. It should also check if there are other elements that would prevent from applying, like it already applied."
-  },
-  {
-    "timestamp": "2026-05-20T11:59:36.044Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Manager, Portfolio Systems and Reporting",
-    "company": "Great Southern Bank",
-    "url": "https://gsb.csod.com/ux/ats/careersite/1/home/requisition/6344?c=gsb&seek-token=QxRZjtCfGijHmR2JnQreA2&source=seek_oz",
-    "page_title": "Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T11-59-33-358Z_redirected_to_external_ats.png",
-    "analysis": "1. The Great Southern Bank job description page for \"Manager, Portfolio Systems and Reporting\" is visible.\n2. The bot was redirected to an external ATS and stopped because it didn't know what action to take next.\n3. The bot should click the \"Apply now\" button using the CSS selector `button:contains(\"Apply now\")`."
-  },
-  {
-    "timestamp": "2026-05-20T12:00:34.223Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Tech Lead",
-    "company": "Mustard Creative Media PTY. LTD.",
-    "url": "https://au.seek.com/job/92221237/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-00-31-678Z_validation_errors_blocking_continue.png",
-    "analysis": "1.  The \"Answer employer questions\" page is displayed with an error message indicating the need to select a front-end framework. The \"right to work\" and \"technical lead experience\" questions are answered, and the front-end frameworks question is visible but not answered.\n2.  The error is caused by failing to select an option for the front-end frameworks question.\n3.  The bot should click the label for one of the front-end framework radio buttons, such as `label[for=\"FRONT_END_FRAMEWORKS_0\"]` (jQuery) and confirm `isChecked()` returns true. If that fails, check review-queue.json for label."
-  },
-  {
-    "timestamp": "2026-05-20T12:00:36.586Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Tech Lead",
-    "company": "Mustard Creative Media PTY. LTD.",
-    "url": "https://au.seek.com/job/92221237/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-00-34-266Z_auto_skip_still_blocked.png",
-    "analysis": "1. The screen shows the \"Answer employer questions\" page with a form. The form includes questions about the right to work, the years of experience as a technical lead, and proficiency in front-end development libraries/frameworks. The first question regarding framework proficiency has not been answered.\n\n2.  The error is caused by the bot not selecting a radio button for the front-end development libraries/frameworks question.\n\n3.  The bot should select a radio button using a selector like `input[type=\"radio\"][value='jQuery']` or a similar selector to choose an appropriate option from the list. It should preferably chose one that is listed in the job posting's requirement."
-  },
-  {
-    "timestamp": "2026-05-20T12:03:11.210Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Project Manager (PMO)",
-    "company": "The Recruitment Company",
-    "url": "https://au.seek.com/job/92202307/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-03-04-580Z_validation_errors_blocking_continue.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-05-20T12:03:13.428Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Project Manager (PMO)",
-    "company": "The Recruitment Company",
-    "url": "https://au.seek.com/job/92202307/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-03-11-228Z_auto_skip_still_blocked.png",
-    "analysis": "1.  The screenshot shows the \"Review and submit\" page on Seek, with an error message indicating unresolved issues preventing application submission. The applicant's profile summary is also visible.\n2.  The error is caused by missing or incorrect information in either the \"Answer employer questions\" or \"Update SEEK Profile\" steps.\n3.  The bot should click the edit icon next to the applicant's name using the selector `[aria-label=\"Edit Mohammed Rumman Riyaz\"]` to go back to update profile."
-  },
-  {
-    "timestamp": "2026-05-20T12:04:00.551Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Senior Software Engineer - AI and Platform Capability",
-    "company": "SEEK Limited",
-    "url": "https://jobs.smartrecruiters.com/oneclick-ui/company/SEEK/publication/15627e39-0a6b-47c7-8939-47086125d5af?dcr_ci=SEEK&vq_campaign=c03baf0b-4efc-577d-9d23-75823d089103&vq_source=9b4b5594-5f78-4abf-ac8b-325351ded3e6&seek-token=LPt2zkwzNWcDHXmg5DVCUQ",
-    "page_title": "smartrecruiters.com",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-03-57-845Z_redirected_to_external_ats.png",
-    "analysis": "1.  The screen displays a message from SmartRecruiters stating \"Access is temporarily restricted\" due to detected unusual activity, likely bot activity.\n2.  The bot was redirected to an external ATS (SmartRecruiters) and then blocked from accessing it due to bot detection.\n3.  The bot needs to implement anti-bot detection measures, such as IP rotation and realistic browser behavior, instead of clicking on an apply button. The bot also cant interact with anything while it is blocked."
-  },
-  {
-    "timestamp": "2026-05-20T12:05:04.292Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Software Engineer",
-    "company": "Magentus",
-    "url": "https://magentus.teamtailor.com/jobs/7745338-software-engineer/applications/new?promotion=2002547-seek-incl-jobstreet-and-jobsdb&seek-token=783fCcpVLwgKjWS4QkR1hf",
-    "page_title": "Software Engineer - Magentus",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-05-00-030Z_redirected_to_external_ats.png",
-    "analysis": "1.  A cookie consent banner is visible overlapping the \"Software Engineer\" job page.\n2.  The bot was redirected to an external ATS (Teamtailor) which requires cookie consent before proceeding. The bot stopped because it didn't handle the consent banner.\n3.  The bot should first accept all cookies by clicking the button with the CSS selector `button:contains(\"Accept all cookies\")`. Then proceed to apply."
-  },
-  {
-    "timestamp": "2026-05-20T12:05:22.617Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Staff Software Engineer (Tech Lead- C#, .Net)",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Melbourne-VIC---357-Collins-Street/Staff-Software-Engineer_REQ258758-1?seek-token=Uy99j8UN4e3LWHu6dZNxKJ",
-    "page_title": "Staff Software Engineer - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-05-14-802Z_redirected_to_external_ats.png",
-    "analysis": "1.  The Commonwealth Bank \"Staff Software Engineer\" job description page is visible, including an \"Apply\" button, job details, and a cookie consent banner.\n2.  The bot was redirected to an external ATS (Workday) and stopped because it didn't handle the cookie consent banner before interacting with the page.\n3.  The bot should first accept all cookies by clicking the button with the CSS selector `button:contains(\"Accept Cookies\")`."
-  },
-  {
-    "timestamp": "2026-05-20T12:07:31.191Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Software Engineer -Digital Archive",
-    "company": "Nine",
-    "url": "https://nine.wd105.myworkdayjobs.com/Nine_External_Career_Site/job/North-Sydney-New-South-Wales/Software-Engineer--Digital-Archive_JR000591/apply?seek-token=8YFsw8mBPq9b5yGGAMs6cG&source=Seek_Source2",
-    "page_title": "Software Engineer -Digital Archive",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-07-28-871Z_redirected_to_external_ats.png",
-    "analysis": "1.  The \"Start Your Application\" page for the \"Software Engineer -Digital Archive\" role on the Nine Careers at Nine website is visible, including options to \"Autofill with Resume\", \"Apply Manually\" and a cookie consent banner is overlapping the page.\n2.  The bot was redirected to an external ATS (Workday) and stopped because it didn't handle the cookie consent banner before interacting with the page.\n3.  The bot should first accept all cookies by clicking the button with the CSS selector `button:contains(\"Accept Cookies\")`."
-  },
-  {
-    "timestamp": "2026-05-20T12:09:39.463Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Senior Software Engineer - AI and Platform Capability",
-    "company": "SEEK Limited",
-    "url": "https://jobs.smartrecruiters.com/oneclick-ui/company/SEEK/publication/15627e39-0a6b-47c7-8939-47086125d5af?dcr_ci=SEEK&vq_campaign=c03baf0b-4efc-577d-9d23-75823d089103&vq_source=9b4b5594-5f78-4abf-ac8b-325351ded3e6&seek-token=4hHsc54Wco3PAsAURKJQAJ",
-    "page_title": "smartrecruiters.com",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-09-37-425Z_redirected_to_external_ats.png",
-    "analysis": "1. The \"Access is temporarily restricted\" page of SmartRecruiters is visible, stating that unusual activity has been detected.\n2. The bot triggered automated activity detection by SmartRecruiters, likely due to rapid requests or bot-like behavior.\n3. To fix this, the bot should implement rate limiting or introduce pauses between actions to mimic human behavior better. Alternatively, it could try rotating proxies to avoid IP-based detection."
-  },
-  {
-    "timestamp": "2026-05-20T12:10:25.709Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Fullstack Developer - NodeJS & Typescript",
-    "company": "Profusion PAC Pty Ltd",
-    "url": "https://apply.jobadder.com/11139/4439796/hd3yljhmegbupmbenwiscs5hpa?site=au1&seek-token=7Sz7gHZ9oiu5zqpmfyxyp2",
-    "page_title": "Fullstack Developer - NodeJS & Typescript",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-10-17-655Z_redirected_to_external_ats.png",
-    "analysis": "1. The JobAdder application form for the \"Fullstack Developer - NodeJS & Typescript\" role at Profusion is visible. The form fields include First name, Last name, Email, Phone, Mobile, Suburb, and State.\n2. The error \"redirected_to_external_ats\" occurred because the bot was redirected to the JobAdder ATS after clicking the \"Apply with SEEK\" button, but didn't fill the form fields before stopping.\n3. To fix this, the bot should fill out the application form by using CSS selectors to target the input fields before proceeding. For example, `input[name=\"firstName\"]` for the first name field."
-  },
-  {
-    "timestamp": "2026-05-20T12:11:32.830Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "AI Full Stack Software Engineer",
-    "company": "Five Good Friends",
-    "url": "https://au.seek.com/job/92214977/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-11-29-713Z_validation_errors_blocking_continue.png",
-    "analysis": "1.  The \"Answer employer questions\" page is displayed, with validation errors at the top prompting selection for working rights and police check questions. The first two questions about working rights and police check are visible, each with \"Yes\" and \"No\" radio button options.\n2.  The error is caused by failing to select an option for both the \"Do you hold full working rights in Australia?\" and \"Do you have, or are willing to obtain, a current Police Check (National Police Certificate) for employment?\" questions.\n3.  The bot should click the label for one of the radio buttons for each question, such as `label[for=\"WORKING_RIGHTS_0\"]` (\"Yes\" for \"Do you hold full working rights in Australia?\") and `label[for=\"POLICE_CHECK_0\"]` (\"Yes\" for \"Do you have, or are willing to obtain, a current Police Check (National Police Certificate) for employment?\"), and confirm `isChecked()` returns true for the selected radio button. Ensure radio/checkbox groups are still handled via name-attribute grouping."
-  },
-  {
-    "timestamp": "2026-05-20T12:11:40.453Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "AI Full Stack Software Engineer",
-    "company": "Five Good Friends",
-    "url": "https://au.seek.com/job/92214977/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-11-32-855Z_auto_skip_still_blocked.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-05-20T12:12:04.194Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Software Engineer",
-    "company": "Magentus",
-    "url": "https://magentus.teamtailor.com/jobs/7745338-software-engineer/applications/new?promotion=2002547-seek-incl-jobstreet-and-jobsdb&seek-token=8ekuTbF3sdVXWsVBLsHg7u",
-    "page_title": "Software Engineer - Magentus",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-11-48-801Z_redirected_to_external_ats.png",
-    "analysis": "1.  A cookie consent banner is visible, overlaying the \"Software Engineer\" job posting.\n2.  The error occurred because the bot was redirected to the external ATS (Magentus) and did not handle the cookie consent banner.\n3.  The bot should click the \"Accept all cookies\" button, using the CSS selector `button:contains(\"Accept all cookies\")` before proceeding."
-  },
-  {
-    "timestamp": "2026-05-20T12:14:25.964Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Software Engineer (Mid-level)",
-    "company": "ubank",
-    "url": "https://www.ubank.com.au/why-ubank/join-our-team?ja-job=903337&seek-token=CmG7sbtPJ3yei9TLgYE83S",
-    "page_title": "Who We Are - Join Our Team - ubank",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-14-16-462Z_redirected_to_external_ats.png",
-    "analysis": "1. The UBank \"Careers\" page is visible, displaying the page title \"MAKE YOUR MARK HELPING YOUNG AUSSIES DO MONEY BETTER\".\n2. The bot likely landed on this page after clicking \"Apply with SEEK\" and was redirected to the UBank careers site, which is considered an external ATS. The bot didn't navigate to the specific job posting from this page.\n3. To fix it, the bot needs to find the job posting on this page (e.g., \"Software Engineer\") using a suitable CSS selector like `a:contains(\"Software Engineer\")` and click it to access the job application. Alternatively, it may need to extract the job ID from the URL and use it create a job link on ubank as it does from the seek job links."
-  },
-  {
-    "timestamp": "2026-05-20T12:16:39.845Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Senior Software Engineer - AI and Platform Capability",
-    "company": "SEEK Limited",
-    "url": "https://jobs.smartrecruiters.com/oneclick-ui/company/SEEK/publication/15627e39-0a6b-47c7-8939-47086125d5af?dcr_ci=SEEK&vq_campaign=c03baf0b-4efc-577d-9d23-75823d089103&vq_source=9b4b5594-5f78-4abf-ac8b-325351ded3e6&seek-token=8FUM11Eu2ECrbpEufmmy7P",
-    "page_title": "smartrecruiters.com",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-16-33-557Z_redirected_to_external_ats.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-05-20T12:18:16.002Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Software Engineer -Digital Archive",
-    "company": "Nine",
-    "url": "https://nine.wd105.myworkdayjobs.com/Nine_External_Career_Site/job/North-Sydney-New-South-Wales/Software-Engineer--Digital-Archive_JR000591/apply?seek-token=5HNpr3aPL82KoS8F6EMuLP&source=Seek_Source2",
-    "page_title": "Software Engineer -Digital Archive",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-18-13-213Z_redirected_to_external_ats.png",
-    "analysis": "1. The \"Start Your Application\" page for the \"Software Engineer - Digital Archive\" role on the Nine careers site is visible, along with a cookie consent banner.\n2. The error likely occurred because the bot was redirected to the external ATS (Workday) but didn't handle the cookie consent banner at the top of the page before attempting to interact with the application form.\n3.  The bot should first click the \"Accept Cookies\" button using the CSS selector `button:contains(\"Accept Cookies\")` before proceeding to interact with the \"Autofill with Resume\" or \"Apply Manually\" buttons."
-  },
-  {
-    "timestamp": "2026-05-20T12:18:26.781Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Software Engineer",
-    "company": "Magentus",
-    "url": "https://magentus.teamtailor.com/jobs/7745338-software-engineer/applications/new?promotion=2002547-seek-incl-jobstreet-and-jobsdb&seek-token=A8KpfYEiD97DJPWv4st7Ev",
-    "page_title": "Software Engineer - Magentus",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-18-24-196Z_redirected_to_external_ats.png",
-    "analysis": "1. A cookie consent banner is visible, obscuring part of the \"Software Engineer\" job posting.\n2. The error was likely caused by the bot being redirected to the external ATS (Magentus) and failing to handle the cookie consent banner.\n3. The bot should click the \"Accept all cookies\" button using the CSS selector `button:contains(\"Accept all cookies\")` before proceeding further."
-  },
-  {
-    "timestamp": "2026-05-20T12:18:39.729Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Staff Software Engineer (Tech Lead- C#, .Net)",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Melbourne-VIC---357-Collins-Street/Staff-Software-Engineer_REQ258758-1?seek-token=FJEcBDfHLa2Ytf5cY9FYee",
-    "page_title": "Staff Software Engineer - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-18-37-201Z_redirected_to_external_ats.png",
-    "analysis": "1. The job posting for \"Staff Software Engineer\" at Commonwealth Bank is visible, along with a cookie consent banner at the top of the page.\n2. The error was likely caused by the bot being redirected to the external ATS (Workday) and failing to handle the cookie consent banner.\n3. The bot should click the \"Accept Cookies\" button using the CSS selector `button:contains(\"Accept Cookies\")` before proceeding."
-  },
-  {
-    "timestamp": "2026-05-20T12:21:07.748Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "AI Full Stack Software Engineer",
-    "company": "Five Good Friends",
-    "url": "https://au.seek.com/job/92214977/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-21-05-060Z_validation_errors_blocking_continue.png",
-    "analysis": "1.  The screen shows the \"Answer employer questions\" page with two unanswered radio button questions about working rights and police checks, along with validation errors at the top.\n2.  The error is caused by the bot not selecting an option for both the \"Do you hold full working rights in Australia?\" and \"Do you have, or are willing to obtain, a current Police Check (National Police Certificate) for employment?\" questions.\n3.  The bot should click the label for either \"Yes\" or \"No\" for each question, such as `label[for=\"WORKING_RIGHTS_0\"]` along with `label[for=\"POLICE_CHECK_0\"]` and confirm `isChecked()` returns true for each. Respect name-attribute grouping (already implemented)."
-  },
-  {
-    "timestamp": "2026-05-20T12:21:10.128Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "AI Full Stack Software Engineer",
-    "company": "Five Good Friends",
-    "url": "https://au.seek.com/job/92214977/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-21-07-775Z_auto_skip_still_blocked.png",
-    "analysis": "1.  The screenshot shows the \"Answer employer questions\" page on Seek. The form has questions about working rights in Australia and willingness to obtain a police check, which have not been answered. An error message at the top indicates these unresolved issues.\n2.  The error is caused by the bot not selecting radio buttons for the \"working rights\" and \"police check\" questions.\n3.  The bot should select the \"Yes\" radio button for \"Do you hold full working rights in Australia?\" using the selector `input[type=\"radio\"][name*=\"workingRights\"][value=\"true\"]` and the \"Yes\" radio button for \"Do you have, or are willing to obtain, a current Police Check\" using the selector `input[type=\"radio\"][name*=\"policeCheck\"][value=\"true\"]`."
-  },
-  {
-    "timestamp": "2026-05-20T12:21:29.642Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Associate Systems / Implementation Engineer (Healthcare IT)",
-    "company": "Stryker",
-    "url": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Melbourne-Australia/Implementation-Engineer_R556253?seek-token=4YyeET8EJ1J8614XMpo1QQ",
-    "page_title": "Associate Systems / Implementation Engineer (Healthcare IT)",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-21-26-097Z_redirected_to_external_ats.png",
-    "analysis": "1.  The Stryker job posting page is visible, including the job title, location, and an \"Apply\" button. A cookie consent banner is also present at the top of the page.\n2.  The error occurred because the bot was redirected to Stryker's Workday ATS and didn't handle the cookie consent banner.\n3.  The bot should click the \"Accept Cookies\" button using the CSS selector `button:contains(\"Accept Cookies\")` before proceeding further on the page."
-  },
-  {
-    "timestamp": "2026-05-20T12:22:16.103Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Hybrid Systems Engineer",
-    "company": "Deloitte",
-    "url": "https://jobs.deloitte.com.au/job/Canberra-Hybrid-Systems-Engineer-ACT/1361599666/?utm_campaign=seek&utm_source=seek&applySourceOverride=Seek",
-    "page_title": "Hybrid Systems Engineer Job Details | Deloitte Services Pty Ltd",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-22-09-743Z_redirected_to_external_ats.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-05-20T12:22:28.899Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Cloud Solution Engineer",
-    "company": "Boral Ltd",
-    "url": "https://secure.dc2.pageuppeople.com/apply/569/aw/applicationForm/initApplication.asp?lJobID=515425&sCompletionSignal=MBKkzRKBXmj6xbX88WgAWo&sLanguage=en&sSourcePointer=aw&lJobSourceTypeID=814",
-    "page_title": "Begin application - Boral",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-22-25-340Z_redirected_to_external_ats.png",
-    "analysis": "1. The \"Begin application\" form is displayed, requesting an email address and agreement to a privacy statement.\n2. The bot likely stopped because it didn't enter an email, tick the checkbox, and click \"Next\".\n3. The bot should enter an email address into the input field `input[type=\"text\"]`, tick the checkbox `input[type=\"checkbox\"]`, and click the \"Next\" button."
-  },
-  {
-    "timestamp": "2026-05-20T12:22:41.718Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Cloud Engineer",
-    "company": "St John of God Health Care Inc",
-    "url": "https://wd105.myworkdaysite.com/recruiting/sjog/SJGHC_External_Career_Site/job/Perth-Western-Australia/Cloud-Engineer_JR-16227-1?seek-token=ShnvS3zKqjzwaJzsQ2M9BR&source=seek_oz",
-    "page_title": "Cloud Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-22-39-499Z_redirected_to_external_ats.png",
-    "analysis": "1.  The St John of God Health Care job details page for the Cloud Engineer role is visible, including the job title, location, and an \"Apply\" button.\n2.  The bot likely stopped because it did not click the \"Apply\" button.\n3.  The bot should click the \"Apply\" button using the CSS selector `button:contains(\"Apply\")`."
-  },
-  {
-    "timestamp": "2026-05-20T12:24:16.015Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Tech Lead",
-    "company": "Mustard Creative Media PTY. LTD.",
-    "url": "https://au.seek.com/job/92221237/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-24-11-537Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The screenshot shows an \"Answer employer questions\" page with validation errors indicating that the \"Which of the following front end development libraries and frameworks are you proficient in?\" question has not been answered. There are radio button options (jQuery, Bootstrap, Angular.js, Backbone.js) for this question. Above that are two dropdown menus for work rights and experience.\n2. The error is caused by failing to select a radio button option for the front-end development libraries question.\n3. The bot should click the label of one of the radio buttons, such as `label[for=\"FRONT_END_LIBRARIES_0\"]` for jQuery, and confirm `isChecked()` returns true. The bot should also check `review-queue.json` for updated front end libraries."
-  },
-  {
-    "timestamp": "2026-05-20T12:24:17.835Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Tech Lead",
-    "company": "Mustard Creative Media PTY. LTD.",
-    "url": "https://au.seek.com/job/92221237/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-24-16-060Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible, specifically questions about work rights, technical lead experience, and front-end libraries proficiency. An error message indicates that a selection for front-end libraries is missing.\n2. The error is caused because the bot hasn't selected any of the front-end development libraries.\n3. The bot should select the first radio button for JQuery using the selector `input[type=\"radio\"][value=\"jQuery\"]`."
-  },
-  {
-    "timestamp": "2026-05-20T12:24:29.953Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Staff Software Engineer (Tech Lead- C#, .Net)",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Melbourne-VIC---357-Collins-Street/Staff-Software-Engineer_REQ258758-1?seek-token=RrHWwiVNPfhBkTzQcQEXWz",
-    "page_title": "Staff Software Engineer - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-24-27-846Z_redirected_to_external_ats.png",
-    "analysis": "1.  The page showing the job title \"Staff Software Engineer\" and an \"Apply\" button is visible.\n2.  The bot failed to click the \"Apply\" button on the job details page.\n3.  The bot should click the \"Apply\" button using the CSS selector `button:contains(\"Apply\")`."
-  },
-  {
-    "timestamp": "2026-05-20T12:25:12.066Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Digital Workplace Engineer - Microsoft 365",
-    "company": "Australian Prudential Regulation Authority",
-    "url": "https://apra.taleo.net/careersection/ex/jobdetail.ftl?job=APR1900&lang=en",
-    "page_title": "Job Description - Digital Workplace Engineer – Microsoft 365 (APR1900)",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-25-09-632Z_redirected_to_external_ats.png",
-    "analysis": "1.  The job details page on the external ATS (Taleo) is visible, including the job title, description, and two buttons: \"Apply Online\" and \"Add to My Job Cart\".\n2.  The bot likely stopped because it did not click the \"Apply Online\" button.\n3.  The bot should click the \"Apply Online\" button using the CSS selector `button:contains(\"Apply Online\")`."
-  },
-  {
-    "timestamp": "2026-05-20T12:27:25.559Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Software Engineer",
-    "company": "Magentus",
-    "url": "https://magentus.teamtailor.com/jobs/7745338-software-engineer/applications/new?promotion=2002547-seek-incl-jobstreet-and-jobsdb&seek-token=FgLpDgbBRSLezxbVpUT8Ch",
-    "page_title": "Software Engineer - Magentus",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-27-22-690Z_redirected_to_external_ats.png",
-    "analysis": "1. A cookie consent popup is visible, obscuring the main content.\n2. The bot likely stopped because it did not handle the cookie consent popup.\n3.  The bot should click the \"Accept all cookies\" button using the CSS selector `button:contains(\"Accept all cookies\")`."
-  },
-  {
-    "timestamp": "2026-05-20T12:29:08.434Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Senior Software Engineer - AI and Platform Capability",
-    "company": "SEEK Limited",
-    "url": "https://jobs.smartrecruiters.com/oneclick-ui/company/SEEK/publication/15627e39-0a6b-47c7-8939-47086125d5af?dcr_ci=SEEK&vq_campaign=c03baf0b-4efc-577d-9d23-75823d089103&vq_source=9b4b5594-5f78-4abf-ac8b-325351ded3e6&seek-token=WhrjronrReYi4WaN8UKAkP",
-    "page_title": "smartrecruiters.com",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-29-02-100Z_redirected_to_external_ats.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-05-20T12:32:51.920Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Staff Data Engineer ( AI & Analytics Data Products)",
-    "company": "SEEK Limited",
-    "url": "https://jobs.smartrecruiters.com/oneclick-ui/company/SEEK/publication/6945fcaf-47d2-4b46-b77a-f2a8abe42900?dcr_ci=SEEK&vq_campaign=c4e373a0-a02b-5190-8a16-d59acd5d8b0c&vq_source=9b4b5594-5f78-4abf-ac8b-325351ded3e6&seek-token=B4ydgN7zWuNpV7RpubQX6i",
-    "page_title": "smartrecruiters.com",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-32-45-737Z_redirected_to_external_ats.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-05-20T12:36:06.376Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Staff Data Engineer ( AI & Analytics Data Products)",
-    "company": "SEEK Limited",
-    "url": "https://jobs.smartrecruiters.com/oneclick-ui/company/SEEK/publication/6945fcaf-47d2-4b46-b77a-f2a8abe42900?dcr_ci=SEEK&vq_campaign=c4e373a0-a02b-5190-8a16-d59acd5d8b0c&vq_source=9b4b5594-5f78-4abf-ac8b-325351ded3e6&seek-token=D7yX4PHF1BEELZj4Q85RfX",
-    "page_title": "smartrecruiters.com",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T12-35-58-727Z_redirected_to_external_ats.png",
-    "analysis": "1.  A message stating \"Access is temporarily restricted\" and a notice about detected unusual activity with possible causes (\"Automated (bot) activity on your network\") are visible.\n2.  The error was caused by the website detecting and blocking the bot's automated activity.\n3.  The bot should implement rate limiting to reduce the frequency of requests and avoid detection, or rotate proxies more frequently to avoid IP address-based blocking. It can also try setting a more realistic user agent."
-  },
-  {
-    "timestamp": "2026-05-20T22:05:15.221Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Project Manager",
-    "company": "Precision Sourcing",
-    "url": "https://au.seek.com/job/92197923",
-    "page_title": "Project Manager Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T22-05-12-456Z_apply_button_not_found.png",
-    "analysis": "1.  The screen shows the job posting's header information, including the company logo, job title (\"Project Manager\"), company name (Precision Sourcing), location (Sydney), and job type (Full time).\n2.  The \"apply_button_not_found\" error likely occurred because the apply button is located below the initial view and requires scrolling, or it's loaded dynamically after the page initially loads.\n3.  The bot should scroll down the page and then search for elements with \"Apply now\" text, `a[href*=\"apply\"]`, or button elements containing texts similar to \"Apply now\"."
-  },
-  {
-    "timestamp": "2026-05-20T22:09:53.066Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Unknown Role",
-    "company": "Unknown Company",
-    "url": "https://au.seek.com/job/92158327",
-    "page_title": "Program Manager Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T22-09-50-889Z_apply_button_not_found.png",
-    "analysis": "1. The screen shows the message \"This job is no longer advertised\" and a button labeled \"Search for another job.\" The Seek website header and footer are also visible.\n2. The \"apply_button_not_found\" error occurred because the job posting is no longer active, so the \"Apply now\" button is not present.\n3. The bot should check for the presence of the \"This job is no longer advertised\" message. If it exists, the `apply_button_not_found` error should be recorded, and the bot should stop attempting to apply."
-  },
-  {
-    "timestamp": "2026-05-20T22:10:38.983Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Program Delivery Manager",
-    "company": "Chandler Macleod",
-    "url": "https://applr.io/l/05c475a3?portal=amw&seek-token=U3hRtuviHjULUQZxHE9bzp",
-    "page_title": "Program Delivery Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T22-10-37-025Z_redirected_to_external_ats.png",
-    "analysis": "1.  An application form hosted by Chandler Macleod is visible, with fields for personal information and options to apply with SEEK or upload a CV.\n2.  The error was likely caused by the bot attempting to apply directly on the Chandler Macleod site instead of being redirected.\n3.  The bot should click the \"Apply with SEEK\" button using the CSS selector `button:contains('Apply with SEEK')` to initiate the intended redirection process."
-  },
-  {
-    "timestamp": "2026-05-20T22:11:22.771Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Manager, Portfolio Systems and Reporting",
-    "company": "Great Southern Bank",
-    "url": "https://gsb.csod.com/ux/ats/careersite/1/home/requisition/6344?c=gsb&seek-token=TgcZJYuhcegcYW9YdKcr88&source=seek_oz",
-    "page_title": "Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T22-11-19-613Z_redirected_to_external_ats.png",
-    "analysis": "1.  The job description page for \"Manager, Portfolio Systems and Reporting\" at Great Southern Bank is visible. There's an \"Apply now\" button and buttons to \"Share\" and \"Save Job.\"\n2.  The error was likely caused by the bot failing to interact with the page elements as intended to initiate the application process. The bot should be clicking on the \"Apply now\" button.\n3.  The bot should click the \"Apply now\" button using the CSS selector `button:contains('Apply now')`."
-  },
-  {
-    "timestamp": "2026-05-20T22:12:08.249Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Senior Project Manager",
-    "company": "Motion Recruitment",
-    "url": "https://au.seek.com/job/92226493",
-    "page_title": "Senior Project Manager Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T22-12-06-165Z_apply_button_not_found.png",
-    "analysis": "1. The screen shows the job title, company, location and job type.\n2. The \"apply_button_not_found\" error likely occurred because the apply button is below the fold and not immediately visible. \n3. The bot should scroll down the page and search for button elements with text similar to \"Apply now\", elements with `a[href*=\"apply\"]`, or a button with class containing `\"apply\"`."
-  },
-  {
-    "timestamp": "2026-05-20T22:13:36.816Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Tech Lead",
-    "company": "Mustard Creative Media PTY. LTD.",
-    "url": "https://au.seek.com/job/92221237/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T22-13-34-625Z_validation_errors_blocking_continue.png",
-    "analysis": "1.  The \"Answer employer questions\" page is displayed, with validation errors at the top prompting selection for front end libraries. The front end libraries question is visible, along with dropdowns for work rights and experience.\n2.  The error is caused by failing to select a radio button option for the front-end development libraries question.\n3.  The bot should click the label of one of the radio buttons, such as `label[for=\"FRONT_END_LIBRARIES_0\"]` for jQuery, and confirm `isChecked()` returns true.  It must also check review-queue.json to see if the library options have been updated."
-  },
-  {
-    "timestamp": "2026-05-20T22:13:38.468Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Tech Lead",
-    "company": "Mustard Creative Media PTY. LTD.",
-    "url": "https://au.seek.com/job/92221237/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T22-13-36-866Z_auto_skip_still_blocked.png",
-    "analysis": "1. The screenshot shows the \"Answer employer questions\" page, with questions about working rights, technical lead experience, and front-end libraries. An error message indicates that a selection for front-end libraries is missing.\n2.  The error is caused because the bot hasn't selected any of the front-end development libraries.\n3.  The bot should select the first radio button for JQuery using the selector `input[type=\"radio\"][value=\"jQuery\"]`."
-  },
-  {
-    "timestamp": "2026-05-20T22:13:55.486Z",
-    "error_type": "redirected_to_external_ats",
-    "job_title": "Principal ICT Project Manager",
-    "company": "NSW Department of Customer Service",
-    "url": "https://nswconnect.csod.com/ux/ats/careersite/2/home/requisition/51301?c=nswconnect&seek-token=WMU54BpWnhGHe7iitTusNU&source=seek_oz",
-    "page_title": "Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T22-13-53-349Z_redirected_to_external_ats.png",
-    "analysis": "1.  The job description page for \"Principal ICT Project Manager\" at NSW Department of Customer Service is visible. There's an \"Apply now\" button, a \"Share\" button and a \"Save Job\" button.\n2.  The error was likely caused by the bot failing to interact with the page elements as intended to initiate the application process. The bot should be clicking on the \"Apply now\" button.\n3.  The bot should click the \"Apply now\" button using the CSS selector `button:contains('Apply now')`. Alternatively, the bot could try `#apply_now` if that id exists on the apply now button."
-  },
-  {
-    "timestamp": "2026-05-20T22:15:29.324Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Project Manager - Cyber Security, BeyondTrust Rollout",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/92222079/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-20T22-15-26-903Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The screenshot shows the \"Review and submit\" page with a validation error message indicating issues need to be addressed before continuing.\n2. The error is caused by unanswered employer questions from the previous step.\n3. The bot should return to the \"Answer employer questions\" page by going back from the current page and re-attempt answering the questions, specifically handling likely radio button/checkbox questions using the `label-first click, isChecked()` confirmation flow. The bot should verify that the answers are present in `review-queue.json` and that the answers and values are correct."
-  },
-  {
     "timestamp": "2026-05-20T22:15:31.210Z",
     "error_type": "auto_skip_still_blocked",
     "job_title": "Project Manager - Cyber Security, BeyondTrust Rollout",
@@ -4998,5 +4318,685 @@
     "page_title": "Agentic Business Analyst Job in Brisbane QLD - SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T09-20-42-577Z_apply_button_not_found.png",
     "analysis": "1. The job posting for \"Agentic Business Analyst\" at BLACKROC Contingent Pty Ltd is visible, including location and job details.\n2.  Based on the previous error analyses, the \"apply_button_not_found\" error is likely caused by the bot trying to find the Apply button when the application has already been submitted.\n3.  The bot should check for the \"You applied\" message using a CSS selector like `div:contains(\"You applied\")` before looking for the Apply button. If the \"You applied\" message exists, the bot should skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T11:45:08.786Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Project Manager - Data Sensitivity",
+    "company": "Hays | Technology",
+    "url": "https://au.seek.com/job/92279367",
+    "page_title": "Project Manager - Data Sensitivity Job in Newcastle, Newcastle, Maitland & Hunter NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T11-45-06-111Z_apply_button_not_found.png",
+    "analysis": "1. The job posting for \"Project Manager - Data Sensitivity\" at Hays is visible, including the location and job details. There is no \"Apply\" button visible on screen.\n2.  The \"apply_button_not_found\" error is likely caused by the bot trying to find the \"Apply\" button which is not available. It either is not there or is not loading correctly.\n3.  The bot should first check for elements that would cause an \"Apply\" button to be missing, such as a \"You applied\" or even an error message. If such elements are not there, wait longer or try to refresh the page, then look for the Apply button again."
+  },
+  {
+    "timestamp": "2026-05-24T11:45:26.070Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Program Manager",
+    "company": "Voconiq",
+    "url": "https://au.seek.com/job/92255481",
+    "page_title": "Program Manager Job in Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T11-45-24-060Z_apply_button_not_found.png",
+    "analysis": "1.  The screen shows a job posting for \"Program Manager\" at Voconiq, including details like location, salary, and the message \"You applied on 24 May 2026\".\n\n2.  The \"apply_button_not_found\" error occurred because the application has already been submitted, so the \"Apply\" button is not present\n\n3.  The bot should check for the presence of the \"You applied\" message using a CSS selector like `div:contains(\"You applied\")` before attempting to find the \"Apply\" button. If found, it should skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T11:47:01.687Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "IT Project Manager (ERP & DW)",
+    "company": "Robert Half",
+    "url": "https://au.seek.com/job/92276533",
+    "page_title": "IT Project Manager (ERP & DW) Job in Hurstville, Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T11-46-59-796Z_apply_button_not_found.png",
+    "analysis": "1.  The job details for \"IT Project Manager (ERP & DW)\" at Robert Half are visible, including location, salary, and a \"You applied on 22 May 2026\" message.\n\n2.  The error occurred because the application has already been submitted, and the \"Apply\" button is not present\n\n3.  The bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")` before attempting to find the \"Apply\" button. If found, it should skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T11:47:16.729Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Implementation Team Lead",
+    "company": "Fyndr Group",
+    "url": "https://au.seek.com/job/92281802",
+    "page_title": "Implementation Team Lead Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T11-47-14-503Z_apply_button_not_found.png",
+    "analysis": "1. The job posting for \"Implementation Team Lead\" at Fyndr Group is displayed, including location, salary, and a message indicating \"You applied on 22 May 2026\".\n2.  The \"apply_button_not_found\" error occurred because the application has already been submitted and the \"Apply\" button is not present.\n3.  The bot should check for the presence of the \"You applied\" message using a CSS selector like `div:contains(\"You applied\")` before attempting to find the \"Apply\" button. If found, it should skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T11:49:15.450Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Program Manager - (Remote- Australia)",
+    "company": "Kobalt.io",
+    "url": "https://au.seek.com/job/92263729",
+    "page_title": "Program Manager - (Remote- Australia) Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T11-49-12-827Z_apply_button_not_found.png",
+    "analysis": "1. The screen shows the job posting for \"Program Manager\" at Kobalt.io, including details and the message \"You applied on 22 May 2026\".\n2.  The \"apply_button_not_found\" error occurred because the job application has already been submitted, and the \"Apply\" button is not present.\n3.  The bot should check for the presence of the \"You applied\" message using a CSS selector like `div:contains(\"You applied\")` or `text:You applied` before attempting to find the \"Apply\" button. If found, it should skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T11:58:32.188Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Delivery Senior Manager",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/x15_Careers/job/Sydney-CBD-Area/Delivery-Senior-Manager--x15ventures_REQ258868?seek-token=FkfK8p2VuosRWzxMFDcr46",
+    "page_title": "Delivery Senior Manager, x15ventures",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T11-58-30-320Z_ats_workday_no_nav_button.png",
+    "analysis": "1. A \"Start Your Application\" modal is visible, offering options like \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\", and \"Apply With LinkedIn\".\n2. The bot tried to find standard navigation buttons instead of interacting with the modal.\n3.  The bot should attempt to click \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, try \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T11:58:34.352Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Delivery Senior Manager",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/x15_Careers/job/Sydney-CBD-Area/Delivery-Senior-Manager--x15ventures_REQ258868?seek-token=FkfK8p2VuosRWzxMFDcr46",
+    "page_title": "Delivery Senior Manager, x15ventures",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T11-58-32-192Z_ats_workday_no_submit.png",
+    "analysis": "1.  The \"Start Your Application\" modal is visible, presenting options including \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\" and \"Apply With LinkedIn\".\n2. The bot failed to interact with this modal.\n3.  The bot should first attempt to click \"Autofill with Resume\" using the selector `button:contains(\"Autofill with Resume\")`. If that fails, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T11:58:49.669Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Program Manager",
+    "company": "Voconiq",
+    "url": "https://au.seek.com/job/92255481",
+    "page_title": "Program Manager Job in Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T11-58-47-424Z_apply_button_not_found.png",
+    "analysis": "1. The job posting for \"Program Manager\" at Voconiq is visible, including details and the message \"You applied on 24 May 2026\".\n2.  The \"apply_button_not_found\" error occurred because the job application has already been submitted, and the \"Apply\" button is not present.\n3.  The bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")` before attempting to find the \"Apply\" button. If found, it should skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T12:00:09.480Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Project Manager - Data Sensitivity",
+    "company": "Hays | Technology",
+    "url": "https://au.seek.com/job/92279367",
+    "page_title": "Project Manager - Data Sensitivity Job in Newcastle, Newcastle, Maitland & Hunter NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-00-06-644Z_apply_button_not_found.png",
+    "analysis": "1. The job posting for \"Project Manager - Data Sensitivity\" at Hays | Technology is visible on the screen.\n2. The \"apply_button_not_found\" error likely occurred because the \"Apply\" button is not present on the page for another reason, perhaps related to the specific job or Hays application flow. We do not have evidence of the \"You applied\" message on-screen.\n3. Before searching for the \"Apply\" button, the bot should attempt to locate other UI elements associated with applying to the job (another button or link with text like \"Apply now\" or \"External Application\"). If none can be found, retry finding Apply button."
+  },
+  {
+    "timestamp": "2026-05-24T12:00:59.977Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Program Manager - (Remote- Australia)",
+    "company": "Kobalt.io",
+    "url": "https://au.seek.com/job/92263729",
+    "page_title": "Program Manager - (Remote- Australia) Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-00-57-720Z_apply_button_not_found.png",
+    "analysis": "1.  The job posting for \"Program Manager\" at Kobalt.io is displayed, along with details about the job and the message \"You applied on 22 May 2026\".\n2.  The \"apply_button_not_found\" error occurred because the application has already been submitted.\n3.  Before searching for the Apply button, the bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")`. If this message is present, the bot should skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T12:02:37.171Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Technical Product Owner | AI Powered Engineering Platforms",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Technology-Product-Owner---AI-Powered-Engineering-team_REQ248440?seek-token=HvUYYwen12FCJoeQ24iWNv",
+    "page_title": "Technology Product Owner – AI Powered Engineering team - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-02-34-871Z_ats_workday_no_nav_button.png",
+    "analysis": "1. A \"Start Your Application\" modal is visible.\n2. The bot failed to interact with the modal and instead tried to find standard navigation buttons.\n3. The bot should try clicking \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, try \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T12:02:39.779Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Technical Product Owner | AI Powered Engineering Platforms",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Technology-Product-Owner---AI-Powered-Engineering-team_REQ248440?seek-token=HvUYYwen12FCJoeQ24iWNv",
+    "page_title": "Technology Product Owner – AI Powered Engineering team - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-02-37-175Z_ats_workday_no_submit.png",
+    "analysis": "1.  The \"Start Your Application\" modal is visible, presenting options like \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\", and \"Apply With LinkedIn\".\n2.  The bot has failed to interact with this modal.\n3.  The bot should first attempt to click \"Autofill with Resume\" using the selector `button:contains(\"Autofill with Resume\")`. If that fails, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T12:02:54.998Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "IT Project Manager (ERP & DW)",
+    "company": "Robert Half",
+    "url": "https://au.seek.com/job/92276533",
+    "page_title": "IT Project Manager (ERP & DW) Job in Hurstville, Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-02-52-773Z_apply_button_not_found.png",
+    "analysis": "1.  The job details for \"IT Project Manager (ERP & DW)\" at Robert Half are visible, along with the message: \"You applied on 22 May 2026\".\n\n2.  The \"apply_button_not_found\" error occurred because the application has already been submitted, and the \"Apply\" button is not present (since it has been applied on before).\n\n3.  Before searching for the Apply button, the bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")`. If this message is present, the bot should skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T12:03:12.395Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Implementation Team Lead",
+    "company": "Fyndr Group",
+    "url": "https://au.seek.com/job/92281802",
+    "page_title": "Implementation Team Lead Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-03-10-507Z_apply_button_not_found.png",
+    "analysis": "1.  The job details for \"Implementation Team Lead\" are visible, along with the message: \"You applied on 22 May 2026\".\n2.  The \"apply_button_not_found\" error occurred because the application has already been submitted, and the \"Apply\" button is not present.\n3.  Before searching for the Apply button, the bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")`."
+  },
+  {
+    "timestamp": "2026-05-24T12:07:28.212Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Engineering Manager - SaaS",
+    "company": "RBOL TECH PTY LTD",
+    "url": "https://au.seek.com/job/92245922",
+    "page_title": "Engineering Manager - SaaS Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-07-25-964Z_apply_button_not_found.png",
+    "analysis": "1. The job details page for \"Engineering Manager - SaaS\" at RBOL TECH PTY LTD is visible, including the message \"You applied on 24 May 2026.\"\n\n2.  The \"apply_button_not_found\" error was caused because the application has already been submitted, so the Apply button is not present.\n\n3.  Before searching for the Apply button, the bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")`. If the message is present, skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T12:09:57.146Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Delivery Senior Manager",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/x15_Careers/job/Sydney-CBD-Area/Delivery-Senior-Manager--x15ventures_REQ258868?seek-token=75nzrcP8WdgQbwv5ZeRRgV",
+    "page_title": "Delivery Senior Manager, x15ventures",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-09-54-713Z_ats_workday_no_nav_button.png",
+    "analysis": "1.  A \"Start Your Application\" modal is visible with options like \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\", and \"Apply With LinkedIn\".\n2.  The bot tried to find standard navigation buttons instead of interacting with the modal.\n3.  The bot should first attempt to click \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, it should then attempt to click \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T12:09:59.148Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Delivery Senior Manager",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/x15_Careers/job/Sydney-CBD-Area/Delivery-Senior-Manager--x15ventures_REQ258868?seek-token=75nzrcP8WdgQbwv5ZeRRgV",
+    "page_title": "Delivery Senior Manager, x15ventures",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-09-57-151Z_ats_workday_no_submit.png",
+    "analysis": "1. The \"Start Your Application\" modal is visible.\n2. The bot failed to interact with this modal.\n3. The bot should first attempt to click \"Autofill with Resume\" using the selector `button:contains(\"Autofill with Resume\")`. If that fails, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T12:10:48.136Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Implementation Team Lead",
+    "company": "Fyndr Group",
+    "url": "https://au.seek.com/job/92281802",
+    "page_title": "Implementation Team Lead Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-10-45-869Z_apply_button_not_found.png",
+    "analysis": "1.  The page displays job details for \"Implementation Team Lead\" at Fyndr Group, including the message \"You applied on 22 May 2026\".\n2.  The \"apply_button_not_found\" error occurred because the application has already been submitted, so the Apply button is not present.\n3.  Before searching for the Apply button, the bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")`.  If this message is present, the bot should skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T12:11:35.801Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Program Manager",
+    "company": "Voconiq",
+    "url": "https://au.seek.com/job/92255481",
+    "page_title": "Program Manager Job in Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-11-33-371Z_apply_button_not_found.png",
+    "analysis": "1.  The Seek job page for \"Program Manager\" at Voconiq is visible, including the message \"You applied on 24 May 2026\".\n2.  The \"apply_button_not_found\" error occurred because the application has already been submitted, so the Apply button is not present.\n3. The bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")` before searching for the \"Apply\" button. If the message is present, the bot should skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T12:11:54.058Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Program Manager - (Remote- Australia)",
+    "company": "Kobalt.io",
+    "url": "https://au.seek.com/job/92263729",
+    "page_title": "Program Manager - (Remote- Australia) Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-11-51-785Z_apply_button_not_found.png",
+    "analysis": "1.  The job details page for \"Program Manager\" is visible, and it shows a message \"You applied on 22 May 2026.\"\n2.  The \"apply_button_not_found\" error was caused because the application has already been submitted, so the Apply button is not present\n3.  Before searching for the Apply button, the bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")`. If the message is present, skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T12:13:59.538Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Technical Product Owner | AI Powered Engineering Platforms",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Technology-Product-Owner---AI-Powered-Engineering-team_REQ248440?seek-token=Sxws9HYDH4wnBoDDaGVYJb",
+    "page_title": "Technology Product Owner – AI Powered Engineering team - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-13-57-363Z_ats_workday_no_nav_button.png",
+    "analysis": "1.  A modal titled \"Start Your Application\" is visible, offering options to apply.\n2.  The bot failed to interact with the modal. It tried to find standard navigation buttons instead.\n3.  The bot should try clicking \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, it should try \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T12:14:01.976Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Technical Product Owner | AI Powered Engineering Platforms",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Technology-Product-Owner---AI-Powered-Engineering-team_REQ248440?seek-token=Sxws9HYDH4wnBoDDaGVYJb",
+    "page_title": "Technology Product Owner – AI Powered Engineering team - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-13-59-542Z_ats_workday_no_submit.png",
+    "analysis": "1.  The \"Start Your Application\" modal is visible, presenting options to apply with resume, manually, last application, or LinkedIn.\n2.  The bot failed to interact with this modal; it needs to select an option.\n3.  The bot should first attempt to click \"Autofill with Resume\" using the selector `button:contains(\"Autofill with Resume\")`. If that fails, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T12:14:50.322Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "IT Project Manager (ERP & DW)",
+    "company": "Robert Half",
+    "url": "https://au.seek.com/job/92276533",
+    "page_title": "IT Project Manager (ERP & DW) Job in Hurstville, Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-14-48-246Z_apply_button_not_found.png",
+    "analysis": "1. The job details page for \"IT Project Manager (ERP & DW)\" at Robert Half is visible, and includes the message \"You applied on 22 May 2026\".\n\n2. The \"apply_button_not_found\" error occurred because the application has already been submitted for this job, so the button is no longer present.\n\n3. Before searching for the Apply button, the bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")`. If the message exists, skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T12:17:15.398Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Technical Delivery Lead",
+    "company": "4impact Pty Ltd",
+    "url": "https://au.seek.com/job/92264645",
+    "page_title": "Technical Delivery Lead Job in South Brisbane, Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-17-12-062Z_apply_button_not_found.png",
+    "analysis": "1.  The job details page for \"Technical Delivery Lead\" at 4impact Pty Ltd is visible.\n2.  The \"apply_button_not_found\" error likely occurred because the application has already been submitted, or the button is not located in a standard location.\n3.  Before searching for the Apply button, the bot should check for the presence of the \"You Applied\" message using the CSS selector `div:contains(\"You applied\")`. If that doesn't work, it should check for any elements containing the word \"apply\"."
+  },
+  {
+    "timestamp": "2026-05-24T12:18:19.863Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Engineering Manager - SaaS",
+    "company": "RBOL TECH PTY LTD",
+    "url": "https://au.seek.com/job/92245922",
+    "page_title": "Engineering Manager - SaaS Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-18-17-855Z_apply_button_not_found.png",
+    "analysis": "1.  The job details page for \"Engineering Manager - SaaS\" at RBOL TECH PTY LTD is visible. The page also shows the message \"You applied on 24 May 2026\".\n2.  The \"apply_button_not_found\" error was caused because the application has already been submitted, so the Apply button is not present.\n3.  Before searching for the Apply button, the bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")`. If the message exists, skip the application process."
+  },
+  {
+    "timestamp": "2026-05-24T12:19:06.864Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Project Manager - Data Sensitivity",
+    "company": "Hays | Technology",
+    "url": "https://au.seek.com/job/92279367",
+    "page_title": "Project Manager - Data Sensitivity Job in Newcastle, Newcastle, Maitland & Hunter NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-19-03-926Z_apply_button_not_found.png",
+    "analysis": "1. The job posting for \"Project Manager - Data Sensitivity\" at Hays is visible on the Seek website.\n2. The \"apply_button_not_found\" error is likely due to the apply button not being in a standard location or requiring specific conditions to be met (e.g., javascript execution, being logged in).\n3. The bot should first check for \"You applied\" message. If that's not found, it should use a broader search, querying for any button or link that contains \"apply\" or \"submit\" using `a:contains(\"apply\"), button:contains(\"apply\"), a:contains(\"submit\"), button:contains(\"submit\")`."
+  },
+  {
+    "timestamp": "2026-05-24T12:32:54.791Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Senior Software Engineer - Full-Stack .NET/React",
+    "company": "Profusion PAC Pty Ltd",
+    "url": "https://apply.jobadder.com/11139/4440869/hd3yljhmegbupmbenwiscs5hpa?site=au1&seek-token=NWgqfFxKbgKriyDfeX63xq",
+    "page_title": "Senior Software Engineer - Full-Stack .NET/React",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-32-52-572Z_ats_jobadder_no_submit.png",
+    "analysis": "1. The \"Want to apply later?\" popup is visible on screen, overlaying the application form, which appears to be pre-filled.\n2. The error is caused by the bot failing to dismiss the \"Want to apply later?\" popup.\n3. The bot should next try clicking the close icon `[aria-label='Close']` within the popup."
+  },
+  {
+    "timestamp": "2026-05-24T12:33:32.095Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Principal Software Engineer – NetBank Next",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer---NetBank-Next_REQ256493-1?seek-token=HoG8za8NXc36sNhuegSUHr",
+    "page_title": "Principal Software Engineer – NetBank Next - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-33-30-017Z_ats_workday_no_nav_button.png",
+    "analysis": "1. A \"Start Your Application\" modal is visible, offering options to apply with LinkedIn, manually, resume or a previous application.\n2. The bot failed to recognize and interact with this modal, instead searching for standard navigation buttons.\n3. It should attempt to click \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, it should try \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T12:33:34.054Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Principal Software Engineer – NetBank Next",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer---NetBank-Next_REQ256493-1?seek-token=HoG8za8NXc36sNhuegSUHr",
+    "page_title": "Principal Software Engineer – NetBank Next - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-33-32-100Z_ats_workday_no_submit.png",
+    "analysis": "1. The \"Start Your Application\" modal is visible, presenting options to apply with resume, manually, last application, or LinkedIn.\n2. The bot failed to interact with this modal.\n3. The bot should first attempt to click \"Autofill with Resume\" using the selector `button:contains(\"Autofill with Resume\")`. If that fails, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T12:37:46.128Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Technical Product Owner | AI Powered Engineering Platforms",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Technology-Product-Owner---AI-Powered-Engineering-team_REQ248440?seek-token=RR16BNxkZHoWBgitvcwxfi",
+    "page_title": "Technology Product Owner – AI Powered Engineering team - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-37-43-652Z_ats_workday_no_nav_button.png",
+    "analysis": "1.  A \"Start Your Application\" modal is visible, offering options like \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\", and \"Apply With LinkedIn\".\n2.  The bot failed to interact with this modal because it searched for standard navigation buttons.\n3.  The bot should first attempt to click \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, it should then attempt to click \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T12:37:48.357Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Technical Product Owner | AI Powered Engineering Platforms",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Technology-Product-Owner---AI-Powered-Engineering-team_REQ248440?seek-token=RR16BNxkZHoWBgitvcwxfi",
+    "page_title": "Technology Product Owner – AI Powered Engineering team - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-37-46-133Z_ats_workday_no_submit.png",
+    "analysis": "1. The \"Start Your Application\" modal is present, displaying options like \"Autofill with Resume,\" \"Apply Manually,\" \"Use My Last Application\", and \"Apply With LinkedIn\".\n2. The bot failed to interact with this modal.\n3. The bot should first attempt to click \"Autofill with Resume\" using the selector `button:contains(\"Autofill with Resume\")`. If that fails, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T12:50:25.131Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Senior Software Engineer - Full-Stack .NET/React",
+    "company": "Profusion PAC Pty Ltd",
+    "url": "https://apply.jobadder.com/11139/4440869/hd3yljhmegbupmbenwiscs5hpa?site=au1&seek-token=AWtAkSGg7PFtsnHXVbsRK1",
+    "page_title": "Senior Software Engineer - Full-Stack .NET/React",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-50-23-110Z_ats_jobadder_no_submit.png",
+    "analysis": "1. The \"Want to apply later?\" popup is obscuring the pre-filled application form.\n2. The bot is failing to dismiss this popup.\n3. Next, the bot should try clicking the 'Cancel' button using the CSS selector `button:contains('Cancel')`."
+  },
+  {
+    "timestamp": "2026-05-24T12:50:41.621Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Lead Platform Engineer",
+    "company": "Private Advertiser",
+    "url": "https://au.seek.com/job/92272959",
+    "page_title": "Lead Platform Engineer Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-50-39-528Z_apply_button_not_found.png",
+    "analysis": "1.  The job details page for \"Lead Platform Engineer\" on Seek is visible, including the job description and application details.\n2.  The \"apply_button_not_found\" error occurred because the application has already been submitted, as indicated by the message \"You applied on 22 May 2026\".\n3.  The bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")` before searching for the Apply button."
+  },
+  {
+    "timestamp": "2026-05-24T12:51:13.080Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Principal Software Engineer – NetBank Next",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer---NetBank-Next_REQ256493-1?seek-token=AiMARuhago5Jo6PAUKFMAc",
+    "page_title": "Principal Software Engineer – NetBank Next - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-51-10-769Z_ats_workday_no_nav_button.png",
+    "analysis": "1. A \"Start Your Application\" modal is visible with options like \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\", and \"Apply With LinkedIn\".\n2. The bot failed to interact with this modal, searching for standard navigation buttons instead.\n3. The bot should first attempt to click \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, it should then attempt to click \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T12:51:16.227Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Principal Software Engineer – NetBank Next",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer---NetBank-Next_REQ256493-1?seek-token=AiMARuhago5Jo6PAUKFMAc",
+    "page_title": "Principal Software Engineer – NetBank Next - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-51-13-084Z_ats_workday_no_submit.png",
+    "analysis": "1.  The \"Start Your Application\" modal is visible with options to \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\", and \"Apply With LinkedIn\".\n2.  The bot has failed to interact with this modal and choose an application method.\n3.  The bot should attempt to click \"Autofill with Resume\" using the selector `button:contains(\"Autofill with Resume\")`. If that fails, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T12:54:42.336Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Senior Backend Developer",
+    "company": "BLACKROC Contingent Pty Ltd",
+    "url": "https://au.seek.com/job/92286244",
+    "page_title": "Senior Backend Developer Job in Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-54-39-769Z_apply_button_not_found.png",
+    "analysis": "1.  The job posting for \"Senior Backend Developer\" at BLACKROC is visible.\n2.  The \"apply_button_not_found\" error is likely due to the apply button being in a non-standard location or loaded dynamically.\n3.  The bot should check for \"You applied\" message using the CSS selector `div:contains(\"You applied\")`. Failing that it should try to find any button with the word Apply: `a:contains(\"apply\"), button:contains(\"apply\"), a:contains(\"submit\"), button:contains(\"submit\")`."
+  },
+  {
+    "timestamp": "2026-05-24T12:55:27.248Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Senior Developer (Full Stack) WordPress Experience mandatory - FULLY REMOTE",
+    "company": "Good to Great Schools Australia Limited",
+    "url": "https://au.seek.com/job/92252343",
+    "page_title": "Senior Developer (Full Stack) WordPress Experience mandatory - FULLY REMOTE Job in Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-55-25-010Z_apply_button_not_found.png",
+    "analysis": "1. The job posting page for a Senior Developer role is visible, including details like the job title, company, location, and that \"You applied on 22 May 2026\".\n2. The error was caused because the bot didn't check for the \"You applied\" message before looking for the Apply button.\n3. The bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")` before attempting to locate and click the \"Apply\" button."
+  },
+  {
+    "timestamp": "2026-05-24T12:55:45.092Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Principal Engineer (Software Architect) - 53028",
+    "company": "Talenza",
+    "url": "https://au.seek.com/job/92267464",
+    "page_title": "Principal Engineer (Software Architect) - 53028 Job in Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-55-43-213Z_apply_button_not_found.png",
+    "analysis": "1. The job posting for \"Principal Engineer (Software Architect)\" is visible, including details and a message \"You applied on 22 May 2026\".\n2. The \"apply_button_not_found\" error occurred because the bot didn't check if the application has already been submitted before searching for the \"Apply\" button.\n3. The bot should check for the presence of the \"You applied\" message using the CSS selector `div:contains(\"You applied\")` before attempting to locate the \"Apply\" button."
+  },
+  {
+    "timestamp": "2026-05-24T12:56:30.087Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Senior Software Engineer (Backend, DevOps, Cloud)",
+    "company": "BNK Banking Corporation Limited",
+    "url": "https://au.seek.com/job/92277030",
+    "page_title": "Senior Software Engineer (Backend, DevOps, Cloud) Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-56-27-625Z_apply_button_not_found.png",
+    "analysis": "1.  The job posting page for \"Senior Software Engineer (Backend, DevOps, Cloud)\" at BNK Banking Corporation Limited is visible.\n2.  The \"apply_button_not_found\" error occurred because the bot is failing to find an Apply button at this point of the page.\n3.  First, the bot should check for 'You applied' using `div:contains(\"You applied\")` before assuming it exists at all. If not found, it should try to search for the apply button within the job details area, looking for `<a:contains(\"apply\"), button:contains(\"apply\"), a:contains(\"submit\"), button:contains(\"submit\")>`."
+  },
+  {
+    "timestamp": "2026-05-24T12:57:33.247Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Java Engineer - Legacy Platforms",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/92254559/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-57-31-060Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is displayed with a validation error message. The user's profile information is also visible.\n2. The error is caused by unanswered employer questions, as indicated by the validation error.\n3. The bot should return to the \"Answer employer questions\" page and retry `answerEmployerQuestions()`, specifically targeting \"Do you hold full working rights in Australia?\" and \"Do you have, or are willing to obtain, a current Police Check (National Police Certificate) for employment?\" using selectors like `label:contains(\"Do you hold full working rights in Australia?\") + label:contains(\"Yes\")` with `isChecked()` confirmation."
+  },
+  {
+    "timestamp": "2026-05-24T12:57:34.857Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Senior Java Engineer - Legacy Platforms",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/92254559/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-57-33-366Z_continue_button_not_found.png",
+    "analysis": "1.  The screen displays a warning message indicating unresolved issues and a profile card.\n2.  Profile validation errors are preventing the application from proceeding.\n3.  The bot should click the edit button on the profile card using the selector `button[aria-label=\"Edit profile\"]`."
+  },
+  {
+    "timestamp": "2026-05-24T12:57:38.484Z",
+    "error_type": "auto_skip_still_blocked",
+    "job_title": "Senior Java Engineer - Legacy Platforms",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/92254559/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-57-36-368Z_auto_skip_still_blocked.png",
+    "analysis": "1. The \"Review and submit\" page is displayed with an error message indicating that there are issues to address before continuing the application.\n2. The error is likely due to unmet requirements detected on the \"Review and submit\" page after employer questions have been purportedly answered.\n3. The bot should re-examine the entire page for unmet requirements, potentially using `div[role=\"alert\"]` to more broadly identify and target error messages and then analyze those messages to identify the specific fields in error. The bot can then refocus on these specific elements."
+  },
+  {
+    "timestamp": "2026-05-24T12:59:11.579Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Senior Backend Developer",
+    "company": "BLACKROC Contingent Pty Ltd",
+    "url": "https://au.seek.com/job/92286244",
+    "page_title": "Senior Backend Developer Job in Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-59-09-284Z_apply_button_not_found.png",
+    "analysis": "1.  The job details for \"Senior Backend Developer\" at BLACKROC, including the job title, company, and location, are visible.\n2.  The error occurred because the bot assumed the \"Apply\" button would be present without checking for the \"You applied\" status or if the button exists at all on the page layout.\n3.  The bot should first check for 'You applied' using `div:contains(\"You applied\")`. If not found, use the CSS selector `<a:contains(\"apply\"), button:contains(\"apply\"), a:contains(\"submit\"), button:contains(\"submit\")>` to locate the \"Apply\" button within the job details area."
+  },
+  {
+    "timestamp": "2026-05-24T12:59:45.936Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Principal Software Engineer – NetBank Next",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer---NetBank-Next_REQ256493-1?seek-token=BP9KCSmBckAMceHycF9Yxi",
+    "page_title": "Principal Software Engineer – NetBank Next - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-59-43-686Z_ats_workday_no_nav_button.png",
+    "analysis": "1.  A \"Start Your Application\" modal is visible, offering options to apply with Resume, manually, apply with last application, or with Linkedin.\n2.  The error occurred because the bot incorrectly searched for standard navigation buttons instead of interacting with the modal.\n3.  The bot should first attempt to click \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, it should then attempt to click \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T12:59:48.418Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Principal Software Engineer – NetBank Next",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer---NetBank-Next_REQ256493-1?seek-token=BP9KCSmBckAMceHycF9Yxi",
+    "page_title": "Principal Software Engineer – NetBank Next - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T12-59-45-941Z_ats_workday_no_submit.png",
+    "analysis": "1. The \"Start Your Application\" modal is visible, offering options like \"Autofill with Resume,\" \"Apply Manually,\" \"Use My Last Application,\" and \"Apply With LinkedIn.\"\n2. The error is due to the bot failing to interact with this modal.\n3. The bot should first attempt to click \"Autofill with Resume\" using the selector `button:contains(\"Autofill with Resume\")`. If that fails, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T13:11:40.769Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Senior Software Engineer - Full-Stack .NET/React",
+    "company": "Profusion PAC Pty Ltd",
+    "url": "https://apply.jobadder.com/11139/4440869/hd3yljhmegbupmbenwiscs5hpa?site=au1&seek-token=HVHrJPyAqWqQs7XoQXTUV5",
+    "page_title": "Senior Software Engineer - Full-Stack .NET/React",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-11-38-709Z_ats_jobadder_no_submit.png",
+    "analysis": "1. The \"Want to apply later?\" popup is visible, obscuring the application form.\n2. The bot is failing to dismiss the \"Want to apply later?\" popup.\n3. Try using the 'Enter your email address' field for the popup and click 'Send Reminder', using the selector `button:contains('Send Reminder')`."
+  },
+  {
+    "timestamp": "2026-05-24T13:11:55.781Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Lead Platform Engineer",
+    "company": "Private Advertiser",
+    "url": "https://au.seek.com/job/92272959",
+    "page_title": "Lead Platform Engineer Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-11-53-856Z_apply_button_not_found.png",
+    "analysis": "1.  The job details page for \"Lead Platform Engineer\" is visible, and the message \"You applied on 22 May 2026\" is displayed.\n2.  The error occurred because the bot didn't check for the \"You applied\" message before attempting to find the \"Apply\" button.\n3.  The bot should first check for the presence of \"You applied\" using the CSS selector `div:contains(\"You applied\")`. If this is present, the application should be considered complete, and the bot should not proceed to search for the \"Apply\" button."
+  },
+  {
+    "timestamp": "2026-05-24T13:16:28.116Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Principal Engineer (Software Architect) - 53028",
+    "company": "Talenza",
+    "url": "https://au.seek.com/job/92267464",
+    "page_title": "Principal Engineer (Software Architect) - 53028 Job in Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-16-25-782Z_apply_button_not_found.png",
+    "analysis": "1.  The job details page for \"Principal Engineer (Software Architect)\" is visible, including the message \"You applied on 22 May 2026\".\n2.  The error occurred because the bot didn't check for the \"You applied\" message before attempting to find the \"Apply\" button.\n3.  The bot should first check for the presence of \"You applied\" using the CSS selector `div:contains(\"You applied\")`. Since the message is present, the bot should mark the application as complete."
+  },
+  {
+    "timestamp": "2026-05-24T13:18:19.259Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Senior Software Engineer (Backend, DevOps, Cloud)",
+    "company": "BNK Banking Corporation Limited",
+    "url": "https://au.seek.com/job/92277030",
+    "page_title": "Senior Software Engineer (Backend, DevOps, Cloud) Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-18-15-968Z_apply_button_not_found.png",
+    "analysis": "1.  The job details page for \"Senior Software Engineer (Backend, DevOps, Cloud)\" is displayed.\n2.  The bot likely failed because it immediately searched for the Apply button without verifying if the job details were fully loaded or considering alternative page layouts.\n3.  The bot should first wait for the job details section to load completely before checking for a \"You applied\" message using `div:contains(\"You applied\")`. If the message isn't present, it can then search for the Apply button using a broader CSS selector like `a:contains(\"apply\"), button:contains(\"apply\"), a:contains(\"submit\"), button:contains(\"submit\")`."
+  },
+  {
+    "timestamp": "2026-05-24T13:19:05.250Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Senior Developer (Full Stack) WordPress Experience mandatory - FULLY REMOTE",
+    "company": "Good to Great Schools Australia Limited",
+    "url": "https://au.seek.com/job/92252343",
+    "page_title": "Senior Developer (Full Stack) WordPress Experience mandatory - FULLY REMOTE Job in Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-19-03-125Z_apply_button_not_found.png",
+    "analysis": "1. The job posting for \"Senior Developer (Full Stack) WordPress Experience mandatory\" is visible and the text \"You applied on 22 May 2026\" is also visible.\n2. The bot incorrectly tried to find the Apply button, even though the page clearly indicates the job has already been applied for.\n3. The bot should check for `div:contains(\"You applied\")` and not attempt to find the Apply button if this element exists."
+  },
+  {
+    "timestamp": "2026-05-24T13:19:20.195Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Senior .NET Developer",
+    "company": "Hydrogen Group Pty Ltd",
+    "url": "https://au.seek.com/job/92297903",
+    "page_title": "Senior .NET Developer Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-19-17-884Z_apply_button_not_found.png",
+    "analysis": "1. The job details page for \"Senior .NET Developer\" at Hydrogen Group Pty Ltd is visible.\n\n2. The bot likely failed to find the \"Apply\" button because it didn't consider that the job might already be applied for or the page layout might differ.\n\n3. The bot should first check for the element `div:contains(\"You applied\")`. If not found, search for the \"Apply\" button using a broader selector like `a:contains(\"apply\"), button:contains(\"apply\")`."
+  },
+  {
+    "timestamp": "2026-05-24T13:20:18.569Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Lead Platform Engineer",
+    "company": "Private Advertiser",
+    "url": "https://au.seek.com/job/92272959",
+    "page_title": "Lead Platform Engineer Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-20-15-848Z_apply_button_not_found.png",
+    "analysis": "1.  The job details page is visible, showing the job title, location, salary, and description. The text \"You applied on 22 May 2026\" is also present.\n\n2.  The bot failed because it tried to locate and interact with an \"Apply\" button even though the job application had already been submitted, as indicated by the \"You applied\" message.\n\n3.  The bot should check for the presence of `div:contains(\"You applied\")` before attempting to locate an application button. If that element is present, the bot should not proceed with attempting to apply."
+  },
+  {
+    "timestamp": "2026-05-24T13:22:35.274Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Principal Software Engineer – NetBank Next",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer---NetBank-Next_REQ256493-1?seek-token=VXG3CLojJQPFPqsnMtbtK4",
+    "page_title": "Principal Software Engineer – NetBank Next - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-22-32-885Z_ats_workday_no_nav_button.png",
+    "analysis": "1.  A \"Start Your Application\" modal is visible with options like \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\", and \"Apply With LinkedIn\".\n2.  The bot searched for standard navigation buttons instead of interacting with this modal.\n3.  The bot should first attempt to click \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, it should then attempt to click \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T13:22:37.654Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Principal Software Engineer – NetBank Next",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer---NetBank-Next_REQ256493-1?seek-token=VXG3CLojJQPFPqsnMtbtK4",
+    "page_title": "Principal Software Engineer – NetBank Next - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-22-35-279Z_ats_workday_no_submit.png",
+    "analysis": "1. The \"Start Your Application\" modal is visible with options: \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\", and \"Apply With LinkedIn\".\n2. The bot is failing to interact with this modal.\n3. The bot should first try to click \"Autofill with Resume\" using `button:contains(\"Autofill with Resume\")`. If unsuccessful, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T13:34:29.873Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Senior Software Engineer - Full-Stack .NET/React",
+    "company": "Profusion PAC Pty Ltd",
+    "url": "https://apply.jobadder.com/11139/4440869/hd3yljhmegbupmbenwiscs5hpa?site=au1&seek-token=KD6vPux5vtM7tJhW5hP3VH",
+    "page_title": "Senior Software Engineer - Full-Stack .NET/React",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-34-28-055Z_ats_jobadder_no_submit.png",
+    "analysis": "1. The \"Want to apply later?\" popup is visible, obscuring the pre-filled application form.\n2. The bot is failing to dismiss this popup.\n3. Next, the bot should try clicking the close icon, using the CSS selector `[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-05-24T13:38:35.283Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Technical Product Owner | AI Powered Engineering Platforms",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Technology-Product-Owner---AI-Powered-Engineering-team_REQ248440?seek-token=9Y86TXoKKEgrPckbJqs4cB",
+    "page_title": "Technology Product Owner – AI Powered Engineering team - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-38-32-828Z_ats_workday_no_nav_button.png",
+    "analysis": "1.  A \"Start Your Application\" modal with options including \"Autofill with Resume,\" \"Apply Manually,\" \"Use My Last Application,\" and \"Apply With LinkedIn\" is visible.\n2.  The bot failed to interact with the modal and instead searched for standard navigation buttons.\n3.  The bot should first attempt to click \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`, then \"Apply Manually\" with `button:contains('Apply Manually')` if the first fails."
+  },
+  {
+    "timestamp": "2026-05-24T13:38:37.284Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Technical Product Owner | AI Powered Engineering Platforms",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Technology-Product-Owner---AI-Powered-Engineering-team_REQ248440?seek-token=9Y86TXoKKEgrPckbJqs4cB",
+    "page_title": "Technology Product Owner – AI Powered Engineering team - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-38-35-288Z_ats_workday_no_submit.png",
+    "analysis": "1.  The \"Start Your Application\" modal is visible, offering options such as \"Autofill with Resume\" and \"Apply Manually\".\n2.  The bot failed to interact with the modal and select an application method.\n3.  The bot should first attempt to click \"Autofill with Resume\" using the selector `button:contains(\"Autofill with Resume\")`. If that fails, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T13:40:55.519Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Technical Product Owner | AI Powered Engineering Platforms",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Technology-Product-Owner---AI-Powered-Engineering-team_REQ248440?seek-token=GEig3RA5TAADuonAynLAsn",
+    "page_title": "Technology Product Owner – AI Powered Engineering team - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-40-53-151Z_ats_workday_no_nav_button.png",
+    "analysis": "1. A \"Start Your Application\" modal is visible, with options like \"Autofill with Resume,\" \"Apply Manually,\" \"Use My Last Application,\" and \"Apply With LinkedIn.\"\n2.  The bot has failed to interact with the displayed modal, leading to the error.\n3.  The bot should first attempt to click \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, it should then attempt to click \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T13:40:57.519Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Technical Product Owner | AI Powered Engineering Platforms",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Technology-Product-Owner---AI-Powered-Engineering-team_REQ248440?seek-token=GEig3RA5TAADuonAynLAsn",
+    "page_title": "Technology Product Owner – AI Powered Engineering team - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-40-55-524Z_ats_workday_no_submit.png",
+    "analysis": "1.  The \"Start Your Application\" modal is visible, with options like \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\", and \"Apply With LinkedIn\".\n2.  The bot is failing to interact with this modal.\n3.  The bot should first try to click \"Autofill with Resume\" using `button:contains(\"Autofill with Resume\")`. If that fails, it should then try \"Apply Manually\" via `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T13:41:45.913Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Lead Platform Engineer",
+    "company": "Private Advertiser",
+    "url": "https://au.seek.com/job/92272959",
+    "page_title": "Lead Platform Engineer Job in Sydney NSW - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-41-43-541Z_apply_button_not_found.png",
+    "analysis": "1.  The job posting for \"Lead Platform Engineer\" is visible, including the job description and the text \"You applied on 22 May 2026\".\n\n2. The bot incorrectly tried to find the Apply button, even though the page clearly indicates the job has already been applied for.\n\n3. The bot should check for `div:contains(\"You applied\")` before attempting to locate the \"Apply\" button. If that element is present, it should not attempt to apply."
+  },
+  {
+    "timestamp": "2026-05-24T13:45:10.256Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Data Solution Architect",
+    "company": "Boral Ltd",
+    "url": "https://secure.dc2.pageuppeople.com/apply/569/aw/applicationForm/initApplication.asp?lJobID=515472&sCompletionSignal=TnoJYF8CGx7rWfACGYvVa6&sLanguage=en&sSourcePointer=aw&lJobSourceTypeID=814",
+    "page_title": "Begin application - Boral",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-45-07-482Z_ats_pageup_no_submit.png",
+    "analysis": "1.  The \"Begin application\" form is visible, with the email address populated and the \"By continuing\" checkbox unchecked. The \"Next\" button is also visible.\n2.  The error was likely caused by the bot not checking the \"By continuing\" checkbox before clicking \"Next\".\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` and then execute a `.click()` action to check the box."
+  },
+  {
+    "timestamp": "2026-05-24T13:46:15.390Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Principal Software Engineer – NetBank Next",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer---NetBank-Next_REQ256493-1?seek-token=LWLCN5Fe2yYQ2BYi5bq1EW",
+    "page_title": "Principal Software Engineer – NetBank Next - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-46-13-359Z_ats_workday_no_nav_button.png",
+    "analysis": "1.  A \"Start Your Application\" modal is visible with options like \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\", and \"Apply With LinkedIn\".\n2.  The bot searched for standard navigation buttons instead of interacting with this modal.\n3.  The bot should first attempt to click \"Apply With LinkedIn\" using the CSS selector `button:contains('Apply With LinkedIn')`. If that fails, it should then attempt to click \"Apply Manually\" using the selector `button:contains('Apply Manually')`."
+  },
+  {
+    "timestamp": "2026-05-24T13:46:17.338Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Principal Software Engineer – NetBank Next",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer---NetBank-Next_REQ256493-1?seek-token=LWLCN5Fe2yYQ2BYi5bq1EW",
+    "page_title": "Principal Software Engineer – NetBank Next - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-46-15-395Z_ats_workday_no_submit.png",
+    "analysis": "1.  A modal titled \"Start Your Application\" is visible, presenting options like \"Autofill with Resume\", \"Apply Manually\", \"Use My Last Application\" and \"Apply With LinkedIn\".\n2.  The bot failed to interact with the selection modal that pops up.\n3.  The bot should first try clicking `button:contains(\"Autofill with Resume\")`. If that fails, it should try clicking `button:contains(\"Apply Manually\")`."
+  },
+  {
+    "timestamp": "2026-05-24T13:47:48.612Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Data Solution Architect",
+    "company": "Boral Ltd",
+    "url": "https://secure.dc2.pageuppeople.com/apply/569/gateway/Default.aspx?c=apply&sJobIDs=515472&SourceTypeID=814&seek-token=NfUWh5BBqFBpM4KPmuj3xe",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-47-46-239Z_ats_pageup_no_submit.png",
+    "analysis": "1. An error message and an hCaptcha (\"I am human\") challenge are visible.\n2. The error was likely caused by PageUp requiring hCaptcha to be solved before proceeding, and the bot didn't solve it.\n3.  The bot should use the selector `div[class*=\"h-captcha\"]` or the checkbox `input[type=\"checkbox\"]` to identify and resolve the hCaptcha by clicking it, and then wait for the captcha to complete before attempting to submit."
+  },
+  {
+    "timestamp": "2026-05-24T13:50:31.369Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "AI Solutions Architect",
+    "company": "Marlin Human Capital",
+    "url": "https://au.seek.com/job/92279091/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-50-29-084Z_validation_errors_blocking_continue.png",
+    "analysis": "1.  The \"Review and submit\" page is displayed with a validation error, the applicant's profile, and job application progress bar.\n2.  The error is likely caused by unanswered employer questions, as suggested by previous analyses and the error message visible on the screen \"Before you can continue with the application, please address the following issues\". The specific question causing the issue, 'Do you hold full working rights in Australia?', is still likely the cause.\n3.  The bot should retry `answerEmployerQuestions()`, specifically selecting the \"Yes\" option for the \"Do you hold full working rights in Australia?\" question using the selector `label:contains(\"Do you hold full working rights in Australia?\") + label:contains(\"Yes\")` with `isChecked()` confirmation."
+  },
+  {
+    "timestamp": "2026-05-24T13:50:33.167Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "AI Solutions Architect",
+    "company": "Marlin Human Capital",
+    "url": "https://au.seek.com/job/92279091/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-50-31-491Z_continue_button_not_found.png",
+    "analysis": "1. The screen shows the \"Review and submit\" page with a warning message indicating profile issues and a profile card.\n2. Profile validation errors are preventing the application from proceeding.\n3. The bot should click the edit button on the profile card using the selector `button[aria-label=\"Edit profile\"]`. (The edit button has an aria label of `Edit profile` and is positioned on top right corner of the profile card.)"
+  },
+  {
+    "timestamp": "2026-05-24T13:50:36.866Z",
+    "error_type": "auto_skip_still_blocked",
+    "job_title": "AI Solutions Architect",
+    "company": "Marlin Human Capital",
+    "url": "https://au.seek.com/job/92279091/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-50-34-678Z_auto_skip_still_blocked.png",
+    "analysis": "1. The \"Review and submit\" page is displayed, with an error message indicating issues need to be addressed before continuing the application. The previous steps (choose documents, answer employer questions, update SEEK profile) are marked as completed.\n2.  The error is likely due to unmet requirements that the bot is not detecting, even though it believes it has completed all steps.\n3.  The bot should retry finding the alert box on the review page using `div[role=\"alert\"]` and extract the message to pinpoint the unmet requirements. Based on those requirements, the bot should try to identify the specific elements in error using label selectors or data attributes."
+  },
+  {
+    "timestamp": "2026-05-24T13:51:21.728Z",
+    "error_type": "apply_button_not_found",
+    "job_title": "Agentic Business Analyst",
+    "company": "BLACKROC Contingent Pty Ltd",
+    "url": "https://au.seek.com/job/92268041",
+    "page_title": "Agentic Business Analyst Job in Brisbane QLD - SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-24T13-51-19-138Z_apply_button_not_found.png",
+    "analysis": "1.  The job posting for \"Agentic Business Analyst\" at BLACKROC is visible.\n2.  The bot likely failed to find the \"Apply\" button because it doesn't exist on the page.\n3.  The bot should verify if the \"Apply\" button exists using more generic selectors like `a:contains(\"apply\"), button:contains(\"apply\")` - also check for `div:contains(\"You applied\")` to see if the job has already been applied for. Also, check for a \"Quick Apply\" button, given the recruitment company's branding - as that might indicate an alternative application process."
   }
 ]
