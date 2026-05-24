@@ -4,6 +4,18 @@ import * as path from 'path';
 
 export const DATA_DIR = path.resolve(__dirname, '../data');
 
+export function deriveJobId(url: string): string {
+  try {
+    const seekMatch = url.match(/\/job\/(\d+)/);
+    if (seekMatch) return `seek-${seekMatch[1]}`;
+    const parsed = new URL(url);
+    const slug = parsed.pathname.split('/').filter(Boolean).pop() || 'root';
+    return `${parsed.hostname.replace(/\./g, '-')}-${slug}`.slice(0, 80);
+  } catch {
+    return url.slice(0, 80);
+  }
+}
+
 export function escapeCsv(val: unknown): string {
   const s = String(val ?? '');
   if (s.includes(',') || s.includes('"') || s.includes('\n') || s.includes('\r')) {
@@ -34,19 +46,20 @@ export interface JobMeta {
   runId: string;
   atsProvider?: string;
   externalUrl?: string;
+  routeMode?: string;
 }
 
 const APP_HEADERS = [
   'job_id', 'platform', 'title', 'company', 'location', 'salary_text', 'work_type',
-  'applied_at', 'resume_variant', 'run_id', 'ats_provider', 'external_url',
+  'applied_at', 'resume_variant', 'run_id', 'ats_provider', 'external_url', 'route_mode',
 ];
 const SKIP_HEADERS = [
   'job_id', 'platform', 'title', 'company', 'location', 'salary_text', 'work_type',
-  'skipped_at', 'skip_reason', 'run_id', 'ats_provider', 'external_url',
+  'skipped_at', 'skip_reason', 'run_id', 'ats_provider', 'external_url', 'route_mode',
 ];
 const FAIL_HEADERS = [
   'job_id', 'platform', 'title', 'company', 'location', 'salary_text', 'work_type',
-  'failed_at', 'failure_reason', 'requires_manual_review', 'screenshot_path', 'run_id', 'ats_provider', 'external_url',
+  'failed_at', 'failure_reason', 'requires_manual_review', 'screenshot_path', 'run_id', 'ats_provider', 'external_url', 'route_mode',
 ];
 const RUN_HEADERS = [
   'run_id', 'started_at', 'ended_at', 'duration_sec',
@@ -67,6 +80,7 @@ export function recordApplication(meta: JobMeta & { resumeVariant: string }, _da
     run_id: meta.runId,
     ats_provider: meta.atsProvider ?? '',
     external_url: meta.externalUrl ?? '',
+    route_mode: meta.routeMode ?? '',
   });
 }
 
@@ -84,6 +98,7 @@ export function recordSkip(meta: JobMeta & { skipReason: string }, _dataDir = DA
     run_id: meta.runId,
     ats_provider: meta.atsProvider ?? '',
     external_url: meta.externalUrl ?? '',
+    route_mode: meta.routeMode ?? '',
   });
 }
 
@@ -110,6 +125,7 @@ export function recordFailure(
     run_id: meta.runId,
     ats_provider: meta.atsProvider ?? '',
     external_url: meta.externalUrl ?? '',
+    route_mode: meta.routeMode ?? '',
   });
 }
 

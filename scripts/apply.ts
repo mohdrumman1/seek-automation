@@ -17,6 +17,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { JobPlatform, JobDetails, ApplyResult } from '../lib/platforms/types';
 import { SeekPlatform } from '../lib/platforms/seek';
+import { resolveResumeVariant } from '../lib/resume-selector';
+import { tailorCoverLetter } from '../lib/openrouter';
+import { tailorResume, TailoredContent } from '../lib/resume-tailor';
+import { generateTailoredDocx } from '../lib/resume-generator';
+import { scrapeJobDetails } from '../lib/job-scraper';
+import { applyViaATS, detectATS } from '../lib/ats/index';
 import { loadKB, saveKB } from '../lib/questions-kb';
 import { logger } from '../lib/logger';
 import * as tracker from '../lib/tracker';
@@ -72,6 +78,18 @@ function saveApplied(applied: Set<string>): void {
 const DELAY_BETWEEN_APPS_MS = 6_000;
 const CIRCUIT_BREAKER_THRESHOLD = 3;
 
+function isSeekUrl(u: string): boolean {
+  try { return new URL(u).hostname.toLowerCase().includes('seek.com'); } catch { return false; }
+}
+
+// Workday apply forms have /apply/ or /job/ in the path; listing pages use /jobdetail/ or /jobs/
+function isWorkdayApplyForm(u: string): boolean {
+  try {
+    const p = new URL(u).pathname.toLowerCase();
+    return p.includes('/apply/') || /\/job\/[^/]+\/apply/.test(p);
+  } catch { return false; }
+}
+
 async function applyToSingleUrl(
   platform: JobPlatform,
   page: Page,
@@ -85,30 +103,104 @@ async function applyToSingleUrl(
   await page.goto(url);
   await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
 
-  let details: JobDetails = { title: '', company: '', description: '', location: '', salaryText: '', workType: '' };
-  try { details = await platform.getJobDetails(page); } catch {}
-  console.log(`Single URL mode: ${details.title || url}`);
+  const emptyDetails: JobDetails = { title: '', company: '', description: '', location: '', salaryText: '', workType: '' };
+  let details: JobDetails = { ...emptyDetails };
+  let routeMode: 'seek' | 'ats-form' | 'ats-listing' | 'unknown' = 'unknown';
+  let applyUrl = url;
 
-  const result = await platform.applyToJob(page, context, details, {
-    resumeVariant: 'pm',
-    searchName: 'manual',
-    baseCoverLetter,
-    kb,
-  });
+  const atsProvider = detectATS(url);
+
+  if (isSeekUrl(url)) {
+    routeMode = 'seek';
+    try { details = await platform.getJobDetails(page); } catch {}
+  } else if (atsProvider === 'workday' && isWorkdayApplyForm(url)) {
+    routeMode = 'ats-form';
+    // Page is already the application form — no listing to scrape
+  } else if (atsProvider) {
+    routeMode = 'ats-listing';
+    details = await scrapeJobDetails(page, url);
+  } else {
+    // Unknown site — scrape listing, then try to find and follow an Apply link
+    details = await scrapeJobDetails(page, url);
+    try {
+      const applyHref = await page
+        .locator('a:has-text("Apply"), a[href*="apply" i]')
+        .first()
+        .getAttribute('href', { timeout: 3000 });
+      if (applyHref) {
+        const abs = new URL(applyHref, url).toString();
+        if (detectATS(abs)) {
+          applyUrl = abs;
+          await page.goto(abs);
+          await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
+        }
+      }
+    } catch {}
+    routeMode = 'unknown';
+  }
+
+  logger.info('single-url mode', { routeMode, atsProvider, title: details.title || '(no title)', url: applyUrl.slice(0, 80) });
+  console.log(`Single URL mode [${routeMode}]: ${details.title || applyUrl}`);
+
+  let result: ApplyResult;
+
+  if (routeMode === 'seek') {
+    result = await platform.applyToJob(page, context, details, {
+      resumeVariant: resolveResumeVariant(details.title, 'manual'),
+      searchName: 'manual',
+      baseCoverLetter,
+      kb,
+    });
+  } else {
+    // Non-SEEK path: tailor cover letter + resume, then call ATS handler directly
+    const variant = resolveResumeVariant(details.title, 'manual');
+    const config = { resumeVariant: variant, searchName: 'manual', baseCoverLetter, kb };
+    const jobId = tracker.deriveJobId(applyUrl);
+
+    let coverLetter = baseCoverLetter;
+    let resumePath: string | null = null;
+
+    if (details.title) {
+      try {
+        coverLetter = await tailorCoverLetter(baseCoverLetter, details.title, details.company, details.description);
+      } catch (err) {
+        logger.warn('single-url: cover letter tailor failed — using base', { error: String(err) });
+      }
+      try {
+        const tailored = await tailorResume(variant, details.title, details.company, details.description, applyUrl);
+        if (tailored) {
+          resumePath = await generateTailoredDocx(tailored as TailoredContent, jobId, details.company).catch(() => null);
+        }
+      } catch (err) {
+        logger.warn('single-url: resume tailor failed — no tailored resume', { error: String(err) });
+      }
+    }
+
+    const { result: atsResult, provider } = await applyViaATS(page, applyUrl, details, config, resumePath, coverLetter);
+    result = {
+      success: atsResult.status === 'applied',
+      skipReason: atsResult.status === 'skipped' ? atsResult.reason : undefined,
+      failureReason: atsResult.status === 'failed' ? atsResult.reason : undefined,
+      requiresManualReview: atsResult.status === 'needs_manual_review',
+      atsProvider: provider ?? undefined,
+      externalUrl: applyUrl !== url ? applyUrl : undefined,
+      variant,
+    };
+  }
 
   console.log(result.success ? '  Applied!' : `  Not applied — ${result.skipReason ?? result.failureReason ?? 'unknown'}`);
-
   console.log(`\n===== RESULT: ${result.success ? 'APPLIED' : 'NOT APPLIED'} — ${details.title || url} @ ${details.company || '?'} =====\n`);
   if (!result.success && result.requiresManualReview) {
     console.log(`  Manual review required: ${result.failureReason}`);
   }
 
   if (!dryRun) {
-    const jobId = url.match(/\/job\/(\d+)/)?.[1] ?? url;
+    const jobId = tracker.deriveJobId(url);
     const jobMeta = {
       jobId, platform: platform.name, ...details, runId,
       atsProvider: result.atsProvider,
       externalUrl: result.externalUrl,
+      routeMode,
     };
     if (result.success) {
       tracker.recordApplication({ ...jobMeta, resumeVariant: result.variant ?? 'pm' });
