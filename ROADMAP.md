@@ -69,13 +69,19 @@ For each:
 
 ---
 
-## Phase 6 — Indeed + Glassdoor
+## Phase 6 — Indeed (Glassdoor deferred indefinitely)
 
-**Goal:** Broader job coverage beyond SEEK.
+**Goal:** Broader job coverage via Indeed Australia.
 
-- Indeed Smart Apply (requires separate session management)
-- Glassdoor: detect external ATS and log; direct apply where available
-- Both use Phase 3 platform abstraction layer
+- Indeed external-apply jobs: detect ATS on redirect URL → Phase 5 ATS engine handles it
+- Indeed Easy Apply: deferred to Phase 6.5 (cross-origin iframe, needs its own phase)
+- Session loaded from `INDEED_SESSION_COOKIES` secret (base64 cookie JSON, manual export — no scripted login)
+- 5 search queries: Project Manager (Sydney/Brisbane), Delivery Manager (Sydney), Software Engineer (Sydney), AI Engineer (remote AU), all $120k+
+- Runs sequentially after SEEK in the same Actions job, behind `INDEED_ENABLED=true` flag
+- Uses Phase 3 platform abstraction (`JobPlatform` interface)
+
+**Why not Glassdoor:**
+Glassdoor sits behind Cloudflare Turnstile which defeats Playwright headless reliably — there is no clean workaround without a paid proxy/undetected-browser service. Additionally, ~90% of Glassdoor listings are syndicated Indeed jobs or redirect to external ATS platforms already handled by Phase 5. The marginal listing coverage does not justify the maintenance cost of a permanently-broken scraper.
 
 ---
 

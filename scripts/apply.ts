@@ -17,6 +17,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { JobPlatform, JobDetails, ApplyResult } from '../lib/platforms/types';
 import { SeekPlatform } from '../lib/platforms/seek';
+import { IndeedPlatform } from '../lib/platforms/indeed';
 import { resolveResumeVariant } from '../lib/resume-selector';
 import { tailorCoverLetter } from '../lib/openrouter';
 import { tailorResume, TailoredContent } from '../lib/resume-tailor';
@@ -31,6 +32,7 @@ import * as tracker from '../lib/tracker';
 
 const PLATFORMS: Record<string, () => JobPlatform> = {
   seek: () => new SeekPlatform(),
+  indeed: () => new IndeedPlatform(),
 };
 
 // ── CLI ARG PARSING ───────────────────────────────────────────────────────────
@@ -385,6 +387,97 @@ async function main() {
           }
         }
       }
+    }
+    // ── Indeed loop (sequential, same process) ────────────────────────────────
+    const indeedEnabled = process.env.INDEED_ENABLED === 'true';
+    if (indeedEnabled && !opts.singleUrl && total < opts.maxAppsPerRun) {
+      const indeedPlatform = new IndeedPlatform();
+      const indeedContext = await indeedPlatform.authenticate(browser);
+      const indeedPage = await indeedContext.newPage();
+      const indeedExpired = await indeedPlatform.isSessionExpired(indeedPage);
+
+      if (indeedExpired) {
+        logger.warn('indeed session expired — skipping Indeed loop. Export cookies and set INDEED_SESSION_COOKIES.', {});
+      } else {
+        logger.info('indeed loop starting', { remainingBudget: opts.maxAppsPerRun - total });
+
+        for (const search of indeedPlatform.searches) {
+          if (total >= opts.maxAppsPerRun) break;
+
+          logger.info('indeed search starting', { name: search.name });
+          await indeedPage.goto(search.url);
+          await indeedPage.waitForLoadState('networkidle', { timeout: 8_000 }).catch(() => {});
+
+          const links = await indeedPlatform.getJobLinks(indeedPage);
+          logger.info('indeed search jobs found', { name: search.name, count: links.length });
+
+          let countThisSearch = 0;
+          let consecutiveFailures = 0;
+
+          for (const jobUrl of links) {
+            if (total >= opts.maxAppsPerRun) break;
+            if (countThisSearch >= opts.maxAppsPerSearch) break;
+            if (consecutiveFailures >= CIRCUIT_BREAKER_THRESHOLD) {
+              logger.warn('indeed circuit breaker — moving to next search', { name: search.name });
+              break;
+            }
+
+            const jobId = tracker.deriveJobId(jobUrl);
+            if (applied.has(jobId)) { logger.debug('indeed already applied — skipping', { jobId }); continue; }
+
+            await indeedPage.goto(jobUrl);
+            await indeedPage.waitForLoadState('networkidle', { timeout: 8_000 }).catch(() => {});
+
+            let details: JobDetails = { title: '', company: '', description: '', location: '', salaryText: '', workType: '' };
+            try { details = await indeedPlatform.getJobDetails(indeedPage); } catch {}
+
+            let result: ApplyResult = { success: false, failureReason: 'unexpected_error' };
+            try {
+              result = await indeedPlatform.applyToJob(indeedPage, indeedContext, details, {
+                resumeVariant: search.resumeVariant,
+                searchName: search.name,
+                baseCoverLetter,
+                kb,
+              });
+            } catch (e) {
+              logger.error('indeed apply threw', { jobId, jobUrl }, e);
+            }
+
+            for (const p of indeedContext.pages()) {
+              if (p !== indeedPage) await p.close().catch(() => {});
+            }
+
+            const jobMeta = {
+              jobId, platform: indeedPlatform.name, ...details, runId,
+              atsProvider: result.atsProvider, externalUrl: result.externalUrl,
+            };
+
+            if (result.success) {
+              if (!opts.dryRun) {
+                applied.add(jobId);
+                saveApplied(applied);
+                saveKB(kb);
+                tracker.recordApplication({ ...jobMeta, resumeVariant: result.variant ?? search.resumeVariant });
+              }
+              countThisSearch++;
+              total++;
+              consecutiveFailures = 0;
+              logger.info('indeed applied', { jobId, search: search.name, totalThisRun: total });
+              await indeedPage.waitForTimeout(DELAY_BETWEEN_APPS_MS);
+            } else if (result.skipReason) {
+              if (!opts.dryRun) tracker.recordSkip({ ...jobMeta, skipReason: result.skipReason });
+              runSkipped++;
+              logger.info('indeed skip', { jobId, skipReason: result.skipReason });
+            } else {
+              if (!opts.dryRun) tracker.recordFailure({ ...jobMeta, failureReason: result.failureReason ?? 'unknown', requiresManualReview: result.requiresManualReview });
+              runFailedCount++;
+              consecutiveFailures++;
+            }
+          }
+        }
+        await indeedPlatform.persistSession(indeedContext);
+      }
+      await indeedContext.close();
     }
   } catch (err) {
     runFailed = true;
