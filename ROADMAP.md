@@ -133,6 +133,16 @@ Current limitation: the bot only accepts SEEK URLs (`seek.com.au/job/XXXXX`). If
 
 ---
 
+## Future Improvements
+
+- **Raise `MAX_APPS_PER_RUN`** — currently capped at 100 total across SEEK + Indeed. With Indeed now running sequentially after SEEK, SEEK typically exhausts the budget before Indeed gets a turn. Once the first Indeed run is validated as working correctly, raise this to 150–200 and consider a per-platform budget split (e.g. `SEEK_MAX=100`, `INDEED_MAX=50`) so Indeed always gets a guaranteed share regardless of SEEK's output.
+
+- **Indeed Easy Apply (Phase 6.5)** — the cross-origin iframe flow is currently skipped. Needs its own implementation phase.
+
+- **Indeed session auto-rotation** — unlike SEEK, Indeed cookies aren't automatically rotated after each run. Add the same b64-write + secret-update pattern used for SEEK.
+
+---
+
 ## Safety Guardrails (never to be removed)
 
 - Never auto-submit if any of these appear: TFN, passport number, driver licence, date of birth, full home address, bank details, identity documents, references' contact details — log as `needs_manual_review_sensitive_info`
