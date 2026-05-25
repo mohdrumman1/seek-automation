@@ -96,16 +96,30 @@ export async function applyTeamtailor(
     }
   }
 
-  // Submit.
+  // Submit — Teamtailor disables the submit button until consent is ticked.
+  // Scroll into view and wait for it to become enabled before clicking.
   const submitBtn = page.locator(
     'button:has-text("Send application"), button:has-text("Submit application"), ' +
     'button:has-text("Submit"), button[type="submit"]'
   ).first();
-  if (!(await submitBtn.isVisible({ timeout: 4_000 }).catch(() => false))) {
+  const submitVisible = await submitBtn.waitFor({ state: 'visible', timeout: 6_000 }).then(() => true).catch(() => false);
+  if (!submitVisible) {
     await captureAndAnalyze(page, 'ats_teamtailor_no_submit', ctx);
     return { status: 'failed', reason: 'ats_teamtailor_no_submit' };
   }
-  await submitBtn.click().catch(() => {});
+  await submitBtn.scrollIntoViewIfNeeded().catch(() => {});
+  // Wait up to 3s for the button to become enabled (consent checkbox may have just been ticked).
+  await page.waitForTimeout(500);
+  const isDisabled = await submitBtn.isDisabled().catch(() => false);
+  if (isDisabled) {
+    // Re-attempt consent check in case the first pass missed a checkbox.
+    for (const cb of await page.locator('input[type="checkbox"]').all()) {
+      if (!(await cb.isVisible().catch(() => false))) continue;
+      if (!(await cb.isChecked().catch(() => false))) await cb.click().catch(() => {});
+    }
+    await page.waitForTimeout(500);
+  }
+  await submitBtn.click({ force: true }).catch(() => {});
   await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
   await page.waitForTimeout(2_000);
 

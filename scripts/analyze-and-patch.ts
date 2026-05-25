@@ -103,6 +103,36 @@ async function main() {
     }
   }
 
+  // Surface unknown-ATS hostnames from recent skipped jobs so patterns can be added to detect.ts.
+  const SKIPPED_CSV = path.resolve(__dirname, '../data/skipped_jobs.csv');
+  if (fs.existsSync(SKIPPED_CSV)) {
+    const lines = fs.readFileSync(SKIPPED_CSV, 'utf-8').trim().split('\n');
+    const headers = lines[0].split(',');
+    const extIdx = headers.indexOf('external_url');
+    const reasonIdx = headers.indexOf('skip_reason');
+    if (extIdx >= 0 && reasonIdx >= 0) {
+      // Look at last 500 rows (recent runs).
+      const recent = lines.slice(Math.max(1, lines.length - 500));
+      const unknownHosts = new Map<string, number>();
+      for (const line of recent) {
+        const cols = line.split(',');
+        if (cols[reasonIdx]?.trim() !== 'ats_unknown_provider') continue;
+        const rawUrl = cols[extIdx]?.replace(/^"|"$/g, '').trim();
+        if (!rawUrl) continue;
+        try {
+          const host = new URL(rawUrl).hostname;
+          unknownHosts.set(host, (unknownHosts.get(host) ?? 0) + 1);
+        } catch { /* ignore malformed URLs */ }
+      }
+      if (unknownHosts.size > 0) {
+        console.log('\nUnknown ATS hostnames (add to lib/ats/detect.ts):');
+        for (const [host, count] of [...unknownHosts.entries()].sort((a, b) => b[1] - a[1])) {
+          console.log(`  ${count}x  ${host}`);
+        }
+      }
+    }
+  }
+
   console.log(`\n=== Done. KB patched with ${patched} new answer(s). ===`);
 }
 

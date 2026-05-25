@@ -63,6 +63,9 @@ function parseArgs(): {
 // ── APPLIED JOBS LOG ──────────────────────────────────────────────────────────
 
 const APPLIED_LOG = path.resolve(__dirname, '../data/applied_jobs.json');
+// Jobs that can never be auto-applied (e.g. SEEK profile incomplete, manual-only) —
+// stored separately so applied_jobs stays semantically correct.
+const BLOCKED_LOG = path.resolve(__dirname, '../data/blocked_jobs.json');
 
 function loadApplied(): Set<string> {
   if (fs.existsSync(APPLIED_LOG)) {
@@ -73,6 +76,17 @@ function loadApplied(): Set<string> {
 
 function saveApplied(applied: Set<string>): void {
   fs.writeFileSync(APPLIED_LOG, JSON.stringify([...applied]), 'utf-8');
+}
+
+function loadBlocked(): Set<string> {
+  if (fs.existsSync(BLOCKED_LOG)) {
+    return new Set(JSON.parse(fs.readFileSync(BLOCKED_LOG, 'utf-8')) as string[]);
+  }
+  return new Set();
+}
+
+function saveBlocked(blocked: Set<string>): void {
+  fs.writeFileSync(BLOCKED_LOG, JSON.stringify([...blocked]), 'utf-8');
 }
 
 // ── MAIN LOOP (platform-agnostic) ─────────────────────────────────────────────
@@ -237,9 +251,10 @@ async function main() {
 
   const kb = loadKB();
   const applied = loadApplied();
+  const blocked = loadBlocked();
   // Tracks every job visited this run (any outcome) to prevent re-visiting across searches.
   const seenThisRun = new Set<string>();
-  logger.info('state loaded', { previouslyApplied: applied.size, kbEntries: kb.length });
+  logger.info('state loaded', { previouslyApplied: applied.size, blocked: blocked.size, kbEntries: kb.length });
 
   const interactive = process.stdin.isTTY === true;
   const browser: Browser = await chromium.launch({
@@ -308,7 +323,8 @@ async function main() {
 
         const jobId = url.match(/\/job\/(\d+)/)?.[1] ?? url;
         if (applied.has(jobId)) { logger.debug('already applied — skipping', { jobId }); continue; }
-        if (seenThisRun.has(jobId)) { logger.debug('already seen this run — skipping', { jobId }); continue; }
+        if (blocked.has(jobId)) { logger.debug('permanently blocked — skipping', { jobId }); continue; }
+        if (seenThisRun.has(jobId)) { logger.info('already seen this run — skipping', { jobId }); continue; }
         seenThisRun.add(jobId);
 
         await page.goto(url);
@@ -362,6 +378,16 @@ async function main() {
           await page.waitForTimeout(DELAY_BETWEEN_APPS_MS);
         } else if (result.skipReason) {
           if (!opts.dryRun) tracker.recordSkip({ ...jobMeta, skipReason: result.skipReason });
+          // SEEK showed "You applied" — mark as applied so future runs skip immediately.
+          if (result.skipReason === 'already_applied' && !opts.dryRun) {
+            applied.add(jobId);
+            saveApplied(applied);
+          }
+          // Job expired — never retry.
+          if (result.skipReason === 'job_no_longer_advertised' && !opts.dryRun) {
+            blocked.add(jobId);
+            saveBlocked(blocked);
+          }
           runSkipped++;
           logger.info('skip', { jobId, search: search.name, skipReason: result.skipReason });
         } else {
@@ -371,6 +397,13 @@ async function main() {
               failureReason: result.failureReason ?? 'unknown',
               requiresManualReview: result.requiresManualReview,
             });
+          }
+          // SEEK profile-incomplete jobs will never succeed — add to blocked list
+          // so future runs don't waste time retrying them.
+          if (result.failureReason === 'seek_profile_incomplete' && !opts.dryRun) {
+            blocked.add(jobId);
+            saveBlocked(blocked);
+            logger.info('blocked: seek_profile_incomplete — added to blocked_jobs.json', { jobId });
           }
           runFailedCount++;
           consecutiveFailures++;

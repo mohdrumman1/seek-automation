@@ -35,6 +35,11 @@ export async function applyWorkday(
     await page.waitForTimeout(1_000);
   }
 
+  // "Start Your Application" modal — Workday shows this for tenants that support
+  // resumé autofill, LinkedIn, or prior-application reuse. Prefer the guest/manual
+  // path. "Use My Last Application" is the next best option (avoids re-entering data).
+  await dismissStartYourApplicationModal(page);
+
   // Check for account creation / sign-in wall.
   const hasWall = await page.locator(WALL_SEL).first().isVisible({ timeout: 3_000 }).catch(() => false);
 
@@ -75,6 +80,9 @@ export async function applyWorkday(
   for (let attempt = 0; attempt < 10; attempt++) {
     await page.waitForTimeout(1_500);
     const currentUrl = page.url();
+
+    // Modal can reappear after sign-in redirects back to the listing page.
+    await dismissStartYourApplicationModal(page);
 
     if (await isSuccessPage(page)) {
       logger.info('ats: workday — applied', ctx);
@@ -144,6 +152,26 @@ export async function applyWorkday(
 
   await captureAndAnalyze(page, 'ats_workday_no_submit', ctx);
   return { status: 'failed', reason: 'ats_workday_no_submit' };
+}
+
+// Handles the "Start Your Application" modal that Workday shows before the wizard.
+// Preference order: Apply Manually (guest) → Use My Last Application → Autofill with Resume.
+async function dismissStartYourApplicationModal(page: Page): Promise<void> {
+  const candidates = [
+    'button:has-text("Apply Manually")',
+    '[data-automation-id="applyManually"]',
+    'button:has-text("Use My Last Application")',
+    'button:has-text("Autofill with Resume")',
+  ];
+  for (const sel of candidates) {
+    const btn = page.locator(sel).first();
+    if (await btn.isVisible({ timeout: 2_000 }).catch(() => false)) {
+      await btn.click().catch(() => {});
+      await page.waitForLoadState('networkidle', { timeout: 10_000 }).catch(() => {});
+      await page.waitForTimeout(1_000);
+      return;
+    }
+  }
 }
 
 // Sign in with existing credentials, or create a new account if needed.

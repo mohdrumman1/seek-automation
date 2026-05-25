@@ -740,6 +740,28 @@ export class SeekPlatform implements JobPlatform {
       return { success: false, skipReason: 'security_clearance_required' };
     }
 
+    // "You applied on X" — SEEK replaces the Apply button with this text.
+    // Return a distinct skipReason so apply.ts can add the job to applied_jobs.json
+    // and prevent wasting time on it in future runs.
+    const alreadyApplied = await page.locator(
+      'text=You applied, [data-automation="job-apply-status"]:has-text("applied")'
+    ).first().isVisible({ timeout: 2_000 }).catch(() => false);
+    if (alreadyApplied) {
+      console.log('  Skipping - already applied (SEEK shows "You applied")');
+      logger.info('skip: already applied', { title: details.title, company: details.company });
+      return { success: false, skipReason: 'already_applied' };
+    }
+
+    // Job expired / closed.
+    const expired = await page.locator(
+      'text=This job is no longer advertised, text=no longer accepting applications'
+    ).first().isVisible({ timeout: 2_000 }).catch(() => false);
+    if (expired) {
+      console.log('  Skipping - job no longer advertised');
+      logger.info('skip: job no longer advertised', { title: details.title, company: details.company });
+      return { success: false, skipReason: 'job_no_longer_advertised' };
+    }
+
     const applyBtn = page.locator(
       '[data-automation="job-detail-apply"], [data-automation="job-detail-apply-button"], a[data-automation*="apply"]'
     ).first();
@@ -954,7 +976,9 @@ export class SeekPlatform implements JobPlatform {
           break;
         } else if (stillBlocked) {
           await captureAndAnalyze(applyPage, 'auto_skip_still_blocked', ctx);
-          earlyFailureReason = 'validation_still_blocked';
+          // Use a distinct reason so apply.ts can add this job to blocked_jobs.json
+          // and never retry it (the issue is a missing SEEK profile field, not a bot bug).
+          earlyFailureReason = 'seek_profile_incomplete';
           break;
         }
       }

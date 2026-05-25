@@ -92,6 +92,9 @@ export async function applyPageUp(
     await fillCoverLetter(page, coverLetter);
     await answerGenericQuestions(page, config.kb);
 
+    // Tick consent/terms checkboxes ("By continuing", "I agree", etc.) required before advancing.
+    await tickConsentCheckboxes(page);
+
     // Try Submit then Next.
     const submitBtn = page.locator(
       'button:has-text("Submit"), #submitButton, input[value*="Submit" i]'
@@ -107,4 +110,19 @@ export async function applyPageUp(
 
   await captureAndAnalyze(page, 'ats_pageup_no_submit', ctx);
   return { status: 'failed', reason: 'ats_pageup_no_submit' };
+}
+
+async function tickConsentCheckboxes(page: Page): Promise<void> {
+  const consentRe = /by continuing|i agree|i accept|terms|privacy|consent|acknowledge/i;
+  for (const cb of await page.locator('input[type="checkbox"]').all()) {
+    if (!(await cb.isVisible().catch(() => false))) continue;
+    if (await cb.isChecked().catch(() => false)) continue;
+    const id = await cb.getAttribute('id').catch(() => null);
+    let label = '';
+    if (id) label = (await page.locator(`label[for="${id}"]`).textContent().catch(() => '')) ?? '';
+    if (!label) label = (await cb.evaluate((el: Element) => el.closest('label')?.textContent ?? '').catch(() => ''));
+    if (consentRe.test(label)) {
+      await cb.click().catch(() => {});
+    }
+  }
 }

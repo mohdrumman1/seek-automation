@@ -23,6 +23,17 @@ export async function applyJobAdder(
 
   await page.waitForLoadState('networkidle', { timeout: 10_000 }).catch(() => {});
 
+  // Dismiss "Want to apply later?" / save-for-later popups that block the form.
+  const popupClose = page.locator(
+    '[aria-label="Close"], button:has-text("No thanks"), button:has-text("No, continue"), ' +
+    'button:has-text("Dismiss"), button:has-text("Continue applying"), [data-dismiss="modal"], ' +
+    '.modal-header button.close'
+  ).first();
+  if (await popupClose.isVisible({ timeout: 2_000 }).catch(() => false)) {
+    await popupClose.click().catch(() => {});
+    await page.waitForTimeout(500);
+  }
+
   const sensitive = await hasSensitiveRequiredField(page);
   if (sensitive) {
     return { status: 'needs_manual_review', reason: `sensitive_field:${sensitive.slice(0, 60)}` };

@@ -99,13 +99,16 @@ const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
       'No automatic recovery implemented; job is marked ats_requires_account.',
   },
   ats_workday_no_submit: {
-    date: '2026-05-22',
+    date: '2026-05-25',
     description:
       'Workday wizard loop exhausted without reaching a success page. ' +
-      'Common causes: (1) required field missed (check screenshot for red validation errors); ' +
-      '(2) CAPTCHA or bot-detection triggered; (3) "Next" button selector changed. ' +
-      'Fix: (1) check which field is highlighted in error; add a CANDIDATE_PROFILE or KB entry; ' +
-      '(2) if CAPTCHA, return needs_manual_review; (3) update [data-automation-id="bottom-navigation-next-button"].',
+      'Most common cause 2026-05-25: "Start Your Application" modal appears with Autofill/Apply Manually/Last Application options. ' +
+      'Fix 2026-05-25: dismissStartYourApplicationModal() added to workday.ts — called once after initial Apply click ' +
+      'and again at the start of each wizard loop iteration (modal can reappear after sign-in redirect). ' +
+      'Prefers "Apply Manually" (guest path), then "Use My Last Application", then "Autofill with Resume". ' +
+      'If still failing: (1) check screenshot for which modal button is present; ' +
+      '(2) verify [data-automation-id="bottom-navigation-next-button"] is still valid; ' +
+      '(3) check for new required fields highlighted in red.',
   },
   ats_jobadder_no_submit: {
     date: '2026-05-22',
@@ -116,13 +119,32 @@ const KNOWN_FIXES: Record<string, { date: string; description: string }> = {
       '(3) JobAdder updated their submit button selector. ' +
       'Fix: check screenshot, inspect DOM for submit button, update selector in jobadder.ts.',
   },
-  ats_teamtailor_no_submit: {
-    date: '2026-05-22',
+  ats_pageup_no_progress: {
+    date: '2026-05-25',
     description:
-      'Teamtailor submit button not found or application not confirmed. ' +
-      'Common cause: GDPR consent checkbox not ticked (required to enable submit). ' +
-      'Fix: verify the consent checkbox regex (/i agree|consent|privacy|gdpr/i) matches the label; ' +
-      'add additional label patterns if needed. Also check for new custom-question types.',
+      '"By continuing" consent checkbox on PageUp "Begin application" page was not being ticked. ' +
+      'The form cannot advance (URL stays the same) until that checkbox is checked. ' +
+      'Fix 2026-05-25: tickConsentCheckboxes() added to pageup.ts, called before every Next/Submit attempt. ' +
+      'Matches labels containing: by continuing, i agree, i accept, terms, privacy, consent, acknowledge. ' +
+      'If still stuck: check screenshot for the exact checkbox label text and add it to the consentRe regex.',
+  },
+  ats_jobadder_submit_failed: {
+    date: '2026-05-25',
+    description:
+      '"Want to apply later?" popup was blocking the JobAdder application form. ' +
+      'The popup overlays the submit button and prevents interaction. ' +
+      'Fix 2026-05-25: popup dismissal added to jobadder.ts before the submit check — ' +
+      'looks for [aria-label="Close"], "No thanks", "No, continue", ".modal-header button.close". ' +
+      'If popup still blocks: check screenshot for the close button selector and add it.',
+  },
+  ats_teamtailor_no_submit: {
+    date: '2026-05-25',
+    description:
+      'Teamtailor submit button was disabled (consent checkbox not ticked or button not yet enabled). ' +
+      'Fix 2026-05-25: teamtailor.ts now uses waitFor({state:"visible"}) instead of isVisible(), ' +
+      'scrolls into view, checks isDisabled(), and if disabled re-ticks ALL unchecked checkboxes. ' +
+      'Uses click({force:true}) to bypass any overlay. ' +
+      'If still failing: check if a new required field was added, or if GDPR consent text changed.',
   },
   auto_skip_still_blocked: {
     date: '2026-05-22',

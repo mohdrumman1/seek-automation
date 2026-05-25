@@ -47,7 +47,8 @@ export async function applyViaATS(
 ): Promise<{ result: ATSResult; provider: ATSProvider | null }> {
   const provider = detectATS(url);
   if (!provider) {
-    logger.info('ats: unknown provider — skipping', { url: url.slice(0, 80) });
+    // Log the full URL so we can identify new ATS patterns from CI output.
+    logger.info('ats: unknown provider — skipping', { url: url.slice(0, 120), host: (() => { try { return new URL(url).hostname; } catch { return url; } })() });
     return { result: { status: 'skipped', reason: 'ats_unknown_provider' }, provider: null };
   }
 
