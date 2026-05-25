@@ -13,4 +13,8 @@ export type ATSProvider =
   | 'successfactors'
   | 'taleo'
   | 'smartrecruiters'
-  | 'randstad';
+  | 'randstad'
+  | 'oracle'
+  | 'nga'
+  | 'upplft'
+  | 'iworkfor';

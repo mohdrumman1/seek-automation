@@ -21,6 +21,13 @@ const ATS_PATTERNS: Array<[string, ATSProvider]> = [
   ['taleo.net',          'taleo'],
   ['smartrecruiters.com','smartrecruiters'],
   ['randstad.com',       'randstad'],
+  // Detected but handler not yet implemented — returns ats_not_implemented
+  ['oraclecloud.com',    'oracle'],
+  ['.fa.ocs.',           'oracle'],
+  ['oracle.com/hcm',     'oracle'],
+  ['nga.net.au',         'nga'],
+  ['upplft.com',         'upplft'],
+  ['iworkfor.',          'iworkfor'],
 ];
 
 export function detectATS(url: string): ATSProvider | null {

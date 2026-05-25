@@ -23,7 +23,7 @@ type Handler = (
   coverLetter: string,
 ) => Promise<ATSResult>;
 
-const HANDLERS: Record<ATSProvider, Handler> = {
+const HANDLERS: Partial<Record<ATSProvider, Handler>> = {
   workday:        applyWorkday,
   cornerstone:    applyCornerstone,
   jobadder:       applyJobAdder,
@@ -34,6 +34,7 @@ const HANDLERS: Record<ATSProvider, Handler> = {
   taleo:          applyTaleo,
   randstad:       applyRandstad,
   smartrecruiters:applySmartRecruiters,
+  // oracle, nga, upplft, iworkfor — detected but handler not yet implemented
 };
 
 export async function applyViaATS(
@@ -50,9 +51,15 @@ export async function applyViaATS(
     return { result: { status: 'skipped', reason: 'ats_unknown_provider' }, provider: null };
   }
 
+  const handler = HANDLERS[provider];
+  if (!handler) {
+    logger.info('ats: provider detected but not implemented', { provider, url: url.slice(0, 80) });
+    return { result: { status: 'skipped', reason: 'ats_not_implemented' }, provider };
+  }
+
   logger.info('ats: routing', { provider, url: url.slice(0, 80) });
   try {
-    const result = await HANDLERS[provider](page, details, config, resumePath, coverLetter);
+    const result = await handler(page, details, config, resumePath, coverLetter);
     logger.info('ats: handler done', { provider, status: result.status, reason: result.reason });
     return { result, provider };
   } catch (err) {

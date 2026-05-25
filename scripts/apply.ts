@@ -237,6 +237,8 @@ async function main() {
 
   const kb = loadKB();
   const applied = loadApplied();
+  // Tracks every job visited this run (any outcome) to prevent re-visiting across searches.
+  const seenThisRun = new Set<string>();
   logger.info('state loaded', { previouslyApplied: applied.size, kbEntries: kb.length });
 
   const interactive = process.stdin.isTTY === true;
@@ -306,6 +308,8 @@ async function main() {
 
         const jobId = url.match(/\/job\/(\d+)/)?.[1] ?? url;
         if (applied.has(jobId)) { logger.debug('already applied — skipping', { jobId }); continue; }
+        if (seenThisRun.has(jobId)) { logger.debug('already seen this run — skipping', { jobId }); continue; }
+        seenThisRun.add(jobId);
 
         await page.goto(url);
         await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
@@ -424,6 +428,8 @@ async function main() {
 
             const jobId = tracker.deriveJobId(jobUrl);
             if (applied.has(jobId)) { logger.debug('indeed already applied — skipping', { jobId }); continue; }
+            if (seenThisRun.has(jobId)) { logger.debug('indeed already seen this run — skipping', { jobId }); continue; }
+            seenThisRun.add(jobId);
 
             await indeedPage.goto(jobUrl);
             await indeedPage.waitForLoadState('networkidle', { timeout: 8_000 }).catch(() => {});
