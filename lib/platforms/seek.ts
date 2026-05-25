@@ -52,51 +52,83 @@ Willing to relocate: Open to hybrid/remote within NSW and QLD only
 const CLEARANCE_RE =
   /\b(NV1|NV2|NV-1|NV-2|AGSVA|baseline clearance|negative vetting|security clearance required|must hold.{0,20}clearance|clearance required|active.{0,10}clearance|top secret)\b/i;
 
+// Location-filtered searches: NSW and QLD variants are listed explicitly so SEEK's
+// server returns only NSW/QLD results. This eliminates ~90 wasted navigations per run
+// on VIC/WA/SA/ACT hybrid jobs that would always be filtered by filterByLocation().
+// Remote-tagged jobs appear in both location variants; seenThisRun dedup handles that.
 const SEEK_SEARCHES: SearchConfig[] = [
+  // ── Project Management ────────────────────────────────────────────────────────
   {
-    name: 'Project Manager (ICT)',
-    url: 'https://www.seek.com.au/project-manager-jobs-in-information-communication-technology?daterange=3&pos=1&salaryrange=120000-&salarytype=annual&sitekey=AU-Main&workarrangement=2%2C3&worktype=242%2C244',
+    name: 'Project Manager ICT (NSW)',
+    url: 'https://www.seek.com.au/project-manager-jobs-in-information-communication-technology/in-New-South-Wales?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
     resumeVariant: 'pm',
   },
   {
-    name: 'Technical Project Manager',
-    url: 'https://www.seek.com.au/technical-project-manager-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    name: 'Project Manager ICT (QLD)',
+    url: 'https://www.seek.com.au/project-manager-jobs-in-information-communication-technology/in-Queensland?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
     resumeVariant: 'pm',
   },
   {
-    name: 'Delivery Manager / Lead',
-    url: 'https://www.seek.com.au/delivery-manager-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    name: 'Technical Project Manager (NSW)',
+    url: 'https://www.seek.com.au/technical-project-manager-jobs/in-New-South-Wales?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
     resumeVariant: 'pm',
   },
   {
-    name: 'Software Engineer (ICT)',
-    url: 'https://www.seek.com.au/software-engineer-jobs-in-information-communication-technology?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    name: 'Technical Project Manager (QLD)',
+    url: 'https://www.seek.com.au/technical-project-manager-jobs/in-Queensland?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'pm',
+  },
+  {
+    name: 'Delivery Manager (NSW)',
+    url: 'https://www.seek.com.au/delivery-manager-jobs/in-New-South-Wales?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'pm',
+  },
+  {
+    name: 'Delivery Manager (QLD)',
+    url: 'https://www.seek.com.au/delivery-manager-jobs/in-Queensland?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'pm',
+  },
+  // ── Software Engineering ──────────────────────────────────────────────────────
+  {
+    name: 'Software Engineer ICT (NSW)',
+    url: 'https://www.seek.com.au/software-engineer-jobs-in-information-communication-technology/in-New-South-Wales?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
     resumeVariant: 'se',
   },
   {
-    name: 'Full Stack Developer',
-    url: 'https://www.seek.com.au/full-stack-developer-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    name: 'Software Engineer ICT (QLD)',
+    url: 'https://www.seek.com.au/software-engineer-jobs-in-information-communication-technology/in-Queensland?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
     resumeVariant: 'se',
   },
   {
-    name: 'Backend Developer',
-    url: 'https://www.seek.com.au/backend-developer-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    name: 'Full Stack / Backend Dev (NSW)',
+    url: 'https://www.seek.com.au/full-stack-developer-jobs/in-New-South-Wales?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
     resumeVariant: 'se',
   },
   {
-    name: 'Cloud Engineer',
-    url: 'https://www.seek.com.au/cloud-engineer-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    name: 'Cloud / DevOps Engineer (NSW)',
+    url: 'https://www.seek.com.au/cloud-engineer-jobs/in-New-South-Wales?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
     resumeVariant: 'se',
   },
   {
-    name: 'AI Engineer',
-    url: 'https://www.seek.com.au/ai-engineer-jobs?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    name: 'Cloud / DevOps Engineer (QLD)',
+    url: 'https://www.seek.com.au/cloud-engineer-jobs/in-Queensland?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'se',
+  },
+  // ── AI / Product ──────────────────────────────────────────────────────────────
+  {
+    name: 'AI / ML Engineer (NSW)',
+    url: 'https://www.seek.com.au/ai-engineer-jobs/in-New-South-Wales?daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
     resumeVariant: 'se',
   },
   {
-    name: 'AI Consultant',
-    url: 'https://www.seek.com.au/jobs?keywords=AI+consultant&classification=6281&daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    name: 'AI Consultant / Solutions Architect (NSW)',
+    url: 'https://www.seek.com.au/jobs/in-New-South-Wales?keywords=AI+consultant+solutions+architect&classification=6281&daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
     resumeVariant: 'se',
+  },
+  {
+    name: 'Technical Product Owner (NSW)',
+    url: 'https://www.seek.com.au/jobs/in-New-South-Wales?keywords=technical+product+owner&daterange=3&salaryrange=120000-&salarytype=annual&workarrangement=2%2C3&worktype=242%2C244',
+    resumeVariant: 'pm',
   },
 ];
 

@@ -85,6 +85,16 @@ function loadBlocked(): Set<string> {
   return new Set();
 }
 
+// These skips are pre-filters (location, already-applied, expired) — they are recorded
+// in the CSV for analysis but do NOT count toward the reported `skipped` summary stat
+// so the number reflects meaningful application attempts, not housekeeping noise.
+const TRIVIAL_SKIP_REASONS = new Set([
+  'location_out_of_region',
+  'already_applied',
+  'job_no_longer_advertised',
+  'security_clearance_required',
+]);
+
 function saveBlocked(blocked: Set<string>): void {
   fs.writeFileSync(BLOCKED_LOG, JSON.stringify([...blocked]), 'utf-8');
 }
@@ -266,7 +276,8 @@ async function main() {
   const page = await context.newPage();
 
   let total = 0;
-  let runSkipped = 0;
+  let runSkipped = 0;      // meaningful skips (ATS not supported, unknown provider, etc.)
+  let runPrefiltered = 0;  // trivial pre-filters (location, already-applied, expired) — not in summary
   let runFailedCount = 0;
   let runFailed = false;
 
@@ -388,7 +399,13 @@ async function main() {
             blocked.add(jobId);
             saveBlocked(blocked);
           }
-          runSkipped++;
+          // Pre-filter skips (location, already-applied, expired) are noise — don't count
+          // them in the summary stat so `skipped` reflects meaningful attempt failures.
+          if (TRIVIAL_SKIP_REASONS.has(result.skipReason)) {
+            runPrefiltered++;
+          } else {
+            runSkipped++;
+          }
           logger.info('skip', { jobId, search: search.name, skipReason: result.skipReason });
         } else {
           if (!opts.dryRun) {
@@ -461,7 +478,8 @@ async function main() {
 
             const jobId = tracker.deriveJobId(jobUrl);
             if (applied.has(jobId)) { logger.debug('indeed already applied — skipping', { jobId }); continue; }
-            if (seenThisRun.has(jobId)) { logger.debug('indeed already seen this run — skipping', { jobId }); continue; }
+            if (blocked.has(jobId)) { logger.debug('indeed permanently blocked — skipping', { jobId }); continue; }
+            if (seenThisRun.has(jobId)) { logger.info('indeed already seen this run — skipping', { jobId }); continue; }
             seenThisRun.add(jobId);
 
             await indeedPage.goto(jobUrl);
@@ -505,7 +523,7 @@ async function main() {
               await indeedPage.waitForTimeout(DELAY_BETWEEN_APPS_MS);
             } else if (result.skipReason) {
               if (!opts.dryRun) tracker.recordSkip({ ...jobMeta, skipReason: result.skipReason });
-              runSkipped++;
+              if (TRIVIAL_SKIP_REASONS.has(result.skipReason)) { runPrefiltered++; } else { runSkipped++; }
               logger.info('indeed skip', { jobId, skipReason: result.skipReason });
             } else {
               if (!opts.dryRun) tracker.recordFailure({ ...jobMeta, failureReason: result.failureReason ?? 'unknown', requiresManualReview: result.requiresManualReview });
@@ -525,7 +543,7 @@ async function main() {
     try { await platform.persistSession(context); } catch (err) { logger.error('persistSession failed', {}, err); }
     await browser.close();
     const durationSec = Math.round((Date.now() - runStart) / 1000);
-    logger.info('apply bot done', { platform: platform.name, applied: total, skipped: runSkipped, failed: runFailedCount, durationSec, runFailed });
+    logger.info('apply bot done', { platform: platform.name, applied: total, skipped: runSkipped, prefiltered: runPrefiltered, failed: runFailedCount, durationSec, runFailed });
     if (!opts.dryRun) {
       tracker.recordRun({
         runId,

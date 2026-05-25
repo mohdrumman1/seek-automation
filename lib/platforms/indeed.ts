@@ -112,25 +112,25 @@ export class IndeedPlatform implements JobPlatform {
   ): Promise<ApplyResult> {
     const url = page.url();
 
-    // Detect apply button type
+    // Detect apply button type — check external FIRST so that jobs with both
+    // Easy Apply and an external button use the external (ATS) path.
+    const externalBtn = page.locator(
+      'a[aria-label*="Apply on company site" i], button:has-text("Apply on company site"), ' +
+      'a:has-text("Apply on company website"), a[href*="apply"][target="_blank"]'
+    );
     const easyApplyBtn = page.locator(
       'button[id="indeedApplyButton"], [data-testid="indeedApplyButton"]'
     );
-    const externalBtn = page.locator(
-      'a[aria-label*="Apply on company site" i], button:has-text("Apply on company site")'
-    );
-
-    const hasEasyApply = await easyApplyBtn.first().isVisible({ timeout: 3000 }).catch(() => false);
-
-    if (hasEasyApply) {
-      // Cross-origin iframe — deferred to Phase 6.5
-      logger.info('indeed: easy apply detected — skipping (Phase 6.5)', { title: details.title });
-      return { success: false, skipReason: 'indeed-easy-apply-not-implemented' };
-    }
 
     const hasExternal = await externalBtn.first().isVisible({ timeout: 3000 }).catch(() => false);
 
     if (!hasExternal) {
+      const hasEasyApply = await easyApplyBtn.first().isVisible({ timeout: 3000 }).catch(() => false);
+      if (hasEasyApply) {
+        // Cross-origin iframe — deferred to Phase 6.5.
+        logger.info('indeed: easy apply only — skipping (Phase 6.5)', { title: details.title });
+        return { success: false, skipReason: 'indeed-easy-apply-not-implemented' };
+      }
       logger.info('indeed: no recognised apply button — skipping', { url: url.slice(0, 80) });
       return { success: false, skipReason: 'no-apply-button-found' };
     }
