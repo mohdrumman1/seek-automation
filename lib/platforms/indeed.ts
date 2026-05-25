@@ -3,6 +3,10 @@ import { JobPlatform, JobDetails, SearchConfig, ApplyConfig, ApplyResult } from 
 import { getOrCreateIndeedSession, saveIndeedSession, isIndeedSessionExpired } from '../indeed-session';
 import { scrapeJobDetails } from '../job-scraper';
 import { applyViaATS, detectATS } from '../ats/index';
+import { tailorCoverLetter } from '../openrouter';
+import { tailorResume, TailoredContent } from '../resume-tailor';
+import { generateTailoredDocx } from '../resume-generator';
+import { resolveResumeVariant } from '../resume-selector';
 import { logger } from '../logger';
 
 const BASE_PARAMS = 'salaryType=yearly&salary=%24120%2C000%2B&fromage=7&sort=date';
@@ -174,12 +178,31 @@ export class IndeedPlatform implements JobPlatform {
 
     logger.info('indeed: routing to ATS handler', { provider, externalUrl: externalUrl.slice(0, 80) });
 
+    // Tailor cover letter and resume before navigating to external ATS
+    const atsCoverLetter = await tailorCoverLetter(
+      config.baseCoverLetter, details.title, details.company, details.description
+    ).catch(() => config.baseCoverLetter);
+
+    let atsResumePath: string | null = null;
+    if (process.env.RESUME_TAILORING_ENABLED === 'true') {
+      const variant = resolveResumeVariant(details.title, config.searchName) ?? config.resumeVariant;
+      const jobId = externalUrl.match(/(\d{5,})/)?.[1] ?? Date.now().toString();
+      const tailored = await tailorResume(
+        variant, details.title, details.company, details.description, externalUrl
+      ).catch(() => null);
+      if (tailored) {
+        atsResumePath = await generateTailoredDocx(
+          tailored as TailoredContent, jobId, details.company
+        ).catch(() => null);
+      }
+    }
+
     // Navigate to the external ATS page (popup was closed above)
     await page.goto(externalUrl);
     await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
 
     const { result, provider: resolvedProvider } = await applyViaATS(
-      page, externalUrl, details, config, null, config.baseCoverLetter
+      page, externalUrl, details, config, atsResumePath, atsCoverLetter
     );
 
     return {
