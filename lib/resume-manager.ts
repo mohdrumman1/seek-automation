@@ -6,6 +6,14 @@ import { logger } from './logger';
 // leaving slots free for the base PM/SE resumes.
 const PROFILE_DOCS_URL = 'https://www.seek.com.au/profile/documents';
 
+// pm-base + se-base occupy 2 slots, leaving 3 for tailored uploads.
+const TAILORED_SLOTS = 3;
+let _tailoredCount = 0;
+
+export function resetTailoredCount(): void { _tailoredCount = 0; }
+export function incrementTailoredCount(): void { _tailoredCount++; }
+export function shouldCleanTailored(): boolean { return _tailoredCount >= TAILORED_SLOTS; }
+
 export async function cleanTailoredResumes(page: Page): Promise<void> {
   try {
     await page.goto(PROFILE_DOCS_URL, { waitUntil: 'domcontentloaded', timeout: 20_000 });

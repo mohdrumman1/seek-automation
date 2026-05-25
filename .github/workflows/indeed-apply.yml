@@ -1,17 +1,12 @@
-name: Seek Auto Apply
+name: Indeed Auto Apply
 
 on:
   schedule:
-    # 6:17am, 12:17pm, 6:17pm AEST (UTC+10) — note: times shift 1h during AEDT (Oct–Apr)
     - cron: '17 20 * * *'
     - cron: '17 2 * * *'
     - cron: '17 8 * * *'
   workflow_dispatch:
     inputs:
-      job_url:
-        description: 'SEEK job URL to apply to (leave blank for normal search loop)'
-        required: false
-        type: string
       dry_run:
         description: 'Dry run — fill but do not submit'
         required: false
@@ -19,13 +14,11 @@ on:
         default: false
 
 concurrency:
-  group: seek-apply
+  group: indeed-apply
   cancel-in-progress: false
 
 jobs:
   apply:
-    # Schedule always fires on the default branch (main). This guard also
-    # prevents accidental workflow_dispatch runs from develop or feature branches.
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 180
@@ -40,7 +33,9 @@ jobs:
       CANDIDATE_LINKEDIN: ${{ secrets.CANDIDATE_LINKEDIN }}
       CANDIDATE_WEBSITE: ${{ secrets.CANDIDATE_WEBSITE }}
       WORKDAY_PASSWORD: ${{ secrets.WORKDAY_PASSWORD }}
-      INDEED_ENABLED: 'false'
+      INDEED_SESSION_COOKIES: ${{ secrets.INDEED_SESSION_COOKIES }}
+      SEEK_DISABLED: 'true'
+      INDEED_ENABLED: 'true'
       MAX_APPS_PER_RUN: '100'
       MAX_APPS_PER_SEARCH: '30'
       RESUME_TAILORING_ENABLED: 'true'
@@ -83,48 +78,15 @@ jobs:
 
       - name: Run bot
         id: bot
-        # pipefail ensures the step fails if npm run seek exits non-zero,
-        # even when piped through tee. The cookies b64 is written to
-        # tmp/seek-cookies.b64 by saveSession — NOT captured in the log.
         shell: bash -eo pipefail {0}
         env:
-          JOB_URL: ${{ github.event.inputs.job_url }}
           DRY_RUN_INPUT: ${{ github.event.inputs.dry_run }}
         run: |
           ARGS=""
-          if [ -n "$JOB_URL" ]; then
-            NORMALISED="$(node scripts/normalise-url.js "$JOB_URL")"
-            echo "Single-job mode for: $NORMALISED"
-            ARGS="--url $NORMALISED"
-          fi
           if [ "$DRY_RUN_INPUT" = "true" ]; then
-            ARGS="$ARGS --dry-run"
+            ARGS="--dry-run"
           fi
           npm run seek -- $ARGS 2>&1 | tee tmp/bot.log
-
-      - name: Update SEEK_SESSION_COOKIES secret
-        if: always()
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          # If session expired during this run, do NOT overwrite the secret — doing so
-          # would replace any valid manually-set cookies with the stale cookies from
-          # this failed run, locking out all future runs until a manual refresh.
-          if [ -f tmp/session-expired ]; then
-            echo "::warning::Session expired mid-run — SEEK_SESSION_COOKIES secret preserved. Re-run seek-login locally and update the secret manually."
-            exit 0
-          fi
-          if [ ! -f tmp/seek-cookies.b64 ]; then
-            echo "::warning::tmp/seek-cookies.b64 not found — session was not refreshed this run."
-            exit 0
-          fi
-          if [ -z "$GH_PAT" ]; then
-            echo "::warning::GH_PAT secret not set — cannot rotate SEEK_SESSION_COOKIES. Add a fine-grained PAT with repo + secrets scopes named GH_PAT."
-            exit 0
-          fi
-          echo "$GH_PAT" | gh auth login --with-token
-          gh secret set SEEK_SESSION_COOKIES --body "$(cat tmp/seek-cookies.b64)" --repo "${GITHUB_REPOSITORY}"
-          echo "SEEK_SESSION_COOKIES rotated ($(wc -c < tmp/seek-cookies.b64) bytes base64)."
 
       - name: Run maintenance patch
         shell: bash -eo pipefail {0}
@@ -149,9 +111,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No data changes to commit."
           else
-            git commit -m "bot: update data [skip ci]"
-            # Merge (not rebase) so code commits that incidentally touch data files
-            # don't cause a rebase conflict. -X ours keeps the bot's data on conflict.
+            git commit -m "bot: update data (indeed) [skip ci]"
             git pull --no-rebase -X ours origin main
             git push
           fi
@@ -160,14 +120,11 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: seek-bot-logs
+          name: indeed-bot-logs
           path: |
             tmp/bot.log
             tmp/analyze.log
             screenshots/errors/
-          # Explicitly exclude seek-cookies.b64 — it contains live auth tokens.
-          # The glob above only matches *.log and screenshots/, so it is already
-          # excluded, but this comment documents the intent clearly.
           if-no-files-found: ignore
           retention-days: 7
 

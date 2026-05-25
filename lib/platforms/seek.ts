@@ -14,7 +14,7 @@ import { findKBAnswer, aiAnswerQuestion, aiAnswerCheckboxes, selectBestOption } 
 import { tailorCoverLetter, callOpenRouter } from '../openrouter';
 import { tailorResume, TailoredContent } from '../resume-tailor';
 import { generateTailoredDocx } from '../resume-generator';
-import { cleanTailoredResumes, uploadTailoredResume } from '../resume-manager';
+import { cleanTailoredResumes, uploadTailoredResume, shouldCleanTailored, resetTailoredCount, incrementTailoredCount } from '../resume-manager';
 import { logger } from '../logger';
 import { readBaseCoverLetter } from '../cover-letter';
 import { applyViaATS } from '../ats/index';
@@ -884,8 +884,16 @@ export class SeekPlatform implements JobPlatform {
           return null;
         });
         if (docxPath) {
+          // When all tailored slots are used (3 of the 5-doc limit), clean before uploading.
+          // Only do this when apply is on a separate tab so main page is free to navigate.
+          if (shouldCleanTailored() && newPage) {
+            await cleanTailoredResumes(page);
+            resetTailoredCount();
+          }
           resumeUploaded = await uploadTailoredResume(applyPage, docxPath);
-          if (!resumeUploaded) {
+          if (resumeUploaded) {
+            incrementTailoredCount();
+          } else {
             logger.warn('resume-manager: upload failed — falling back to dropdown selection');
           }
         }
@@ -1039,6 +1047,7 @@ export class SeekPlatform implements JobPlatform {
     // does not block uploads during this run.
     if (process.env.RESUME_TAILORING_ENABLED === 'true') {
       await cleanTailoredResumes(page);
+      resetTailoredCount();
     }
     return true;
   }

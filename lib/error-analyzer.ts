@@ -221,7 +221,7 @@ export async function captureAndAnalyze(
 
   let imageBase64 = '';
   try {
-    const buffer = await page.screenshot({ path: screenshotPath, fullPage: false });
+    const buffer = await page.screenshot({ path: screenshotPath, fullPage: true });
     imageBase64 = buffer.toString('base64');
     console.log(`  [Analyzer] Screenshot saved: ${path.basename(screenshotPath)}`);
   } catch {

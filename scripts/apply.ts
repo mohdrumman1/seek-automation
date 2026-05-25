@@ -285,7 +285,10 @@ async function main() {
   const seekPlatform = platform as SeekPlatform & { loginAndVerify?: (p: Page) => Promise<boolean>; readBaseCoverLetter?: () => string };
   const baseCoverLetter = seekPlatform.readBaseCoverLetter?.() ?? '';
 
+  const seekDisabled = process.env.SEEK_DISABLED === 'true';
+
   try {
+    if (!seekDisabled) {
     if (seekPlatform.loginAndVerify) {
       const ok = await seekPlatform.loginAndVerify(page);
       if (!ok) {
@@ -442,6 +445,8 @@ async function main() {
         }
       }
     }
+    } // end !seekDisabled
+
     // ── Indeed loop (sequential, same process) ────────────────────────────────
     const indeedEnabled = process.env.INDEED_ENABLED === 'true';
     if (indeedEnabled && !opts.singleUrl && total < opts.maxAppsPerRun) {
