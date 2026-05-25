@@ -17,6 +17,14 @@ function ensureDir(): void {
   if (!fs.existsSync(SESSIONS_DIR)) fs.mkdirSync(SESSIONS_DIR, { recursive: true });
 }
 
+// Playwright only accepts Strict|Lax|None — browsers export no_restriction, unspecified, etc.
+function sanitizeSameSite(val: unknown): 'Strict' | 'Lax' | 'None' {
+  const s = String(val ?? '').toLowerCase();
+  if (s === 'strict') return 'Strict';
+  if (s === 'none' || s === 'no_restriction') return 'None';
+  return 'Lax';
+}
+
 function decodeEnvSession(): StorageState | null {
   const raw = process.env.INDEED_SESSION_COOKIES;
   if (!raw || raw.trim() === '') return null;
@@ -27,6 +35,8 @@ function decodeEnvSession(): StorageState | null {
       logger.warn('INDEED_SESSION_COOKIES decoded but missing cookies array');
       return null;
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    parsed.cookies = parsed.cookies.map((c: any) => ({ ...c, sameSite: sanitizeSameSite(c.sameSite) }));
     return parsed;
   } catch (err) {
     logger.error('failed to decode INDEED_SESSION_COOKIES', {}, err);
@@ -47,7 +57,10 @@ export async function getOrCreateIndeedSession(browser: Browser): Promise<Browse
 
   if (fs.existsSync(SESSION_PATH)) {
     logger.info('indeed session: loaded from disk', { path: SESSION_PATH });
-    return browser.newContext({ storageState: SESSION_PATH, userAgent: UA, viewport: VIEWPORT });
+    const diskSession = JSON.parse(fs.readFileSync(SESSION_PATH, 'utf8')) as StorageState;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    diskSession.cookies = diskSession.cookies.map((c: any) => ({ ...c, sameSite: sanitizeSameSite(c.sameSite) }));
+    return browser.newContext({ storageState: diskSession, userAgent: UA, viewport: VIEWPORT });
   }
 
   logger.info('indeed session: no saved session — creating fresh context (will need manual login)');
