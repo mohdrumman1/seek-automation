@@ -59,6 +59,15 @@ export async function applyPageUp(
     await page.waitForTimeout(1_500);
     const currentUrl = page.url();
 
+    // hCaptcha challenge page ("Uh oh... It looks like something has gone wrong" + CAPTCHA).
+    // Bail immediately — we cannot solve CAPTCHAs and looping just wastes time.
+    const hasHCaptcha = await page.locator('iframe[src*="hcaptcha"], .h-captcha, #hcaptcha').first()
+      .isVisible({ timeout: 500 }).catch(() => false);
+    if (hasHCaptcha) {
+      logger.info('ats: pageup — hCaptcha detected, skipping', ctx);
+      return { status: 'failed', reason: 'ats_pageup_captcha' };
+    }
+
     if (await isSuccessPage(page, [/application.{0,20}received/i, /applicationsubmitted/i])) {
       logger.info('ats: pageup — applied', ctx);
       return { status: 'applied' };

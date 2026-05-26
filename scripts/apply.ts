@@ -93,6 +93,7 @@ const TRIVIAL_SKIP_REASONS = new Set([
   'already_applied',
   'job_no_longer_advertised',
   'security_clearance_required',
+  'ats_pageup_captcha',
 ]);
 
 function saveBlocked(blocked: Set<string>): void {

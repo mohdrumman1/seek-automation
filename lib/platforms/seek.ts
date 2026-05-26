@@ -599,7 +599,8 @@ async function getValidationErrors(page: Page): Promise<string[]> {
   for (const sel of sels) {
     for (const el of await page.locator(sel).all()) {
       if (await el.isVisible().catch(() => false)) {
-        const t = (await el.textContent() ?? '').trim();
+        // textContent() defaults to 30s; cap it so a detached element can't stall the run.
+        const t = (await el.textContent({ timeout: 2_000 }) ?? '').trim();
         if (t) errors.push(t);
       }
     }
@@ -772,19 +773,7 @@ export class SeekPlatform implements JobPlatform {
       return { success: false, skipReason: 'security_clearance_required' };
     }
 
-    // "You applied on X" — SEEK replaces the Apply button with this text.
-    // Return a distinct skipReason so apply.ts can add the job to applied_jobs.json
-    // and prevent wasting time on it in future runs.
-    const alreadyApplied = await page.locator(
-      'text=You applied, [data-automation="job-apply-status"]:has-text("applied")'
-    ).first().isVisible({ timeout: 2_000 }).catch(() => false);
-    if (alreadyApplied) {
-      console.log('  Skipping - already applied (SEEK shows "You applied")');
-      logger.info('skip: already applied', { title: details.title, company: details.company });
-      return { success: false, skipReason: 'already_applied' };
-    }
-
-    // Job expired / closed.
+    // Job expired / closed — check first (fast, no dynamic content needed).
     const expired = await page.locator(
       'text=This job is no longer advertised, text=no longer accepting applications'
     ).first().isVisible({ timeout: 2_000 }).catch(() => false);
@@ -794,10 +783,28 @@ export class SeekPlatform implements JobPlatform {
       return { success: false, skipReason: 'job_no_longer_advertised' };
     }
 
+    // "You applied on X" — SEEK replaces the Apply button with this text. Check early
+    // with a short timeout as a fast path; we also re-check after the apply button fails.
+    const checkAlreadyApplied = () =>
+      page.getByText(/you applied/i).first().isVisible({ timeout: 3_000 }).catch(() => false);
+    if (await checkAlreadyApplied()) {
+      console.log('  Skipping - already applied (SEEK shows "You applied")');
+      logger.info('skip: already applied', { title: details.title, company: details.company });
+      return { success: false, skipReason: 'already_applied' };
+    }
+
     const applyBtn = page.locator(
       '[data-automation="job-detail-apply"], [data-automation="job-detail-apply-button"], a[data-automation*="apply"]'
     ).first();
     if (!(await applyBtn.waitFor({ timeout: 10_000 }).then(() => true).catch(() => false))) {
+      // By now the page has been loaded for ~13s — if SEEK didn't render an apply button,
+      // check whether it rendered "You applied" instead (catches jobs where the early check
+      // fired before SEEK's client-side render injected the status text).
+      if (await checkAlreadyApplied()) {
+        console.log('  Skipping - already applied (SEEK shows "You applied")');
+        logger.info('skip: already applied (late detect)', { title: details.title, company: details.company });
+        return { success: false, skipReason: 'already_applied' };
+      }
       console.log('  Apply button not found - skipping');
       await captureAndAnalyze(page, 'apply_button_not_found', ctx);
       return { success: false, skipReason: 'apply_button_not_found' };
