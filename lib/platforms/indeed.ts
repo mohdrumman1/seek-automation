@@ -62,7 +62,7 @@ export class IndeedPlatform implements JobPlatform {
       await page.waitForTimeout(800);
     }
 
-    const jkValues = await page.evaluate(() => {
+    const collect = async () => page.evaluate(() => {
       const cards = document.querySelectorAll<HTMLElement>(
         'a.jcs-JobTitle[data-jk], h2.jobTitle a[data-jk], [data-jk]'
       );
@@ -73,6 +73,40 @@ export class IndeedPlatform implements JobPlatform {
       });
       return [...jks];
     });
+
+    let jkValues = await collect();
+
+    // Diagnostic: if zero links, capture page state to figure out what Indeed
+    // actually served (captcha, empty SERP, redirect, IP block, etc.). Without
+    // this we have no way to know why CI runs collect 0 every time.
+    if (jkValues.length === 0) {
+      try {
+        const diag = await page.evaluate(() => ({
+          title: document.title,
+          url: location.href,
+          bodyLen: document.body?.innerText?.length ?? 0,
+          h1: document.querySelector('h1')?.textContent?.slice(0, 200) ?? null,
+          hasCaptcha: /captcha|verify you are human|just a moment|cf-challenge/i.test(
+            document.body?.innerText ?? ''
+          ),
+          hasNoResults: /no jobs found|did not match any jobs|0 jobs/i.test(
+            document.body?.innerText ?? ''
+          ),
+          bodySnippet: (document.body?.innerText ?? '').slice(0, 400),
+        }));
+        logger.warn('indeed: zero links collected — page diagnostic', diag);
+        const fs = await import('fs');
+        const path = await import('path');
+        const dir = path.resolve(process.cwd(), 'screenshots/indeed-debug');
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        const ts = new Date().toISOString().replace(/[:.]/g, '-');
+        await page
+          .screenshot({ path: path.join(dir, `zero-links-${ts}.png`), fullPage: false })
+          .catch(() => {});
+      } catch (err) {
+        logger.warn('indeed: diagnostic capture failed', { error: String(err) });
+      }
+    }
 
     const links = jkValues.map((jk) => `https://au.indeed.com/viewjob?jk=${jk}`);
     logger.info('indeed: job links collected', { count: links.length });

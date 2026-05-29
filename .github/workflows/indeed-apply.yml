@@ -116,8 +116,8 @@ jobs:
             git push
           fi
 
-      - name: Upload logs on failure
-        if: failure()
+      - name: Upload logs and debug artifacts
+        if: always()
         uses: actions/upload-artifact@v7
         with:
           name: indeed-bot-logs
@@ -125,6 +125,7 @@ jobs:
             tmp/bot.log
             tmp/analyze.log
             screenshots/errors/
+            screenshots/indeed-debug/
           if-no-files-found: ignore
           retention-days: 7
 
