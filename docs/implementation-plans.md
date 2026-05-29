@@ -1,4 +1,4 @@
-# Implementation Plans — Phases 5 & 7
+# Implementation Plans — Phases 5, 7 & 10
 
 Architect notes for the SEEK auto-apply bot (TypeScript / Playwright). These plans are written to be implemented directly by a Sonnet coder without follow-up questions. File paths are repo-relative.
 
@@ -16,6 +16,7 @@ Conventions used throughout:
 |-------|--------|-------------|
 | Phase 5 — External ATS Engine | ✅ Implemented | 2026-05-22 |
 | Phase 7 — On-Demand Single-Job Apply | ✅ Implemented | 2026-05-22 |
+| Phase 10 — CommBank Direct (Workday) | ✅ Implemented | 2026-05-28 |
 
 ### Phase 5 implementation summary (2026-05-22)
 - `lib/ats/` created: types.ts, detect.ts, common.ts, index.ts, workday.ts, cornerstone.ts, jobadder.ts, teamtailor.ts, pageup.ts, smartrecruiters.ts, dayforce.ts (stub), successfactors.ts (stub), taleo.ts (stub), randstad.ts (stub)
@@ -737,3 +738,367 @@ Explicitly out of scope: no new tracker fields, no new platform code, no queuein
 3. Dispatch the workflow with a real `job_url` and `dry_run=true`; confirm the log shows the title scrape and "NOT APPLIED" / dry-run behaviour (no CSV write).
 4. Dispatch with `dry_run=false`; confirm `Applied!` and a new row in `data/applications.csv`.
 5. Dispatch with empty `job_url` (or a scheduled run) → confirm the normal search loop runs unchanged.
+
+---
+
+## Section 3: Phase 10 — CommBank Direct (Workday Careers Portal)
+
+### 3.0 Goal & current state
+
+CBA jobs that appear on SEEK and redirect to `cba.wd3.myworkdayjobs.com` already flow through the Phase 5 Workday handler — `.wd3.` is detected, `applyWorkday` is called, account sign-in/creation is attempted via `WORKDAY_PASSWORD`. **What's missing is the job source**: roles that CBA only posts on their own careers portal, never syndicated to SEEK.
+
+This phase adds a direct scraper for `cba.wd3.myworkdayjobs.com/en-US/CBA_Careers`, feeds the found job URLs into the existing `applyToSingleUrl` pipeline, and wires it up as an isolated GitHub Actions workflow.
+
+### 3.1 New files
+
+```
+lib/crawlers/
+  types.ts           ← CompanyCrawler interface
+  cba.ts             ← CBA Workday job listing scraper
+scripts/
+  company-apply.ts   ← new entry point (mirrors apply.ts but sources from a company crawler)
+.github/workflows/
+  cba-apply.yml      ← isolated 3×/day workflow
+```
+
+### 3.2 `lib/crawlers/types.ts`
+
+```ts
+import { Page } from '@playwright/test';
+
+export interface CrawlerJobLink {
+  url: string;      // direct apply URL or listing URL
+  title?: string;   // optional: pre-scraped title for logging
+  jobId: string;    // dedup key — derived from the URL
+}
+
+export interface CompanyCrawler {
+  name: string;
+  getJobLinks(page: Page): Promise<CrawlerJobLink[]>;
+}
+```
+
+Keep this thin. The crawler only fetches links; all apply logic, tailoring, and tracking is handled by `applyToSingleUrl` in `apply.ts`.
+
+### 3.3 `lib/crawlers/cba.ts`
+
+CBA's Workday job listing URL with filters applied:
+
+```
+https://cba.wd3.myworkdayjobs.com/en-US/CBA_Careers?locations=LOCATION_ID&jobFamilyGroup=FAMILY_ID
+```
+
+Workday listings pages are React-rendered SPAs. The simplest scrape approach: load the page, wait for job cards to render, extract links. Don't fight the pagination — Workday listings load incrementally; scroll-to-bottom or use the "Load More" button.
+
+```ts
+import { Page } from '@playwright/test';
+import { CompanyCrawler, CrawlerJobLink } from './types';
+import { logger } from '../logger';
+
+// Target role keywords — checked case-insensitively against job title
+const TARGET_KEYWORDS = [
+  'project manager', 'technical project manager', 'delivery manager', 'delivery lead',
+  'program manager', 'software engineer', 'full stack', 'backend', 'cloud engineer',
+  'ai engineer', 'ai consultant', 'solutions architect', 'product owner',
+];
+
+// Location terms that indicate NSW/QLD or remote — reject anything explicitly interstate
+const LOCATION_ALLOW = /nsw|new south wales|sydney|newcastle|qld|queensland|brisbane|remote|hybrid/i;
+const LOCATION_BLOCK = /victoria|melbourne|\bvic\b|western australia|perth|\bwa\b|south australia|adelaide|\bsa\b|canberra|\bact\b|tasmania|darwin|\bnt\b/i;
+
+const CBA_BASE_URL = 'https://cba.wd3.myworkdayjobs.com/en-US/CBA_Careers';
+
+export class CbaCrawler implements CompanyCrawler {
+  name = 'cba';
+
+  async getJobLinks(page: Page): Promise<CrawlerJobLink[]> {
+    await page.goto(CBA_BASE_URL, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(3_000);
+
+    // Scroll + "Load More" loop to surface all listings (Workday lazy-loads in batches)
+    for (let i = 0; i < 10; i++) {
+      const loadMore = page.locator('button:has-text("Load More"), [data-automation-id="loadMoreButton"]').first();
+      if (await loadMore.isVisible({ timeout: 2_000 }).catch(() => false)) {
+        await loadMore.click().catch(() => {});
+        await page.waitForTimeout(2_000);
+      } else {
+        await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+        await page.waitForTimeout(1_500);
+        const stillMore = await loadMore.isVisible({ timeout: 1_000 }).catch(() => false);
+        if (!stillMore) break;
+      }
+    }
+
+    // Job cards link to the detail/listing page, not the apply form directly.
+    // Workday listing hrefs look like: /en-US/CBA_Careers/job/Sydney-NSW/Senior-Project-Manager_R-XXXXXX
+    const anchors = await page.locator('a[data-automation-id="jobTitle"], a[href*="/CBA_Careers/job/"]').all();
+    const results: CrawlerJobLink[] = [];
+
+    for (const a of anchors) {
+      const href = await a.getAttribute('href').catch(() => null);
+      const title = (await a.textContent().catch(() => '')) ?? '';
+      if (!href) continue;
+
+      const abs = new URL(href, CBA_BASE_URL).toString();
+
+      // Title filter — must match at least one target keyword
+      const titleLow = title.toLowerCase();
+      if (!TARGET_KEYWORDS.some((kw) => titleLow.includes(kw))) continue;
+
+      // Location filter — derive from the URL path which embeds "Sydney-NSW" / "Brisbane-QLD" etc.
+      const pathLow = abs.toLowerCase();
+      if (LOCATION_BLOCK.test(pathLow) && !LOCATION_ALLOW.test(pathLow)) continue;
+
+      // Derive a stable jobId from the Workday job requisition number in the URL (R-XXXXXXXX)
+      const jobId = abs.match(/_(R-[\w]+)\s*$/i)?.[1] ?? abs.match(/\/job\/[^/]+\/[^/]+-([^/]+)$/)?.[1] ?? abs;
+
+      results.push({ url: abs, title: title.trim(), jobId });
+    }
+
+    logger.info('cba: job links found', { total: results.length });
+    return results;
+  }
+}
+```
+
+Notes:
+- The keyword filter runs on the title embedded in the page, not the full JD — fast and avoids a second page load per listing.
+- Location filter uses the URL path segment (Workday encodes location in the slug) — fast and reliable. The `filterByLocation` function in seek.ts is for post-scrape filtering; this is a pre-filter to avoid visiting irrelevant listing pages.
+- The dedup key (`jobId`) must be stable across runs. Workday requisition IDs (`R-XXXXXXXX`) in the URL slug are stable. Use those; fall back to the last path segment if no `R-` number found.
+
+### 3.4 `scripts/company-apply.ts`
+
+New script. Mirrors `apply.ts` but sources jobs from a `CompanyCrawler` instead of a `JobPlatform` search loop.
+
+```ts
+// Usage: ts-node scripts/company-apply.ts --company cba [--dry-run] [--max <n>]
+import 'dotenv/config';
+import { chromium } from '@playwright/test';
+import { CbaCrawler } from '../lib/crawlers/cba';
+import { SeekPlatform } from '../lib/platforms/seek';
+import { loadKB } from '../lib/questions-kb';
+import { logger } from '../lib/logger';
+import * as fs from 'fs';
+import * as path from 'path';
+
+const CRAWLERS: Record<string, CompanyCrawler> = {
+  cba: new CbaCrawler(),
+};
+
+// Reuse apply.ts helpers: applyToSingleUrl, loadApplied, saveApplied, etc.
+// Import directly from apply.ts is not possible (it's a script, not a module).
+// Copy the minimal set here, or extract shared helpers to lib/apply-utils.ts (preferred long-term refactor).
+// For the MVP: duplicate the ~50 lines needed; note it in KNOWN_FIXES for future de-dup.
+```
+
+**Recommended refactor (do this first before writing company-apply.ts):** Extract `applyToSingleUrl`, `loadApplied`, `saveApplied`, `loadBlocked`, `saveBlocked` from `scripts/apply.ts` into `lib/apply-utils.ts`. Both `apply.ts` and `company-apply.ts` import from there. This is a small extraction — ~100 lines — and avoids duplication. Note the extraction in `KNOWN_FIXES` if any breakage occurs.
+
+Key logic in `company-apply.ts`:
+
+```ts
+async function main() {
+  const args = process.argv.slice(2);
+  const companyName = args[args.indexOf('--company') + 1] ?? 'cba';
+  const dryRun = args.includes('--dry-run');
+  const maxApps = Number(args[args.indexOf('--max') + 1] ?? process.env.MAX_APPS_PER_RUN ?? 20);
+
+  const crawler = CRAWLERS[companyName];
+  if (!crawler) { console.error(`Unknown company: ${companyName}`); process.exit(1); }
+
+  const runId = new Date().toISOString();
+  const kb = loadKB();
+  const applied = loadApplied();
+  const blocked = loadBlocked();
+
+  const browser = await chromium.launch({ headless: process.stdin.isTTY !== true });
+  const platform = new SeekPlatform();  // needed for applyToSingleUrl's platform param + Workday auth
+  const context = await platform.authenticate(browser);
+  const page = await context.newPage();
+
+  // Crawl the company's careers page
+  const listingPage = await context.newPage();
+  const links = await crawler.getJobLinks(listingPage);
+  await listingPage.close();
+
+  logger.info(`${companyName}: found ${links.length} matching job links`);
+
+  let total = 0;
+  for (const { url, title, jobId } of links) {
+    if (total >= maxApps) break;
+    if (applied.has(jobId)) { logger.debug('already applied', { jobId }); continue; }
+    if (blocked.has(jobId)) { logger.debug('blocked', { jobId }); continue; }
+
+    logger.info(`${companyName}: applying`, { jobId, title });
+    await applyToSingleUrl(platform, page, context, url, kb, baseCoverLetter, dryRun, runId);
+    if (!dryRun) { applied.add(jobId); saveApplied(applied); }
+    total++;
+    await page.waitForTimeout(6_000);
+  }
+
+  await browser.close();
+  logger.info(`${companyName}: done`, { total });
+}
+```
+
+Add to `package.json` scripts:
+```json
+"company": "ts-node scripts/company-apply.ts --platform seek"
+```
+
+### 3.5 CBA-specific KB entries
+
+Pre-populate `data/questions_kb.json` with these answers before the first live run. KB entries follow the existing schema (`{ question, answer, source }`).
+
+| Question pattern | Answer | Notes |
+|---|---|---|
+| `right to work in australia` | `Yes` | Citizen |
+| `currently employed by (commbank\|commonwealth bank\|cba)` | `No` | — |
+| `previously applied.*commbank` | `No` | Update manually if prior application exists |
+| `security clearance` | `No` | Route to `needs_manual_review` if marked required |
+| `criminal history.*financial services` | manual review | `hasSensitiveRequiredField` should catch this; add as KB safeguard too |
+| `notice period` | `2 weeks` | Standard |
+| `salary expectation` | `120000` | Minimum threshold |
+| `willing to relocate` | `No` | Newcastle/Sydney/Brisbane preference |
+
+### 3.6 `.github/workflows/cba-apply.yml`
+
+Separate workflow, isolated failure. The SEEK run and CBA run run independently.
+
+```yaml
+name: CBA Careers Auto Apply
+
+on:
+  schedule:
+    - cron: '47 20 * * *'   # 6:47am AEST
+    - cron: '47 2 * * *'    # 12:47pm AEST
+    - cron: '47 8 * * *'    # 6:47pm AEST
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run — fill but do not submit'
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: cba-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      SEEK_EMAIL: ${{ secrets.SEEK_EMAIL }}
+      SEEK_SESSION_COOKIES: ${{ secrets.SEEK_SESSION_COOKIES }}
+      CANDIDATE_PHONE: ${{ secrets.CANDIDATE_PHONE }}
+      CANDIDATE_LINKEDIN: ${{ secrets.CANDIDATE_LINKEDIN }}
+      WORKDAY_PASSWORD: ${{ secrets.WORKDAY_PASSWORD }}
+      MAX_APPS_PER_RUN: '20'
+      RESUME_TAILORING_ENABLED: 'true'
+      DRY_RUN: 'false'
+      LOG_LEVEL: 'info'
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Create .env from secrets
+        run: |
+          {
+            echo "OPENROUTER_API_KEY=${OPENROUTER_API_KEY}"
+            echo "SEEK_EMAIL=${SEEK_EMAIL}"
+            echo "CANDIDATE_PHONE=${CANDIDATE_PHONE}"
+            echo "CANDIDATE_LINKEDIN=${CANDIDATE_LINKEDIN}"
+            echo "WORKDAY_PASSWORD=${WORKDAY_PASSWORD}"
+            echo "MAX_APPS_PER_RUN=${MAX_APPS_PER_RUN}"
+            echo "RESUME_TAILORING_ENABLED=${RESUME_TAILORING_ENABLED}"
+            echo "DRY_RUN=${DRY_RUN}"
+          } > .env
+      - run: mkdir -p data/sessions tmp
+      - name: Run CBA crawler
+        shell: bash -eo pipefail {0}
+        env:
+          DRY_RUN_INPUT: ${{ github.event.inputs.dry_run }}
+        run: |
+          ARGS="--company cba"
+          [ "$DRY_RUN_INPUT" = "true" ] && ARGS="$ARGS --dry-run"
+          npm run company -- $ARGS 2>&1 | tee tmp/cba-bot.log
+      - name: Commit updated data
+        if: success() && github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/applied_jobs.json data/applications.csv data/skipped_jobs.csv data/failed_jobs.csv || true
+          git diff --staged --quiet || git commit -m "bot: update data (cba) [skip ci]"
+          git push
+```
+
+Note: schedule times are staggered 30 min from the SEEK workflow (6:17am vs 6:47am) so both workflows don't spin up GitHub runners simultaneously and compete for the same `applied_jobs.json` commit.
+
+### 3.7 `applied_jobs.json` concurrency
+
+Both workflows write to `data/applied_jobs.json`. The current design (read → apply → write → commit) is not atomic across two concurrent workflows. Mitigation:
+- The schedule times are staggered 30 min; in practice runs rarely overlap
+- `concurrency: group: cba-apply` / `group: seek-apply` prevent two instances of the same workflow running simultaneously
+- Cross-workflow conflicts are possible but rare; the dedup effect of `applied_jobs.json` means the worst outcome is applying to the same job twice (not catastrophic). Accept this risk for now; a proper solution (shared lock file, external state store) is deferred.
+
+### 3.8 Workday account for the CBA tenant
+
+CBA's Workday almost certainly requires account creation on first run. The existing `signInOrCreateAccount` in `lib/ats/workday.ts` handles this:
+1. Attempts sign-in with `SEEK_EMAIL` + `WORKDAY_PASSWORD`
+2. If sign-in fails, attempts account creation
+3. If account creation triggers email verification, returns `verify_email` → logged as `needs_manual_review`
+
+**First-run procedure:**
+1. Set `WORKDAY_PASSWORD` secret to a strong password (if not already set)
+2. Run `company-apply.ts --company cba --dry-run` locally with `headed=true` (set `interactive` env)
+3. Bot will hit the account creation wall → `workday_account_verify_email` logged
+4. Check `mohdrumman1@gmail.com`, click the verification link
+5. Re-run — bot now signs in successfully and proceeds through the apply wizard
+6. Push `WORKDAY_PASSWORD` to GitHub Secrets; all future CI runs use the same account
+
+**Per-tenant account isolation:** Each Workday tenant maintains its own account database. A CBA Workday account does not work on Nine's Workday, etc. The single `WORKDAY_PASSWORD` is fine — the email is the same (`SEEK_EMAIL`) but the password registers separate accounts per tenant.
+
+### 3.9 Suggested implementation sequence
+
+1. Extract shared helpers to `lib/apply-utils.ts` (or accept duplication in MVP — note it)
+2. `lib/crawlers/types.ts` + `lib/crawlers/cba.ts` — implement scraper, verify it returns sensible links locally
+3. `scripts/company-apply.ts` — wire crawler into the apply pipeline
+4. Add `"company": "ts-node scripts/company-apply.ts"` to `package.json`
+5. Pre-populate CBA KB entries (§3.5)
+6. Local dry-run: `npm run company -- --company cba --dry-run` in headed mode — confirm links are scraped, Workday account created/signed-in, forms filled but not submitted
+7. Complete email verification (§3.8) if triggered
+8. Live test run: `npm run company -- --company cba --max 3` — confirm 3 applications submitted and tracked
+9. Create `.github/workflows/cba-apply.yml`
+10. Commit and push; verify the workflow fires on schedule
+
+### 3.10 Estimated effort
+
+| Task | Hours |
+|---|---|
+| `lib/apply-utils.ts` extraction | 1 |
+| CBA scraper + crawler interface | 2 |
+| `company-apply.ts` script | 2 |
+| KB priming | 0.5 |
+| Workflow YAML | 0.5 |
+| Local dry-run + email verification | 1 |
+| Live test + fixes | 2 |
+| **Total** | **~9 h** |
+
+### 3.11 Test plan
+
+1. `npm run company -- --company cba --dry-run` locally (headed): confirm scraper returns >0 links for target roles; confirm Workday forms are filled and NOT submitted; confirm no writes to `applied_jobs.json`
+2. Check `tmp/cba-bot.log` for `ats: workday — applied` or `workday_account_verify_email` entries
+3. If `verify_email`: complete verification, re-run dry-run — should now show full wizard fill
+4. Live run `--max 3`: confirm 3 rows in `data/applications.csv` with `ats_provider=workday` and `external_url` containing `cba.wd3`
+5. Second run with same 3 job IDs: confirm they are skipped as `already_applied`
+6. Dispatch `cba-apply.yml` with `dry_run=true` from GitHub Actions UI — confirm log output, no CSV changes

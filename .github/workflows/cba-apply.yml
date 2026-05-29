@@ -1,0 +1,130 @@
+name: CBA Careers Auto Apply
+
+on:
+  schedule:
+    # 6:47am, 12:47pm, 6:47pm AEST — staggered 30 min from seek-apply.yml to avoid concurrent runner contention
+    - cron: '47 20 * * *'
+    - cron: '47 2 * * *'
+    - cron: '47 8 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run — fill but do not submit'
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: cba-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      SEEK_EMAIL: ${{ secrets.SEEK_EMAIL }}
+      SEEK_SESSION_COOKIES: ${{ secrets.SEEK_SESSION_COOKIES }}
+      CANDIDATE_PHONE: ${{ secrets.CANDIDATE_PHONE }}
+      CANDIDATE_LINKEDIN: ${{ secrets.CANDIDATE_LINKEDIN }}
+      CANDIDATE_WEBSITE: ${{ secrets.CANDIDATE_WEBSITE }}
+      WORKDAY_PASSWORD: ${{ secrets.WORKDAY_PASSWORD }}
+      MAX_APPS_PER_RUN: '20'
+      MAX_APPS_PER_SEARCH: '10'
+      RESUME_TAILORING_ENABLED: 'true'
+      AUTO_SUBMIT_ENABLED: 'true'
+      DRY_RUN: 'false'
+      LOG_LEVEL: 'info'
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright + system deps
+        run: npx playwright install --with-deps chromium
+
+      - name: Create .env from secrets
+        run: |
+          {
+            echo "OPENROUTER_API_KEY=${OPENROUTER_API_KEY}"
+            echo "SEEK_EMAIL=${SEEK_EMAIL}"
+            echo "CANDIDATE_PHONE=${CANDIDATE_PHONE}"
+            echo "CANDIDATE_LINKEDIN=${CANDIDATE_LINKEDIN}"
+            echo "CANDIDATE_WEBSITE=${CANDIDATE_WEBSITE}"
+            echo "WORKDAY_PASSWORD=${WORKDAY_PASSWORD}"
+            echo "MAX_APPS_PER_RUN=${MAX_APPS_PER_RUN}"
+            echo "MAX_APPS_PER_SEARCH=${MAX_APPS_PER_SEARCH}"
+            echo "RESUME_TAILORING_ENABLED=${RESUME_TAILORING_ENABLED}"
+            echo "AUTO_SUBMIT_ENABLED=${AUTO_SUBMIT_ENABLED}"
+            echo "DRY_RUN=${DRY_RUN}"
+            echo "LOG_LEVEL=${LOG_LEVEL}"
+          } > .env
+
+      - name: Ensure runtime directories exist
+        run: mkdir -p data/sessions tmp
+
+      - name: Run CBA crawler
+        id: bot
+        shell: bash -eo pipefail {0}
+        env:
+          DRY_RUN_INPUT: ${{ github.event.inputs.dry_run }}
+        run: |
+          ARGS="--company cba"
+          if [ "$DRY_RUN_INPUT" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          npm run company -- $ARGS 2>&1 | tee tmp/cba-bot.log
+
+      - name: Commit updated data
+        if: always() && github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/applied_jobs.json \
+            data/blocked_jobs.json \
+            data/applications.csv \
+            data/skipped_jobs.csv \
+            data/failed_jobs.csv \
+            data/runs.csv \
+            data/error-log.json \
+            data/questions_kb.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "bot: update data (cba) [skip ci]"
+            git pull --no-rebase -X ours origin main
+            git push
+          fi
+
+      - name: Upload logs and debug artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: cba-bot-logs
+          path: |
+            tmp/cba-bot.log
+            screenshots/errors/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Tail logs on failure
+        if: failure()
+        run: |
+          for f in tmp/cba-bot.log; do
+            if [ -f "$f" ]; then
+              echo "===== last 50 lines of $f ====="
+              tail -n 50 "$f"
+            fi
+          done

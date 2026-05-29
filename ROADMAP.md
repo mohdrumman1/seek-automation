@@ -109,6 +109,36 @@ Single-URL mode already exists locally via `ts-node scripts/apply.ts --url <job-
 
 ---
 
+## Phase 10 — CommBank Direct (Workday Careers Portal) ✅
+
+**Goal:** Apply directly to Commonwealth Bank roles sourced from `cba.wd3.myworkdayjobs.com`, without relying on CBA syndicating those listings to SEEK.
+
+**Background:** CBA is one of Australia's largest employers of PM and tech roles. CBA jobs that redirect from SEEK already work through the Phase 5 Workday handler (`.wd3.` pattern detected, `applyWorkday` called). What's missing is direct sourcing — capturing CBA-only roles not listed on SEEK.
+
+**What needs to be built:**
+
+1. **CBA careers scraper** (`lib/crawlers/cba.ts`) — navigates `cba.wd3.myworkdayjobs.com/en-US/CBA_Careers`, filters to target roles (PM, delivery, SE, AI, cloud) and NSW/QLD/remote, returns job application URLs; deduplicates against `applied_jobs.json`
+
+2. **`CompanyCrawler` interface** (`lib/crawlers/types.ts`) — `getJobLinks(page): Promise<string[]>` — same shape as `JobPlatform.getJobLinks` but for a direct company careers portal; keeps the crawler separate from the SEEK/Indeed platform abstraction
+
+3. **CBA-specific KB priming** — pre-populate `data/questions_kb.json` with standard CBA screening answers (right to work → yes; currently employed by CBA → no; criminal history → manual review flag if required)
+
+4. **Workday account handling** — each Workday tenant maintains its own account registry; `WORKDAY_PASSWORD` already exists and `signInOrCreateAccount` in workday.ts already attempts sign-in/creation. First run on a new tenant triggers email verification (one-time manual step); subsequent runs auto sign-in. Document verified tenants in `.env.example` (`WORKDAY_VERIFIED_TENANTS=cba`).
+
+5. **`scripts/company-apply.ts`** — new entry point that loads a company crawler by name (`--company cba`), runs `getJobLinks`, feeds each URL to the existing `applyToSingleUrl` pipeline. Shares the same KB, cover-letter tailoring, resume tailoring, and tracker as the SEEK loop.
+
+6. **New GitHub Actions workflow** (`.github/workflows/cba-apply.yml`) — runs on the same 3×/day schedule, behind a `COMPANY_CRAWLERS_ENABLED` secret flag; isolated from `seek-apply.yml` so a CBA failure doesn't block the SEEK run.
+
+**Key constraints:**
+- First Workday account creation requires one manual email-verification click — bot logs `workday_account_verify_email` and exits cleanly; user verifies, then next run proceeds automatically
+- CBA's Workday may enforce MFA for some sessions — detect and return `needs_manual_review` same as the existing path
+- Criminal history / financial-services compliance questions must trigger manual review if marked required — `hasSensitiveRequiredField` in `lib/ats/common.ts` already covers this
+- Keep the same 6 s inter-application delay; CBA's Workday does not publish rate limits but same conservative pacing applies
+
+**Estimated effort:** 8–10 hours (scraper + integration 4–6 h, KB priming 30 min, workflow 1 h, dry-run + live test 2 h)
+
+---
+
 ## Phase 9 — Universal Job Link Apply
 
 **Goal:** Accept any job URL from any site — not just SEEK — and apply to it autonomously.
