@@ -1,25 +1,5 @@
 [
   {
-    "timestamp": "2026-05-25T23:39:07.483Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Cloud M365 Engineer (AMSA5)",
-    "company": "Australian Maritime Safety Authority",
-    "url": "https://secure.dc2.pageuppeople.com/apply/1015/gateway/Default.aspx?c=apply&sJobIDs=493026&SourceTypeID=806&seek-token=M77wB4Hh1qCPeUBLZPPLEj",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T23-39-05-661Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen shows a PageUp \"Uh oh...\" error with a message prompting the user to try again and an hCaptcha \"I am human\" checkbox.\n2. The error was likely caused by PageUp requiring the hCaptcha to be solved before proceeding.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action to attempt solving the hCaptcha."
-  },
-  {
-    "timestamp": "2026-05-25T23:40:08.157Z",
-    "error_type": "cover_letter_fill_failed",
-    "job_title": "Solutions Architect",
-    "company": "TEKsystems",
-    "url": "https://jobs.en-au.teksystems.com/5qMKQs/solutions-architect-tek-enterprise-applications-ea-sydney-other-new-south-wales-australia-a5uw20000001tvviay?sref=seek.com.au&directToApply=true",
-    "page_title": "403 Forbidden",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T23-40-06-457Z_cover_letter_fill_failed.png",
-    "analysis": "1. The screen displays a \"403 Forbidden\" error from nginx.\n2. The bot likely received a 403 Forbidden error when trying to access the page to fill the cover letter.\n3. The bot should retry navigating to the page if it encounters a 403 error.\n4.  After retrying, if the 403 persists, the bot should stop and notify the user about the error."
-  },
-  {
     "timestamp": "2026-05-25T23:40:09.882Z",
     "error_type": "continue_button_not_found",
     "job_title": "Solutions Architect",
@@ -4998,5 +4978,25 @@
     "page_title": "Apply with SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T12-06-35-932Z_ats_pageup_no_submit.png",
     "analysis": "1. The screen displays a SEEK authorization prompt, asking the user to allow Peoplebank Australia NSW access to their SEEK profile information.\n2. The error is likely caused by the bot not authorizing the application to access the user's profile. The bot stopped because it requires permission to prefill the job application.\n3. The bot should use the CSS selector `button:contains(\"Allow access\")` to find the \"Allow access\" button and then execute a `.click()` action on it."
+  },
+  {
+    "timestamp": "2026-05-30T21:44:00.230Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Chief Engineer - Contact Centre Transformation",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/VIC-CBD-Melbourne-Area/Chief-Engineer---Contact-Centre-Transformation_REQ258810/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T21-43-58-542Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The \"Create Account\" modal is open, with email and password fields pre-filled. The modal's button shows \"Sign In,\" but likely attempts to create an account.\n2. The session was likely lost, and the page defaulted to account creation.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-05-30T21:46:43.902Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Principal Technology Product Owner- Gen AI, Responsible AI",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/VIC-CBD-Melbourne-Area/Principal-Technology-Product-Owner--Gen-AI--Responsible-AI-and-Model-Evaluation---Monitoring_REQ251195/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T21-46-41-859Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1.  The \"Create Account\" modal is open, with email, password, and \"Verify New Password\" fields pre-filled. The button at the bottom shows `\"Create Account\"` button. There's an \"Already have an account? Sign In\" link below.\n2.  The Workday session was likely lost, and the page is defaulting to account creation. The bot probably pre-filled this form previously.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
   }
 ]
