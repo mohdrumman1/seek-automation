@@ -1,10 +1,11 @@
 name: Indeed Auto Apply
 
 on:
-  schedule:
-    - cron: '17 20 * * *'
-    - cron: '17 2 * * *'
-    - cron: '17 8 * * *'
+  # Disabled 2026-05-29: Cloudflare IP-blocks Actions runners. See LEARNINGS.md "Indeed cron disabled". Re-enable when residential proxy is wired (INDEED_PROXY_URL).
+  # schedule:
+  #   - cron: '17 20 * * *'
+  #   - cron: '17 2 * * *'
+  #   - cron: '17 8 * * *'
   workflow_dispatch:
     inputs:
       dry_run:

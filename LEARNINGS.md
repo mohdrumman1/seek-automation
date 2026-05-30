@@ -4,6 +4,25 @@ Append new entries at the TOP, separated by `---`.
 
 ---
 
+## 2026-05-29 — Indeed cron disabled: Cloudflare IP block on Actions runners
+
+**Tags:** indeed, cloudflare, ip-block, cron-disabled, github-actions
+**Status:** Workaround
+
+**Issue:** Indeed bot silently produced zero applications on every scheduled CI run. Diagnostic capture (run 26611282451) revealed the SERP was never reached — Cloudflare served an "Additional Verification Required" interstitial (Ray ID `a0318538dbc2c93c`) with a 250-byte body before any job results rendered.
+
+**Investigation:** Followed up on prior LEARNINGS entry "Indeed bot silent-failing". Diagnostic JSON payload from the workflow showed `title: "Just a moment..."`, `h1: "Additional Verification Required"`, body length 250 bytes. Confirms Cloudflare edge block on the GitHub Actions datacenter IP range — not selector drift, not cookie expiry, not a no-results page.
+
+**Root cause:** GitHub Actions runners live in datacenter IP ranges that Cloudflare aggressively challenges. No amount of cookie freshness or selector tuning bypasses this — the block happens at the edge, before any Indeed code runs.
+
+**Fix:** Disabled the `schedule:` block in `.github/workflows/indeed-apply.yml` (commented out, not deleted). `workflow_dispatch:` retained for manual debugging from a local/proxied context. No application code changed.
+
+**Verify:** `gh workflow view indeed-apply.yml` should show no scheduled runs. `gh workflow run indeed-apply.yml` should still trigger a manual run.
+
+**If it recurs (or to re-enable):** Re-enable only after one of: (a) residential proxy wired via `INDEED_PROXY_URL` secret + Playwright proxy config, (b) self-hosted runner on a non-datacenter IP, or (c) Indeed API integration replacing scraping. Uncomment the `schedule:` block and remove the disable comment line.
+
+---
+
 ## 2026-05-29 — Indeed bot silent-failing: 0 jobs collected on every search on CI
 
 **Tags:** indeed, bot-detection, ip-block, getJobLinks, silent-failure, observability, cookies
