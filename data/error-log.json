@@ -1,275 +1,5 @@
 [
   {
-    "timestamp": "2026-05-25T21:40:29.840Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Technology Asset Manager - Thermal",
-    "company": "AGL",
-    "url": "https://agl.wd3.myworkdayjobs.com/en-US/AGL_Recruitment/job/Bayswater-Power-Station/Technology-Asset-Manager---Thermal_R-0023033-1/apply/applyManually?seek-token=FmGa377TbYjmkaeSyhZFMy&source=Seek",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-40-28-170Z_ats_workday_no_submit.png",
-    "analysis": "1. A \"Sign In\" page with options to sign in with Apple, Google, or email is visible.\n2.  The bot is stuck on the sign-in page after the initial modal, requiring a sign-in method to be selected.\n3.  The bot should click `button:contains(\"Sign in with email\")` next time to proceed with the application."
-  },
-  {
-    "timestamp": "2026-05-25T21:43:41.512Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Product Manager",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Product-Manager--Truyu_REQ259255/apply/applyManually?seek-token=abz4Gg4U8HTrHmBGN81DM",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-43-39-135Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" modal is displayed on top of the \"Create Account\" page, with fields for Email Address and Password. The bot is already on the \"Create Account\" screen.\n2. The bot is attempting to create an account but, as before, Workday is prompting to sign in again. This may be due to session cookie expiration or navigation to a page requiring re-authentication.\n3. The bot should first try closing the \"Sign In\" modal using the CSS selector `[data-automation-id='closeIcon']` or the 'X' button in the top-right corner of the modal. If that fails, try clicking the \"Create Account\" button below the \"Sign In\" modal."
-  },
-  {
-    "timestamp": "2026-05-25T21:44:27.670Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Engineering Manager",
-    "company": "UpperGround by Hudson",
-    "url": "https://au.seek.com/job/92310324",
-    "page_title": "Engineering Manager Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-44-25-018Z_apply_button_not_found.png",
-    "analysis": "1. The screenshot shows the job posting for \"Engineering Manager\" at UpperGround by Hudson in Sydney NSW. It includes the company logo, job title, location, job category, and employment type.\n2.  The bot likely tries to locate the \"Apply\" button before scrolling or the page is fully loaded.\n3. The bot should first scroll to the bottom of the page using `window.scrollTo(0, document.body.scrollHeight)` and then search for the \"Apply\" button or look for text like \"Apply now\"."
-  },
-  {
-    "timestamp": "2026-05-25T21:46:39.262Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Senior Data Engineer",
-    "company": "University of New South Wales",
-    "url": "https://secure.dc2.pageuppeople.com/apply/841/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-46-37-147Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen shows a PageUp \"Uh oh...\" error page and an hCaptcha \"I am human\" checkbox.\n2. The error was likely caused by PageUp requiring the hCaptcha to be solved before proceeding.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action. If a visual challenge appears, further steps are needed to solve the captcha."
-  },
-  {
-    "timestamp": "2026-05-25T21:48:30.491Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "AI Governance Manager / AI Data Governance Lead",
-    "company": "Galileo Search",
-    "url": "https://au.seek.com/job/92308802",
-    "page_title": "AI Governance Manager / AI Data Governance Lead Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-48-28-096Z_apply_button_not_found.png",
-    "analysis": "1.  The screen shows the job title, company, location, employment type, application date (\"You applied on 25 May 2026\"), \"How you match\" section, and the start of the job description.\n2.  The bot is encountering an \"apply_button_not_found\" error because the user has already applied for this job, and therefore the \"Apply\" button is not visible.\n3.  The bot should first check for the presence of `\"div:contains('You applied on')\"` before attempting to find and click the \"Apply\" button."
-  },
-  {
-    "timestamp": "2026-05-25T21:49:30.175Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Cyber Security Architect",
-    "company": "University of New South Wales",
-    "url": "https://secure.dc2.pageuppeople.com/apply/841/gateway/Default.aspx?c=apply&sJobIDs=538302&SourceTypeID=807&seek-token=DSNXMLAkHUwErqDFnydQny",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-49-28-272Z_ats_pageup_no_submit.png",
-    "analysis": "1. An \"Uh oh...\" error page is visible, along with an hCaptcha \"I am human\" checkbox.\n2. The error was likely caused by PageUp requiring the hCaptcha to be solved.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action to attempt solving the hCaptcha. If a visual challenge appears, the bot will need to solve that as well."
-  },
-  {
-    "timestamp": "2026-05-25T21:50:14.770Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Head of AI",
-    "company": "Galileo Search",
-    "url": "https://au.seek.com/job/92312842",
-    "page_title": "Head of AI Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-50-12-920Z_apply_button_not_found.png",
-    "analysis": "1. The job posting details, company information, location, employment type and a message \"You applied on 25 May 2026\" are visible.\n2. The Apply button is missing because the user has already applied for the job.\n3.  The bot should check for the presence of the text `\"You applied on\"` before attempting to locate the \"Apply\" button. It can use the CSS selector `div:contains('You applied on')`."
-  },
-  {
-    "timestamp": "2026-05-25T21:50:59.634Z",
-    "error_type": "apply_button_not_found",
-    "job_title": ".NET Team Lead developer (hands-on)",
-    "company": "AYAN INFOTECH PTY LTD",
-    "url": "https://au.seek.com/job/92312343",
-    "page_title": ".NET Team Lead developer (hands-on) Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-50-57-889Z_apply_button_not_found.png",
-    "analysis": "1. The job details, company information, location, employment type and a message \"You applied on 25 May 2026\" are visible.\n2. The Apply button is missing because the user has already applied for the job.\n3. The bot should check for the presence of the text `\"You applied on\"` before attempting to locate the \"Apply\" button. It can use the CSS selector `div:contains('You applied on')`."
-  },
-  {
-    "timestamp": "2026-05-25T21:51:14.871Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Infrastructure Engineer / 6 months contract / $750 a day / Sydney",
-    "company": "Allura Partners",
-    "url": "https://au.seek.com/job/92312925",
-    "page_title": "Infrastructure Engineer / 6 months contract / $750 a day / Sydney Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-51-12-891Z_apply_button_not_found.png",
-    "analysis": "1.  The job title, company, location, employment type, application date (\"You applied on 25 May 2026\"), and the start of the job description are visible.\n2.  The \"apply_button_not_found\" error occurred because the user has already applied for this job. \n3.  The bot should check for the presence of `div:contains('You applied on')` before attempting to find and click the \"Apply\" button.  If that element exists, the bot should skip the application process."
-  },
-  {
-    "timestamp": "2026-05-25T21:53:08.047Z",
-    "error_type": "ats_workday_no_nav_button",
-    "job_title": "Digital & Tech Partner",
-    "company": "Haleon",
-    "url": "https://gsknch.wd3.myworkdayjobs.com/en-US/GSKCareers/job/Parramatta/Commercial-Site-Partner_543643-1/apply/applyManually",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-53-06-260Z_ats_workday_no_nav_button.png",
-    "analysis": "1. The \"Sign In\" page of the GSK application is visible, presenting options to sign in with Apple, Google, LinkedIn, or email.\n2.  The bot failed to interact with the initial \"Start Your Application\" modal and it's buttons. It navigated to the sign-in page instead.\n3.  The bot should go back and attempt to click \"Apply With LinkedIn\" (CSS selector `button:contains('Apply With LinkedIn')`) or \"Apply Manually\" (CSS selector `button:contains('Apply Manually')`) on the *previous* page."
-  },
-  {
-    "timestamp": "2026-05-25T21:53:09.571Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Digital & Tech Partner",
-    "company": "Haleon",
-    "url": "https://gsknch.wd3.myworkdayjobs.com/en-US/GSKCareers/job/Parramatta/Commercial-Site-Partner_543643-1/apply/applyManually",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-53-08-052Z_ats_workday_no_submit.png",
-    "analysis": "1. The screenshot shows the \"Sign In\" page with options to sign in with Apple, Google, LinkedIn, or email.\n2. The error occurred because the bot reached the sign-in page after the initial modal dismissals but hasn't been instructed on which sign-in method to use.\n3. The bot should click the \"Sign in with email\" button next time to proceed with the application, using the CSS selector `button:contains(\"Sign in with email\")`."
-  },
-  {
-    "timestamp": "2026-05-25T21:53:24.593Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "IT Operations & Cyber Security Manager",
-    "company": "FourQuarters Recruitment",
-    "url": "https://au.seek.com/job/92313404",
-    "page_title": "IT Operations & Cyber Security Manager Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-53-22-544Z_apply_button_not_found.png",
-    "analysis": "1.  The job title, company, location, salary, posting date, and the \"You applied on\" message at the bottom of the job details box are visible.\n2.  The error occurred because the user has already applied for the job, so the \"Apply\" button is not present.\n3.  The bot should check for the presence of the element located by `div:contains('You applied on')` before attempting to find and click the \"Apply\" button. If it exists, the bot should skip the application process."
-  },
-  {
-    "timestamp": "2026-05-25T21:54:06.039Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Test Lead",
-    "company": "O'Brien Glass Industries Limited",
-    "url": "https://belron.wd3.myworkdayjobs.com/en-US/OBrien_AU/job/AU-Padstow/Test-Lead_JR70073/apply/applyManually?seek-token=E7KyX7LURiKUPapcCdD2LK",
-    "page_title": "Test Lead",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-54-04-076Z_ats_workday_no_submit.png",
-    "analysis": "1. The \"Errors Found\" modal is visible, highlighting required fields like \"How Did You Hear About Us?\", \"Address Line 1\", \"State\", \"Postal Code\", and \"Phone Number\".\n2. The error is caused by the bot reaching the \"Next\" button without filling in all required fields, specifically, it did not fill in \"How Did You Hear About Us?\".\n3. The bot should first fill in all required fields and then click the \"Next\" button `[data-automation-id=\"bottom-navigation-next-button\"]`. It specifically needs to interact with the \"How Did You Hear About Us?\" field."
-  },
-  {
-    "timestamp": "2026-05-25T21:55:39.461Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Lead Data Engineer",
-    "company": "Osborne Richardson",
-    "url": "https://au.seek.com/job/92312704",
-    "page_title": "Lead Data Engineer Job in Brisbane QLD - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-55-37-783Z_apply_button_not_found.png",
-    "analysis": "1.  The job title, company, location, employment type, posting date, application volume, and a \"You applied on\" message are visible.\n2.  The error occurred because the user has already applied for the job, and therefore the \"Apply\" button is not present.\n3.  The bot should check for the presence of the text `div:contains('You applied on')` before attempting to locate the \"Apply\" button. If the element is present, the bot should skip the application process."
-  },
-  {
-    "timestamp": "2026-05-25T21:57:41.660Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Senior Change Manager",
-    "company": "Peoplebank Australia QLD",
-    "url": "https://au.seek.com/awsk/authorize?id=893ca495-adef-48cf-946a-b8aa3cb55145",
-    "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-57-40-015Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen shows a Seek authorization request, asking the user to allow Peoplebank Australia QLD access to the information in their Seek profile.\n2. The error is occurring because authorization to share data with the job application service has not been granted.\n3. The bot should click the \"Allow access\" button, using the CSS selector `button:contains(\"Allow access\")` and executing a `.click()` action."
-  },
-  {
-    "timestamp": "2026-05-25T21:59:54.696Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Strategic Delivery Manager",
-    "company": "NSW Department of Climate Change, Energy, the Environment & Water",
-    "url": "https://secure.dc2.pageuppeople.com/apply/795/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-59-52-730Z_ats_pageup_no_submit.png",
-    "analysis": "1.  The screen shows a PageUp \"Uh oh...\" error page with an hCaptcha \"I am human\" checkbox.\n2.  The error was likely caused by PageUp requiring the hCaptcha to be solved.\n3.  The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action.\n4.  If a visual challenge appears, the bot will need to solve that as well."
-  },
-  {
-    "timestamp": "2026-05-25T22:02:40.777Z",
-    "error_type": "ats_workday_no_nav_button",
-    "job_title": "Director, Site Groups",
-    "company": "Dematic Pty Ltd",
-    "url": "https://kiongroup.wd3.myworkdayjobs.com/en-US/KION_SCS/job/Belrose%2C-NSW%2C-Australia/Director--Site-Groups_JR-0089958/apply/applyManually?seek-token=3dGMemj3K4GhcfDZ1xLDNK&source=JB-Seek",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-02-38-154Z_ats_workday_no_nav_button.png",
-    "analysis": "1. The \"Sign In\" page is displayed with options to sign in using Apple, Google, LinkedIn, or Email.\n2. The bot navigated to the \"Sign In\" page without clicking \"Apply with LinkedIn\" or \"Apply Manually\" on the previous page.\n3.  The bot should go back and attempt to click \"Apply With LinkedIn\" (CSS selector `button:contains('Apply With LinkedIn')`) or \"Apply Manually\" (CSS selector `button:contains('Apply Manually')`) on the *previous* page."
-  },
-  {
-    "timestamp": "2026-05-25T22:02:42.262Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Director, Site Groups",
-    "company": "Dematic Pty Ltd",
-    "url": "https://kiongroup.wd3.myworkdayjobs.com/en-US/KION_SCS/job/Belrose%2C-NSW%2C-Australia/Director--Site-Groups_JR-0089958/apply/applyManually?seek-token=3dGMemj3K4GhcfDZ1xLDNK&source=JB-Seek",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-02-40-782Z_ats_workday_no_submit.png",
-    "analysis": "1. The \"Sign In\" page is visible. There are options to sign in with Apple, Google, LinkedIn, or email.\n2. The bot reached the sign-in page, requiring a sign-in method selection.\n3. Try clicking the \"Sign in with email\" button using the CSS selector `button:contains(\"Sign in with email\")`."
-  },
-  {
-    "timestamp": "2026-05-25T22:08:02.025Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Technology Finance Manager",
-    "company": "Fitzgerald Jenkins Recruitment",
-    "url": "https://apply.jobadder.com/7755/4441799/5wrajtswpogexbgl4v6g5k2dqm?site=au1&seek-token=5D5W8XuaGCuC2wPYf6aF2r",
-    "page_title": "Senior Technology Finance Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-08-00-085Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" popup is displayed over the pre-filled application form.\n2. The bot failed to dismiss the popup, preventing form submission.\n3. The bot should try clicking the \"Cancel\" button with text \"Cancel\". Alternatively, it can try clicking the close icon using the CSS selector `[aria-label='Close']`."
-  },
-  {
-    "timestamp": "2026-05-25T22:12:48.341Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Project Enablement Coach",
-    "company": "APA Group",
-    "url": "https://apa.wd105.myworkdayjobs.com/en-US/APA-Careers/job/Brisbane-Ann-Street/Project-Enablement-Coach_JR4428/apply/applyManually?seek-token=NES8KptgDquG7KAbTPmtyB&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-12-46-305Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  A \"Sign In\" modal is displayed on top of the \"Create Account\" screen, asking for email address and password.\n2.  The bot is trying to create an account, but Workday is prompting it to sign in, likely due to session issues.\n3.  The bot should first try to close the \"Sign In\" modal using the CSS selector `[data-automation-id='closeIcon']` (represented as an \"X\" button in the top right corner). If successful, it should proceed to click the \"Create Account\" button below the \"Sign In\" modal."
-  },
-  {
-    "timestamp": "2026-05-25T22:16:51.433Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Lead Project Enablement Coach",
-    "company": "APA Group",
-    "url": "https://apa.wd105.myworkdayjobs.com/en-US/APA-Careers/job/Perth/Lead-Project-Enablement-Coach_JR4427/apply/applyManually?seek-token=BGyhwX5rhSE2rPxp3G7rF3&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-16-49-315Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  A \"Sign In\" modal is displayed on top of the \"Create Account\" screen, with fields for Email Address and Password. The bot has already entered the password but has not signed in.\n2.  Workday is prompting to sign in again, likely due to session issues, even though the bot is already on the \"Create Account\" screen.\n3.  The bot should first try to close the \"Sign In\" modal using the CSS selector `[data-automation-id='closeIcon']` or by directly selecting the 'X' button. If closing the modal is successful, it should then click the \"Create Account\" button."
-  },
-  {
-    "timestamp": "2026-05-25T22:19:15.769Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Design Manager",
-    "company": "Consolidated Power Projects Australia Pty Ltd",
-    "url": "https://au.seek.com/job/92302384/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-19-13-842Z_unanswered_questions.png",
-    "analysis": "1. The screen shows questions about how the user heard about CPP, their notice period, and whether they identify as Aboriginal/Torres Strait Islander.\n2. The bot likely failed because it didn't select a radio button for the \"Aboriginal/Torres Strait Islander\" question or fill the \"notice period\" field.\n3.  To fix this, the bot should select one of the Aboriginal/Torres Strait Islander options using a selector like `document.querySelector('input[type=\"radio\"][value=\"yes\"][name*=\"aboriginal\"]').click()` (adapting the `name` attribute selector if it is dynamic) and also populate the \"notice period\" text area before clicking continue."
-  },
-  {
-    "timestamp": "2026-05-25T22:23:28.048Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Manager Asset Standards and Governance",
-    "company": "Aurizon",
-    "url": "https://secure.dc2.pageuppeople.com/apply/493/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-23-25-920Z_ats_pageup_no_submit.png",
-    "analysis": "1. An \"Uh oh...\" error page is visible, along with an hCaptcha \"I am human\" checkbox.\n2. The error was likely caused by PageUp requiring the hCaptcha to be solved.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action to attempt solving the hCaptcha. If a visual challenge appears, the bot will need to solve that as well."
-  },
-  {
-    "timestamp": "2026-05-25T22:24:27.702Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Manager Asset Standards and Governance",
-    "company": "Aurizon",
-    "url": "https://secure.dc2.pageuppeople.com/apply/493/gateway/Default.aspx?c=apply&sJobIDs=683571&SourceTypeID=901&seek-token=BGubpQ7XjkC6Y65wBHXVjq",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-24-25-881Z_ats_pageup_no_submit.png",
-    "analysis": "1.  The screen shows a PageUp \"Uh oh...\" error page with an hCaptcha \"I am human\" checkbox.\n2.  The error was likely caused by PageUp requiring the hCaptcha to be solved.\n3.  The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action."
-  },
-  {
-    "timestamp": "2026-05-25T22:29:23.490Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Tenancy Delivery Manager | NSW",
-    "company": "Vicinity Centres",
-    "url": "https://vicinity.wd3.myworkdayjobs.com/en-US/VicinityExternalCareers/job/NSW/Tenancy-Delivery-Manager_R007261-1/apply/applyManually?seek-token=RJUkHtZQ9Wsg4DCopZ3gjH",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-29-21-395Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  The screenshot shows the \"Create Account\" page with a \"Sign In\" modal overlay displayed. The user has entered a password in the \"Sign In\" modal before this error occurred.\n2.  The error is happening because Workday is prompting the bot to sign in again while it's trying to create an account, potentially due to session issues.\n3.  The bot should first attempt to close the \"Sign In\" modal using the CSS selector `[data-automation-id='closeIcon']` (the 'X' button). If closing fails, try clicking the \"Create Account\" button below the modal."
-  },
-  {
-    "timestamp": "2026-05-25T22:34:15.153Z",
-    "error_type": "ats_workday_no_nav_button",
-    "job_title": "Retail Solution Specialist",
-    "company": "Lindt & Sprungli",
-    "url": "https://lindtspruengli.wd103.myworkdayjobs.com/en-GB/LindtSpruengliGroupCareers/job/Sydney%2C-Australia/Retail-Solutions-Specialist_JR102096/apply/applyManually?seek-token=XYZXYAy4pZ3vTwFCgztY8m",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-34-12-560Z_ats_workday_no_nav_button.png",
-    "analysis": "1. The screenshot shows the \"Sign In\" page on the Lindt & Sprungli career site, offering options to sign in with Apple, Google, LinkedIn, or email.\n2. The bot likely skipped the initial application page and directly navigated to the sign-in page, missing the \"Apply with LinkedIn\" or \"Apply Manually\" buttons.\n3. The bot should go back to the originating job application page and attempt to click \"Apply With LinkedIn\" or \"Apply Manually\" using the CSS selectors `button:contains('Apply With LinkedIn')` or `button:contains('Apply Manually')`."
-  },
-  {
-    "timestamp": "2026-05-25T22:34:17.420Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Retail Solution Specialist",
-    "company": "Lindt & Sprungli",
-    "url": "https://lindtspruengli.wd103.myworkdayjobs.com/en-GB/LindtSpruengliGroupCareers/job/Sydney%2C-Australia/Retail-Solutions-Specialist_JR102096/apply/applyManually?seek-token=XYZXYAy4pZ3vTwFCgztY8m",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-34-15-157Z_ats_workday_no_submit.png",
-    "analysis": "1. The \"Sign In\" page is visible, offering options to sign in with Apple, Google, LinkedIn, or email.\n2. The bot has arrived at the sign-in page, but hasn't been told which sign-in method to use.\n3. The bot should click the \"Sign in with email\" button using the CSS selector `button:contains(\"Sign in with email\")`."
-  },
-  {
     "timestamp": "2026-05-25T22:47:46.451Z",
     "error_type": "ats_jobadder_no_submit",
     "job_title": "Head of Distribution",
@@ -4998,5 +4728,275 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T23-15-28-145Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. The \"Create Account\" modal is visible, pre-filled with email and password, and includes an \"Already have an account? Sign In\" link.\n2. The Workday session likely expired, causing the account creation wall to reappear mid-application, or the bot is incorrectly trying to create an account instead of signing in.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`. If that doesn't work, verify the inputs and try clicking the \"Sign In\" button."
+  },
+  {
+    "timestamp": "2026-05-30T05:59:19.436Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Technical Project Manager Delivery Lead, Clerk Grade 9/10 - Parliament of NSW",
+    "company": "Parliament of NSW",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1224/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T05-59-17-217Z_ats_pageup_no_submit.png",
+    "analysis": "1.  The screen displays an \"Uh oh...\" error page with text indicating something has gone wrong and an hCaptcha \"I am human\" checkbox.\n2.  The error is caused by PageUp requiring hCaptcha verification.\n3.  To fix this, the bot should use the CSS selector `input[type=\"checkbox\"]` to locate the hCaptcha checkbox.\n4.  Then, it should execute a `.click()` action on the checkbox."
+  },
+  {
+    "timestamp": "2026-05-30T06:03:38.713Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Project Manager",
+    "company": "St Vincent's Health Australia",
+    "url": "https://svha.wd3.myworkdayjobs.com/en-US/broadbean_external/job/NSW---Sydney%2C-CBD%2C-Inner-West-and-Eastern-Suburbs/Project-Manager_JR147733/apply/applyManually?seek-token=Y7DBiSi8iJ5FLnUG7zDDzq&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-03-36-450Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1.  The \"Create Account\" modal is visible, pre-filled with email and password, and it includes an \"Already have an account? Sign In\" link.\n2.  The Workday session likely expired or was otherwise lost, causing the account creation wall to reappear mid-application.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-05-30T06:14:06.025Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Tech Lead - FTC to March 2027",
+    "company": "Reserve Bank of Australia",
+    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Tech-Lead---FTC-to-March-2027_JR4347/apply/applyManually?seek-token=U8UbjgxdxHa8ty3qJJZvkj&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-14-03-833Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The \"Create Account\" modal is displayed, pre-filled with email and password, and a \"Sign In\" button. \"Already have an account? Sign In\" is present below the form.\n2. The Workday session likely expired, causing the account creation/sign-in wall to reappear mid-application.\n3. The bot should click the \"Already have an account? Sign In\" link, using either `a:contains('Already have an account? Sign In')` or `.css-1okqi4e`. If that doesn't work, verify the inputs and try clicking the \"Sign In\" button."
+  },
+  {
+    "timestamp": "2026-05-30T06:16:07.530Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Scrum Master",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://au.seek.com/awsk/authorize?id=624ef87c-7c36-4aef-b6a1-1ada100bb2b9",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-16-05-699Z_ats_pageup_no_submit.png",
+    "analysis": "1.  The screen displays a SEEK authorization request, similar to analysis 2, asking for permission to share profile information with Peoplebank Australia QLD.\n2.  The bot is stuck at this authorization step and hasn't clicked \"Allow access\".\n3.  The bot should use the CSS selector `button:contains('Allow access')` to locate the \"Allow access\" button.\n4.  Then, it should execute a `.click()` action on the found button."
+  },
+  {
+    "timestamp": "2026-05-30T06:17:38.726Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "ICT Principal Infrastructure Engineer",
+    "company": "City of Moreton Bay",
+    "url": "https://secure.dc2.pageuppeople.com/apply/586/cw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-17-36-610Z_ats_pageup_no_submit.png",
+    "analysis": "1.  The screen displays an \"Uh oh...\" error page with an hCaptcha \"I am human\" checkbox.\n2.  The error likely stems from PageUp requiring hCaptcha verification, indicated by the text \"Additional security check is required.\"\n3.  The bot should locate the hCaptcha checkbox using the CSS selector `input[type=\"checkbox\"]`.\n4.  The bot should then execute a `.click()` action on the checkbox."
+  },
+  {
+    "timestamp": "2026-05-30T06:19:25.020Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Lead, Performance and Monitoring",
+    "company": "WorkCover Queensland",
+    "url": "https://secure.dc2.pageuppeople.com/apply/615/gateway/Default.aspx?c=apply&sJobIDs=494395&SourceTypeID=804&seek-token=39kXrkbQdW6AzGG2ogAQVy",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-19-23-244Z_ats_pageup_no_submit.png",
+    "analysis": "1.  The screen shows an \"Uh oh...\" error page with an hCaptcha \"I am human\" checkbox.\n2.  The error is caused by PageUp requiring hCaptcha verification.\n3.  The bot should use the CSS selector `input[type=\"checkbox\"]` to locate the hCaptcha checkbox.\n4.  Then, it should execute a `.click()` action on the checkbox."
+  },
+  {
+    "timestamp": "2026-05-30T06:26:21.169Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Project Manager",
+    "company": "Seqwater",
+    "url": "https://secure.dc2.pageuppeople.com/apply/659/gateway/Default.aspx?c=apply&sJobIDs=500057&SourceTypeID=811&seek-token=TVPVxU8ETUBfEyzHmafPLm",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-26-18-593Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays an \"Uh oh...\" error page with an hCaptcha \"I am human\" checkbox.\n2. The error is caused by PageUp requiring hCaptcha verification, as shown with the text \"Additional security check is required\".\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` to locate the hCaptcha checkbox.\n4. It should then execute a `.click()` action on the checkbox to solve the captcha."
+  },
+  {
+    "timestamp": "2026-05-30T06:27:45.888Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Senior Project Manager",
+    "company": "RPS",
+    "url": "https://tetratech.csod.com/ux/ats/careersite/1/requisition/8327/application?c=tetratech&seek-token=KrGGsD6kVUJ4Q8CmvBWciM&jobboardid=0",
+    "page_title": "tetratech Career site",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-27-43-895Z_ats_cornerstone_no_submit.png",
+    "analysis": "1. A loading spinner is visible, indicating the page is still loading.\n2. The error is occurring because the page is stuck on a loading screen, preventing form interaction.\n3. The bot should wait for the spinner to disappear using `div.spinner-container` before proceeding with form submission. It can retry after waiting for a reasonable period."
+  },
+  {
+    "timestamp": "2026-05-30T06:32:37.781Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "EPMO Delivery Support Office Lead",
+    "company": "Anglicare",
+    "url": "https://anglicare.wd105.myworkdayjobs.com/en-US/Anglicare_Careers/job/Anglicare-Hub-Macquarie-Park/Delivery-Support-Office-Lead_JR7228/apply/applyManually?seek-token=CP3ecKPJ6cQWRBUnvNzekP&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-32-35-420Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The \"Create Account\" modal is displayed, pre-filled with email and password, including a \"Sign In\" button and an \"Already have an account? Sign In\" link.\n2. The bot likely failed to persist the Workday session, causing the account creation wall to reappear mid-application.\n3. The bot should click the \"Already have an account? Sign In\" link, or if that fails, verify the inputs and try clicking the \"Sign In\" button. A CSS selector to try is `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-05-30T06:36:38.230Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Leader System Performance and Risk",
+    "company": "Urban Utilities",
+    "url": "https://urbanutilities.wd105.myworkdayjobs.com/en-US/UrbanCareers/job/Fortitude-Valley%2C-Queensland/Leader-System-Performance-and-Risk_R3843/apply/applyManually?seek-token=QvtKoGsAMrQx8KvKUsYG3e&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-36-36-200Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1.  The \"Create Account\" modal is visible, with fields for email and password pre-filled and a \"Sign In\" button visible. The \"Already have an account? Sign In\" link is also present at the bottom of the modal.\n2.  The Workday session was likely lost; the account creation/sign-in wall reappeared mid-application.\n3.  The bot should now click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-05-30T06:39:31.034Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Infrastructure Delivery Governance & Assurance Manager",
+    "company": "APA Group",
+    "url": "https://apa.wd105.myworkdayjobs.com/en-US/APA-Careers/job/Brisbane-Ann-Street/Infrastructure-Delivery-Governance---Assurance-Manager_JR4473/apply/applyManually?seek-token=SiacJsQBiH7v3EwHj8UYyG&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-39-28-874Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The \"Create Account\" modal is visible, pre-filled with email and password, and includes a \"Sign In\" button and an \"Already have an account? Sign In\" link.\n2. The Workday session likely expired and re-displayed the account creation/sign-in prompt.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-05-30T06:52:09.113Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Contract Manager",
+    "company": "EPEC Group",
+    "url": "https://apply.jobadder.com/18158/865987/xuslnigijp3uniucg7byhvsvoq?site=au6&seek-token=15aqwpqwVTwERFvtV7bEAK",
+    "page_title": "Contract Manager",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-52-07-118Z_ats_jobadder_no_submit.png",
+    "analysis": "1.  A \"Want to apply later?\" popup is obscuring the application form. The form itself is filled out.\n2.  The popup is preventing the bot from interacting with the \"Apply Now\" button.\n3.  The bot should first click the `[aria-label='Close']` button on the popup. Then click \"Apply Now\"."
+  },
+  {
+    "timestamp": "2026-05-30T06:54:04.206Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Precast Project & Design Manager for Industry Leader",
+    "company": "Talent X Pty Ltd",
+    "url": "https://au.seek.com/job/92421282/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-54-01-874Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is visible, along with a validation error: \"You must accept to continue,\" related to the employer's privacy policy.\n2.  The bot failed to check the checkbox next to \"Do you agree to the privacy policy of Talent X?\".\n3.  The bot should click the `<label>` tag that contains \"Do you agree to the privacy policy of Talent X?\" and then verify that the checkbox is checked using .isChecked()."
+  },
+  {
+    "timestamp": "2026-05-30T06:54:06.972Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Precast Project & Design Manager for Industry Leader",
+    "company": "Talent X Pty Ltd",
+    "url": "https://au.seek.com/job/92421282/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-54-04-316Z_continue_button_not_found.png",
+    "analysis": "1.  The \"Review and submit\" page is displayed, showing sections for documents, employer questions, and the SEEK profile. A warning message indicates the application cannot proceed because the privacy policy hasn't been agreed to.\n2.  The error is caused by the bot attempting to submit the application without agreeing to the privacy policy.\n3.  The bot should locate and click the privacy policy checkbox using the selector `input[type=\"radio\"]` next to \"Do you agree to the privacy policy of Talent X?\"."
+  },
+  {
+    "timestamp": "2026-05-30T06:54:11.162Z",
+    "error_type": "auto_skip_still_blocked",
+    "job_title": "Precast Project & Design Manager for Industry Leader",
+    "company": "Talent X Pty Ltd",
+    "url": "https://au.seek.com/job/92421282/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-54-08-482Z_auto_skip_still_blocked.png",
+    "analysis": "1.  The \"Review and submit\" page is visible, with an error message under \"Employer Questions\" stating \"You must accept to continue\". The privacy policy checkbox is unchecked.\n2.  The bot failed to check the privacy policy agreement checkbox.\n3.  The bot should use the CSS selector `input[type=\"checkbox\"]` associated with the label \"Do you agree to the privacy policy of Talent X?\" and `.click()` to check the checkbox. Alternatively, finding the label with the text \"Do you agree to the privacy policy of Talent X?\" and then finding the associated checkbox via the `for` attribute on the label element, and clicking the checkbox will work."
+  },
+  {
+    "timestamp": "2026-05-30T06:58:18.619Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Lead Database Administrator/Developer",
+    "company": "Peoplebank Australia NSW",
+    "url": "https://au.seek.com/awsk/authorize?id=b68a1fcc-d5b1-48ae-9938-42d3552708fb",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-58-16-671Z_ats_pageup_no_submit.png",
+    "analysis": "1. The page displays a Seek authorization request, asking the user to \"Allow access\" to their profile information for Peoplebank Australia NSW.\n2. The error is likely occurring because the bot is stuck on this authorization page and hasn't clicked \"Allow access\".\n3. To fix it, the bot should locate the \"Allow access\" button, likely using a CSS selector like `button:contains('Allow access')` or `text=Allow access`, then execute a `.click()` action on it."
+  },
+  {
+    "timestamp": "2026-05-30T07:16:43.206Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Senior Software Developer",
+    "company": "Corporate Travel Management",
+    "url": "https://apply.jobadder.com/17611/904258/shpemy6ib4iejpzipv4w7dweqe?site=au5&seek-token=TVDUxxEc1ZX5MXUQKTE8nc",
+    "page_title": "Senior Software Developer",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T07-16-40-681Z_ats_jobadder_no_submit.png",
+    "analysis": "1. The application form is filled with personal and employment details, attachments, and the Declaration section is visible.\n2. The error is likely due to the \"Terms & Conditions\" checkbox not being checked before submitting.\n3. The bot should click the `input[type=\"checkbox\"]` to accept the terms, and then click the \"Apply Now\" button."
+  },
+  {
+    "timestamp": "2026-05-30T07:27:31.260Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Chief Engineer, Architecture, Cloud and Operations",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Chief-Engineer--Architecture--Cloud-and-Operations---x15ventures_REQ259183/apply/applyManually?seek-token=FAe8iV5qnyExCsK2K13EwN",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T07-27-29-189Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The \"Create Account\" modal is displayed, pre-filled with email and password, and includes a \"Sign In\" button and an \"Already have an account? Sign In\" link.\n2. The Workday session was likely lost, and the account creation/sign-in prompt reappeared.\n3. The bot should now click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-05-30T07:28:42.198Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Solutions Engineer",
+    "company": "Cloudera, Inc",
+    "url": "https://cloudera.wd5.myworkdayjobs.com/en-US/External_Career/job/Australia-%3E-New-South-Wales-%3E-Sydney/Solutions-Engineer_260632/apply/applyManually",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T07-28-40-523Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The \"Sign In\" page is visible, prompting the user to sign in with Google or email.\n2. The bot likely navigated directly to the \"Sign In\" page, bypassing the initial application page.\n3. The bot should navigate back to the previous page.\n4. Next, it should attempt to locate and click the \"Apply Manually\" button on the previous page, or alternatively click \"Sign in with email\"."
+  },
+  {
+    "timestamp": "2026-05-30T07:28:43.654Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Solutions Engineer",
+    "company": "Cloudera, Inc",
+    "url": "https://cloudera.wd5.myworkdayjobs.com/en-US/External_Career/job/Australia-%3E-New-South-Wales-%3E-Sydney/Solutions-Engineer_260632/apply/applyManually",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T07-28-42-202Z_ats_workday_no_submit.png",
+    "analysis": "1.  The screenshot shows the \"Sign In\" page, offering options to sign in with Google or email.\n2.  The bot reached the sign-in page but hasn't interacted with either sign-in option, causing the wizard loop exhaustion.\n3.  To proceed, the bot should click the \"Sign in with email\" button using the CSS selector `button:contains(\"Sign in with email\")`."
+  },
+  {
+    "timestamp": "2026-05-30T07:31:53.780Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Platform Engineer (Data)",
+    "company": "Virgin Australia",
+    "url": "https://secure.dc2.pageuppeople.com/apply/549/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T07-31-51-458Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays an \"Uh oh...\" error page with an hCaptcha \"I am human\" checkbox.\n2. The error is caused by PageUp requiring hCaptcha verification, indicated by the text \"Additional security check is required\".\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` to locate the hCaptcha checkbox.\n4. Then, it should execute a `.click()` action on the checkbox."
+  },
+  {
+    "timestamp": "2026-05-30T07:46:11.069Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Cloud Security Engineer",
+    "company": "hummgroup",
+    "url": "https://flexigroup.wd105.myworkdayjobs.com/en-US/Careers/job/Sydney%2C-New-South-Wales/Senior-Cloud-Security-Engineer_JR10000589-1/apply/applyManually?seek-token=2mkzJ8aA4brJPd1XnDYhZ6&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T07-46-08-742Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1.  A modal to \"Create Account\" is visible, with fields for email and password pre-filled along with \"Sign In\" and an \"Already have an account? Sign In\" link.\n2.  The Workday session was likely lost, causing the account creation/sign-in prompt to reappear mid-application.\n3.  The bot should click the \"Already have an account? Sign In\" link, using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-05-30T07:57:49.304Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Solutions Architect - Financial Services",
+    "company": "DWS Limited",
+    "url": "https://apply.jobadder.com/16850/1963871/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=FBqhKzhidLAAV8f74fDeo",
+    "page_title": "Solutions Architect - Financial Services",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T07-57-47-307Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A \"Want to apply later?\" popup is obscuring the main JobAdder application form.\n2. The popup is preventing interaction with the checkbox and Apply Now button.\n3. The bot should first click the `[aria-label='Close']` button on the popup, then click the checkbox `input[type=\"checkbox\"]`, and then click the \"Apply Now\" button."
+  },
+  {
+    "timestamp": "2026-05-30T07:59:44.102Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Business Analyst",
+    "company": "EML Group",
+    "url": "https://eml.wd105.myworkdayjobs.com/en-US/EML/job/Sydney%2C-New-South-Wales/Business-Analyst_JR5733/apply/applyManually?seek-token=6m8SjL9o7DnbPNjasoDF83",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T07-59-41-903Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The \"Sign In\" page is visible with options to sign in with Apple, Google, LinkedIn, or email.\n2. The bot likely navigated directly to the \"Sign In\" page instead of the page with the \"Apply\" buttons.\n3. The bot should navigate back to the previous page using the back button.\n4. Then, it should attempt to click \"Sign in with email\" using the CSS selector `button:contains('Sign in with email')`."
+  },
+  {
+    "timestamp": "2026-05-30T07:59:46.499Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Business Analyst",
+    "company": "EML Group",
+    "url": "https://eml.wd105.myworkdayjobs.com/en-US/EML/job/Sydney%2C-New-South-Wales/Business-Analyst_JR5733/apply/applyManually?seek-token=6m8SjL9o7DnbPNjasoDF83",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T07-59-44-107Z_ats_workday_no_submit.png",
+    "analysis": "1.  The screenshot shows the \"Sign In\" page, presenting sign-in options with Apple, Google, LinkedIn, or email.\n2.  The bot reached the sign-in page but failed to proceed to the next step.\n3. To fix it, the bot should click the \"Sign in with email\" button using the CSS selector `button:contains(\"Sign in with email\")`."
+  },
+  {
+    "timestamp": "2026-05-30T08:02:28.871Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Data Engineering & Innovation Lead",
+    "company": "St Vincent's Health Australia",
+    "url": "https://svha.wd3.myworkdayjobs.com/en-US/broadbean_external/job/VIC---Melbourne%2C-CBD-%26-Inner-Suburbs/Data-Engineering---Innovation-Lead_JR146370-1/apply/applyManually?seek-token=4u88EQWP6Qg3Hf8oZboiXR&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T08-02-26-799Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1.  The \"Create Account\" modal is visible, pre-filled with email and password, and includes a \"Create Account\" button and an \"Already have an account? Sign In\" link.\n2.  The Workday session likely expired, causing the account creation/sign-in prompt to reappear mid-application.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-05-30T08:05:32.547Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Business Analyst",
+    "company": "Peoplebank Australia NSW",
+    "url": "https://au.seek.com/awsk/authorize?id=fa375197-ce91-4a05-9ccd-944f1ec28d9b",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T08-05-30-743Z_ats_pageup_no_submit.png",
+    "analysis": "1.  The screen displays a Seek authorization request asking the user to \"Allow access\".\n2.  The bot is stuck because it hasn't clicked the \"Allow access\" button.\n3.  The bot should use the CSS selector `text=Allow access` and then execute a `.click()` action."
   }
 ]
