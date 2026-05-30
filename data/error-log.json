@@ -1,175 +1,5 @@
 [
   {
-    "timestamp": "2026-05-25T21:40:29.840Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Technology Asset Manager - Thermal",
-    "company": "AGL",
-    "url": "https://agl.wd3.myworkdayjobs.com/en-US/AGL_Recruitment/job/Bayswater-Power-Station/Technology-Asset-Manager---Thermal_R-0023033-1/apply/applyManually?seek-token=FmGa377TbYjmkaeSyhZFMy&source=Seek",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-40-28-170Z_ats_workday_no_submit.png",
-    "analysis": "1. A \"Sign In\" page with options to sign in with Apple, Google, or email is visible.\n2.  The bot is stuck on the sign-in page after the initial modal, requiring a sign-in method to be selected.\n3.  The bot should click `button:contains(\"Sign in with email\")` next time to proceed with the application."
-  },
-  {
-    "timestamp": "2026-05-25T21:43:41.512Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Product Manager",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Product-Manager--Truyu_REQ259255/apply/applyManually?seek-token=abz4Gg4U8HTrHmBGN81DM",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-43-39-135Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" modal is displayed on top of the \"Create Account\" page, with fields for Email Address and Password. The bot is already on the \"Create Account\" screen.\n2. The bot is attempting to create an account but, as before, Workday is prompting to sign in again. This may be due to session cookie expiration or navigation to a page requiring re-authentication.\n3. The bot should first try closing the \"Sign In\" modal using the CSS selector `[data-automation-id='closeIcon']` or the 'X' button in the top-right corner of the modal. If that fails, try clicking the \"Create Account\" button below the \"Sign In\" modal."
-  },
-  {
-    "timestamp": "2026-05-25T21:44:27.670Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Engineering Manager",
-    "company": "UpperGround by Hudson",
-    "url": "https://au.seek.com/job/92310324",
-    "page_title": "Engineering Manager Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-44-25-018Z_apply_button_not_found.png",
-    "analysis": "1. The screenshot shows the job posting for \"Engineering Manager\" at UpperGround by Hudson in Sydney NSW. It includes the company logo, job title, location, job category, and employment type.\n2.  The bot likely tries to locate the \"Apply\" button before scrolling or the page is fully loaded.\n3. The bot should first scroll to the bottom of the page using `window.scrollTo(0, document.body.scrollHeight)` and then search for the \"Apply\" button or look for text like \"Apply now\"."
-  },
-  {
-    "timestamp": "2026-05-25T21:46:39.262Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Senior Data Engineer",
-    "company": "University of New South Wales",
-    "url": "https://secure.dc2.pageuppeople.com/apply/841/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-46-37-147Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen shows a PageUp \"Uh oh...\" error page and an hCaptcha \"I am human\" checkbox.\n2. The error was likely caused by PageUp requiring the hCaptcha to be solved before proceeding.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action. If a visual challenge appears, further steps are needed to solve the captcha."
-  },
-  {
-    "timestamp": "2026-05-25T21:48:30.491Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "AI Governance Manager / AI Data Governance Lead",
-    "company": "Galileo Search",
-    "url": "https://au.seek.com/job/92308802",
-    "page_title": "AI Governance Manager / AI Data Governance Lead Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-48-28-096Z_apply_button_not_found.png",
-    "analysis": "1.  The screen shows the job title, company, location, employment type, application date (\"You applied on 25 May 2026\"), \"How you match\" section, and the start of the job description.\n2.  The bot is encountering an \"apply_button_not_found\" error because the user has already applied for this job, and therefore the \"Apply\" button is not visible.\n3.  The bot should first check for the presence of `\"div:contains('You applied on')\"` before attempting to find and click the \"Apply\" button."
-  },
-  {
-    "timestamp": "2026-05-25T21:49:30.175Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Cyber Security Architect",
-    "company": "University of New South Wales",
-    "url": "https://secure.dc2.pageuppeople.com/apply/841/gateway/Default.aspx?c=apply&sJobIDs=538302&SourceTypeID=807&seek-token=DSNXMLAkHUwErqDFnydQny",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-49-28-272Z_ats_pageup_no_submit.png",
-    "analysis": "1. An \"Uh oh...\" error page is visible, along with an hCaptcha \"I am human\" checkbox.\n2. The error was likely caused by PageUp requiring the hCaptcha to be solved.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action to attempt solving the hCaptcha. If a visual challenge appears, the bot will need to solve that as well."
-  },
-  {
-    "timestamp": "2026-05-25T21:50:14.770Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Head of AI",
-    "company": "Galileo Search",
-    "url": "https://au.seek.com/job/92312842",
-    "page_title": "Head of AI Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-50-12-920Z_apply_button_not_found.png",
-    "analysis": "1. The job posting details, company information, location, employment type and a message \"You applied on 25 May 2026\" are visible.\n2. The Apply button is missing because the user has already applied for the job.\n3.  The bot should check for the presence of the text `\"You applied on\"` before attempting to locate the \"Apply\" button. It can use the CSS selector `div:contains('You applied on')`."
-  },
-  {
-    "timestamp": "2026-05-25T21:50:59.634Z",
-    "error_type": "apply_button_not_found",
-    "job_title": ".NET Team Lead developer (hands-on)",
-    "company": "AYAN INFOTECH PTY LTD",
-    "url": "https://au.seek.com/job/92312343",
-    "page_title": ".NET Team Lead developer (hands-on) Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-50-57-889Z_apply_button_not_found.png",
-    "analysis": "1. The job details, company information, location, employment type and a message \"You applied on 25 May 2026\" are visible.\n2. The Apply button is missing because the user has already applied for the job.\n3. The bot should check for the presence of the text `\"You applied on\"` before attempting to locate the \"Apply\" button. It can use the CSS selector `div:contains('You applied on')`."
-  },
-  {
-    "timestamp": "2026-05-25T21:51:14.871Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Infrastructure Engineer / 6 months contract / $750 a day / Sydney",
-    "company": "Allura Partners",
-    "url": "https://au.seek.com/job/92312925",
-    "page_title": "Infrastructure Engineer / 6 months contract / $750 a day / Sydney Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-51-12-891Z_apply_button_not_found.png",
-    "analysis": "1.  The job title, company, location, employment type, application date (\"You applied on 25 May 2026\"), and the start of the job description are visible.\n2.  The \"apply_button_not_found\" error occurred because the user has already applied for this job. \n3.  The bot should check for the presence of `div:contains('You applied on')` before attempting to find and click the \"Apply\" button.  If that element exists, the bot should skip the application process."
-  },
-  {
-    "timestamp": "2026-05-25T21:53:08.047Z",
-    "error_type": "ats_workday_no_nav_button",
-    "job_title": "Digital & Tech Partner",
-    "company": "Haleon",
-    "url": "https://gsknch.wd3.myworkdayjobs.com/en-US/GSKCareers/job/Parramatta/Commercial-Site-Partner_543643-1/apply/applyManually",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-53-06-260Z_ats_workday_no_nav_button.png",
-    "analysis": "1. The \"Sign In\" page of the GSK application is visible, presenting options to sign in with Apple, Google, LinkedIn, or email.\n2.  The bot failed to interact with the initial \"Start Your Application\" modal and it's buttons. It navigated to the sign-in page instead.\n3.  The bot should go back and attempt to click \"Apply With LinkedIn\" (CSS selector `button:contains('Apply With LinkedIn')`) or \"Apply Manually\" (CSS selector `button:contains('Apply Manually')`) on the *previous* page."
-  },
-  {
-    "timestamp": "2026-05-25T21:53:09.571Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Digital & Tech Partner",
-    "company": "Haleon",
-    "url": "https://gsknch.wd3.myworkdayjobs.com/en-US/GSKCareers/job/Parramatta/Commercial-Site-Partner_543643-1/apply/applyManually",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-53-08-052Z_ats_workday_no_submit.png",
-    "analysis": "1. The screenshot shows the \"Sign In\" page with options to sign in with Apple, Google, LinkedIn, or email.\n2. The error occurred because the bot reached the sign-in page after the initial modal dismissals but hasn't been instructed on which sign-in method to use.\n3. The bot should click the \"Sign in with email\" button next time to proceed with the application, using the CSS selector `button:contains(\"Sign in with email\")`."
-  },
-  {
-    "timestamp": "2026-05-25T21:53:24.593Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "IT Operations & Cyber Security Manager",
-    "company": "FourQuarters Recruitment",
-    "url": "https://au.seek.com/job/92313404",
-    "page_title": "IT Operations & Cyber Security Manager Job in Sydney NSW - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-53-22-544Z_apply_button_not_found.png",
-    "analysis": "1.  The job title, company, location, salary, posting date, and the \"You applied on\" message at the bottom of the job details box are visible.\n2.  The error occurred because the user has already applied for the job, so the \"Apply\" button is not present.\n3.  The bot should check for the presence of the element located by `div:contains('You applied on')` before attempting to find and click the \"Apply\" button. If it exists, the bot should skip the application process."
-  },
-  {
-    "timestamp": "2026-05-25T21:54:06.039Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Test Lead",
-    "company": "O'Brien Glass Industries Limited",
-    "url": "https://belron.wd3.myworkdayjobs.com/en-US/OBrien_AU/job/AU-Padstow/Test-Lead_JR70073/apply/applyManually?seek-token=E7KyX7LURiKUPapcCdD2LK",
-    "page_title": "Test Lead",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-54-04-076Z_ats_workday_no_submit.png",
-    "analysis": "1. The \"Errors Found\" modal is visible, highlighting required fields like \"How Did You Hear About Us?\", \"Address Line 1\", \"State\", \"Postal Code\", and \"Phone Number\".\n2. The error is caused by the bot reaching the \"Next\" button without filling in all required fields, specifically, it did not fill in \"How Did You Hear About Us?\".\n3. The bot should first fill in all required fields and then click the \"Next\" button `[data-automation-id=\"bottom-navigation-next-button\"]`. It specifically needs to interact with the \"How Did You Hear About Us?\" field."
-  },
-  {
-    "timestamp": "2026-05-25T21:55:39.461Z",
-    "error_type": "apply_button_not_found",
-    "job_title": "Lead Data Engineer",
-    "company": "Osborne Richardson",
-    "url": "https://au.seek.com/job/92312704",
-    "page_title": "Lead Data Engineer Job in Brisbane QLD - SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-55-37-783Z_apply_button_not_found.png",
-    "analysis": "1.  The job title, company, location, employment type, posting date, application volume, and a \"You applied on\" message are visible.\n2.  The error occurred because the user has already applied for the job, and therefore the \"Apply\" button is not present.\n3.  The bot should check for the presence of the text `div:contains('You applied on')` before attempting to locate the \"Apply\" button. If the element is present, the bot should skip the application process."
-  },
-  {
-    "timestamp": "2026-05-25T21:57:41.660Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Senior Change Manager",
-    "company": "Peoplebank Australia QLD",
-    "url": "https://au.seek.com/awsk/authorize?id=893ca495-adef-48cf-946a-b8aa3cb55145",
-    "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-57-40-015Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen shows a Seek authorization request, asking the user to allow Peoplebank Australia QLD access to the information in their Seek profile.\n2. The error is occurring because authorization to share data with the job application service has not been granted.\n3. The bot should click the \"Allow access\" button, using the CSS selector `button:contains(\"Allow access\")` and executing a `.click()` action."
-  },
-  {
-    "timestamp": "2026-05-25T21:59:54.696Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Strategic Delivery Manager",
-    "company": "NSW Department of Climate Change, Energy, the Environment & Water",
-    "url": "https://secure.dc2.pageuppeople.com/apply/795/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T21-59-52-730Z_ats_pageup_no_submit.png",
-    "analysis": "1.  The screen shows a PageUp \"Uh oh...\" error page with an hCaptcha \"I am human\" checkbox.\n2.  The error was likely caused by PageUp requiring the hCaptcha to be solved.\n3.  The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action.\n4.  If a visual challenge appears, the bot will need to solve that as well."
-  },
-  {
-    "timestamp": "2026-05-25T22:02:40.777Z",
-    "error_type": "ats_workday_no_nav_button",
-    "job_title": "Director, Site Groups",
-    "company": "Dematic Pty Ltd",
-    "url": "https://kiongroup.wd3.myworkdayjobs.com/en-US/KION_SCS/job/Belrose%2C-NSW%2C-Australia/Director--Site-Groups_JR-0089958/apply/applyManually?seek-token=3dGMemj3K4GhcfDZ1xLDNK&source=JB-Seek",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-25T22-02-38-154Z_ats_workday_no_nav_button.png",
-    "analysis": "1. The \"Sign In\" page is displayed with options to sign in using Apple, Google, LinkedIn, or Email.\n2. The bot navigated to the \"Sign In\" page without clicking \"Apply with LinkedIn\" or \"Apply Manually\" on the previous page.\n3.  The bot should go back and attempt to click \"Apply With LinkedIn\" (CSS selector `button:contains('Apply With LinkedIn')`) or \"Apply Manually\" (CSS selector `button:contains('Apply Manually')`) on the *previous* page."
-  },
-  {
     "timestamp": "2026-05-25T22:02:42.262Z",
     "error_type": "ats_workday_no_submit",
     "job_title": "Director, Site Groups",
@@ -4998,5 +4828,175 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T23-15-28-145Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. The \"Create Account\" modal is visible, pre-filled with email and password, and includes an \"Already have an account? Sign In\" link.\n2. The Workday session likely expired, causing the account creation wall to reappear mid-application, or the bot is incorrectly trying to create an account instead of signing in.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`. If that doesn't work, verify the inputs and try clicking the \"Sign In\" button."
+  },
+  {
+    "timestamp": "2026-05-30T06:06:50.580Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Strategy &amp; Transformation Manager",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Strategy---Transformation-Manager_REQ258787/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-06-48-507Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1.  The \"Create Account\" modal is displayed, pre-filled with email and password.\n2.  The Workday session likely expired mid-application, causing the account creation wall to reappear.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-05-30T06:07:24.648Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-07-22-035Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The page displays a message stating \"We'll be back soon...promise!\" indicating the careers site is temporarily unavailable.\n2. The error likely occurred because the job application process couldn't proceed as the website is under maintenance. The bot expected an application flow but the site is down.\n3. The bot should pause and retry later, perhaps after a predefined period, or log the outage and proceed with other jobs. No specific CSS selector will work until the site is back up."
+  },
+  {
+    "timestamp": "2026-05-30T06:07:27.251Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-07-24-652Z_ats_workday_no_submit.png",
+    "analysis": "1. The page displays \"We'll be back soon...promise!\" indicating the Careers site is temporarily unavailable.\n2. The bot likely encountered this page because CommBank's career site was undergoing maintenance. Thus, proceeding with the Workday application loop was impossible.\n3. The bot needs to detect this \"Back soon\" page and handle it gracefully, likely by skipping the application for now and logging the situation and retrying later.. Consider adding a page check to the Workday pre-application steps to avoid the wizard loop if the site is down."
+  },
+  {
+    "timestamp": "2026-05-30T06:07:59.257Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-07-57-349Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The page displays a message stating \"We'll be back soon...promise!\" on the CommBank careers site.\n2. The error occurred because the careers site is temporarily unavailable.\n3. The bot should pause and retry later. No specific CSS selector will work until the site is back up."
+  },
+  {
+    "timestamp": "2026-05-30T06:08:01.818Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-07-59-261Z_ats_workday_no_submit.png",
+    "analysis": "1. The screenshot shows the \"We'll be back soon...promise!\" page.\n2. The CommBank careers site is temporarily unavailable, preventing the bot from proceeding with the application. This matches previous analysis #3.\n3. The bot needs to detect this \"Back soon\" page and skip the application, logging the situation and retrying later. Specifically, before even attempting to click \"Apply,\" it should check if the page contains the text \"We'll be back soon...promise!\" using `document.body.innerText.includes(\"We'll be back soon...promise!\")`. If it does, skip the application."
+  },
+  {
+    "timestamp": "2026-05-30T06:08:26.764Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "",
+    "company": "",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-08-24-199Z_ats_workday_no_nav_button.png",
+    "analysis": "1.  The screen displays the message \"We'll be back soon...promise!\" on the CommBank careers site. There are also links to FAQs, application process and get in touch as well as links to their youtube and linkedin pages.\n2.  The error occurred because the Commonwealth Bank careers site is temporarily unavailable for maintenance.\n3.  The bot should pause and implement a retry mechanism with a delay to check again later. No CSS selector will work until the site is back online."
+  },
+  {
+    "timestamp": "2026-05-30T06:08:28.991Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "",
+    "company": "",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-08-26-768Z_ats_workday_no_submit.png",
+    "analysis": "1. The \"We'll be back soon...promise!\" page is visible.\n2. The CommBank careers site is temporarily unavailable. This prevents the bot from applying.\n3. The bot should check if the page contains the text \"We'll be back soon...promise!\" using `document.body.innerText.includes(\"We'll be back soon...promise!\")`. If it does, skip the application and retry later."
+  },
+  {
+    "timestamp": "2026-05-30T06:09:00.751Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-08-58-416Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The screen displays a message stating \"We'll be back soon...promise!\" on the CommBank careers site, along with links to FAQs, application process, YouTube and LinkedIn pages.\n2. The error occurred because the Commonwealth Bank careers site is unavailable for maintenance.\n3. The bot should pause and implement a retry mechanism with a delay. No CSS selector will work until the site is back online."
+  },
+  {
+    "timestamp": "2026-05-30T06:09:03.215Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-09-00-755Z_ats_workday_no_submit.png",
+    "analysis": "1.  The page \"We'll be back soon...promise!\" is displayed, indicating site maintenance.\n2.  The error is caused by the CommBank Careers site being temporarily unavailable.\n3.  Before attempting to apply, the bot should check for and skip the application if `document.body.innerText.includes(\"We'll be back soon...promise!\")` is true, retrying later. Alternatively, use `document.title === \"Back soon - CommBank\"` as a condition."
+  },
+  {
+    "timestamp": "2026-05-30T06:09:34.517Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Back soon - CommBank",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-09-32-313Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The screen displays the message \"We'll be back soon...promise!\" on the CommBank careers site, along with quick links, information about CommBank and important information.\n2. The careers site is temporarily unavailable for maintenance.\n3. The bot should pause and implement a retry mechanism with a delay. No CSS selector will work until the site is back online."
+  },
+  {
+    "timestamp": "2026-05-30T06:09:36.674Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Back soon - CommBank",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-09-34-521Z_ats_workday_no_submit.png",
+    "analysis": "1. The \"We'll be back soon...promise!\" page is visible.\n2. The CommBank careers site is temporarily unavailable.\n3. The bot should first check for the presence of the \"We'll be back soon...promise!\" text using `document.body.innerText.includes(\"We'll be back soon...promise!\")` or check the title `document.title === \"Back soon - CommBank\"` before attempting to click \"Apply\". If either condition is true, skip the application and retry later."
+  },
+  {
+    "timestamp": "2026-05-30T06:10:08.784Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-10-06-651Z_ats_workday_no_nav_button.png",
+    "analysis": "1.  The screen shows a \"We'll be back soon...promise!\" message on the CommBank careers page, along with links to FAQs, Application process, and Get in touch.\n2.  The career site is temporarily unavailable due to maintenance.\n3.  No specific CSS selector will work; the bot should pause and retry after a delay. It can re-check for the presence of the career page content and links to determine if the site is back online."
+  },
+  {
+    "timestamp": "2026-05-30T06:10:10.783Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-10-08-788Z_ats_workday_no_submit.png",
+    "analysis": "1. The \"We'll be back soon...promise!\" page with associated text is visible.\n2. The CommBank careers site is temporarily unavailable, triggering the error.\n3. Before clicking \"Apply\", the bot should check for `document.body.innerText.includes(\"We'll be back soon...promise!\")` or `document.title === \"Back soon - CommBank\"`. If true, skip and retry later."
+  },
+  {
+    "timestamp": "2026-05-30T06:10:43.329Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-10-40-521Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The screen displays a \"We'll be back soon...promise!\" message on the CommBank careers page, along with links to FAQs, application process, and get in touch.\n2. The career site is temporarily unavailable due to maintenance.\n3.  No specific CSS selector will work; the bot should implement a retry mechanism with a delay."
+  },
+  {
+    "timestamp": "2026-05-30T06:10:45.294Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-10-43-333Z_ats_workday_no_submit.png",
+    "analysis": "1. The \"We'll be back soon...promise!\" page is visible.\n2. The CommBank careers site is temporarily unavailable, leading to the error.\n3. Before clicking \"Apply\", the bot should check for `document.body.innerText.includes(\"We'll be back soon...promise!\")` or `document.title === \"Back soon - CommBank\"`. If true, skip and retry later."
+  },
+  {
+    "timestamp": "2026-05-30T06:11:18.068Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "We’ll be back soon…promise!",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-11-15-595Z_ats_workday_no_nav_button.png",
+    "analysis": "1.  The screen displays the \"We'll be back soon...promise!\" message on the CommBank careers page, along with links to FAQs, application process, and get in touch. FAQs, Application process and Get in touch sections are also visible on screen.\n2.  The careers site is temporarily unavailable due to maintenance.\n3.  No specific CSS selector will work; the bot should implement a retry mechanism with a delay. It can re-check for the presence of the career page content and links to determine if the site is back online."
+  },
+  {
+    "timestamp": "2026-05-30T06:11:20.809Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "We’ll be back soon…promise!",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-11-18-073Z_ats_workday_no_submit.png",
+    "analysis": "1. The \"We'll be back soon...promise!\" page is visible.\n2. The CommBank careers site is temporarily unavailable.\n3. Before clicking \"Apply\", the bot should check for `document.body.innerText.includes(\"We'll be back soon...promise!\")` or `document.title === \"Back soon - CommBank\"`. If true, skip and retry later."
   }
 ]
