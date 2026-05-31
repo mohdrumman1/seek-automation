@@ -174,6 +174,50 @@ async function dismissStartYourApplicationModal(page: Page): Promise<void> {
   }
 }
 
+// One sign-in attempt with the given password. Caller is responsible for having
+// already filled the email field. Returns:
+//   'ok'           — sign-in succeeded (no error banner, no longer on sign-in form)
+//   'auth_failed'  — Workday rejected the credentials (banner shown or still stuck on form)
+//   'other'        — couldn't locate password field or submit button (transient/unknown)
+async function attemptSignInWithPassword(
+  page: Page,
+  password: string,
+): Promise<'ok' | 'auth_failed' | 'other'> {
+  const passField = page.locator(
+    '[data-automation-id="password"], input[type="password"]'
+  ).first();
+  if (!(await passField.isVisible({ timeout: 3_000 }).catch(() => false))) {
+    return 'other';
+  }
+
+  // Clear any previous attempt's value (defensive when retrying with fallback).
+  await passField.fill('').catch(() => {});
+  await passField.fill(password).catch(() => {});
+
+  const signInSubmit = page.locator(
+    '[data-automation-id="signInSubmitButton"], ' +
+    'button:has-text("Sign In"):not([data-automation-id="signInLink"]), ' +
+    'input[type="submit"][value*="Sign In" i]'
+  ).first();
+  if (!(await signInSubmit.isVisible({ timeout: 3_000 }).catch(() => false))) {
+    return 'other';
+  }
+  await signInSubmit.click().catch(() => {});
+  await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+  await page.waitForTimeout(2_000);
+
+  const hasError = await page.locator(
+    '[data-automation-id="signInGlobalErrorMessage"], ' +
+    '[role="alert"]:has-text("incorrect"), [role="alert"]:has-text("invalid")'
+  ).first().isVisible({ timeout: 2_000 }).catch(() => false);
+  const stillOnSignIn = await page.locator(
+    '[data-automation-id="signInSubmitButton"]'
+  ).isVisible({ timeout: 1_000 }).catch(() => false);
+
+  if (!hasError && !stillOnSignIn) return 'ok';
+  return 'auth_failed';
+}
+
 // Sign in with existing credentials, or create a new account if needed.
 // Returns: 'ok' (ready to apply), 'verify_email' (need to verify inbox), 'failed' (unrecoverable).
 async function signInOrCreateAccount(
@@ -181,6 +225,7 @@ async function signInOrCreateAccount(
   ctx: { job_title?: string; company?: string },
 ): Promise<'ok' | 'verify_email' | 'failed'> {
   const pwd = process.env.WORKDAY_PASSWORD ?? '';
+  const pwdFallback = process.env.WORKDAY_PASSWORD_FALLBACK ?? '';
 
   // ── Try Sign In first (account may already exist from a prior run) ─────────
   const signInLink = page.locator(
@@ -194,40 +239,29 @@ async function signInOrCreateAccount(
     const emailField = page.locator(
       '[data-automation-id="signInEmail"], input[autocomplete="username"], input[type="email"]'
     ).first();
-    const passField = page.locator(
-      '[data-automation-id="password"], input[type="password"]'
-    ).first();
 
     if (await emailField.isVisible({ timeout: 3_000 }).catch(() => false)) {
       await emailField.fill(ATS_CONTACT.email).catch(() => {});
     }
-    if (await passField.isVisible({ timeout: 3_000 }).catch(() => false)) {
-      await passField.fill(pwd).catch(() => {});
-    }
 
-    const signInSubmit = page.locator(
-      '[data-automation-id="signInSubmitButton"], ' +
-      'button:has-text("Sign In"):not([data-automation-id="signInLink"]), ' +
-      'input[type="submit"][value*="Sign In" i]'
-    ).first();
-    if (await signInSubmit.isVisible({ timeout: 3_000 }).catch(() => false)) {
-      await signInSubmit.click().catch(() => {});
-      await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
-      await page.waitForTimeout(2_000);
-    }
-
-    const hasError = await page.locator(
-      '[data-automation-id="signInGlobalErrorMessage"], ' +
-      '[role="alert"]:has-text("incorrect"), [role="alert"]:has-text("invalid")'
-    ).first().isVisible({ timeout: 2_000 }).catch(() => false);
-    const stillOnSignIn = await page.locator(
-      '[data-automation-id="signInSubmitButton"]'
-    ).isVisible({ timeout: 1_000 }).catch(() => false);
-
-    if (!hasError && !stillOnSignIn) {
-      logger.info('ats: workday — signed in to existing account', ctx);
+    // Attempt with primary password first.
+    const primaryResult = await attemptSignInWithPassword(page, pwd);
+    if (primaryResult === 'ok') {
+      logger.info('ats: workday — signed in to existing account (primary password)', ctx);
       return 'ok';
     }
+
+    // On auth failure, optionally fall back to the previous password
+    // (handles password rotation where some envs/secrets haven't caught up).
+    if (primaryResult === 'auth_failed' && pwdFallback && pwdFallback !== pwd) {
+      logger.info('ats: workday — primary password failed, retrying with fallback', ctx);
+      const fallbackResult = await attemptSignInWithPassword(page, pwdFallback);
+      if (fallbackResult === 'ok') {
+        logger.info('ats: workday — signed in to existing account (fallback password)', ctx);
+        return 'ok';
+      }
+    }
+
     logger.info('ats: workday — sign in failed, trying create account', ctx);
   }
 
