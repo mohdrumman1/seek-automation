@@ -147,7 +147,12 @@ async function main() {
       }
 
       logger.info('search starting', { name: search.name, variant: search.resumeVariant });
-      await page.goto(search.url);
+      try {
+        await page.goto(search.url, { timeout: 60_000, waitUntil: 'domcontentloaded' });
+      } catch (err) {
+        logger.warn('search nav failed — skipping search', { name: search.name, error: String(err) });
+        continue;
+      }
       await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
 
       const links = await platform.getJobLinks(page);

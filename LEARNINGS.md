@@ -4,6 +4,31 @@ Append new entries at the TOP, separated by `---`.
 
 ---
 
+## 2026-05-31 — SEEK main loop crashes on slow SERP nav
+
+**Tags:** seek, playwright, page.goto, timeout, main-loop, ci
+**Status:** Fixed
+
+**Issue:** Single `page.goto` failure on a SEEK search results URL crashes the entire bot and aborts all remaining searches. Quoted error from run 26705511029:
+```
+"main loop crashed","error":{"name":"TimeoutError","message":"page.goto: Timeout 30000ms exceeded.
+- navigating to \"https://www.seek.com.au/full-stack-developer-jobs/in-New-South-Wales?...\",
+waiting until \"load\"\n    at main (/home/runner/work/seek-automation/seek-automation/scripts/apply.ts:150:18)"
+```
+48 skipped + 9 failed had already been processed; all remaining searches were abandoned and the workflow exited 1.
+
+**Investigation:** `gh run view 26705511029 --log-failed`. Stack trace pointed at `scripts/apply.ts:150`. Inspection of that file showed `page.goto(search.url)` with no try/catch and no timeout override — Playwright's default 30s `load` wait timeout fired on a slow SEEK response.
+
+**Root cause:** Unhandled nav in the per-search loop in `scripts/apply.ts`. Default Playwright `goto` waits up to 30s for the `load` event, which is fragile against transient SEEK slowness on GitHub Actions runners.
+
+**Fix:** Wrap the `page.goto` in try/catch in `scripts/apply.ts`; on failure log a warn and `continue` to the next search. Bumped timeout to 60s and switched to `waitUntil: 'domcontentloaded'`.
+
+**Verify:** Trigger a fresh run via `gh workflow run seek-apply.yml`; confirm the run completes without `main loop crashed` in the logs even if some searches log `search nav failed — skipping search`.
+
+**If it recurs:** Check whether multiple searches in a row are failing — that points at SEEK rate-limiting or an IP block. Inspect `lib/scrapers/seek.ts` for any selector changes that would make `domcontentloaded` insufficient.
+
+---
+
 ## 2026-05-29 — Indeed cron disabled: Cloudflare IP block on Actions runners
 
 **Tags:** indeed, cloudflare, ip-block, cron-disabled, github-actions

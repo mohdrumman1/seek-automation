@@ -28,7 +28,7 @@ jobs:
     # prevents accidental workflow_dispatch runs from develop or feature branches.
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 300
     permissions:
       contents: write
 
