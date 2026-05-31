@@ -1,25 +1,5 @@
 [
   {
-    "timestamp": "2026-05-26T07:31:46.818Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Project Enablement Coach",
-    "company": "APA Group",
-    "url": "https://apa.wd105.myworkdayjobs.com/en-US/APA-Careers/job/Brisbane-Ann-Street/Project-Enablement-Coach_JR4428/apply/applyManually?seek-token=PEnxS8Y61z89NpGzEnXHbY&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-26T07-31-44-576Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" modal is displayed on top of the \"Create Account\" page, with the email and password fields filled.\n2. Workday is prompting the bot to sign in again, likely due to session issues in the middle of creating the account.\n3. The bot should first try to close the \"Sign In\" modal using the CSS selector `[data-automation-id='closeIcon']`. If that fails, try clicking the \"Sign In\" button."
-  },
-  {
-    "timestamp": "2026-05-26T07:35:27.138Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Lead Project Enablement Coach",
-    "company": "APA Group",
-    "url": "https://apa.wd105.myworkdayjobs.com/en-US/APA-Careers/job/Perth/Lead-Project-Enablement-Coach_JR4427/apply/applyManually?seek-token=ESW992xsDipxwp19bjcoFX&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-26T07-35-24-669Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" modal is displayed on top of the \"Create Account\" page, with the email and password fields filled, and the \"Verify New Password\" field also filled.\n2. The bot is being prompted to sign in again in the middle of account creation, likely due to Workday session issues.\n3. The bot should first try to close the \"Sign In\" modal using the CSS selector `[data-automation-id='closeIcon']`. If that fails, try clicking the \"Sign In\" button."
-  },
-  {
     "timestamp": "2026-05-26T07:37:28.349Z",
     "error_type": "unanswered_questions",
     "job_title": "HVAC Project Manager",
@@ -4998,5 +4978,25 @@
     "page_title": "Senior UX and Product Designer - 3 Month FTC - Superloop",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T23-26-57-447Z_ats_teamtailor_no_submit.png",
     "analysis": "1.  The page displays \"Loading application form\" below the job title.\n2. The error is occurring because the bot is interacting with the form before it has fully loaded, same as error 3.\n3.  The bot should use `waitForSelector()` to ensure the application form is fully loaded before attempting to interact with any selectors, waiting for an selector within the application form."
+  },
+  {
+    "timestamp": "2026-05-31T06:46:11.047Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Chief Engineer - Contact Centre Transformation",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/VIC-CBD-Melbourne-Area/Chief-Engineer---Contact-Centre-Transformation_REQ258810/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-31T06-46-08-623Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The \"Create Account\" modal is open, but it's displaying the \"Sign In\" overlay. Email and password fields are visible and pre-filled with \"mohdrumman1@gmail.com\"\n2. The Workday session was likely lost, causing the account creation modal to reappear. The bot is attempting to sign in through the 'Create Account' form rather than the sign-in form.\n3. The bot should click the 'Already have an account? Sign In' link, using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-05-31T06:48:54.728Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Principal Technology Product Owner- Gen AI, Responsible AI",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/VIC-CBD-Melbourne-Area/Principal-Technology-Product-Owner--Gen-AI--Responsible-AI-and-Model-Evaluation---Monitoring_REQ251195/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-31T06-48-52-673Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1.  The \"Create Account\" modal is open and populated with email and password information, displaying the \"Sign In\" prompt within it.\n2.  The Workday session was likely lost, and the bot is attempting to sign in through the incorrect form, as the 'Create Account' modal is actually displaying the sign-in panel.\n3.  The bot should click the \"Already have an account? Sign In\" link, using the selector `a:contains('Already have an account? Sign In')`."
   }
 ]
