@@ -4,6 +4,32 @@ Append new entries at the TOP, separated by `---`.
 
 ---
 
+## 2026-05-31 — Workday password rotation handled via fallback env var
+
+**Tags:** workday, ats, auth, password-rotation, cba, secrets
+**Status:** Fixed
+
+**Issue:** Rotating `WORKDAY_PASSWORD` in GitHub Actions secrets (or anywhere) breaks any environment that still has the old value cached — most commonly local `.env` vs CI, or one CI workflow vs another if they were updated at different times. The CBA direct-Workday flow + Phase 5 SEEK→Workday handler both authenticate against Workday with `WORKDAY_PASSWORD`; either failing to sign in surfaces as `'ats: workday — sign in failed, trying create account'` followed by a wasted create-account attempt (or `ats_requires_account` if create-account also fails).
+
+**Investigation:** Grepped `WORKDAY_PASSWORD` across `*.ts`/`*.js`/`*.yml`. The only login submit site is `lib/ats/workday.ts:signInOrCreateAccount` — `scripts/company-apply.ts` (CBA) and `scripts/seek-apply.ts` both route through `applyToSingleUrl` → `applyWorkday` → `signInOrCreateAccount`. Three workflows (`cba-apply.yml`, `seek-apply.yml`, `indeed-apply.yml`) pass `WORKDAY_PASSWORD` explicitly.
+
+**Root cause:** Single-source password with no rotation grace period — any rotation event is a hard cutover with zero tolerance for stragglers (`lib/ats/workday.ts:183` previously read only `WORKDAY_PASSWORD`).
+
+**Fix:** Added `WORKDAY_PASSWORD_FALLBACK` env var support. New helper `attemptSignInWithPassword(page, password)` in `lib/ats/workday.ts` returns `'ok' | 'auth_failed' | 'other'`. `signInOrCreateAccount` calls it with the primary password first; on `'auth_failed'` AND when `WORKDAY_PASSWORD_FALLBACK` is set AND different from primary, it retries once with the fallback. Logs `'(primary password)'` vs `'(fallback password)'` on success. Single-attempt behavior preserved when fallback unset. Workflows `cba-apply.yml`, `seek-apply.yml`, `indeed-apply.yml` updated to pipe `WORKDAY_PASSWORD_FALLBACK` from secrets to env and to `.env` write step. Local `.env` and GH secret `WORKDAY_PASSWORD_FALLBACK` populated with previous value. Commit `ef7534d`.
+
+**Verify:**
+- `npx tsc --noEmit` clean
+- `gh secret list -R mohdrumman1/seek-automation | grep WORKDAY` shows both `WORKDAY_PASSWORD` and `WORKDAY_PASSWORD_FALLBACK`
+- Next CBA scheduled run should log either `signed in to existing account (primary password)` or `(fallback password)`
+
+**If it recurs:** When rotating Workday password again:
+1. Set new value as `WORKDAY_PASSWORD` (secret + local `.env`).
+2. Set previous value as `WORKDAY_PASSWORD_FALLBACK` (secret + local `.env`).
+3. Once a successful run logs `(primary password)`, the fallback can be safely cleared on next rotation (it's only a safety net).
+If sign-in still fails: check for new Workday error-banner selectors — current detection uses `[data-automation-id="signInGlobalErrorMessage"]` plus `[role="alert"]` text "incorrect"/"invalid"; Workday tenants sometimes vary copy ("Invalid email address or password.").
+
+---
+
 ## 2026-05-31 — SEEK main loop crashes on slow SERP nav
 
 **Tags:** seek, playwright, page.goto, timeout, main-loop, ci
