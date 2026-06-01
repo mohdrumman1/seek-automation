@@ -1,75 +1,5 @@
 [
   {
-    "timestamp": "2026-05-27T00:04:43.340Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Platform Engineer",
-    "company": "McMillan Shakespeare",
-    "url": "https://mmsg.wd3.myworkdayjobs.com/en-US/MMSG-Careers/job/Melbourne-Central-Towers---Level-19/Platform-Engineer_R8352/apply/applyManually?seek-token=CejXZ1tKiNuMggz2WqXkqg",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T00-04-41-044Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is open, with email, password, and verify password fields filled in.\n2. The bot likely encountered session issues or an overlap during account creation, triggering the \"Sign In\" page again within the modal, causing a re-login prompt mid-application.\n3. The bot should click the \"Create Account\" button using the CSS selector: `button:contains('Create Account')`."
-  },
-  {
-    "timestamp": "2026-05-27T00:07:27.430Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Infrastructure Engineer",
-    "company": "Sunnyfield",
-    "url": "https://sunnyfield.csod.com/ux/ats/careersite/4/requisition/3197/application?c=sunnyfield&source=Seek&seek-token=8BkzEU35kRgoQfBUwUhNSb&jobboardid=0#1",
-    "page_title": "sunnyfield Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T00-07-25-346Z_ats_cornerstone_no_submit.png",
-    "analysis": "1.  A loading indicator, the job title \"Infrastructure Engineer\", a text input field, and \"Cancel\" and \"Save\" buttons are visible.\n2.  The page is stuck during the form submission process, preventing the automation bot from proceeding.\n3.  The bot should wait for the loading indicator to disappear with a timeout before proceeding, or it should try clicking the \"Save\" button again using `button[aria-label='Save']` after explicitly waiting for the button to become enabled. It may also try waiting for a specific element to appear after submission, such as a confirmation message."
-  },
-  {
-    "timestamp": "2026-05-27T00:12:50.919Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Data Architect",
-    "company": "NTP Talent",
-    "url": "https://apply.jobadder.com/18406/865171/ff6yxt2xsuhufdf6ugk5sug2xy?site=au6&seek-token=55bu9qSdj3ZxNxbU4rC5We",
-    "page_title": "Data Architect",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T00-12-48-319Z_ats_jobadder_no_submit.png",
-    "analysis": "1. The \"Want to apply later?\" popup is visible, obscuring the application form.\n2. The bot failed to dismiss the \"Want to apply later?\" popup allowing the form to be submitted.\n3. The bot should first try clicking the \"Cancel\" button with text \"Cancel\" located within the popup. If that fails, it should attempt to click the `[aria-label='Close']` button (the X icon) on the popup."
-  },
-  {
-    "timestamp": "2026-05-27T00:13:53.415Z",
-    "error_type": "cover_letter_fill_failed",
-    "job_title": "Solutions Architect",
-    "company": "TEKsystems",
-    "url": "https://jobs.en-au.teksystems.com/5qMKQs/solutions-architect-tek-enterprise-applications-ea-sydney-other-new-south-wales-australia-a5uw20000001tvviay?sref=seek.com.au&directToApply=true",
-    "page_title": "403 Forbidden",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T00-13-51-757Z_cover_letter_fill_failed.png",
-    "analysis": "1. The screen displays a \"403 Forbidden\" error from nginx.\n2. The bot received a 403 Forbidden error when trying to access the page to fill the cover letter.\n3. The bot should retry navigating to the page.\n4. If the 403 persists after retrying, the bot should stop and notify the user."
-  },
-  {
-    "timestamp": "2026-05-27T00:13:55.056Z",
-    "error_type": "continue_button_not_found",
-    "job_title": "Solutions Architect",
-    "company": "TEKsystems",
-    "url": "https://jobs.en-au.teksystems.com/5qMKQs/solutions-architect-tek-enterprise-applications-ea-sydney-other-new-south-wales-australia-a5uw20000001tvviay?sref=seek.com.au&directToApply=true",
-    "page_title": "403 Forbidden",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T00-13-53-426Z_continue_button_not_found.png",
-    "analysis": "1. A \"403 Forbidden\" error page is displayed.\n2. The error is likely caused by the bot being blocked by the server, possibly due to suspicious activity or missing required information in the request headers.\n3. The bot should implement request header spoofing or IP rotation to avoid being blocked, and retry loading the page. A specific CSS selector isn't relevant here."
-  },
-  {
-    "timestamp": "2026-05-27T00:13:58.246Z",
-    "error_type": "continue_button_not_found",
-    "job_title": "Solutions Architect",
-    "company": "TEKsystems",
-    "url": "https://jobs.en-au.teksystems.com/5qMKQs/solutions-architect-tek-enterprise-applications-ea-sydney-other-new-south-wales-australia-a5uw20000001tvviay?sref=seek.com.au&directToApply=true",
-    "page_title": "403 Forbidden",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T00-13-57-078Z_continue_button_not_found.png",
-    "analysis": "1. The screenshot shows a \"403 Forbidden\" error page.\n2.  The bot was likely blocked by the server, due to suspicious activity.\n3.  The bot should implement request header spoofing or IP rotation to avoid being blocked, and retry loading the page. A CSS selector isn't relevant here."
-  },
-  {
-    "timestamp": "2026-05-27T00:22:56.192Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Azure Integration Engineer",
-    "company": "DWS Limited",
-    "url": "https://apply.jobadder.com/16850/1962645/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=Lzht5xMiEr4fLtm2aKjG5n",
-    "page_title": "Azure Integration Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T00-22-53-755Z_ats_jobadder_no_submit.png",
-    "analysis": "1. The \"Want to apply later?\" popup is obscuring the filled application form.\n2. The bot failed to dismiss the \"Want to apply later?\" popup before attempting to submit the application, therefore, `ats_jobadder_no_submit` error occurred.\n3. The bot should click the \"Cancel\" button with text \"Cancel\" within the popup, before attempting to submit the form. If that fails, it should click the `[aria-label='Close']` button."
-  },
-  {
     "timestamp": "2026-05-27T00:23:35.261Z",
     "error_type": "ats_pageup_no_submit",
     "job_title": "Cloud M365 Engineer (AMSA6)",
@@ -4998,5 +4928,75 @@
     "page_title": "Sign In",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-31T22-52-41-964Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. Both \"Create Account\" and \"Sign In\" modals are visible, overlapping, and password validation errors are displayed on the \"Create Account\" modal.\n2. Workday likely lost the session after account creation/sign-in and redirected back to account creation, causing the overlapping modals.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-06-01T07:36:24.127Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Product Manager, Debit Products",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Product-Manager--Debit-Products_REQ259391/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T07-36-21-660Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. Both the \"Create Account\" and \"Sign In\" modals are visible and overlapping, with error messages displayed on the \"Sign In\" modal. The email address is pre-filled in the \"Create Account\" form. The passwords in both fields do not meet the \"Create Account\" password requirements.\n2. Workday lost the session after account creation/sign-in and redirected back to account creation resulting in the overlapping modals.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`. Alternatively, if the bot is trying to create a *new* account, correct the passwords."
+  },
+  {
+    "timestamp": "2026-06-01T07:39:42.209Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Engineering Manager, AI Powered Engineering",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Engineering-Manager--AI-Powered-Engineering_REQ259069/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T07-39-39-837Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1.  Both \"Create Account\" and an obscured \"Sign In\" modal are visible, with password validation errors displayed on the \"Create Account\" modal. The email is pre-filled.\n2.  Workday likely lost the session after account creation/sign-in and redirected back to account creation, resulting in the overlapping modals.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-06-01T07:43:05.042Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Product Manager / Product Owner — Contact Centre Platforms &amp; Customer Experience",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Product-Manager---Product-Owner---Contact-Centre-Platforms---Customer-Experience_REQ258051-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T07-43-03-183Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. Both \"Create Account\" and \"Sign In\" modals are displayed simultaneously and overlap, with password requirements visible on the \"Create Account\" modal.\n2. Workday likely lost the session following account creation/sign-in, redirecting back to the account creation page.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-06-01T07:46:19.823Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Staff Software Engineer- Native Mobile (iOS or Android)",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Staff-Software-Engineer--Native-Mobile--iOS-or-Android-_REQ259434/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T07-46-17-572Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. Both the \"Create Account\" and \"Sign In\" modals are visible and overlapping, with error messages displayed on the \"Create Account\" modal. The email address is pre-filled.\n2. Workday likely lost the session after account creation/sign-in and redirected back to account creation, resulting in the overlapping modals. Password fields do not meet password requirements.\n3. The bot should either click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')` or fix the password to meet all requirements of the \"Create Account\" form."
+  },
+  {
+    "timestamp": "2026-06-01T07:49:34.626Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Data Scientist",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Data-Scientist_REQ258380-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T07-49-33-006Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1.  The \"Create Account\" modal is visible again, overlapping with a \"Sign In\" button; the email is pre-filled, and password validation errors are displayed.\n2.  Workday likely lost the session after account creation/sign-in and redirected back to account creation.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-06-01T07:52:51.701Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Engineering Manager, AI Powered Engineering",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Engineering-Manager--AI-Powered-Engineering_REQ259069/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T07-52-49-827Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The \"Create Account\" modal is visible with errors on the password and an overlapping Sign In section.\n2. Workday lost the session after account creation/sign-in and redirected back to account creation, resulting in the overlapping modals.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
+  },
+  {
+    "timestamp": "2026-06-01T07:56:09.005Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Product Owner – Intelligent Comms",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Product-Owner---Intelligent-Comms_REQ256098/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T07-56-06-286Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The \"Create Account\" modal with password requirements is visible, but a \"Sign In\" section is overlapping, and an email and password are shown on the Sign In Section. \"Email Address\" errors are shown.\n2. Workday likely lost the session after account creation/sign-in and redirected back to account creation, resulting in the overlapping modals.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
   }
 ]
