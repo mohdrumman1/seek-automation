@@ -1,75 +1,5 @@
 [
   {
-    "timestamp": "2026-05-27T07:34:37.088Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Project Enablement Coach",
-    "company": "APA Group",
-    "url": "https://apa.wd105.myworkdayjobs.com/en-US/APA-Careers/job/Brisbane-Ann-Street/Project-Enablement-Coach_JR4428/apply/applyManually?seek-token=E2e2TseGAM8Vh9FVyuiWpf&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T07-34-34-745Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The screenshot shows a \"Create Account\" modal with Email Address, Password, and Verify New Password fields pre-filled. Additionally, a \"Sign In\" button is visible in a centered box.\n2. A likely cause is a session problem where the bot re-encountered the account creation wall with the \"Sign In\" component present.\n3. The bot should try clicking the \"Sign In\" button in the modal using the CSS selector: `button:contains('Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-27T07:40:38.905Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Project Manager",
-    "company": "Seqwater",
-    "url": "https://secure.dc2.pageuppeople.com/apply/659/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T07-40-36-790Z_ats_pageup_no_submit.png",
-    "analysis": "1. An \"Uh oh...\" error page with the text \"Additional security check is required\" and an hCaptcha checkbox is visible.\n2. This error is caused by PageUp requiring the hCaptcha to be solved before submitting the application.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action to solve the hCaptcha."
-  },
-  {
-    "timestamp": "2026-05-27T07:43:13.028Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Lead Project Enablement Coach",
-    "company": "APA Group",
-    "url": "https://apa.wd105.myworkdayjobs.com/en-US/APA-Careers/job/Perth/Lead-Project-Enablement-Coach_JR4427/apply/applyManually?seek-token=6ii1ZaRXUFuQE4jzJtpzB9&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T07-43-10-548Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is open. Email and Password fields are pre-filled, and a \"Sign In\" button is visible within the form. There is also a \"Create Account\" button available\n2.  A session issue likely caused the bot to re-encounter the account creation wall. The bot is now prompted to either create an account or sign in.\n3. The bot should click the \"Sign In\" button inside the form, using the CSS selector: `button:contains('Sign In')`. Alternatively, based on previous analysis, the bot can try to use the same CSS to interact with the centered Sign In title button."
-  },
-  {
-    "timestamp": "2026-05-27T07:46:06.775Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Infrastructure Delivery Governance & Assurance Manager",
-    "company": "APA Group",
-    "url": "https://apa.wd105.myworkdayjobs.com/en-US/APA-Careers/job/Brisbane-Ann-Street/Infrastructure-Delivery-Governance---Assurance-Manager_JR4473/apply/applyManually?seek-token=4EbsyZgVfHhojrxQJ4shmt&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T07-46-04-018Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is displayed, with pre-filled email and password, and the \"Sign In\" button is visible.\n2. The bot likely encountered a session issue and was re-prompted for account creation/sign-in mid-application.\n3.  The bot should click the \"Sign In\" button inside the form using the CSS selector: `button:contains('Sign In')`. Or another approach based on similar solutions use`button:contains('Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-27T07:57:33.953Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "EPMO Delivery Support Office Lead",
-    "company": "Anglicare",
-    "url": "https://anglicare.wd105.myworkdayjobs.com/en-US/Anglicare_Careers/job/Anglicare-Hub-Macquarie-Park/Delivery-Support-Office-Lead_JR7228/apply/applyManually?seek-token=5r7vaqab4ZPJyPFwa9vDp7&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T07-57-31-504Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is visible, with pre-filled email and password fields, and a \"Sign In\" button is present within that modal.\n2. The error was caused by a session issue leading the bot to re-encounter this account creation/sign-in screen mid-application.\n3. To fix it, the bot should click the \"Sign In\" button inside the account creation form, using the CSS selector: `button:contains('Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-27T07:58:10.715Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Strategic Delivery Manager",
-    "company": "NSW Department of Climate Change, Energy, the Environment & Water",
-    "url": "https://secure.dc2.pageuppeople.com/apply/795/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T07-58-08-415Z_ats_pageup_no_submit.png",
-    "analysis": "1. A PageUp error page is visible, displaying \"Additional security check is required\" and an hCaptcha \"I am human\" checkbox.\n2. The error is caused by PageUp requiring the hCaptcha to be solved before submitting.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action to solve the hCaptcha."
-  },
-  {
-    "timestamp": "2026-05-27T08:00:13.024Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Incident & Problem Manager - Remote",
-    "company": "Employment Hero",
-    "url": "https://au.seek.com/job/92362828/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T08-00-09-468Z_validation_errors_blocking_continue.png",
-    "analysis": "1.  The \"Answer employer questions\" page is visible, showing questions about working rights in Australia, current location, salary expectations, and experience with Incident & Problem Management. There is an error message indicating that \"Do you have full working rights in Australia?\" and \"hands-on experience in Incident and Problem Management\" questions need answers.\n2.  The error is caused by the bot not answering the questions: \"Do you have full working rights in Australia?\" and \"hands-on experience in Incident and Problem Management\".\n3.  The bot should click either the \"Yes\" or \"No\" label for both questions \"Do you have full working rights in Australia?\" and \"hands-on experience in Incident and Problem Management\", and then confirm the checkbox is checked using `isChecked()`. For example, to answer \"Yes\" to the first question, the bot could use`label:contains(\"Yes\")` then execute the `isChecked()` verification."
-  },
-  {
     "timestamp": "2026-05-27T08:00:17.839Z",
     "error_type": "auto_skip_still_blocked",
     "job_title": "Incident & Problem Manager - Remote",
@@ -4998,5 +4928,75 @@
     "page_title": "Sign In",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T10-10-13-801Z_ats_workday_no_submit.png",
     "analysis": "1. The \"Sign In\" page is displayed, with options to sign in with Google or email.\n2. The bot reached the Workday sign-in page but failed to proceed.\n3. The bot should click the \"Sign in with email\" button using the CSS selector `button:contains(\"Sign in with email\")`."
+  },
+  {
+    "timestamp": "2026-06-01T14:43:27.058Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Product Manager, Debit Products",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Product-Manager--Debit-Products_REQ259391/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T14-43-26-739Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T14:46:33.797Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Engineering Manager, AI Powered Engineering",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Engineering-Manager--AI-Powered-Engineering_REQ259069/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T14-46-33-311Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T14:49:46.608Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Product Manager / Product Owner — Contact Centre Platforms &amp; Customer Experience",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Product-Manager---Product-Owner---Contact-Centre-Platforms---Customer-Experience_REQ258051-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T14-49-46-339Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T14:52:52.576Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Staff Software Engineer- Native Mobile (iOS or Android)",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Staff-Software-Engineer--Native-Mobile--iOS-or-Android-_REQ259434/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T14-52-52-408Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T14:55:57.940Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Data Scientist",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Data-Scientist_REQ258380-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T14-55-57-750Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T14:59:04.360Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Engineering Manager, AI Powered Engineering",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Engineering-Manager--AI-Powered-Engineering_REQ259069/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T14-59-04-194Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T15:02:10.334Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Product Owner – Intelligent Comms",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Product-Owner---Intelligent-Comms_REQ256098/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T15-02-10-045Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
   }
 ]
