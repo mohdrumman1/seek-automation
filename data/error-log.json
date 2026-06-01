@@ -1,75 +1,5 @@
 [
   {
-    "timestamp": "2026-05-27T11:57:28.042Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Technology Asset Manager - Thermal",
-    "company": "AGL",
-    "url": "https://agl.wd3.myworkdayjobs.com/en-US/AGL_Recruitment/job/Bayswater-Power-Station/Technology-Asset-Manager---Thermal_R-0023033-1/apply/applyManually?seek-token=7iwD8LycejQVMZ6cx1gSse&source=Seek",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T11-57-25-861Z_ats_workday_no_submit.png",
-    "analysis": "1. The \"Sign In\" page is visible, offering options to sign in with Apple, Google, or email.\n2. The bot reached the sign-in page but didn't proceed to click on any of the provided sign-in options, causing the Workday wizard loop to exhaust.\n3. The bot should click the \"Sign in with email\" button using the CSS selector `button:contains(\"Sign in with email\")`."
-  },
-  {
-    "timestamp": "2026-05-27T11:58:27.460Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Technical Lead | Backend Platforms",
-    "company": "ABC",
-    "url": "https://secure.dc2.pageuppeople.com/apply/516/gateway/Default.aspx?c=apply&sJobIDs=505424&SourceTypeID=815&seek-token=TJLHRMfjd5THsaZCNmQsmL",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T11-58-25-415Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the message \"Additional security check is required\" and an hCaptcha \"I am human\" checkbox.\n2. The error is caused by PageUp requiring the hCaptcha to be solved before form submission.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` and execute a `.click()` action to solve the hCaptcha."
-  },
-  {
-    "timestamp": "2026-05-27T12:02:54.554Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Head of Product",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Head-of-Product--Truyu_REQ259071/apply/applyManually?seek-token=8HPiowKk6R8qexxfzPtbnt",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T12-02-52-194Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is open, fields are pre-filled, and it's prompting for verification of the password.\n2. The bot likely encountered a session issue, causing it to re-encounter the account creation wall mid-application, despite already possessing credentials.\n3. The bot should click the \"Sign In\" link at the bottom of the modal using the CSS selector `div[role=\"dialog\"] a:contains('Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-27T12:08:16.432Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Product Manager",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Product-Manager--Truyu_REQ259255/apply/applyManually?seek-token=XhL4uXRuGcuQKhxoviNRVd",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T12-08-14-110Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is visible, with email and password fields pre-filled, and prompting for verification of the new password.\n2. A session issue likely caused the bot to re-encounter the account creation wall mid-application.\n3. The bot should click the \"Sign In\" link at the bottom of the modal using the CSS selector `div[role=\"dialog\"] a:contains('Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-27T12:13:18.207Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Technical Lead - ServiceNow",
-    "company": "Reserve Bank of Australia",
-    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Technical-Lead---ServiceNow_JR4275/apply/applyManually?seek-token=5pVBAByqbFcRn5c2tpH2M4&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T12-13-15-882Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  The \"Create Account\" modal is open, with the email and password fields pre-filled, and prompting for password verification.\n2.  A session issue caused the bot to re-encounter the account creation wall mid-application.\n3.  The bot should click the \"Sign In\" link at the bottom of the modal using the CSS selector `div[role=\"dialog\"] a:contains('Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-27T12:16:07.391Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Project Manager",
-    "company": "Datacom",
-    "url": "https://au.seek.com/job/92365704/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T12-16-03-688Z_unanswered_questions.png",
-    "analysis": "1.  The \"Answer employer questions\" page is visible, displaying various questions about the candidate's background and experience. Several text fields and dropdowns are present, including questions about pronouns, work rights, salary expectations, experience, certifications, and project types. Also is visible a radio button selection for \"Are you an AU Citizen or Permanent Resident?\".\n2.  The bot likely failed to fill in the text fields and select options from dropdowns, despite having pre-filled data like salary ranges and certifications. It might be struggling with dynamically generated field names or the variety of input types. The bot may have not handled the question regarding \"Pronouns\" at the top.\n3.  The bot should focus on accurately populating all the text fields using labels, for example, `document.querySelector('input[aria-label*=\"salary expectations\"]').value = \"[Salary Value]\";`. Also ensure dropdown menus are selected using `document.querySelector('select[aria-label*=\"Pronouns\"]').value = \"[Desired Option]\";`. Also determine whether to chose \"Yes\" or \"No\" radio for \"Are you an AU Citizen or Permanent Resident?\"."
-  },
-  {
-    "timestamp": "2026-05-27T12:24:46.263Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Project Manager",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1962841/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=Q9iEeKWzQFk5165kMZJbGJ",
-    "page_title": "Project Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-27T12-24-43-668Z_ats_jobadder_no_submit.png",
-    "analysis": "1. The \"Want to apply later?\" popup is obscuring the filled-out JobAdder application form fields.\n2. The bot is failing to dismiss the popup before attempting to submit, leading to the `ats_jobadder_no_submit` error.\n3. The bot should either click the \"Cancel\" button OR click the close button `[aria-label='Close']` on the popup."
-  },
-  {
     "timestamp": "2026-05-27T12:27:49.192Z",
     "error_type": "ats_pageup_no_submit",
     "job_title": "Senior Change Manager",
@@ -4997,6 +4927,76 @@
     "url": "https://jobs.dcj.nsw.gov.au/job/Parramatta-Product-Management-Officer-NSW-2150/1362140466/?utm_campaign=seek&utm_source=seek&applySourceOverride=Seek",
     "page_title": "",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T15-15-56-729Z_continue_button_not_found.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T22:54:08.785Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Product Manager, Debit Products",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Product-Manager--Debit-Products_REQ259391/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T22-54-08-527Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T22:57:16.575Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Engineering Manager, AI Powered Engineering",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Engineering-Manager--AI-Powered-Engineering_REQ259069/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T22-57-16-333Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T23:00:30.367Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Product Manager / Product Owner — Contact Centre Platforms &amp; Customer Experience",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Product-Manager---Product-Owner---Contact-Centre-Platforms---Customer-Experience_REQ258051-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T23-00-30-132Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T23:03:36.535Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Staff Software Engineer- Native Mobile (iOS or Android)",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Staff-Software-Engineer--Native-Mobile--iOS-or-Android-_REQ259434/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T23-03-36-269Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T23:06:42.462Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Data Scientist",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Data-Scientist_REQ258380-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T23-06-42-236Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T23:09:49.843Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Engineering Manager, AI Powered Engineering",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Engineering-Manager--AI-Powered-Engineering_REQ259069/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T23-09-49-588Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-01T23:12:55.680Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Product Owner – Intelligent Comms",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Product-Owner---Intelligent-Comms_REQ256098/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-01T23-12-55-444Z_ats_workday_wall_mid_apply.png",
     "analysis": "AI analysis unavailable"
   }
 ]
