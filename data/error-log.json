@@ -1,25 +1,5 @@
 [
   {
-    "timestamp": "2026-05-28T23:50:59.993Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Senior Automation Developer",
-    "company": "NSW Department of Customer Service",
-    "url": "https://nswconnect.csod.com/ux/ats/careersite/2/requisition/52014/application?c=nswconnect&seek-token=Ajm8J7ivz1xjVhwVuWyY25&source=seek_oz&jobboardid=0",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-28T23-50-57-598Z_ats_cornerstone_no_submit.png",
-    "analysis": "1. The screen is completely white/blank.\n2. The screenshot shows a blank page, meaning the page either failed to load, timed out, or encountered a rendering error before displaying any content hence cannot fill mandatory fields or wait for spinners.\n3. The bot should first check if the page loaded fully before attempting to fill the application, and retry loading the page if it encounters a blank screen by using page load strategies. If the page does load and the application is stuck on loading spinners, the bot can wait for `div.spinner-container` to disappear. Also, fill in required fields with `input[required]` before submission."
-  },
-  {
-    "timestamp": "2026-05-28T23:53:19.470Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Cloud Platform Engineer",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/92373300/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-28T23-53-17-303Z_validation_errors_blocking_continue.png",
-    "analysis": "1.  The screenshot shows the \"Review and submit\" page on Seek.com.au. There's a validation error indicating that the applicant must agree to the employer's privacy policy.\n2.  The bot failed to click the privacy policy agreement checkbox.\n3.  The bot should click the label `label:contains(\"Do you agree to the privacy policy of Marlin Human Capital?\")` and then confirm the associated checkbox is checked using `.isChecked()`."
-  },
-  {
     "timestamp": "2026-05-28T23:53:21.749Z",
     "error_type": "continue_button_not_found",
     "job_title": "Cloud Platform Engineer",
@@ -4997,6 +4977,26 @@
     "url": "https://secure.dc2.pageuppeople.com/apply/829/aw/applicationForm/initApplication_p.asp",
     "page_title": "",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T08-21-09-979Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:42:28.810Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Executive Manager, Strategy &amp; Transformation",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Executive-Manager--Strategy---Transformation_REQ259595/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-42-28-546Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:45:41.335Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Data Engineer (AWS) - 12 Months Fixed Term Contract",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Data-Engineer--AWS----12-Months-Fixed-Term-Contract_REQ256627/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-45-41-052Z_ats_workday_wall_mid_apply.png",
     "analysis": "AI analysis unavailable"
   }
 ]
