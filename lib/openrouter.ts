@@ -84,6 +84,20 @@ export async function callOpenRouterVision(prompt: string, imageBase64: string):
   return withRetry(inner, 'vision');
 }
 
+function applyFallbackSubstitutions(text: string, title: string, company: string): string {
+  return text
+    .replace(/\[ROLE\]/g, title)
+    .replace(/\[COMPANY\]/g, company);
+}
+
+function validateTailoredLetter(text: string, title: string, company: string): boolean {
+  // Must have replaced both placeholders and must not still reference KazGard
+  const hasUnreplacedRole = text.includes('[ROLE]');
+  const hasUnreplacedCompany = text.includes('[COMPANY]');
+  const hasWrongCompany = /kazgard/i.test(text) && !/kazgard/i.test(company);
+  return !hasUnreplacedRole && !hasUnreplacedCompany && !hasWrongCompany;
+}
+
 export async function tailorCoverLetter(
   base: string,
   title: string,
@@ -91,18 +105,37 @@ export async function tailorCoverLetter(
   description: string
 ): Promise<string> {
   const prompt =
-    `Tailor this cover letter for a ${title} role at ${company}.\n\n` +
+    `You are tailoring a cover letter template for a specific job application.\n\n` +
+    `TARGET ROLE: ${title}\n` +
+    `TARGET COMPANY: ${company}\n\n` +
     `Job Description:\n${description.slice(0, 1500)}\n\n` +
-    `Base Cover Letter:\n${base}\n\n` +
+    `Cover Letter Template (contains [ROLE] and [COMPANY] placeholders):\n${base}\n\n` +
     `Rules:\n` +
+    `- Replace [ROLE] with exactly: ${title}\n` +
+    `- Replace [COMPANY] with exactly: ${company}\n` +
+    `- Update role-specific details in the body to match the job description\n` +
+    `- Do NOT mention any other company name — this letter must be for ${company} only\n` +
     `- Keep the same tone and structure\n` +
-    `- Personalise the company name and role-specific details\n` +
     `- Keep it under 350 words\n` +
-    `- Return only the cover letter text, nothing else`;
+    `- Return only the final cover letter text, nothing else`;
   try {
-    return await callOpenRouter(prompt);
+    const tailored = await callOpenRouter(prompt);
+    if (!validateTailoredLetter(tailored, title, company)) {
+      logger.warn('tailorCoverLetter: output failed validation — applying fallback substitutions', {
+        title,
+        company,
+        snippet: tailored.slice(0, 100),
+      });
+      return applyFallbackSubstitutions(tailored, title, company);
+    }
+    return tailored;
   } catch (e) {
-    console.error(`  AI tailoring failed (${e}) - using base cover letter`);
-    return base;
+    console.error(`  AI tailoring failed (${e}) - applying substitutions to base cover letter`);
+    logger.warn('tailorCoverLetter: AI call failed — applying substitutions to base', {
+      title,
+      company,
+      error: String(e),
+    });
+    return applyFallbackSubstitutions(base, title, company);
   }
 }
