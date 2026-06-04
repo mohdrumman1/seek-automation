@@ -1,165 +1,5 @@
 [
   {
-    "timestamp": "2026-05-28T23:50:59.993Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Senior Automation Developer",
-    "company": "NSW Department of Customer Service",
-    "url": "https://nswconnect.csod.com/ux/ats/careersite/2/requisition/52014/application?c=nswconnect&seek-token=Ajm8J7ivz1xjVhwVuWyY25&source=seek_oz&jobboardid=0",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-28T23-50-57-598Z_ats_cornerstone_no_submit.png",
-    "analysis": "1. The screen is completely white/blank.\n2. The screenshot shows a blank page, meaning the page either failed to load, timed out, or encountered a rendering error before displaying any content hence cannot fill mandatory fields or wait for spinners.\n3. The bot should first check if the page loaded fully before attempting to fill the application, and retry loading the page if it encounters a blank screen by using page load strategies. If the page does load and the application is stuck on loading spinners, the bot can wait for `div.spinner-container` to disappear. Also, fill in required fields with `input[required]` before submission."
-  },
-  {
-    "timestamp": "2026-05-28T23:53:19.470Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Cloud Platform Engineer",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/92373300/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-28T23-53-17-303Z_validation_errors_blocking_continue.png",
-    "analysis": "1.  The screenshot shows the \"Review and submit\" page on Seek.com.au. There's a validation error indicating that the applicant must agree to the employer's privacy policy.\n2.  The bot failed to click the privacy policy agreement checkbox.\n3.  The bot should click the label `label:contains(\"Do you agree to the privacy policy of Marlin Human Capital?\")` and then confirm the associated checkbox is checked using `.isChecked()`."
-  },
-  {
-    "timestamp": "2026-05-28T23:53:21.749Z",
-    "error_type": "continue_button_not_found",
-    "job_title": "Cloud Platform Engineer",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/92373300/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-28T23-53-19-588Z_continue_button_not_found.png",
-    "analysis": "1. The screenshot displays the \"Review and submit\" page on Seek.com.au, with a message indicating that issues need to be addressed before continuing the application. The user has not agreed to the Marlin Human Capital's Privacy Policy.\n2. The error is caused by the bot not selecting the checkbox to agree to the privacy policy.\n3. The bot should select the element with the aria-label \"Do you agree to the privacy policy of Marlin Human Capital?\" before clicking the \"Submit application\" button."
-  },
-  {
-    "timestamp": "2026-05-28T23:53:25.254Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Cloud Platform Engineer",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/92373300/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-28T23-53-23-259Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Review and submit\" page is displayed, with a warning message indicating that there are issues to be addressed before continuing, specifically a privacy policy agreement checkbox that is unchecked.\n2. The bot failed to check the privacy policy agreement checkbox.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` near the \"Do you agree to the privacy policy\" question and `.click()` to check the checkbox. Alternatively the label can be used and checked based on associated for attribute."
-  },
-  {
-    "timestamp": "2026-05-28T23:57:07.207Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Platform Engineer",
-    "company": "McMillan Shakespeare",
-    "url": "https://mmsg.wd3.myworkdayjobs.com/en-US/MMSG-Careers/job/Melbourne-Central-Towers---Level-19/Platform-Engineer_R8352/apply/applyManually?seek-token=FZowX1juv6rZMxM7rEsw7y",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-28T23-57-04-325Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  The \"Create Account\" modal is visible, pre-filled with email and password, including a \"Verify New Password\" field, and the \"Already have an account? Sign In\" link at the bottom.\n2.  The bot likely lost its session and encountered the \"Create Account/Sign In\" wall mid-application.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-29T00:11:09.786Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Cloud Security Engineer",
-    "company": "hummgroup",
-    "url": "https://flexigroup.wd105.myworkdayjobs.com/en-US/Careers/job/Sydney%2C-New-South-Wales/Senior-Cloud-Security-Engineer_JR10000589-1/apply/applyManually?seek-token=D9wFvee7toES78ZYM26LhT&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-11-07-676Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  The \"Create Account\" modal is visible, pre-filled with email, password, and \"Verify New Password\", and with the \"Already have an account? Sign In\" link at the bottom.\n2.  The bot likely lost its session and encountered the \"Create Account/Sign In\" wall mid-application.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-29T00:13:48.564Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Network Engineer (NSW) (DC Mod)",
-    "company": "St Vincent's Health Australia",
-    "url": "https://svha.wd3.myworkdayjobs.com/en-US/broadbean_external/job/NSW---Sydney%2C-CBD%2C-Inner-West-and-Eastern-Suburbs/Senior-Network-Engineer--NSW---DC-Mod-_JR148155/apply/applyManually?seek-token=GXbUmuv6fED1uypeEqBT7x&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-13-44-504Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is visible, pre-filled with email, password, and \"Verify New Password\", with \"Already have an account? Sign In\" at the bottom.\n2. The bot likely lost its session and encountered the \"Create Account/Sign In\" wall mid-application.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-29T00:19:07.580Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Network Engineer",
-    "company": "Transurban Ltd",
-    "url": "https://transurban.wd3.myworkdayjobs.com/en-US/broadbean_external/job/Sydney-CBD-Inner-West--Eastern-Suburbs-Sydney-NSW/Senior-Network-Engineer_R013957/apply/applyManually?seek-token=Sz1T7JqYQzj3zyRegZmWgj&APPLICANT_SOURCE_SEEK",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-19-05-297Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is visible, pre-filled with email, password, and \"Verify New Password\", with the \"Already have an account? Sign In\" link at the bottom.\n2. The bot likely lost its session and encountered the \"Create Account/Sign In\" wall mid-application.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-29T00:19:50.138Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Cloud M365 Engineer (AMSA6)",
-    "company": "Australian Maritime Safety Authority",
-    "url": "https://secure.dc2.pageuppeople.com/apply/1015/cw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-19-48-238Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error message and an hCaptcha \"I am human\" checkbox.\n2. The error is caused by PageUp requiring hCaptcha verification before submission.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` to locate the checkbox.\n4. The bot should then execute a `.click()` action on the checkbox, potentially after waiting for the iframe to load."
-  },
-  {
-    "timestamp": "2026-05-29T00:20:19.626Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Cloud M365 Engineer (AMSA5)",
-    "company": "Australian Maritime Safety Authority",
-    "url": "https://secure.dc2.pageuppeople.com/apply/1015/gateway/Default.aspx?c=apply&sJobIDs=493026&SourceTypeID=806&seek-token=KoGctNNtzZ9peGV6NgMJPv",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-20-17-470Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen shows a PageUp error page with an hCaptcha \"I am human\" checkbox.\n2. The error is caused by PageUp requiring hCaptcha verification before form submission.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` to locate the hCaptcha checkbox.\n4. The bot should then execute a `.click()` action on the checkbox, potentially after waiting for the iframe to load if needed."
-  },
-  {
-    "timestamp": "2026-05-29T00:25:09.576Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Senior Educational Developer- Medicine Program Redesign (MPR)",
-    "company": "University of New South Wales",
-    "url": "https://secure.dc2.pageuppeople.com/apply/841/gateway/Default.aspx?c=apply&sJobIDs=540380&SourceTypeID=807&seek-token=MNJvhgJYyr13CMSccqf1aP",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-25-07-407Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with an hCaptcha \"I am human\" checkbox.\n2. The error is caused by PageUp requiring hCaptcha verification.\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` to locate the hCaptcha checkbox.\n4. The bot should then execute a `.click()` action on the checkbox, potentially after waiting for the iframe to load if needed."
-  },
-  {
-    "timestamp": "2026-05-29T00:25:57.451Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Data Specialist MS Fabric",
-    "company": "NSW Department of Climate Change, Energy, the Environment & Water",
-    "url": "https://secure.dc2.pageuppeople.com/apply/795/gateway/Default.aspx?c=apply&sJobIDs=550498&SourceTypeID=810&seek-token=LGzBPeGMfLzrKZsRig1m4U",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-25-55-674Z_ats_pageup_no_submit.png",
-    "analysis": "1.  The screen shows a \"Uh oh...\" error page from PageUp, indicating a problem with the request. An hCaptcha \"I am human\" checkbox is also visible.\n2.  The error is caused by PageUp requiring hCaptcha verification before submission.\n3.  The bot should use the CSS selector `input[type=\"checkbox\"]` to locate the hCaptcha checkbox. The bot should then execute a `.click()` action on the checkbox."
-  },
-  {
-    "timestamp": "2026-05-29T00:35:43.858Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Data Architect",
-    "company": "NTP Talent",
-    "url": "https://apply.jobadder.com/18406/865063/ff6yxt2xsuhufdf6ugk5sug2xy?site=au6&seek-token=CAYaVeCnEQURNBAPGpLLeW",
-    "page_title": "Data Architect",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-35-42-319Z_ats_jobadder_no_submit.png",
-    "analysis": "1.  A \"Want to apply later?\" popup obscures the JobAdder application form.\n2.  The popup prevents interaction with the application, leading to submission failure.\n3.  The bot should first click the `[aria-label='Close']` button on the popup. If that fails, it should click the \"Cancel\" button."
-  },
-  {
-    "timestamp": "2026-05-29T00:39:23.603Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Sr. Engineer II - EPICS, NG-SIEM (Hybrid, Sydney)",
-    "company": "Crowdstrike",
-    "url": "https://crowdstrike.wd5.myworkdayjobs.com/en-US/crowdstrikecareers/job/Australia---Sydney/Sr-Engineer-II---EPICS--NG-SIEM--Hybrid--Sydney-_R28362/apply/applyManually?seek-token=2Dvp7c5g3GW9vydwZyYaaZ",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-39-21-258Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  The \"Create Account\" modal is visible, pre-filled with email, password, and \"Verify New Password\", with a \"Sign In\" button within the form as well as the \"Already have an account? Sign In\" link at the bottom.\n2.  The bot likely lost its session and encountered the \"Create Account/Sign In\" wall mid-application, or the workday page defaulted the user incorrectly to the create account form upon a return visit.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-29T00:42:53.860Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Technical Lead - ServiceNow",
-    "company": "Reserve Bank of Australia",
-    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Technical-Lead---ServiceNow_JR4275/apply/applyManually?seek-token=Wkj9cYhVnZbhcsLtop6x6c&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-42-51-159Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  The \"Create Account\" modal is visible, seemingly pre-filled with partially obscured values, with the \"Sign In\" button within this form, and \"Already have an account? Sign In\" below.\n2.  The bot likely lost its session and encountered the \"Create Account/Sign In\" wall mid-application, or the Workday page defaulted the user incorrectly to the create account form upon a return visit.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`, assuming that this will correctly redirect the user towards the sign-in functionality."
-  },
-  {
-    "timestamp": "2026-05-29T00:46:00.316Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Product Analyst - Chronic Care",
-    "company": "St Vincent's Health Australia",
-    "url": "https://svha.wd3.myworkdayjobs.com/en-US/broadbean_external/job/NSW---Sydney%2C-CBD%2C-Inner-West-and-Eastern-Suburbs/Functional-Analyst_JR145854/apply/applyManually?seek-token=REuTLPcJCQRa89E3w9CdPC&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-29T00-45-58-184Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is visible, seemingly pre-filled with email, password, and \"Verify New Password\", with the \"Already have an account? Sign In\" link at the bottom.\n2. The bot likely lost its session and encountered the \"Create Account/Sign In\" wall mid-application.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
     "timestamp": "2026-05-29T06:37:53.464Z",
     "error_type": "ats_workday_wall_mid_apply",
     "job_title": "Project Manager",
@@ -4997,6 +4837,166 @@
     "url": "https://secure.dc2.pageuppeople.com/apply/829/aw/applicationForm/initApplication_p.asp",
     "page_title": "",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T08-21-09-979Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:27:55.941Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Project Manager",
+    "company": "BaptistCare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/999/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-27-55-741Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:32:05.184Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Program Experience & Enablement Manager",
+    "company": "Reserve Bank of Australia",
+    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Baulkham-Hills-Sydney/Program-Experience---Enablement-Manager_JR4536/apply/applyManually?seek-token=G9ARswDz7bD93fWSBfEZEw&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-32-04-935Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:35:25.408Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "IT Service Management Specialist",
+    "company": "UTS College",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1182/gateway/Default.aspx?c=apply&sJobIDs=492363&SourceTypeID=801&seek-token=SGCZvaSvwkr3xxUmmeeBPV",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-35-25-231Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:38:04.081Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Program Manager",
+    "company": "G8 Education Limited",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1032/gateway/Default.aspx?c=apply&sJobIDs=521847&SourceTypeID=808&seek-token=ABxcg2ZT17HnwV6mA8T88o",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-38-03-913Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:41:15.572Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Business Analyst",
+    "company": "Virgin Australia",
+    "url": "https://secure.dc2.pageuppeople.com/apply/549/gateway/Default.aspx?c=apply&sJobIDs=509874&SourceTypeID=815&seek-token=Lg9yCokCPyJJPZ5SV4gmH7",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-41-15-407Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:42:48.198Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Program Manager - Customer & Energy markets",
+    "company": "CleanCo Queensland",
+    "url": "https://jobs.cleancoqld.com.au/job/Brisbane-Program-Manager-Customer-&-Energy-markets-QLD/1362277666/",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-42-48-142Z_cover_letter_fill_failed.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:42:48.248Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Program Manager - Customer & Energy markets",
+    "company": "CleanCo Queensland",
+    "url": "https://jobs.cleancoqld.com.au/job/Brisbane-Program-Manager-Customer-&-Energy-markets-QLD/1362277666/",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-42-48-208Z_continue_button_not_found.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:42:50.310Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Program Manager - Customer & Energy markets",
+    "company": "CleanCo Queensland",
+    "url": "https://jobs.cleancoqld.com.au/job/Brisbane-Program-Manager-Customer-&-Energy-markets-QLD/1362277666/",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-42-50-270Z_continue_button_not_found.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:51:50.315Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Project Manager",
+    "company": "Morson Edge",
+    "url": "https://apply.jobadder.com/18353/4443506/sfpsz4ixytcuzkzle5zn62hzza?site=au1&seek-token=GkAiDy8iGC5oL5KuHLFJ1X",
+    "page_title": "Project Manager",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-51-50-065Z_ats_jobadder_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:54:45.972Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Application Support Manager",
+    "company": "Torrens University Australia",
+    "url": "https://strayer.wd1.myworkdayjobs.com/en-US/ANZ_TUA_External1/job/Campus-Surry-Hills/Application-Support-Manager_R30460/apply/applyManually?seek-token=96bWNCxjw6zPC5YjWx4eDV",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-54-45-607Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:55:59.088Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Project Manager",
+    "company": "City of Moreton Bay",
+    "url": "https://secure.dc2.pageuppeople.com/apply/586/cw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-55-58-901Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:56:49.520Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Project Manager Roads and Enabling Works",
+    "company": "Queensland Hydro Pty Ltd",
+    "url": "https://qldhydro.csod.com/ux/ats/careersite/1/home/requisition/27?c=qldhydro&seek-token=TAPbr4MeWM9aRX5SyGNYET&source=seek_oz",
+    "page_title": "Career site",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-56-49-428Z_ats_cornerstone_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T11:57:51.247Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Project Manager Engineering and Design",
+    "company": "Queensland Hydro Pty Ltd",
+    "url": "https://qldhydro.csod.com/ux/ats/careersite/1/requisition/28/application?c=qldhydro&seek-token=7KjBnhcDarey7mgwpHD52W&source=seek_oz&jobboardid=0",
+    "page_title": "qldhydro Career site",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T11-57-51-201Z_ats_cornerstone_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T12:01:23.957Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Senior Manager Third Party Management",
+    "company": "Great Southern Bank",
+    "url": "https://gsb.csod.com/ux/ats/careersite/1/requisition/6374/application?c=gsb&seek-token=SVwQXkADYiavqiqfGeZBPS&source=seek_oz&jobboardid=0",
+    "page_title": "gsb Career site",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T12-01-23-913Z_ats_cornerstone_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T12:04:59.745Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Vulnerability Management Specialist",
+    "company": "Grant Thornton Australia",
+    "url": "https://grantthorntonaus.wd105.myworkdayjobs.com/en-US/GTA/job/Brisbane-Queensland/Vulnerability-Management-Specialist_JR100698/apply/applyManually?source=Seek&seek-token=Un6B8f2t8oPYUe7F32Dztm",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T12-04-59-506Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-04T12:19:30.377Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Systems/Cloud Engineer",
+    "company": "Credit Corp Group Limited",
+    "url": "https://secure.dc2.pageuppeople.com/apply/829/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-04T12-19-30-188Z_ats_pageup_no_submit.png",
     "analysis": "AI analysis unavailable"
   }
 ]
