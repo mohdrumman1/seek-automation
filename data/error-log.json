@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-05-30T06:03:38.713Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Project Manager",
-    "company": "St Vincent's Health Australia",
-    "url": "https://svha.wd3.myworkdayjobs.com/en-US/broadbean_external/job/NSW---Sydney%2C-CBD%2C-Inner-West-and-Eastern-Suburbs/Project-Manager_JR147733/apply/applyManually?seek-token=Y7DBiSi8iJ5FLnUG7zDDzq&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-03-36-450Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  The \"Create Account\" modal is visible, pre-filled with email and password, and it includes an \"Already have an account? Sign In\" link.\n2.  The Workday session likely expired or was otherwise lost, causing the account creation wall to reappear mid-application.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-30T06:14:06.025Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Tech Lead - FTC to March 2027",
-    "company": "Reserve Bank of Australia",
-    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Tech-Lead---FTC-to-March-2027_JR4347/apply/applyManually?seek-token=U8UbjgxdxHa8ty3qJJZvkj&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-14-03-833Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is displayed, pre-filled with email and password, and a \"Sign In\" button. \"Already have an account? Sign In\" is present below the form.\n2. The Workday session likely expired, causing the account creation/sign-in wall to reappear mid-application.\n3. The bot should click the \"Already have an account? Sign In\" link, using either `a:contains('Already have an account? Sign In')` or `.css-1okqi4e`. If that doesn't work, verify the inputs and try clicking the \"Sign In\" button."
-  },
-  {
-    "timestamp": "2026-05-30T06:16:07.530Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Scrum Master",
-    "company": "Peoplebank Australia QLD",
-    "url": "https://au.seek.com/awsk/authorize?id=624ef87c-7c36-4aef-b6a1-1ada100bb2b9",
-    "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-16-05-699Z_ats_pageup_no_submit.png",
-    "analysis": "1.  The screen displays a SEEK authorization request, similar to analysis 2, asking for permission to share profile information with Peoplebank Australia QLD.\n2.  The bot is stuck at this authorization step and hasn't clicked \"Allow access\".\n3.  The bot should use the CSS selector `button:contains('Allow access')` to locate the \"Allow access\" button.\n4.  Then, it should execute a `.click()` action on the found button."
-  },
-  {
-    "timestamp": "2026-05-30T06:17:38.726Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "ICT Principal Infrastructure Engineer",
-    "company": "City of Moreton Bay",
-    "url": "https://secure.dc2.pageuppeople.com/apply/586/cw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-17-36-610Z_ats_pageup_no_submit.png",
-    "analysis": "1.  The screen displays an \"Uh oh...\" error page with an hCaptcha \"I am human\" checkbox.\n2.  The error likely stems from PageUp requiring hCaptcha verification, indicated by the text \"Additional security check is required.\"\n3.  The bot should locate the hCaptcha checkbox using the CSS selector `input[type=\"checkbox\"]`.\n4.  The bot should then execute a `.click()` action on the checkbox."
-  },
-  {
-    "timestamp": "2026-05-30T06:19:25.020Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Lead, Performance and Monitoring",
-    "company": "WorkCover Queensland",
-    "url": "https://secure.dc2.pageuppeople.com/apply/615/gateway/Default.aspx?c=apply&sJobIDs=494395&SourceTypeID=804&seek-token=39kXrkbQdW6AzGG2ogAQVy",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-19-23-244Z_ats_pageup_no_submit.png",
-    "analysis": "1.  The screen shows an \"Uh oh...\" error page with an hCaptcha \"I am human\" checkbox.\n2.  The error is caused by PageUp requiring hCaptcha verification.\n3.  The bot should use the CSS selector `input[type=\"checkbox\"]` to locate the hCaptcha checkbox.\n4.  Then, it should execute a `.click()` action on the checkbox."
-  },
-  {
-    "timestamp": "2026-05-30T06:26:21.169Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Project Manager",
-    "company": "Seqwater",
-    "url": "https://secure.dc2.pageuppeople.com/apply/659/gateway/Default.aspx?c=apply&sJobIDs=500057&SourceTypeID=811&seek-token=TVPVxU8ETUBfEyzHmafPLm",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-26-18-593Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays an \"Uh oh...\" error page with an hCaptcha \"I am human\" checkbox.\n2. The error is caused by PageUp requiring hCaptcha verification, as shown with the text \"Additional security check is required\".\n3. The bot should use the CSS selector `input[type=\"checkbox\"]` to locate the hCaptcha checkbox.\n4. It should then execute a `.click()` action on the checkbox to solve the captcha."
-  },
-  {
-    "timestamp": "2026-05-30T06:27:45.888Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Senior Project Manager",
-    "company": "RPS",
-    "url": "https://tetratech.csod.com/ux/ats/careersite/1/requisition/8327/application?c=tetratech&seek-token=KrGGsD6kVUJ4Q8CmvBWciM&jobboardid=0",
-    "page_title": "tetratech Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-27-43-895Z_ats_cornerstone_no_submit.png",
-    "analysis": "1. A loading spinner is visible, indicating the page is still loading.\n2. The error is occurring because the page is stuck on a loading screen, preventing form interaction.\n3. The bot should wait for the spinner to disappear using `div.spinner-container` before proceeding with form submission. It can retry after waiting for a reasonable period."
-  },
-  {
-    "timestamp": "2026-05-30T06:32:37.781Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "EPMO Delivery Support Office Lead",
-    "company": "Anglicare",
-    "url": "https://anglicare.wd105.myworkdayjobs.com/en-US/Anglicare_Careers/job/Anglicare-Hub-Macquarie-Park/Delivery-Support-Office-Lead_JR7228/apply/applyManually?seek-token=CP3ecKPJ6cQWRBUnvNzekP&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-32-35-420Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is displayed, pre-filled with email and password, including a \"Sign In\" button and an \"Already have an account? Sign In\" link.\n2. The bot likely failed to persist the Workday session, causing the account creation wall to reappear mid-application.\n3. The bot should click the \"Already have an account? Sign In\" link, or if that fails, verify the inputs and try clicking the \"Sign In\" button. A CSS selector to try is `a:contains('Already have an account? Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-30T06:36:38.230Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Leader System Performance and Risk",
-    "company": "Urban Utilities",
-    "url": "https://urbanutilities.wd105.myworkdayjobs.com/en-US/UrbanCareers/job/Fortitude-Valley%2C-Queensland/Leader-System-Performance-and-Risk_R3843/apply/applyManually?seek-token=QvtKoGsAMrQx8KvKUsYG3e&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-36-36-200Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  The \"Create Account\" modal is visible, with fields for email and password pre-filled and a \"Sign In\" button visible. The \"Already have an account? Sign In\" link is also present at the bottom of the modal.\n2.  The Workday session was likely lost; the account creation/sign-in wall reappeared mid-application.\n3.  The bot should now click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-30T06:39:31.034Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Infrastructure Delivery Governance & Assurance Manager",
-    "company": "APA Group",
-    "url": "https://apa.wd105.myworkdayjobs.com/en-US/APA-Careers/job/Brisbane-Ann-Street/Infrastructure-Delivery-Governance---Assurance-Manager_JR4473/apply/applyManually?seek-token=SiacJsQBiH7v3EwHj8UYyG&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-30T06-39-28-874Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The \"Create Account\" modal is visible, pre-filled with email and password, and includes a \"Sign In\" button and an \"Already have an account? Sign In\" link.\n2. The Workday session likely expired and re-displayed the account creation/sign-in prompt.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
     "timestamp": "2026-05-30T06:52:09.113Z",
     "error_type": "ats_jobadder_no_submit",
     "job_title": "Contract Manager",
@@ -4997,6 +4897,106 @@
     "url": "https://secure.dc2.pageuppeople.com/apply/1098/gateway/Default.aspx?c=apply&sJobIDs=493866&SourceTypeID=804&seek-token=YN3LsBxaY52oBd1ML7wSdm",
     "page_title": "",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-05T23-36-18-757Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-06T10:36:24.973Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Manager - Behavioural Science",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Manager---Behavioural-Science_REQ259332/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-06T10-36-24-668Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-06T10:39:32.623Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Early Careers Process Improvement Management",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Early-Careers-Process-Improvement-Management_REQ259715/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-06T10-39-32-301Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-06T10:42:42.364Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Staff Software Engineer, Doshii",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Staff-Software-Engineer--Doshii_REQ259684-1/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-06T10-42-39-341Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-06T10:45:49.787Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Executive Manager, Strategy &amp; Transformation",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Executive-Manager--Strategy---Transformation_REQ259595/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-06T10-45-49-461Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-06T10:49:04.028Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Software Engineer, Doshii",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Software-Engineer--Doshii_REQ259679-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-06T10-49-03-696Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-06T10:52:11.368Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Staff Software Engineer, Doshii",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Staff-Software-Engineer--Doshii_REQ259684-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-06T10-52-11-077Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-06T10:55:18.201Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Software Engineer, x15ventures",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Software-Engineer--x15ventures_REQ259835-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-06T10-55-17-885Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-06T10:58:25.288Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Principal Data Scientist",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Eveleigh%2C-NSW---5-7-Central-Ave/Principal-Data-Scientist_REQ258214/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-06T10-58-24-955Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-06T11:01:32.334Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Chief Engineer",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Chief-Engineer_REQ259218/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-06T11-01-31-961Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-06T11:04:39.458Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Data Engineer (AWS) - 12 Months Fixed Term Contract",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Data-Engineer--AWS----12-Months-Fixed-Term-Contract_REQ256627/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-06T11-04-39-159Z_ats_workday_wall_mid_apply.png",
     "analysis": "AI analysis unavailable"
   }
 ]
