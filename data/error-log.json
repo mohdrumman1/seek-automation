@@ -1,55 +1,5 @@
 [
   {
-    "timestamp": "2026-05-31T21:59:39.355Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Leader System Performance and Risk",
-    "company": "Urban Utilities",
-    "url": "https://urbanutilities.wd105.myworkdayjobs.com/en-US/UrbanCareers/job/Fortitude-Valley%2C-Queensland/Leader-System-Performance-and-Risk_R3843/apply/applyManually?seek-token=E1w7AswFPMh1qzkMEouRmn&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-31T21-59-37-186Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  Both the \"Create Account\" and \"Sign In\" modals are visible and overlapping, with likely password validation errors present.\n2.  Workday likely lost the session after account creation/sign-in and redirected back to account creation, resulting in overlapping modals.\n3.  The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-31T22:00:00.453Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Senior Project Manager",
-    "company": "RPS",
-    "url": "https://tetratech.csod.com/ux/ats/careersite/1/requisition/8327/application?c=tetratech&seek-token=UPrXUNDpmAjtgrxXL6EwJJ&jobboardid=0#1",
-    "page_title": "tetratech Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-31T21-59-57-839Z_ats_cornerstone_no_submit.png",
-    "analysis": "1.  A loading spinner, the job title \"Senior Project Manager,\" a form field, and \"Cancel\" and \"Save\" buttons are visible.\n2. The error is likely caused by the bot attempting to interact with elements before they are fully loaded, indicated by the loading spinner.\n3. The bot should wait for the spinner (likely targeted by CSS selector `div[role=\"progressbar\"]` or similar) to disappear before attempting further actions like filling the form fields. Once the spinner disappears, it can proceed with filling out the application."
-  },
-  {
-    "timestamp": "2026-05-31T22:03:20.872Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Data Engineering & Innovation Lead",
-    "company": "St Vincent's Health Australia",
-    "url": "https://svha.wd3.myworkdayjobs.com/en-US/broadbean_external/job/VIC---Melbourne%2C-CBD-%26-Inner-Suburbs/Data-Engineering---Innovation-Lead_JR146370-1/apply/applyManually?seek-token=MHZkEHs7D8rHPbLryZnDbC&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-31T22-03-18-861Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  The \"Create Account\" and \"Sign In\" modals are both visible and overlapping, with password validation errors displayed on the \"Create Account\" modal. The email address is already pre-filled in the \"Create Account\" form.\n2.  Workday likely lost the session after account creation/sign-in and redirected back to account creation resulting in the overlapping modals.\n3. The bot should click the \"Already have an account? Sign In\" link using the selector `a:contains('Already have an account? Sign In')`."
-  },
-  {
-    "timestamp": "2026-05-31T22:12:53.562Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Performance Specialist",
-    "company": "Thiess",
-    "url": "https://secure.dc2.pageuppeople.com/apply/399/base1/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-31T22-12-51-716Z_ats_pageup_no_submit.png",
-    "analysis": "1.  The screen shows a PageUp \"Uh oh...\" error message and an hCaptcha verification prompt.\n2.  The error is likely due to PageUp's security requiring hCaptcha verification.\n3.  The bot should use the CSS selector `input[type=\"checkbox\"]` to locate the hCaptcha checkbox and `.click()` it to proceed through the verification."
-  },
-  {
-    "timestamp": "2026-05-31T22:13:13.617Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Key Account Manager",
-    "company": "Bellcore",
-    "url": "https://applr.io/l/f0497063?portal=amw&seek-token=FgSnWe7M5ZJMRWS87czW1M",
-    "page_title": "Key Account Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-05-31T22-13-11-515Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays an application form with fields for personal details, CV, cover letter, salary expectations, and notice period.\n2. The error `ats_pageup_no_submit` likely occurred because the bot could not submit the application. It failed to fill a mandatory field, or a validation error occurred because of incorrect data, or the form was not complete.\n3. The bot should ensure all mandatory fields (marked with *) are filled correctly and trigger the \"SEND APPLICATION NOW\" button using its CSS selector. If a validation error is suspected examine the browser console logs for error messages. If not complete wait until the page is complete."
-  },
-  {
     "timestamp": "2026-05-31T22:27:28.323Z",
     "error_type": "ats_workday_no_nav_button",
     "job_title": "Solutions Engineer",
@@ -4997,6 +4947,56 @@
     "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/North-Ryde%2C-New-South-Wales%2C-Australia/Manager-Medical-Affairs--Australia_R-078436-1/apply/applyManually",
     "page_title": "Sign In",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-08T13-04-47-928Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-08T22:04:52.236Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Manager, ASPAC CRM",
+    "company": "Johnson & Johnson",
+    "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/North-Ryde%2C-New-South-Wales%2C-Australia/Manager--ASPAC-CRM_R-079884-1/apply/applyManually",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-08T22-04-51-929Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-08T22:06:00.710Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Team Lead - Data Engineering",
+    "company": "National Heavy Vehicle Regulator",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1123/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-08T22-06-00-434Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-08T22:15:00.618Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Cyber Security Delivery Lead",
+    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
+    "url": "https://apply.jobadder.com/18301/1965863/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=JyoRY7H78q9rZusimJE149",
+    "page_title": "Cyber Security Delivery Lead",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-08T22-15-00-292Z_ats_jobadder_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-08T22:21:58.089Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Manager Medical Affairs, Australia",
+    "company": "Johnson & Johnson",
+    "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/North-Ryde%2C-New-South-Wales%2C-Australia/Manager-Medical-Affairs--Australia_R-078436-1/apply/applyManually",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-08T22-21-57-789Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-06-08T22:30:12.917Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Machine Learning Engineer - South Bank, QLD",
+    "company": "Flight Centre Travel Group",
+    "url": "https://secure.dc2.pageuppeople.com/apply/889/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-08T22-30-12-187Z_ats_pageup_no_submit.png",
     "analysis": "AI analysis unavailable"
   }
 ]
