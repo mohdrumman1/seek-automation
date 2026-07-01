@@ -4290,437 +4290,387 @@
     "analysis": "AI analysis unavailable"
   },
   {
-    "timestamp": "2026-07-01T06:42:40.627Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Program Delivery Lead - Retail Insurance",
-    "company": "Launch Recruitment Pty Ltd",
-    "url": "https://au.seek.com/job/93056348/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T06-42-38-073Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The screen shows the \"Review and submit\" page of a job application on Seek.com.au. A validation error message is present, stating the applicant must address issues before continuing, specifically highlighting an unaccepted privacy policy.\n2. The error is caused by not agreeing to the privacy policy, as indicated by the unchecked checkbox \"Do you agree with the privacy policy?\" and the message \"You must accept to continue.\"\n3. The bot should attempt to click the checkbox associated with the privacy policy agreement. A suitable CSS selector could be `input[type=\"checkbox\"][name*=\"privacy policy\"]` or clicking the associated label text \"Do you agree with the privacy policy?\"."
-  },
-  {
-    "timestamp": "2026-07-01T06:42:43.197Z",
-    "error_type": "continue_button_not_found",
-    "job_title": "Program Delivery Lead - Retail Insurance",
-    "company": "Launch Recruitment Pty Ltd",
-    "url": "https://au.seek.com/job/93056348/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T06-42-40-767Z_continue_button_not_found.png",
-    "analysis": "1. The screen displays the \"Review and submit\" page of a job application. A warning indicates that issues must be addressed before continuing. Specifically, the privacy policy checkbox is unticked.\n2. The error \"continue_button_not_found\" occurred because the \"Submit application\" button is disabled. It's disabled because the \"Do you agree with the privacy policy?\" checkbox is unchecked.\n3. The bot should click the checkbox next to \"Do you agree with the privacy policy?\". A good CSS selector would be `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]` or a more general `input[type=\"checkbox\"]` followed by a check for the associated text."
-  },
-  {
-    "timestamp": "2026-07-01T06:42:47.428Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Program Delivery Lead - Retail Insurance",
-    "company": "Launch Recruitment Pty Ltd",
-    "url": "https://au.seek.com/job/93056348/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T06-42-44-707Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Review and submit\" page of a job application is visible. A red error banner states \"Before you can continue... please address the following issues.\" Below the \"Employer questions\" section, there's an unchecked checkbox for \"Do you agree with the privacy policy?\" with a validation message \"You must accept to continue.\"\n2. The error was caused by the bot failing to check the privacy policy agreement checkbox, which is a mandatory step to proceed with the application.\n3. The bot should locate the checkbox associated with the privacy policy and click it. A CSS selector like `input[type=\"checkbox\"][name*=\"privacy\"]` or targeting the label `label:contains(\"privacy policy\")` and then its associated input would be effective."
-  },
-  {
-    "timestamp": "2026-07-01T06:49:46.808Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Senior Project Officer - Data Manager",
-    "company": "The Recruitment Company",
-    "url": "https://au.seek.com/job/93055347/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T06-49-44-229Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Review and submit\" page of the job application is visible, with a warning indicating issues need addressing before continuing. Specifically, there's an unchecked checkbox for a privacy policy agreement under \"Employer questions.\"\n2. The error occurs because the applicant has not agreed to the privacy policy, as stated by \"You must accept to continue\" next to the unchecked checkbox.\n3. The bot should click the checkbox associated with the privacy policy. A suitable CSS selector would be `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]` or directly clicking the label element \"Do you agree to the privacy policy of The Outsourced Recruitment Company?\"."
-  },
-  {
-    "timestamp": "2026-07-01T06:49:49.259Z",
-    "error_type": "continue_button_not_found",
-    "job_title": "Senior Project Officer - Data Manager",
-    "company": "The Recruitment Company",
-    "url": "https://au.seek.com/job/93055347/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T06-49-46-947Z_continue_button_not_found.png",
-    "analysis": "1. The \"Review and submit\" page of a job application is visible. A warning states that issues must be addressed, specifically the unchecked privacy policy box which shows \"You must accept to continue\".\n2. The \"continue_button_not_found\" error occurred because the \"Submit application\" button is disabled until the privacy policy checkbox is ticked.\n3. The bot should click the checkbox associated with \"Do you agree to the privacy policy of The Outsourced Recruitment Company?\". A good CSS selector would be `input[type=\"checkbox\"][aria-label*=\"privacy\"]`."
-  },
-  {
-    "timestamp": "2026-07-01T06:49:53.116Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Senior Project Officer - Data Manager",
-    "company": "The Recruitment Company",
-    "url": "https://au.seek.com/job/93055347/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T06-49-50-769Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Review and submit\" page is displayed with a red error banner at the top. Under \"Employer questions,\" there's an unchecked checkbox related to agreeing to the privacy policy, accompanied by a validation message \"You must accept to continue.\"\n2. The error was caused by the bot failing to check the mandatory privacy policy agreement checkbox.\n3. The bot should locate and click the privacy policy checkbox. A suitable CSS selector would be `input[type=\"checkbox\"][name*=\"privacy\"]` or `input[type=\"checkbox\"]` followed by a check for a sibling or parent label containing \"privacy policy\"."
-  },
-  {
-    "timestamp": "2026-07-01T06:50:31.678Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Project Manager",
-    "company": "BaptistCare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/999/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T06-50-28-521Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays an error page from PageUp titled \"Uh oh...\", indicating something went wrong, and an \"Additional security check is required\" message with an hCaptcha checkbox.\n2. The error was caused by the PageUp application's security system detecting unusual activity, triggering an hCaptcha to verify the user is human.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox, likely by targeting the input element with `type=\"checkbox\"` or, more reliably, by interacting with the hCaptcha API if integrated."
-  },
-  {
-    "timestamp": "2026-07-01T06:55:31.646Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Portfolio Manager",
-    "company": "University of New South Wales",
-    "url": "https://secure.dc2.pageuppeople.com/apply/841/gateway/Default.aspx?c=apply&sJobIDs=540477&SourceTypeID=807&seek-token=J5ygemwyK6BFSH1tCGM6CP",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T06-55-29-657Z_ats_pageup_no_submit.png",
-    "analysis": "1. A PageUp error page with the title \"Uh oh...\", indicating something went wrong, and a message \"Additional security check is required\" followed by an hCaptcha \"I am human\" checkbox.\n2. The error was caused by PageUp's security system flagging the browsing as unusual, requiring human verification via hCaptcha.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox, targeting the input element associated with the text 'I am human'."
-  },
-  {
-    "timestamp": "2026-07-01T06:57:03.094Z",
+    "timestamp": "2026-07-01T10:23:14.287Z",
     "error_type": "ats_pageup_no_submit",
     "job_title": "Senior Manager Cyber Security & Business Systems, Clerk Grade 11/12",
     "company": "State Emergency Service",
-    "url": "https://secure.dc2.pageuppeople.com/apply/1197/gateway/Default.aspx?c=apply&sJobIDs=493554&SourceTypeID=803&seek-token=gN3GR5V1CrD7kk3JmDNYe",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1197/aw/applicationForm/initApplication_p.asp",
     "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T06-57-00-888Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page titled \"Uh oh...\" with a message indicating an issue and a requirement for an \"Additional security check\", presenting an hCaptcha with an \"I am human\" checkbox.\n2. The error was caused by PageUp's security system flagging the request as potentially suspicious, triggering an hCaptcha verification to confirm the user is human.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox, using a CSS selector such as `input[type=\"checkbox\"][aria-labelledby=\"h-captcha-label\"]` or by targeting the text label associated with the checkbox."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-23-11-749Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays an error page from PageUp, stating \"Uh oh... It looks like something has gone wrong.\" It indicates an \"Additional security check is required\" from secure.dc2.pageuppeople.com, and presents an hCaptcha checkbox (\"I am human\").\n\n2. This error was caused by a security check, likely a bot detection mechanism, preventing the automation from proceeding without human verification (hCaptcha).\n\n3. The bot should attempt to click the \"I am human\" checkbox, identified by the CSS selector `input[type=\"checkbox\"]` within the hCaptcha iframe, and then handle the hCaptcha challenge."
   },
   {
-    "timestamp": "2026-07-01T06:58:04.479Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Technical Project Manager",
-    "company": "Cerebral Palsy Alliance",
-    "url": "https://cpalliance.wd3.myworkdayjobs.com/en-US/CerebralPalsyAlliance/job/Allambie-Heights%2C-NSW%2C-Australia/Technical-Project-Manager_JR-0000006623/apply/applyManually?seek-token=B3y5i5kpCZBLpLbbkg2Zhc&source=Seek",
-    "page_title": "Technical Project Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T06-58-02-133Z_ats_workday_no_submit.png",
-    "analysis": "1. The \"My Information\" step of a Workday application form is visible, showing personal details, email, and phone information. An error message, \"Errors Found - Phone Number,\" indicates that the \"Phone Number\" field is required.\n\n2. This error was caused by the bot attempting to proceed to the next step without providing a value in the mandatory \"Phone Number\" field.\n\n3. The bot should input a valid phone number into the input field next to the \"Phone Number *\" label, with CSS selector `input[data-automation-id=\"numeric-text-input\"]` (or similar for phone fields) before clicking the \"Next\" button."
+    "timestamp": "2026-07-01T10:25:46.426Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Program Delivery Lead - Retail Insurance",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/93056348/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-25-43-388Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is shown, displaying a validation error message: \"Before you can continue... please address the following issues.\" Specifically, it indicates that a privacy policy agreement is missing: \"Do you agree with the privacy policy? You must accept to continue.\"\n2. The error is caused by not selecting the checkbox for \"Do you agree with the privacy policy?\", which is a mandatory field to proceed with the application.\n3. The bot should attempt to click the checkbox associated with the label \"Do you agree with the privacy policy?\". A suitable CSS selector would be `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]` or a parent element `label:contains(\"Do you agree with the privacy policy?\") input`."
   },
   {
-    "timestamp": "2026-07-01T07:15:35.991Z",
+    "timestamp": "2026-07-01T10:25:49.775Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Program Delivery Lead - Retail Insurance",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/93056348/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-25-46-564Z_continue_button_not_found.png",
+    "analysis": "1. The \"Review and submit\" page of a job application on Seek.com.au. It shows an error message indicating issues need addressing before continuing, specifically the privacy policy acceptance.\n2. The bot encountered this error because it didn't agree with the privacy policy, which is a required step before submission. The \"Submit application\" button is visible but non-clickable.\n3. The bot should try clicking the checkbox associated with \"Do you agree with the privacy policy?\" or the text \"Click here to view\" (to open the policy and potentially satisfy the condition).\n4. Specifically, try clicking on a CSS selector that targets the checkbox, e.g., `input[type=\"checkbox\"]` or an element related to \"Do you agree with the privacy policy?\"."
+  },
+  {
+    "timestamp": "2026-07-01T10:25:54.227Z",
+    "error_type": "auto_skip_still_blocked",
+    "job_title": "Program Delivery Lead - Retail Insurance",
+    "company": "Launch Recruitment Pty Ltd",
+    "url": "https://au.seek.com/job/93056348/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-25-51-283Z_auto_skip_still_blocked.png",
+    "analysis": "1. A \"Review and submit\" page is shown, with a warning indicating \"Before you can continue with the application, please address the following issues\". The specific issue highlighted is an unchecked privacy policy consent checkbox.\n2. The bot is blocked because it has not clicked the \"Do you agree with the privacy policy?\" checkbox, which is a required step before submission. The previous fix did not cover single required checkboxes.\n3. The bot needs to identify and click the checkbox associated with \"Do you agree with the privacy policy?\". A robust CSS selector could be `input[type=\"checkbox\"][name*=\"privacy\"]` or `label:contains(\"privacy policy\") + input[type=\"checkbox\"]`."
+  },
+  {
+    "timestamp": "2026-07-01T10:26:57.720Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Project Manager",
+    "company": "BaptistCare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/999/gateway/Default.aspx?c=apply&sJobIDs=498680&SourceTypeID=805&seek-token=5qekM1ChMAhFHmFhQMSXpY",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-26-55-297Z_ats_pageup_no_submit.png",
+    "analysis": "1. An error page from PageUp, with the message \"Uh oh... It looks like something has gone wrong.\" It indicates an \"Additional security check is required\" and presents an hCaptcha checkbox (\"I am human\").\n2. The error was caused by a security check (hCaptcha) preventing the automation from proceeding without human verification.\n3. The bot should attempt to click the \"I am human\" checkbox, identified by the CSS selector `div.h-captcha input[type=\"checkbox\"]` (assuming the checkbox is within the hCaptcha widget iframe)."
+  },
+  {
+    "timestamp": "2026-07-01T10:40:16.194Z",
     "error_type": "ats_jobadder_no_submit",
     "job_title": "Master Scheduler",
     "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1971572/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=KT5rBBEfB7hduyTbWgK6b9",
+    "url": "https://apply.jobadder.com/18301/1971572/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=ECz8MkppaFd9gNMqyNiMDQ",
     "page_title": "Master Scheduler",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T07-15-32-665Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible, partially obscured by a \"Want to apply later?\" modal. The form fields are mostly filled, including personal details, attachments (a resume is uploaded), and declarations.\n2. The error was likely caused by the bot not being able to find and click the \"Apply Now\" (submit) button, possibly due to the \"Want to apply later?\" modal covering it, or because the button was not yet ready due to missing required fields (postcode).\n3. The bot should first attempt to close the \"Want to apply later?\" modal by clicking the 'X' button or \"Cancel\". Then, it needs to fill the missing \"Postcode\" field before attempting to click the \"Apply Now\" button."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-40-13-558Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A JobAdder application form is visible, partially obscured by a \"Want to apply later?\" modal window. The form has personal details and attachments sections, and some fields are pre-filled.\n2. The error was caused by the bot attempting to interact with the page while the \"Want to apply later?\" modal was open, preventing form submission.\n3. The bot should try clicking the \"X\" button on the modal (`button[aria-label=\"Close\"]` or similar) to close it before attempting to submit the form again."
   },
   {
-    "timestamp": "2026-07-01T07:17:51.999Z",
+    "timestamp": "2026-07-01T10:42:17.971Z",
     "error_type": "ats_pageup_no_submit",
     "job_title": "Senior Data Scientist & Delivery Manager",
     "company": "Peoplebank Australia QLD",
-    "url": "https://au.seek.com/awsk/authorize?id=6f5d9862-01c1-4792-953b-17a8b360e612",
+    "url": "https://au.seek.com/awsk/authorize?id=448e6bbc-01b8-4095-833d-76c7003fc07d",
     "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T07-17-49-711Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a consent page from Seek, asking to allow Peoplebank Australia QLD to access the user's SEEK Profile for job application pre-filling. It shows the user's email and \"Allow access\" and \"Not now\" buttons.\n2. The previous errors related to a PageUp hCaptcha, but this page is a Seek consent screen, indicating the bot likely bypassed the hCaptcha or it was not triggered this time. This isn't an error, but a step in the application process.\n3. The bot should click the \"Allow access\" button to proceed with the application. A specific CSS selector would be `button:contains('Allow access')`."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-42-14-843Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a Seek.com.au page asking a user (mohdrumman1@gmail.com) to grant \"Peoplebank Australia QLD via Idibu\" access to their SEEK Profile to pre-fill a job application. It includes details about the data that will be shared and provides \"Allow access\" and \"Not now\" buttons.\n2. The error was caused by the bot not interacting with this access request page, specifically not clicking \"Allow access\".\n3. The bot should click the \"Allow access\" button to proceed. A suitable CSS selector for this would be `button:contains(\"Allow access\")`."
   },
   {
-    "timestamp": "2026-07-01T07:25:36.551Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Senior Delivery Lead – Cloud",
-    "company": "PM-Partners Group",
-    "url": "https://au.seek.com/job/93057687/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T07-25-34-143Z_unanswered_questions.png",
-    "analysis": "1. The screenshot shows the \"Answer employer questions\" step of a job application on Seek.com.au. Several questions, including \"Are you currently employed?\", \"Are you available for short term contract work?\", \"How many weeks' notice are you required to give your current employer?\", and \"Which of the following statements best describes your right to work in Australia?\", are visible.\n\n2. The bot has successfully answered the first three questions but failed to answer the fourth question: \"Which of the following statements best describes your right to work in Australia?\". This is an unanswered question error.\n\n3. The specific CSS selector to target the unanswered question is likely a dropdown menu or select element. The bot should click on the dropdown related to \"Which of the following statements best describes your right to work in Australia?\" and then select the appropriate option based on the candidate's profile."
+    "timestamp": "2026-07-01T10:46:49.365Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Technical Project Manager",
+    "company": "Cerebral Palsy Alliance",
+    "url": "https://cpalliance.wd3.myworkdayjobs.com/en-US/CerebralPalsyAlliance/job/Allambie-Heights%2C-NSW%2C-Australia/Technical-Project-Manager_JR-0000006623/apply/applyManually?seek-token=HLmt4pMboJ4sfDzPqoxnSw&source=Seek",
+    "page_title": "Technical Project Manager",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-46-46-833Z_ats_workday_no_submit.png",
+    "analysis": "1. The screen displays the \"My Information\" step of a Workday application, showing form fields for personal details. An \"Errors Found\" banner indicates that the \"Phone Number\" field is required but empty.\n2. The bot failed to fill in the required \"Phone Number\" field before attempting to proceed, leading to a validation error.\n3. The bot should try to locate and input a value into the \"Phone Number\" text field, which appears to be a required input (likely using `data-automation-id=\"phoneNumber\"` or a similar selector if available). Then, it should click the \"Next\" button."
   },
   {
-    "timestamp": "2026-07-01T07:30:47.380Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Head of Tech Delivery - Workers Compensation",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T07-30-45-360Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the title \"Uh oh...\", indicating something went wrong, and a message \"Additional security check is required\" followed by an hCaptcha \"I am human\" checkbox.\n2. The error was caused by PageUp's security system flagging the browsing as unusual, requiring human verification via hCaptcha.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox. A specific CSS selector would be `input[type=\"checkbox\"][aria-labelledby=\"h-captcha-label\"]` or by targeting the text label associated with the checkbox."
+    "timestamp": "2026-07-01T10:50:28.664Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Senior Project Officer - Data Manager",
+    "company": "The Recruitment Company",
+    "url": "https://au.seek.com/job/93055347/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-50-15-094Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is shown, displaying an error message stating \"Before you can continue... please address the following issues.\" It specifically highlights that the privacy policy agreement is missing: \"Do you agree to the privacy policy? You must accept to continue.\"\n2. This error is caused by not selecting the checkbox for \"Do you agree to the privacy policy?\" which is a mandatory field to proceed.\n3. The bot should attempt to click the checkbox associated with the label \"Do you agree to the privacy policy?\". A suitable CSS selector would be `label:has(span:contains(\"Do you agree to the privacy policy?\")) input[type=\"checkbox\"]` or similar given the specific HTML structure."
   },
   {
-    "timestamp": "2026-07-01T07:37:08.308Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Senior Engineering Manager",
-    "company": "Mirvac",
-    "url": "https://mirvac.csod.com/ux/ats/careersite/1/requisition/4932/application?c=mirvac&seek-token=CjiZAeGhYYFXQYAvaEHJgr&source=seek_oz&jobboardid=0#1",
-    "page_title": "mirvac Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T07-37-04-614Z_ats_cornerstone_no_submit.png",
-    "analysis": "1. The screen displays Step 1 of 4 of an application form, titled \"Contact information\" and \"Diversity Questions,\" with demographic and personal details like name, email, and various diversity-related dropdowns and text fields, many marked as required. The bot has filled in First name, Last name, and E-mail.\n2. The error was likely caused by not selecting options for the dropdown menus marked \"This question is required\" or not filling in the required text fields within the \"Diversity Questions\" section. The bot also did not click the \"Next\" button.\n3. The bot should locate and select valid options for all required dropdown menus (e.g., `select[aria-label^=\"Were you or at least one of your parents born overseas?\"]`, `select[aria-label^=\"What languages other than English do you speak at home?\"]`, etc.) and fill in all required text fields (e.g., `input[aria-label^=\"What is your work rights status in Australia?\"]`). Finally, the bot should click the \"Next\" button using the selector `button:has-text(\"Next\")`."
+    "timestamp": "2026-07-01T10:50:31.389Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Senior Project Officer - Data Manager",
+    "company": "The Recruitment Company",
+    "url": "https://au.seek.com/job/93055347/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-50-28-791Z_continue_button_not_found.png",
+    "analysis": "1. The Seek \"Review and submit\" application page is visible, showing a warning that \"Before you can continue with the application, please address the following issues.\" Specifically, the privacy policy acceptance checkbox is unchecked with a \"You must accept to continue\" error.\n2. The error was caused because the bot did not accept the privacy policy, which is a required step to proceed with the application.\n3. The bot should try clicking the checkbox associated with \"Do you agree to the privacy policy of The Outsourced Recruitment Company?\" (CSS selector for this checkbox)."
   },
   {
-    "timestamp": "2026-07-01T07:42:38.888Z",
-    "error_type": "ats_teamtailor_no_submit",
-    "job_title": "AO8 Project Manager",
-    "company": "Troocoo People Advisory",
-    "url": "https://economicdevelopmentqueensland.au.teamtailor.com/jobs/377-ao8-project-manager/applications/new?promotion=14-seek-incl-jobstreet-and-jobsdb&seek-token=EDbigFkrhB3BEynukkWEoQ",
-    "page_title": "AO8 Project Manager - Economic Development Queensland",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T07-42-35-207Z_ats_teamtailor_no_submit.png",
-    "analysis": "1. The application form is visible, with several required fields marked with an asterisk, and some fields showing validation errors (\"Can't be blank\" and \"Number can't be blank\"). The \"Submit application\" button is visible at the bottom.\n2. The error was caused by incomplete required fields *before* the bot attempted to submit. Specifically, \"Source\" and \"Salary Expectation\" have not been filled out, and \"Australian work rights\" is also missing. The privacy policy checkbox is ticked correctly.\n3. The bot should first fill in the required fields indicated by the \"Can't be blank\" messages before attempting to submit again. Specifically, for the \"Source\" and \"Australian work rights\" fields, the bot needs to interact with the dropdown elements to select an option (likely using a CSS selector like `select[name=\"source\"]` or similar for the dropdowns). For \"Salary Expectation,\" the bot needs to input a numerical value into the text input field."
+    "timestamp": "2026-07-01T10:50:35.573Z",
+    "error_type": "auto_skip_still_blocked",
+    "job_title": "Senior Project Officer - Data Manager",
+    "company": "The Recruitment Company",
+    "url": "https://au.seek.com/job/93055347/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-50-32-897Z_auto_skip_still_blocked.png",
+    "analysis": "1. A \"Review and submit\" page for a job application is visible, with a warning indicating required issues, specifically neglecting to agree to a privacy policy.\n2. The error is caused by the bot failing to check and agree to the privacy policy checkbox, which is a single required checkbox, not a multi-select group.\n3. The bot should try to click the checkbox using a CSS selector such as `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]` or by finding the associated label for \"Do you agree to the privacy policy\" and then clicking the connected input."
   },
   {
-    "timestamp": "2026-07-01T07:43:15.429Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Engineering and Specialist Services Manager",
-    "company": "City of Moreton Bay",
-    "url": "https://secure.dc2.pageuppeople.com/apply/586/cw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T07-43-13-196Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page titled \"Uh oh...\", indicating \"something has gone wrong\" and that an \"Additional security check is required,\" with an hCaptcha \"I am human\" checkbox visible.\n2. The error was caused by PageUp's security system detecting unusual activity, triggering an hCaptcha verification to confirm the user is human.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox, using the CSS selector `input[type=\"checkbox\"][aria-labelledby=\"h-captcha-label\"]` or by targeting the text label associated with the checkbox."
-  },
-  {
-    "timestamp": "2026-07-01T07:47:07.311Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Head of Tech Delivery - General Insurance & Care",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/gateway/Default.aspx?c=apply&sJobIDs=498816&SourceTypeID=804&seek-token=9eypeaymVuSFPuSvgv5We2",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T07-47-05-191Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the title \"Uh oh...\" and a message stating \"Additional security check is required,\" along with an hCaptcha \"I am human\" checkbox.\n2. The error was caused by PageUp's security system flagging the request as unusual, necessitating an hCaptcha to verify the user is not a bot.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox.\n4. A specific CSS selector would be `input[type=\"checkbox\"][aria-labelledby=\"h-captcha-label\"]` or by targeting the text label associated with the checkbox."
-  },
-  {
-    "timestamp": "2026-07-01T07:48:07.695Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Head of Technology Delivery - Enterprise",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/gateway/Default.aspx?c=apply&sJobIDs=498814&SourceTypeID=804&seek-token=Wkxvyqz5seVpAhXLUZcVib",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T07-48-05-725Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page saying \"Uh oh...\" and \"It looks like something has gone wrong.\" Underneath, it states \"Additional security check is required\" and shows an hCaptcha \"I am human\" checkbox.\n2. The error was caused by PageUp's security system detecting unusual activity, triggering an hCaptcha to verify the user is human.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox, using the CSS selector `input[type=\"checkbox\"]` or by targeting the text label associated with the checkbox."
-  },
-  {
-    "timestamp": "2026-07-01T07:49:35.857Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Senior Manager Third Party Management",
-    "company": "Great Southern Bank",
-    "url": "https://gsb.csod.com/ux/ats/careersite/1/home/requisition/6374?c=gsb&seek-token=CD8n4ML7ghGGkZMrwvh9b3&source=seek_oz",
-    "page_title": "Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T07-49-34-010Z_ats_cornerstone_no_submit.png",
-    "analysis": "1. The screen displays \"This job is not available.\" with a \"Back to Search\" link. The Great Southern Bank logo is present, along with \"Sign in,\" \"Create Profile,\" and a language selection dropdown in the top right.\n2. The error was caused because the job requisition (6374) is no longer available on the carrier’s website, meaning previous steps would lead to this same error.\n3. The bot should click the \"Back to Search\" link using the selector `a:has-text(\"Back to Search\")` to return to the job search page."
-  },
-  {
-    "timestamp": "2026-07-01T08:07:18.908Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Full Stack Tech Lead",
-    "company": "Torrens University Australia",
-    "url": "https://strayer.wd1.myworkdayjobs.com/en-US/ANZ_TUA_External1/job/Campus-Surry-Hills/Full-Stack-Tech-Lead_R30617-1/apply/applyManually?seek-token=2WLxZYKLGVygjWnkLVjwBe",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-07-16-233Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" modal is displayed, prompting the user to either create a new account or sign in, with fields for Email Address, Password, and Verify New Password. The previous steps of the application process (My Information, My Experience) are visible in the background.\n2. The error was likely caused by the Workday account wall reappearing mid-application during job wizard navigation, possibly due to a session expiration or cross-tenant navigation, requiring re-authentication or account creation.\n3. The bot should attempt to use credentials to sign in using the \"Already have an account? Sign In\" link or the 'Sign In' button within the 'Email Address' field if an account exists. If not, it should proceed to fill in the 'Verify New Password' field and click 'Create Account'.\n4. Specific CSS selectors to target would be the \"Sign In\" link (for existing accounts) or the \"Create Account\" button (for new accounts)."
-  },
-  {
-    "timestamp": "2026-07-01T08:09:10.368Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Engineering Manager - Quality Engineering",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-09-08-207Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page titled \"Uh oh...\", indicating \"something has gone wrong\" and that an \"Additional security check is required\". An hCaptcha \"I am human\" checkbox is visible.\n2. The error was caused by PageUp's security system detecting unusual activity, triggering an hCaptcha verification to confirm the user is human.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox.\n4. A specific CSS selector for the checkbox is `input[type=\"checkbox\"]` or by targeting the text label associated with the checkbox."
-  },
-  {
-    "timestamp": "2026-07-01T08:13:16.854Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Engineering Lead",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/gateway/Default.aspx?c=apply&sJobIDs=498810&SourceTypeID=804&seek-token=UK3ap6pHBhJY6CHwwZkeoi",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-13-14-882Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the title \"Uh oh...\", indicating \"something has gone wrong\" and that an \"Additional security check is required\". An hCaptcha \"I am human\" checkbox is visible.\n2. The error was caused by PageUp's security system detecting unusual activity, triggering an hCaptcha verification to confirm the user is human.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox.\n4. A specific CSS selector for the checkbox is `input[type=\"checkbox\"]` or by targeting the text label associated with the checkbox."
-  },
-  {
-    "timestamp": "2026-07-01T08:15:50.748Z",
+    "timestamp": "2026-07-01T10:54:08.977Z",
     "error_type": "ats_pageup_no_submit",
     "job_title": "Manager - DevOps Capability",
     "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/gateway/Default.aspx?c=apply&sJobIDs=498812&SourceTypeID=804&seek-token=SkMMuFF1zbRdfi2ehkgQWd",
+    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
     "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-15-48-473Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page titled \"Uh oh...\", indicating \"something has gone wrong\" and that an \"Additional security check is required\". An hCaptcha \"I am human\" checkbox is visible.\n2. The error was caused by PageUp's security system detecting unusual activity, triggering an hCaptcha verification to confirm the user is human.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox. A specific CSS selector for the checkbox is `input[type=\"checkbox\"]` or by targeting the text label associated with the checkbox."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-54-06-644Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page saying \"Uh oh... It looks like something has gone wrong.\" It indicates an \"Additional security check is required\" and presents an hCaptcha checkbox (\"I am human\").\n2. The error was caused by a bot detection mechanism (hCaptcha) preventing the automation from proceeding without human verification.\n3. The bot should attempt to click the \"I am human\" checkbox. A suitable CSS selector for this would be `div.h-captcha_checkbox`."
   },
   {
-    "timestamp": "2026-07-01T08:24:14.441Z",
+    "timestamp": "2026-07-01T10:56:22.394Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Engineering and Specialist Services Manager",
+    "company": "City of Moreton Bay",
+    "url": "https://secure.dc2.pageuppeople.com/apply/586/gateway/Default.aspx?c=apply&sJobIDs=501345&SourceTypeID=806&seek-token=HsRZH5eDRqgud5pRryMeqe",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-56-20-374Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page stating \"Uh oh... It looks like something has gone wrong.\" It indicates an \"Additional security check is required\" and presents an hCaptcha checkbox (\"I am human\").\n2. The error was caused again by a bot detection mechanism (hCaptcha) preventing the automation from proceeding without human verification.\n3. The bot should attempt to click the \"I am human\" checkbox, identified by the CSS selector `div.h-captcha input[type=\"checkbox\"]` (assuming the checkbox is within the hCaptcha widget iframe)."
+  },
+  {
+    "timestamp": "2026-07-01T10:57:59.455Z",
+    "error_type": "ats_teamtailor_no_submit",
+    "job_title": "AO8 Project Manager",
+    "company": "Troocoo People Advisory",
+    "url": "https://economicdevelopmentqueensland.au.teamtailor.com/jobs/377-ao8-project-manager/applications/new?promotion=14-seek-incl-jobstreet-and-jobsdb&seek-token=Uq52GxcGFzwSvE3f9GtpBC",
+    "page_title": "AO8 Project Manager - Economic Development Queensland",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-57-56-567Z_ats_teamtailor_no_submit.png",
+    "analysis": "1. The application form is visible, with several fields partially filled or selected. Crucially, three dropdown fields and one number input field are showing \"Can't be blank\" warnings.\n2. The error was caused by missing mandatory information in the 'Source', 'Salary Expectation', and 'Australian work rights' fields. The submit button is still disabled despite the privacy checkbox being ticked.\n3. The bot should select options for the 'Source' and 'Australian work rights' dropdowns, and input a numerical value into the 'Salary Expectation' field. The CSS selectors for these are likely `.field__input--select` and `.field__input--numeric`."
+  },
+  {
+    "timestamp": "2026-07-01T10:59:41.475Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Head of Tech Delivery - General Insurance & Care",
+    "company": "icare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/914/gateway/Default.aspx?c=apply&sJobIDs=498816&SourceTypeID=804&seek-token=V9Pnkey81PNRPwr2ofbgn9",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-59-38-922Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page stating \"Uh oh... It looks like something has gone wrong.\" It indicates an \"Additional security check is required\" with an hCaptcha \"I am human\" checkbox.\n2. The error was caused by a bot detection mechanism (hCaptcha) requiring human verification.\n3. The bot should attempt to click the \"I am human\" checkbox, using the CSS selector `div.h-captcha input[type=\"checkbox\"]`."
+  },
+  {
+    "timestamp": "2026-07-01T11:00:44.872Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Head of Tech Delivery - Workers Compensation",
+    "company": "icare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/914/gateway/Default.aspx?c=apply&sJobIDs=498815&SourceTypeID=804&seek-token=DHNyS1ZDAtb2e2yV7dcAPK",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-00-42-126Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page stating \"Uh oh... It looks like something has gone wrong.\" It indicates an \"Additional security check is required\" and presents an hCaptcha checkbox (\"I am human\").\n2. The error was caused by a bot detection mechanism (hCaptcha) preventing the automation from proceeding without human verification.\n3. The bot should attempt to click the \"I am human\" checkbox. A suitable CSS selector for this would be `input[type=\"checkbox\"][aria-label=\"I am human\"]`."
+  },
+  {
+    "timestamp": "2026-07-01T11:01:45.489Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Head of Technology Delivery - Enterprise",
+    "company": "icare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/914/gateway/Default.aspx?c=apply&sJobIDs=498814&SourceTypeID=804&seek-token=2W28JFcy3BPfVdkpYtoE7D",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-01-43-235Z_ats_pageup_no_submit.png",
+    "analysis": "1. A PageUp error page is visible, stating \"It looks like something has gone wrong\" and indicating \"Additional security check is required\" with an hCaptcha \"I am human\" checkbox.\n2. The error was caused by a bot detection mechanism (hCaptcha) requiring human verification to proceed.\n3. The bot should attempt to click the \"I am human\" checkbox. A suitable CSS selector for this would be `input[type=\"checkbox\"][aria-label=\"I am human\"]`."
+  },
+  {
+    "timestamp": "2026-07-01T11:02:44.396Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Senior Manager Third Party Management",
+    "company": "Great Southern Bank",
+    "url": "https://gsb.csod.com/ux/ats/careersite/1/home/requisition/6374?c=gsb&seek-token=44bCs8taGCrz3t6aCaa19w&source=seek_oz",
+    "page_title": "Career site",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-02-41-898Z_ats_cornerstone_no_submit.png",
+    "analysis": "1. The page displays the Great Southern Bank logo and navigation links (\"Sign in\", \"Create Profile\", \"English (UK)\"). Crucially, it states: \"This job is not available.\"\n2. The error was caused because the requested job (Senior Manager Third Party Management @ Great Southern Bank) is no longer available on the career site. This is a dead link or expired job posting.\n3. The bot should attempt to click the \"Back to Search\" link to return to the job listings. A potential CSS selector for this would be: `a[href*=\"careersite/1/home?c=gsb\"]` or `a:contains(\"Back to Search\")`."
+  },
+  {
+    "timestamp": "2026-07-01T11:04:36.483Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Manager, Digital Engagement",
+    "company": "WorkCover Queensland",
+    "url": "https://secure.dc2.pageuppeople.com/apply/615/gateway/Default.aspx?c=apply&sJobIDs=494477&SourceTypeID=804&seek-token=BbUAk2xQumBPprwzs9GU9G",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-04-33-398Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page stating \"Uh oh... It looks like something has gone wrong.\" It indicates an \"Additional security check is required\" with an hCaptcha \"I am human\" checkbox.\n2. The error was caused by a bot detection mechanism (hCaptcha) requiring human verification.\n3. The bot should attempt to click the \"I am human\" checkbox. A suitable CSS selector for this would be `input[type=\"checkbox\"][aria-label=\"I am human\"]`."
+  },
+  {
+    "timestamp": "2026-07-01T11:15:33.604Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Engineering Lead",
+    "company": "icare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-15-31-154Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page stating \"Uh oh... It looks like something has gone wrong.\" It indicates an \"Additional security check is required\" and presents an hCaptcha checkbox (\"I am human\").\n2. The error was caused by a bot detection mechanism (hCaptcha) preventing the automation from proceeding without human verification.\n3. The bot should attempt to click the \"I am human\" checkbox. A suitable CSS selector for this would be `input[type=\"checkbox\"][aria-label=\"I am human\"]`."
+  },
+  {
+    "timestamp": "2026-07-01T11:25:06.925Z",
     "error_type": "ats_jobadder_no_submit",
     "job_title": "Platform Data Engineer AWS",
     "company": "DWS Limited",
-    "url": "https://apply.jobadder.com/16850/1971394/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=MGKCoupNedCr6HM7bq4QXE",
+    "url": "https://apply.jobadder.com/16850/1971394/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=9UVReAqHxZWXEwV6HSeewJ",
     "page_title": "Platform Data Engineer AWS",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-24-12-470Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible, partially obscured by a \"Want to apply later?\" modal. The form fields are mostly filled. Another missing field is the salary.\n2. The bot clicked the \"Apply Now\" button without filling the \"expected annual salary\" field, which is required. The \"Want to apply later?\" modal is still present, possibly preventing field completion or submission.\n3. The bot should dismiss the \"Want to apply later?\" modal first using the 'X' button or \"Cancel\", then fill the required \"expected annual salary\" field, and finally, attempt to click the \"Apply Now\" button again."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-25-04-782Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A JobAdder application form is visible, partially obscured by a \"Want to apply later?\" modal window. The form has personal details and attachments sections, and some fields are pre-filled.\n2. The error was caused by the bot attempting to interact with the page while the \"Want to apply later?\" modal was open, preventing form submission.\n3. The bot should try clicking the \"X\" button on the modal (`button[aria-label=\"Close\"]` or `[aria-label=\"Close\"]` or an equivalent CSS selector) to close it before attempting to submit the form again."
   },
   {
-    "timestamp": "2026-07-01T08:25:48.304Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Data Engineer",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93031568/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-25-45-825Z_validation_errors_blocking_continue.png",
-    "analysis": "1.  The \"Review and submit\" page for a job application on Seek.com.au is displayed. There's a validation error indicating that issues need to be addressed before continuing, specifically highlighting an unaccepted privacy policy.\n2.  The error is caused by the bot not selecting the checkbox to agree to the privacy policy, as indicated by the unchecked box and the message \"You must accept to continue.\"\n3.  The bot should attempt to click the checkbox associated with \"Do you agree to the privacy policy of Marlin Human Capital?\". A suitable CSS selector would be `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]` or clicking the associated label."
-  },
-  {
-    "timestamp": "2026-07-01T08:25:50.876Z",
-    "error_type": "continue_button_not_found",
-    "job_title": "Data Engineer",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93031568/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-25-48-442Z_continue_button_not_found.png",
-    "analysis": "1. The \"Review and submit\" page of a job application is displayed. An alert box indicates issues need to be addressed, specifically an unchecked privacy policy box under \"Employer questions\". The \"Submit application\" button is visible but likely disabled.\n2. The \"continue_button_not_found\" error was caused by the \"Submit application\" button being disabled because the privacy policy checkbox was not selected.\n3. The bot should click the checkbox associated with \"Do you agree to the privacy policy of Marlin Human Capital?\". A suitable CSS selector is `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]`."
-  },
-  {
-    "timestamp": "2026-07-01T08:25:54.897Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Data Engineer",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93031568/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-25-52-387Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Review and submit\" page is displayed with a red error banner at the top. There's an unchecked checkbox for a privacy policy agreement with a validation message \"You must accept to continue.\"\n2. The error was caused by the bot failing to check the mandatory privacy policy agreement checkbox.\n3. The bot should locate and click the privacy policy checkbox. A suitable CSS selector would be `input[type=\"checkbox\"][name*=\"privacy\"]` or `label:has(span:contains(\"privacy policy\")) input[type=\"checkbox\"]`."
-  },
-  {
-    "timestamp": "2026-07-01T08:41:49.193Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "AI/ML Engineer",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1971835/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=EvkBgrKiyPvAnNZp4NoHMu",
-    "page_title": "AI/ML Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-41-46-816Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible, mostly filled out, but overlayed by a \"Want to apply later?\" modal. The \"Postcode\" field is still empty, and the \"Apply Now\" button is present at the bottom.\n2. The error occurred because the required \"Postcode\" field was not filled, preventing successful submission, and the bot likely attempted to submit without closing the persistent modal.\n3. The bot should first close the \"Want to apply later?\" modal by clicking the 'X' button or 'Cancel'. Then, it should fill the \"Postcode\" field, and finally, click the 'Apply Now' button at the bottom of the form."
-  },
-  {
-    "timestamp": "2026-07-01T08:45:36.454Z",
+    "timestamp": "2026-07-01T11:32:02.672Z",
     "error_type": "ats_workday_wall_mid_apply",
     "job_title": "Gameplay Developer",
     "company": "Boeing Australia Holdings",
     "url": "https://boeing.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREERS/job/AUS---Brisbane%2C-Australia/Gameplay-Developer_JR2026517017/apply/applyManually",
     "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-45-34-098Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" modal is displayed, prompting the user to either create a new account or sign in, with fields for Email Address, Password, and Verify New Password. The previous steps of the application process (My Information, My Experience) are visible in the background.\n2. The error was likely caused by the Workday account wall reappearing mid-application during job wizard navigation, possibly due to a session expiration or cross-tenant navigation, requiring re-authentication or account creation.\n3. The bot should attempt to use credentials to sign in using the \"Already have an account? Sign In\" link or the 'Sign In' button within the 'Email Address' field if an account exists. If not, it should proceed to fill in the 'Verify New Password' field and click 'Create Account'.\n4. Specific CSS selectors to target would be the \"Sign In\" link (for existing accounts) or the \"Create Account\" button (for new accounts)."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-31-59-392Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1.  A \"Create Account\" pop-up/dialog is visible on screen, overlaying the job application pages.\n2.  The error was likely caused by the bot attempting to sign in or create an account, but instead of proceeding with the application, it encountered a persistent \"Create Account\" pop-up. The URL shows `signIn` indicating a session drop.\n3.  The bot should either click the \"Sign In\" link at the bottom of the pop-up if an account already exists, or fill out the \"Create Account\" form and click \"Create Account\" if a new account is needed. If the pop-up is due to a dropped session after a successful sign-in, it should attempt to sign in again via the \"Sign In\" link within the pop-up."
   },
   {
-    "timestamp": "2026-07-01T08:51:28.940Z",
+    "timestamp": "2026-07-01T11:40:57.235Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "AI/ML Engineer",
+    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
+    "url": "https://apply.jobadder.com/18301/1971835/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=CpKfznJaFj12Y7jHt6PHJL",
+    "page_title": "AI/ML Engineer",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-40-54-911Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A JobAdder application form is visible, partially obscured by a \"Want to apply later?\" modal window. The form has personal details and attachments sections, and some fields are pre-filled.\n2. The error was caused by the bot attempting to interact with the page while the \"Want to apply later?\" modal was open, preventing form submission.\n3. The bot should try clicking the \"X\" button on the modal (`button[aria-label=\"Close\"]` or similar) to close it before attempting to submit the form again."
+  },
+  {
+    "timestamp": "2026-07-01T11:44:10.114Z",
     "error_type": "ats_cornerstone_no_submit",
     "job_title": "Senior Test Analyst",
     "company": "Great Southern Bank",
-    "url": "https://gsb.csod.com/ux/ats/careersite/1/requisition/6391/application?c=gsb&seek-token=7x2cdvM5PHaXMBP4uSMbx1&source=seek_oz&jobboardid=0#1",
+    "url": "https://gsb.csod.com/ux/ats/careersite/1/requisition/6391/application?c=gsb&seek-token=Cd4ZGW6jJXCyGLjsMzPb6X&source=seek_oz&jobboardid=0#1",
     "page_title": "gsb Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-51-26-806Z_ats_cornerstone_no_submit.png",
-    "analysis": "1. The screen displays the Great Southern Bank logo and \"Senior Test Analyst\" as a title. A gray box with a loading spinner is visible, along with \"Cancel\" and \"Save\" buttons underneath.\n2. The error was likely caused by the page getting stuck in a loading state, preventing any interaction with the application form.\n3. The bot should wait for the loader to disappear or for a form field to become visible, or refresh the page and try again if the loader persists for too long."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-44-07-798Z_ats_cornerstone_no_submit.png",
+    "analysis": "1. The screen displays the Great Southern Bank logo and the job title \"Senior Test Analyst\". A grey box with a white loading spinner is visible, along with \"Cancel\" and \"Save\" buttons underneath.\n2. The error is caused by the page getting stuck during the loading of the application form, indicated by the continuous spinner.\n3. The bot should wait for the spinner element to disappear, e.g., using `element_to_be_invisible('#spinner_id')`. If it times out, reloading the page or navigating back to the search results might be necessary."
   },
   {
-    "timestamp": "2026-07-01T08:59:34.568Z",
+    "timestamp": "2026-07-01T11:48:05.164Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Full Stack Tech Lead",
+    "company": "Torrens University Australia",
+    "url": "https://strayer.wd1.myworkdayjobs.com/en-US/ANZ_TUA_External1/job/Campus-Surry-Hills/Full-Stack-Tech-Lead_R30617-1/apply/applyManually?seek-token=4UuqvFGvMXanoZSwhikrxM",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-48-02-253Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" or \"Sign In\" overlay is visible, prompting the user for email and password input. This overlay is obscuring the main job application wizard.\n2. The error was likely caused by the bot attempting to proceed with or continuing an application and encountering an unexpected (re-)authentication wall from Workday due to a dropped session, redirecting to the sign-in page.\n3. The bot should attempt to click the \"Sign In\" link (CSS selector: `a[data-automation-id=\"signInLink\"]` or similar) to proceed if an account exists, or \"Create Account\" (CSS selector: `button[data-automation-id=\"createAccountButton\"]` or similar) after filling the details, depending on its account status."
+  },
+  {
+    "timestamp": "2026-07-01T11:53:33.406Z",
     "error_type": "ats_teamtailor_no_submit",
     "job_title": "Senior Platform Engineer",
     "company": "Pet Circle",
-    "url": "https://petcircle-1744336448.teamtailor.com/jobs/7982343-senior-platform-engineer?seek-token=BrbPQnPc8cCo555XfibwR1",
+    "url": "https://petcircle-1744336448.teamtailor.com/jobs/7982343-senior-platform-engineer?seek-token=JUgwUfq3dGwaUWAGhT2xVw",
     "page_title": "Senior Platform Engineer - Pet Circle",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T08-59-31-641Z_ats_teamtailor_no_submit.png",
-    "analysis": "1. The job description, \"Senior Platform Engineer,\" is visible along with two questions at the top related to accessibility needs and full working rights in Australia. An \"Apply now\" button is horizontally center aligned in the middle of the screen.\n2. The error was caused because the \"Do you have full working rights in Australia?\" question and \"Can you please confirm your salary expectations?\" field are still unanswered and mandatory fields.\n3. The bot needs to select a radio button (\"Yes\" or \"No\") for Australian working rights using a selector like `input[name=\"australian_work_rights\"][value=\"yes\"]` and input a value into the salary expectation field using a selector like `input[name=\"salary_expectation\"]`."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-53-29-673Z_ats_teamtailor_no_submit.png",
+    "analysis": "1. The current screen shows the \"Senior Platform Engineer\" job description on Pet Circle's Teamtailor page. Below the job description, partially visible, are application form fields asking about accessibility requirements, Australian work rights, and salary expectations. The \"Apply now\" button is also visible.\n2. The error was likely caused by mandatory fields in the application form not being filled, specifically the \"Australian work rights\" radio buttons and the \"Salary Expectation\" input field.\n3. The bot needs to select either \"Yes\" or \"No\" for the \"Do you have full working rights in Australia?\" question using CSS selectors for radio buttons (e.g., `input[type=\"radio\"][value=\"true\"]` or `input[type=\"radio\"][value=\"false\"]`) and input a numerical value into the \"Can you please confirm your salary expectations?\" field using its CSS selector (likely `input[type=\"number\"]` or a similarly targeted text input)."
   },
   {
-    "timestamp": "2026-07-01T09:17:26.062Z",
+    "timestamp": "2026-07-01T11:59:42.175Z",
     "error_type": "validation_errors_blocking_continue",
     "job_title": "Staff Engineer - Cyber Security",
     "company": "Launch Recruitment Pty Ltd",
     "url": "https://au.seek.com/job/93030658/apply/review",
     "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T09-17-23-703Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Review and submit\" page is displayed, showing a pending application for \"Staff Engineer - Cyber Security\". There's a validation error indicating that issues need to be addressed, specifically regarding an unaccepted privacy policy checkbox.\n2. The error is caused by the bot failing to click the checkbox to agree to the privacy policy, as indicated by the unchecked box and the message \"You must accept to continue.\"\n3. The bot should attempt to click the checkbox or its label for \"Do you agree with the privacy policy?\". A suitable CSS selector, robust for label-first clicking, would be `label:contains(\"Do you agree with the privacy policy?\")`."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-59-39-515Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is shown, displaying a validation error message prompting to address issues, specifically stating \"Do you agree with the privacy policy? You must accept to continue.\"\n2. The error is caused by not selecting the checkbox for \"Do you agree with the privacy policy?\", which is a mandatory field.\n3. The bot should click the checkbox associated with the label \"Do you agree with the privacy policy?\". A suitable CSS selector would be `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]` or `label:contains(\"Do you agree with the privacy policy?\") input[type=\"checkbox\"]`."
   },
   {
-    "timestamp": "2026-07-01T09:17:28.403Z",
+    "timestamp": "2026-07-01T11:59:44.917Z",
     "error_type": "continue_button_not_found",
     "job_title": "Staff Engineer - Cyber Security",
     "company": "Launch Recruitment Pty Ltd",
     "url": "https://au.seek.com/job/93030658/apply/review",
     "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T09-17-26-198Z_continue_button_not_found.png",
-    "analysis": "1. The \"Review and submit\" page for a job application is displayed. There is a warning about unaddressed issues, specifically that the privacy policy checkbox is not checked and states \"You must accept to continue\".\n2. The error was caused because the \"Submit application\" button is disabled until the privacy policy checkbox is ticked.\n3. The bot should click the checkbox associated with \"Do you agree with the privacy policy?\". A suitable CSS selector is `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]`."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-59-42-312Z_continue_button_not_found.png",
+    "analysis": "1. The Seek \"Review and submit\" application page is visible, showing a warning that \"Before you can continue with the application, please address the following issues.\" It also highlights a privacy policy acceptance section with an unchecked box and the error \"You must accept to continue.\"\n2. The error was caused because the bot did not accept the privacy policy, which is a required step to proceed with the application.\n3. The bot should try clicking the checkbox associated with \"Do you agree with the privacy policy?\" to resolve the error. A possible CSS selector is `input[type=\"checkbox\"][aria-labelledby]`."
   },
   {
-    "timestamp": "2026-07-01T09:17:32.321Z",
+    "timestamp": "2026-07-01T11:59:49.217Z",
     "error_type": "auto_skip_still_blocked",
     "job_title": "Staff Engineer - Cyber Security",
     "company": "Launch Recruitment Pty Ltd",
     "url": "https://au.seek.com/job/93030658/apply/review",
     "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T09-17-29-915Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Review and submit\" page is displayed with a red error banner at the top. An unchecked checkbox for \"Do you agree with the privacy policy?\" is visible with the validation message \"You must accept to continue.\"\n2. The error is caused by the bot failing to check the mandatory privacy policy agreement checkbox.\n3. The bot should locate and click the privacy policy checkbox. A specific CSS selector to try is `input[type=\"checkbox\"][name^=\"PrivacyTermsAndConditions\"]` or `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]`."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-59-46-425Z_auto_skip_still_blocked.png",
+    "analysis": "1. The \"Review and submit\" page is displayed, highlighting an error: the privacy policy checkbox is unchecked and a warning states \"You must accept to continue\".\n2. The error was caused by the bot failing to click the single, required privacy policy consent checkbox. The \"KNOWN FIX APPLIED\" was for multi-select checkbox groups, not individual consent checkboxes.\n3. The bot should try to click the checkbox associated with \"Do you agree with the privacy policy?\" using a CSS selector such as `input[type=\"checkbox\"][name*=\"privacy\"]` or by targeting its immediate parent div or label."
   },
   {
-    "timestamp": "2026-07-01T09:26:21.861Z",
+    "timestamp": "2026-07-01T12:11:10.332Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Cyber Security Solution Architect",
+    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
+    "url": "https://apply.jobadder.com/18301/1972144/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=GjGsK8igbqEiMnNNPdyn35",
+    "page_title": "Cyber Security Solution Architect",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-11-07-789Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A JobAdder application form is visible, partially obscured by a \"Want to apply later?\" modal window. The form has personal details and attachments sections, and some fields are pre-filled.\n2. The error was caused by the bot attempting to interact with the page while the \"Want to apply later?\" modal was open, preventing form submission.\n3. The bot should try clicking the \"X\" button on the modal (`button[aria-label=\"Close\"]` or similar) to close it before attempting to submit the form again."
+  },
+  {
+    "timestamp": "2026-07-01T12:14:29.804Z",
+    "error_type": "validation_errors_blocking_continue",
+    "job_title": "Data Engineer",
+    "company": "Marlin Human Capital",
+    "url": "https://au.seek.com/job/93031568/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-14-26-735Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is displayed, showing a general validation error and a specific error related to the privacy policy agreement. The error message \"Do you agree to the privacy policy of Marlin Human Capital? You must accept to continue\" is visible.\n2. The error is caused by not selecting the checkbox for the privacy policy agreement, which is a mandatory field to proceed with the application.\n3. The bot should attempt to click the checkbox associated with the label \"Do you agree to the privacy policy of Marlin Human Capital?\". A suitable CSS selector would be `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]` or `[aria-label*=\"Do you agree to the privacy policy of Marlin Human Capital?\"]`."
+  },
+  {
+    "timestamp": "2026-07-01T12:14:33.035Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Data Engineer",
+    "company": "Marlin Human Capital",
+    "url": "https://au.seek.com/job/93031568/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-14-29-939Z_continue_button_not_found.png",
+    "analysis": "1. The \"Review and submit\" page of a job application on Seek.com.au is visible. There's a warning \"Before you can continue... please address the following issues\" and a specific highlighted issue: \"Do you agree to the privacy policy of Marlin Human Capital?\" with an un-checked box and an error message \"You must accept to continue.\"\n2. This error was caused because the bot did not agree to the privacy policy, which is a mandatory step before submitting the application.\n3. The bot should try clicking the checkbox associated with \"Do you agree to the privacy policy of Marlin Human Capital?\". A suitable CSS selector could be `input[type=\"checkbox\"][aria-labelledby]` or a specific selector for the unchecked box and its parent elements in that section."
+  },
+  {
+    "timestamp": "2026-07-01T12:14:45.222Z",
+    "error_type": "auto_skip_still_blocked",
+    "job_title": "Data Engineer",
+    "company": "Marlin Human Capital",
+    "url": "https://au.seek.com/job/93031568/apply/review",
+    "page_title": "Review and submit | SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-14-34-544Z_auto_skip_still_blocked.png",
+    "analysis": "1. The \"Review and submit\" page is shown with a warning \"Before you can continue with the application, please address the following issues\", specifically pointing to an unchecked privacy policy consent checkbox with the text \"Do you agree to the privacy policy of Marlin Human Capital?\" and \"You must accept to continue\".\n2. The bot is blocked because it has not clicked the required single privacy policy consent checkbox. The fix for multi-select checkbox groups did not cover this specific single required checkbox.\n3. The bot should try to click the input element associated with the privacy policy consent using a CSS selector like `input[type=\"checkbox\"][aria-label*=\"privacy\"]` or `label:has(span:contains(\"privacy policy\")) input[type=\"checkbox\"]`."
+  },
+  {
+    "timestamp": "2026-07-01T12:16:15.249Z",
     "error_type": "validation_errors_blocking_continue",
     "job_title": "Senior AI Engineer",
     "company": "Enterprise Group Consulting",
     "url": "https://au.seek.com/job/93041869/apply/review",
     "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T09-26-19-287Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Review and submit\" page for a job application on Seek.com.au is displayed, showing a validation error that requires addressing issues before continuing. Specifically, there is an unchecked checkbox for a privacy policy agreement.\n2. The error is caused by the bot not clicking the checkbox to agree to the privacy policy, as indicated by the message \"You must accept to continue.\"\n3. The bot should click the checkbox associated with \"Do you agree to the privacy policy of Enterprise Group Consulting?\".\n4. A suitable CSS selector for this action would be `input[type=\"checkbox\"][aria-label*=\"Do you agree to the privacy policy of Enterprise Group Consulting\"]` or clicking the associated `label` element."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-16-12-771Z_validation_errors_blocking_continue.png",
+    "analysis": "1. The \"Review and submit\" page is shown, displaying an error message \"Before you can continue... please address the following issues.\" and highlighting \"Do you agree to the privacy policy of Enterprise Group Consulting? You must accept to continue.\"\n2. The error is caused by not selecting the checkbox for the privacy policy agreement.\n3. The bot should click the checkbox associated with the label \"Do you agree to the privacy policy of Enterprise Group Consulting?\". A suitable CSS selector would be `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]` or `[aria-label*=\"Do you agree to the privacy policy of Enterprise Group Consulting?\"]`."
   },
   {
-    "timestamp": "2026-07-01T09:26:24.715Z",
+    "timestamp": "2026-07-01T12:16:17.700Z",
     "error_type": "continue_button_not_found",
     "job_title": "Senior AI Engineer",
     "company": "Enterprise Group Consulting",
     "url": "https://au.seek.com/job/93041869/apply/review",
     "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T09-26-21-974Z_continue_button_not_found.png",
-    "analysis": "1. The \"Review and submit\" page of a job application is displayed. There's a warning about unaddressed issues, specifically the unchecked privacy policy box and the message \"You must accept to continue\". The \"Submit application\" button is visible but likely disabled.\n2. The \"continue_button_not_found\" error was caused by the \"Submit application\" button being disabled because the privacy policy checkbox was not selected.\n3. The bot should click the checkbox associated with \"Do you agree to the privacy policy of Enterprise Group Consulting?\". A suitable CSS selector is `input[type=\"checkbox\"][aria-label*=\"privacy\"]`."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-16-15-372Z_continue_button_not_found.png",
+    "analysis": "1. The Seek \"Review and submit\" application page is visible, showing a warning that \"Before you can continue... please address the following issues.\" It also highlights a privacy policy acceptance section with an unchecked box and the error \"You must accept to continue.\"\n2. The error was caused because the bot did not accept the privacy policy, which is a required step to proceed with the application.\n3. The bot should try clicking the checkbox associated with \"Do you agree to the privacy policy of Enterprise Group Consulting?\" to resolve the error. A possible CSS selector is `input[type=\"checkbox\"][aria-labelledby]`."
   },
   {
-    "timestamp": "2026-07-01T09:26:29.068Z",
+    "timestamp": "2026-07-01T12:16:21.854Z",
     "error_type": "auto_skip_still_blocked",
     "job_title": "Senior AI Engineer",
     "company": "Enterprise Group Consulting",
     "url": "https://au.seek.com/job/93041869/apply/review",
     "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T09-26-26-226Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Review and submit\" page is displayed, with a red banner stating \"Before you can continue... please address the following issues\". Under \"Employer questions,\" a checkbox for agreeing to a privacy policy is unchecked, and a validation message \"You must accept to continue\" is present.\n2. The bot failed to check the mandatory privacy policy agreement checkbox. The fix for multi-select checkbox groups did not apply to this single, mandatory checkbox often found outside such groups.\n3. The bot should specifically target and click the privacy policy checkbox. A reliable CSS selector would be `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]` or `input[type=\"checkbox\"][name*=\"privacy\"]` in conjunction with checking for the presence of the \"You must accept to continue\" message."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-16-19-210Z_auto_skip_still_blocked.png",
+    "analysis": "1. The \"Review and submit\" page is displayed with a caution: \"Before you can continue... address the following issues.\" Specifically, it indicates an unchecked privacy policy consent checkbox stating, \"Do you agree to the privacy policy of Enterprise Group Consulting?\" with a warning below it, \"You must accept to continue\".\n2. The bot is blocked because it has not clicked the required single privacy policy consent checkbox. The fix for multi-select checkbox groups did not account for this specific individual consent checkbox.\n3. The bot should try to click the input element associated with the privacy policy consent using a CSS selector such as `input[type=\"checkbox\"][aria-label*=\"privacy\"]` or `input[type=\"checkbox\"][name*=\"privacy\"]`."
   },
   {
-    "timestamp": "2026-07-01T09:33:40.978Z",
+    "timestamp": "2026-07-01T12:20:39.955Z",
     "error_type": "ats_pageup_no_submit",
     "job_title": "Head of Technology - Workplace Operations",
     "company": "icare",
     "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
     "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T09-33-39-047Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page titled \"Uh oh...\", indicating \"something has gone wrong\" and that an \"Additional security check is required\". An hCaptcha \"I am human\" checkbox is visible.\n2. The error was caused by PageUp's security system detecting unusual activity, triggering an hCaptcha verification.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox, using the CSS selector `input[type=\"checkbox\"]` or by targeting the text label associated with the checkbox."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-20-37-824Z_ats_pageup_no_submit.png",
+    "analysis": "1. A PageUp error page is visible, stating \"Uh oh... It looks like something has gone wrong\" and indicating \"Additional security check is required\" with an hCaptcha \"I am human\" checkbox.\n2. The error was caused by a bot detection mechanism (hCaptcha) requiring human verification.\n3. The bot should attempt to click the \"I am human\" checkbox, using the CSS selector `input[type=\"checkbox\"][aria-label=\"I am human\"]`."
   },
   {
-    "timestamp": "2026-07-01T09:40:49.129Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Principal Product Architect - Managed Services",
-    "company": "Datacom",
-    "url": "https://au.seek.com/job/93023162/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T09-40-46-763Z_unanswered_questions.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible, showing partially filled questions. The \"Pronouns\" and \"Datacom is an equal opportunities employer...\" questions have answers.\n2. The bot failed to answer the dropdown question \"Which of the following statements best describes your right to work in Australia/New Zealand?\"\n3. The bot should click the dropdown element for the right to work question (likely a `select` or `div[role=\"combobox\"]`) and then select the appropriate option from the displayed list."
-  },
-  {
-    "timestamp": "2026-07-01T09:46:26.222Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Data Modeller | Snowflake",
-    "company": "Billigence",
-    "url": "https://apply.jobadder.com/17858/4450709/sqnamq6rkfweplzicgktzku4we?site=au1&seek-token=FREWzP9VmRSgVHYBPtsU1n",
-    "page_title": "Senior Data Modeller | Snowflake",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T09-46-24-221Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible, mostly filled out, but it is obscured by a persistent \"Want to apply later?\" modal.\n2. The error occurred because the \"Want to apply later?\" modal is still present, preventing interaction with the \"Apply Now\" button or the remainder of the form.\n3. The bot should click the 'X' button or 'Cancel' button within the modal to close it first, then click the \"Apply Now\" button.\nThe CSS selector for the 'X' button is likely `div.modal-body button.close` or similar depending on the JobAdder modal structure."
-  },
-  {
-    "timestamp": "2026-07-01T10:01:23.948Z",
+    "timestamp": "2026-07-01T12:33:52.154Z",
     "error_type": "ats_jobadder_no_submit",
     "job_title": "Group Product Manager, Digital",
     "company": "Sharp & Carter Sales and Marketing",
-    "url": "https://apply.jobadder.com/18325/1972382/yp2pouaulf3efo2xhahzelwk7y?site=au2&seek-token=jhbirAJXukW2Ps9mC2UJS",
+    "url": "https://apply.jobadder.com/18325/1972382/yp2pouaulf3efo2xhahzelwk7y?site=au2&seek-token=GSb2MkA9XdBAuAkvdXPyuh",
     "page_title": "Group Product Manager, Digital",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-01-21-539Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible, mostly filled out, but overlayed by a \"Want to apply later?\" modal. The \"Postcode\" field is still empty, and the \"Apply Now\" button at the bottom is greyed out.\n2. The error occurred because the bot is still unable to submit the form due to the \"Want to apply later?\" modal obscuring the page and the \"Postcode\" field being empty. The \"Apply Now\" button is disabled, likely due to the missing required field.\n3. The bot should first close the \"Want to apply later?\" modal by clicking the 'X' button or 'Cancel'. Then, it needs to fill the \"Postcode\" field to enable the \"Apply Now\" button before attempting to submit the form."
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-33-49-383Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A JobAdder application form and a \"Want to apply later?\" modal are both visible. The modal partially obscures the form, which has pre-filled personal details and attachments sections, but the \"Apply Now\" button is clear.\n2. The error was caused by the \"Want to apply later?\" modal appearing and the bot not dismissing it, preventing intended interactions with the application form, possibly including submission.\n3. The bot should click the 'X' button on the modal (`button[aria-label=\"Close\"]`) to close it, then proceed with the form submission."
   },
   {
-    "timestamp": "2026-07-01T10:07:08.638Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Product Specialist",
-    "company": "Toyota Finance Australia",
-    "url": "https://toyotaau.wd3.myworkdayjobs.com/en-US/broadbean_external/job/NSW---Grosvenor-Place/Product-Specialist_R000007079-1/apply/applyManually?seek-token=GAF5EVzoPwsUaSb6E7jVUH&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T10-07-04-704Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" modal is displayed mid-application requiring account creation or sign-in, with \"Email Address\", \"Password\", and \"Verify New Password\" fields. The application wizard steps (My Information, My Experience, etc.) are visible in the background. An embedded \"Sign In\" button is confusingly present within the email field.\n2. The error was caused by a Workday account wall reappearing unexpectedly mid-application, probably due to a session expiration or cross-tenant navigation, forcing the bot to re-authenticate or create an account.\n3. The bot should prioritize clicking the \"Sign In\" link (\":root > div > main > div > div > form > section > div.wd-grid.wd-grid-col-2 > div:nth-child(2) > article > div.css-1e427rk > div > div > div > a\") at the bottom of the modal if an account exists using existing credentials. If not, it should proceed to fill all required fields and click the \"Create Account\" button (\":root > div > main > div > div > form > section > div.wd-grid.wd-grid-col-2 > div:nth-child(2) > article > div.css-1e427rk > button\")."
-  },
-  {
-    "timestamp": "2026-07-01T10:09:02.128Z",
+    "timestamp": "2026-07-01T12:35:49.203Z",
     "error_type": "ats_pageup_no_submit",
     "job_title": "*Enterprise Product Catalogue Manager",
     "company": "Cleanaway Operations Pty Ltd",
