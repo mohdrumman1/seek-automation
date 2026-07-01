@@ -34,6 +34,7 @@ jobs:
 
     env:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      OPENROUTER_MODEL: 'google/gemini-2.5-flash'
       SEEK_EMAIL: ${{ secrets.SEEK_EMAIL }}
       SEEK_SESSION_COOKIES: ${{ secrets.SEEK_SESSION_COOKIES }}
       CANDIDATE_PHONE: ${{ secrets.CANDIDATE_PHONE }}
@@ -66,6 +67,7 @@ jobs:
         run: |
           {
             echo "OPENROUTER_API_KEY=${OPENROUTER_API_KEY}"
+            echo "OPENROUTER_MODEL=${OPENROUTER_MODEL}"
             echo "SEEK_EMAIL=${SEEK_EMAIL}"
             echo "CANDIDATE_PHONE=${CANDIDATE_PHONE}"
             echo "CANDIDATE_LINKEDIN=${CANDIDATE_LINKEDIN}"
