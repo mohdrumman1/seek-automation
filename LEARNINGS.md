@@ -4,6 +4,79 @@ Append new entries at the TOP, separated by `---`.
 
 ---
 
+## 2026-07-01 — 30-day audit: OpenRouter model deprecation, resume-selector placeholder bug, second page.goto crash site, ATS selector drift
+
+**Tags:** openrouter, gemini, model-deprecation, resume-selector, placeholder, playwright, page.goto, nav-timeout, ats, pageup, jobadder, cornerstone, teamtailor, workday, submit-selector, audit
+**Status:** Fixed
+
+**Issue:** 30-day GitHub Actions audit surfaced 6 clusters degrading apply rate:
+1. Every OpenRouter call 404'd on `google/gemini-2.0-flash-001` → all resume tailoring + all vision analyzer calls failed, cascading to base cover-letter + no error analysis.
+2. `lib/resume-selector.ts` fell back to `bestIdx = 0` when no keyword matched — index 0 is SEEK's disabled `"Please select a resumé"` placeholder. `selectOption({ index: 0 })` timed out at 30s and every job in the run failed `unexpected_error`.
+3. PageUp `ats_pageup_no_submit` persisting at 10–13/run (submit-button selectors too narrow across tenants).
+4. JobAdder/Cornerstone/Teamtailor/Workday intermittent submit failures from similar selector drift.
+5. Regression of the 2026-05-31 SERP-nav fix — the *second* `page.goto` in `scripts/apply.ts` (per-job detail nav, ~line 178) was still unwrapped and could crash the whole main loop (run 27105508574).
+6. No alarm signal when Workday falls back to creating a new account, which is the marker for a password rotation the user must handle manually.
+
+**Investigation:** `grep -n google/gemini` narrowed to a single ref in `lib/openrouter.ts:7`. Read `lib/resume-selector.ts` lines 80–122 and traced fallback to `bestIdx = 0` when `bestScore === 0`. `rg -n 'page\.goto\(' scripts/ lib/` mapped all nav call sites; only the SERP one (~150) was wrapped by commit `3a006a3`. Read each ATS handler to confirm submit-button selectors + failure-path `captureAndAnalyze` presence.
+
+**Root cause:**
+1. `lib/openrouter.ts:7` hard-coded a single deprecated model id; `withRetry` correctly treats 404 as non-retryable but the log line didn't call out deprecation.
+2. `lib/resume-selector.ts:90` initialised `bestIdx = firstRealIdx >= 0 ? firstRealIdx : 0` but the loop *then* iterated over *all* options including index-0 placeholder; when nothing scored > 0 the initial value stuck at 0. Also `PLACEHOLDER_RE` did not match `"Please select a resumé"` because of the trailing accented character.
+3. Per-tenant CSS drift on ATS submit buttons — narrow `has-text("Submit")` selector lists miss "Submit application" variants, `data-test-id` / `data-cy` attrs, `input[type=submit]`, and role-button patterns.
+4. `scripts/apply.ts:178` used raw `page.goto(url)` (Playwright default: 30s, `waitUntil: 'load'`), no try/catch — the same crash pattern as the 2026-05-31 fix.
+5. Workday `signInOrCreateAccount` logged account creation as `info` — invisible next to normal apply chatter.
+
+**Fix:**
+- `lib/openrouter.ts:7-11` — swap default to `google/gemini-2.5-flash`; add `OPENROUTER_MODEL` + `OPENROUTER_VISION_MODEL` env overrides; separate `MODEL` (text) and `VISION_MODEL` (vision) so the vision call uses the right constant at line 65. `lib/openrouter.ts:24-32` — when status === 404 log an explicit `error`-level line: `"OpenRouter model may be deprecated — set OPENROUTER_MODEL env to override"` with the model id. Retry semantics unchanged.
+- `lib/resume-selector.ts:87-115` — broaden `PLACEHOLDER_RE` to match `"please\s+select"` and `"select a resum"` (partial match, no `$` anchor). Skip placeholder-labeled options *inside* the scoring loop. Add hard invariant right before `selectOption`: if the resolved index still points to a placeholder-labeled option, throw `resume_no_valid_option`. Add `logger.debug` right before the click capturing `chosenIndex`, `chosenLabel`, `totalOptions`.
+- `lib/platforms/seek.ts:910-919` — wrap `selectResume` in try/catch; on `resume_no_valid_option` return `{ success: false, failureReason: 'resume_no_valid_option' }` instead of letting the throw become a generic `unexpected_error`.
+- `scripts/apply.ts:178-195` — wrap per-job `page.goto` in try/catch with `{ timeout: 60_000, waitUntil: 'domcontentloaded' }`; on failure log `job nav failed — skipping job`, record `failureReason: 'nav_timeout'`, `continue`. Same treatment applied to Indeed search nav (~line 305) and Indeed per-job nav (~line 335).
+- `lib/apply-utils.ts:75-81` — wrap the single-URL entry `page.goto` (same treatment).
+- `lib/platforms/indeed.ts:237-243` — wrap the external-ATS nav (slowest, most timeout-prone). Log + return `nav_timeout` failure instead of crashing.
+- `lib/ats/pageup.ts:108-125` — broaden submit-button selector: adds `"Submit application"`, `button[type="submit"]`, `input[type="submit"]`, `[data-test-id*="submit"]`, `[data-testid*="submit"]`, `[data-cy*="submit"]`, `.submit-btn`, `.js-submit-application`, `[role="button"]:has-text("Submit")`. `tickConsentCheckboxes` (lines 128–148) — broaden regex to include `i confirm | declar(e|ation) | read and understood | conditions of use`, click the associated `label[for]` first (many PageUp checkboxes are visually covered), skip disabled boxes.
+- `lib/ats/jobadder.ts:76-88` — broaden submit selector to same superset + `input[type=submit]`, `input[value*="Submit"]`, `[data-test-id/testid/cy*="submit"]`, `[role=button]:has-text("Submit")`. Added `scrollIntoViewIfNeeded` before click.
+- `lib/ats/cornerstone.ts:106-116` — pass extra selectors to `clickSubmit` including `Apply now`, `[data-test-id*=submit]`, `#btnSubmitApplication`, `.js-submit-application`.
+- `lib/ats/teamtailor.ts:104-112` — broaden submit selector with same superset.
+- `lib/ats/workday.ts:141-152` — broaden the primary nav selector: adds `[data-automation-id="wd-CommandButton_uic_okButton"]`, `[data-automation-id*="submit"]`, `Continue`, `Submit application`, `Review and Submit`, `Apply now`, `input[type="submit"]`, `[data-test-id/testid/cy*="submit"]`, `[role=button]:has-text("Submit")`.
+- `lib/ats/workday.ts:349-361` (post `logger.info('new account created successfully')`) — emit a distinct `warn`-level alarm: `WORKDAY_ACCOUNT_CREATED_FALLBACK` with tenant hostname + URL + job ctx so it can be grep'd out of runs. User rotates `WORKDAY_PASSWORD` (and shifts old to `WORKDAY_PASSWORD_FALLBACK`) when this fires.
+
+**Verify:**
+- `npx tsc --noEmit` clean (zero errors).
+- `rg -n 'gemini-2\.0-flash-001|gemini-2-0-flash-001'` → 0 hits.
+- `rg -n 'page\.goto\(' scripts/ lib/` — every hit inside main loops now wrapped; remaining unwrapped calls are login/bootstrap navs, one-shot utility scripts, or already inside a try/catch.
+- `rg -n 'Please select|select a resum' lib/resume-selector.ts` shows the broadened `PLACEHOLDER_RE`.
+- `rg -n WORKDAY_ACCOUNT_CREATED_FALLBACK lib/` shows the alarm at `lib/ats/workday.ts` post-account-creation.
+
+**If it recurs:**
+- OpenRouter 404 again → export `OPENROUTER_MODEL=<new-id>` in the workflow env (`.github/workflows/seek-apply.yml` etc.); check `https://openrouter.ai/models` for current recommended model.
+- Resume-selector still selecting a bad option → check the debug log line `about to selectOption on resume dropdown` for the actual `chosenLabel`; extend `PLACEHOLDER_RE` if SEEK introduces a new placeholder wording.
+- New ATS-submit failure cluster → inspect the diagnostic screenshot at `screenshots/errors/*_ats_<vendor>_no_submit.png`; grep the failing HTML for the submit button attrs and add them to the vendor's selector list.
+- `WORKDAY_ACCOUNT_CREATED_FALLBACK` appears in logs → rotate secrets per the 2026-05-31 entry's playbook.
+
+---
+
+## 2026-06-02 — Indeed bot fully disabled
+
+**Tags:** indeed, ci, github-actions, workflow, cloudflare, proxy, disabled
+**Status:** Workaround
+
+**Issue:** Per the 2026-05-29 LEARNINGS entry "Indeed zero-jobs on CI", Cloudflare IP-blocks GitHub Actions runners, so Indeed runs return zero jobs. Commit `32c0e00` already disabled the cron, but `workflow_dispatch` remained — meaning the workflow could still be triggered manually and waste a run (~3 min checkout/install/Playwright bootstrap before discovering zero jobs).
+
+**Investigation:** Read `.github/workflows/indeed-apply.yml`. Confirmed cron block was already commented (commit `32c0e00`). Confirmed the only other trigger was `workflow_dispatch:` with a `dry_run` boolean input. Confirmed no `push:`, `pull_request:`, `schedule:` (uncommented), `workflow_run:`, or `workflow_call:` triggers existed. The job-level `if: github.ref == 'refs/heads/main'` was the only execution guard — too weak; `workflow_dispatch` runs on main by default.
+
+**Root cause:** No upstream fix yet (residential proxy not wired). Indeed continues to be unusable from GitHub-hosted runners while the IP block persists.
+
+**Fix:** In `.github/workflows/indeed-apply.yml` — (1) added a top-of-file header comment noting the disable date and reason. (2) Commented out the entire `workflow_dispatch:` block (with its `dry_run` input). GitHub Actions requires an `on:` trigger, so kept a bare `workflow_dispatch:` placeholder on a single line with an inline comment explaining the role. (3) Added belt-and-suspenders job-level guard: `if: false` on the `apply` job (with the original `if: github.ref == 'refs/heads/main'` preserved as a commented line for easy restoration). Net effect: the workflow can be triggered manually but the job is skipped immediately — no checkout, no Playwright install, no runner minutes burned. File kept for future re-enablement when residential proxy lands.
+
+**Verify:**
+- `git diff .github/workflows/indeed-apply.yml` — confirm header comment added, `workflow_dispatch` block fully commented (placeholder retained), `if: false` on apply job.
+- `grep -nE '^on:|^\s+(push|pull_request|schedule|workflow_run|workflow_call):' .github/workflows/indeed-apply.yml` — should only show `on:` (line 4). No other active triggers.
+- Manual sanity in GitHub UI: clicking "Run workflow" on the Indeed Auto Apply page will start a run that completes in <10s with a single skipped job.
+
+**If it recurs:** If you see Indeed runs appearing in the Actions tab, check (a) the `if: false` guard is still on the `apply` job, and (b) no new trigger (`push`, `schedule`, etc.) was added. To re-enable when the residential proxy is wired: remove the `if: false` line, uncomment `if: github.ref == 'refs/heads/main'`, uncomment the full `workflow_dispatch:` block, uncomment the `schedule:` block, delete the placeholder `workflow_dispatch:` line, and update this LEARNINGS entry's Status to `Fixed` with the proxy commit reference.
+
+---
+
 ## 2026-05-31 — Workday password rotation handled via fallback env var
 
 **Tags:** workday, ats, auth, password-rotation, cba, secrets

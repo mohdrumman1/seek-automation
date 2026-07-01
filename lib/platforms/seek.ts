@@ -908,7 +908,15 @@ export class SeekPlatform implements JobPlatform {
     }
 
     if (!resumeUploaded) {
-      await selectResume(applyPage, finalVariant);
+      try {
+        await selectResume(applyPage, finalVariant);
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        if (msg === 'resume_no_valid_option') {
+          return { success: false, failureReason: 'resume_no_valid_option' };
+        }
+        throw err;
+      }
     }
     await applyPage.waitForTimeout(500);
     await dismissBraidModal(applyPage);

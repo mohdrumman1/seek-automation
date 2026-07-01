@@ -104,9 +104,17 @@ export async function applyPageUp(
     // Tick consent/terms checkboxes ("By continuing", "I agree", etc.) required before advancing.
     await tickConsentCheckboxes(page);
 
-    // Try Submit then Next.
+    // Try Submit then Next. Broadened selector list — PageUp tenant CSS varies widely.
     const submitBtn = page.locator(
-      'button:has-text("Submit"), #submitButton, input[value*="Submit" i]'
+      'button:has-text("Submit application"), button:has-text("Submit Application"), ' +
+      'button:has-text("Submit"), button:has-text("Apply now"), button:has-text("Apply Now"), ' +
+      '#submitButton, .js-submit-application, .submit-btn, ' +
+      // `input[value*="Submit" i]` intentionally omitted — it can match hidden/text
+      // inputs whose value happens to contain "Submit" (e.g. type="button"). The
+      // `input[type="submit"]` above already covers the real submit-input case.
+      'button[type="submit"], input[type="submit"], ' +
+      '[data-test-id*="submit" i], [data-testid*="submit" i], [data-cy*="submit" i], ' +
+      '[role="button"]:has-text("Submit")'
     ).first();
     if (await submitBtn.isVisible({ timeout: 2_000 }).catch(() => false)) {
       await submitBtn.click().catch(() => {});
@@ -122,15 +130,26 @@ export async function applyPageUp(
 }
 
 async function tickConsentCheckboxes(page: Page): Promise<void> {
-  const consentRe = /by continuing|i agree|i accept|terms|privacy|consent|acknowledge/i;
+  const consentRe = /by continuing|i agree|i accept|i confirm|terms|privacy|consent|acknowledge|declar(e|ation)|read and understood|conditions of use/i;
   for (const cb of await page.locator('input[type="checkbox"]').all()) {
     if (!(await cb.isVisible().catch(() => false))) continue;
     if (await cb.isChecked().catch(() => false)) continue;
+    const isEnabled = await cb.isEnabled().catch(() => true);
+    if (!isEnabled) continue;
     const id = await cb.getAttribute('id').catch(() => null);
     let label = '';
     if (id) label = (await page.locator(`label[for="${id}"]`).textContent().catch(() => '')) ?? '';
     if (!label) label = (await cb.evaluate((el: Element) => el.closest('label')?.textContent ?? '').catch(() => ''));
+    if (!label) label = (await cb.getAttribute('aria-label').catch(() => null)) ?? '';
     if (consentRe.test(label)) {
+      // Prefer clicking the associated label — many PageUp forms have covered inputs.
+      if (id) {
+        const lbl = page.locator(`label[for="${id}"]`);
+        if (await lbl.isVisible().catch(() => false)) {
+          await lbl.click().catch(() => {});
+          if (await cb.isChecked().catch(() => false)) continue;
+        }
+      }
       await cb.click().catch(() => {});
     }
   }

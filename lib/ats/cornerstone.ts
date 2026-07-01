@@ -96,7 +96,18 @@ export async function applyCornerstone(
     await answerGenericQuestions(page, config.kb);
 
     // Try Submit first (single-page forms); fall through to Next for multi-step.
-    const submitted = await clickSubmit(page);
+    // Broadened extras — Cornerstone CSOD uses varied button attrs across tenants.
+    const submitted = await clickSubmit(page, [
+      'button:has-text("Submit application")',
+      'button:has-text("Apply now")',
+      'button:has-text("Apply Now")',
+      '[data-test-id*="submit" i]',
+      '[data-testid*="submit" i]',
+      '[data-cy*="submit" i]',
+      '[role="button"]:has-text("Submit")',
+      '#btnSubmitApplication',
+      '.js-submit-application',
+    ]);
     if (!submitted) {
       const advanced = await clickNext(page);
       if (!advanced) break;

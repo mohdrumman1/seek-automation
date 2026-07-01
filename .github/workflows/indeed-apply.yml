@@ -1,3 +1,4 @@
+# DISABLED 2026-06-02 — Cloudflare IP block on Actions runners. See LEARNINGS.md "Indeed zero-jobs on CI" (2026-05-29). Re-enable when residential proxy is wired.
 name: Indeed Auto Apply
 
 on:
@@ -6,13 +7,16 @@ on:
   #   - cron: '17 20 * * *'
   #   - cron: '17 2 * * *'
   #   - cron: '17 8 * * *'
-  workflow_dispatch:
-    inputs:
-      dry_run:
-        description: 'Dry run — fill but do not submit'
-        required: false
-        type: boolean
-        default: false
+  # Disabled 2026-06-02: workflow_dispatch removed so the workflow cannot run accidentally. Restore the block below + uncomment schedule when residential proxy is wired.
+  # workflow_dispatch:
+  #   inputs:
+  #     dry_run:
+  #       description: 'Dry run — fill but do not submit'
+  #       required: false
+  #       type: boolean
+  #       default: false
+  workflow_dispatch: # placeholder — required by GitHub Actions syntax. Job body has `if: false` guard so nothing executes even if triggered.
+
 
 concurrency:
   group: indeed-apply
@@ -20,7 +24,9 @@ concurrency:
 
 jobs:
   apply:
-    if: github.ref == 'refs/heads/main'
+    # DISABLED 2026-06-02 — hard `if: false` guard so the job is skipped even if workflow_dispatch is triggered manually. Remove this guard (restore the original condition) when re-enabling.
+    if: false
+    # if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 180
     permissions:

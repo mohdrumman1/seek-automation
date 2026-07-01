@@ -115,12 +115,18 @@ async function main() {
 
         logger.info('applying', { company: opts.company, search: search.name, jobId, title });
 
-        await applyToSingleUrl(platform, page, context, url, kb, baseCoverLetter, opts.dryRun, runId);
+        const result = await applyToSingleUrl(platform, page, context, url, kb, baseCoverLetter, opts.dryRun, runId);
 
-        if (!opts.dryRun) {
+        // Only mark the ledger when the apply actually landed. Bug fixed
+        // 2026-06-02: previously every visited job was recorded as applied
+        // regardless of outcome (see LEARNINGS.md). CSV side-effects already
+        // happened inside applyToSingleUrl via tracker.record*.
+        if (!opts.dryRun && result.status === 'applied') {
           applied.add(jobId);
           saveApplied(applied);
           saveKB(kb);
+        } else if (!opts.dryRun) {
+          logger.info('not adding to applied ledger', { jobId, status: result.status, reason: result.reason });
         }
         total++;
         countThisSearch++;

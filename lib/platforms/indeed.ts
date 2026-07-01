@@ -231,8 +231,14 @@ export class IndeedPlatform implements JobPlatform {
       }
     }
 
-    // Navigate to the external ATS page (popup was closed above)
-    await page.goto(externalUrl);
+    // Navigate to the external ATS page (popup was closed above).
+    // External ATS URLs are the slowest and most timeout-prone — never crash on nav.
+    try {
+      await page.goto(externalUrl, { timeout: 60_000, waitUntil: 'domcontentloaded' });
+    } catch (err) {
+      logger.warn('indeed external ATS nav failed', { externalUrl, error: String(err) });
+      return { success: false, failureReason: 'nav_timeout', externalUrl };
+    }
     await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
 
     const { result, provider: resolvedProvider } = await applyViaATS(

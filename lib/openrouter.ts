@@ -4,7 +4,11 @@ if (!process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY.trim() ===
   throw new Error('Missing OPENROUTER_API_KEY. Add it to .env locally or GitHub Actions secrets.');
 }
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
-const MODEL = 'google/gemini-2.0-flash-001';
+// Default model kept centralised so a future deprecation only touches one line
+// (or is overridden at runtime via OPENROUTER_MODEL / OPENROUTER_VISION_MODEL).
+const DEFAULT_MODEL = 'google/gemini-2.5-flash';
+const MODEL = process.env.OPENROUTER_MODEL || DEFAULT_MODEL;
+const VISION_MODEL = process.env.OPENROUTER_VISION_MODEL || MODEL;
 
 async function withRetry<T>(fn: () => Promise<T>, label: string): Promise<T> {
   const maxRetries = 3;
@@ -20,6 +24,16 @@ async function withRetry<T>(fn: () => Promise<T>, label: string): Promise<T> {
       const status = statusMatch ? parseInt(statusMatch[1], 10) : 0;
       const emptyContent = msg.includes('returned empty content');
       const retryable = status === 429 || status >= 500 || status === 0 || emptyContent;
+      if (status === 404) {
+        // 404 almost always means the model id has been deprecated on OpenRouter.
+        // Retrying won't help — make the deprecation obvious in logs.
+        const modelUsed = label === 'vision' ? VISION_MODEL : MODEL;
+        logger.error('OpenRouter model may be deprecated — set OPENROUTER_MODEL env to override', {
+          label,
+          model: modelUsed,
+          message: msg.slice(0, 200),
+        });
+      }
       if (!retryable || attempt === maxRetries) throw err;
       const delayMs = Math.min(baseMs * 2 ** attempt, 8000) + Math.random() * 250;
       logger.warn('openrouter retry', { label, attempt: attempt + 1, status: status || 'network', delayMs: Math.round(delayMs) });
@@ -61,7 +75,7 @@ export async function callOpenRouterVision(prompt: string, imageBase64: string):
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: MODEL,
+        model: VISION_MODEL,
         messages: [
           {
             role: 'user',

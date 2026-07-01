@@ -175,7 +175,23 @@ async function main() {
         if (seenThisRun.has(jobId)) { logger.info('already seen this run — skipping', { jobId }); continue; }
         seenThisRun.add(jobId);
 
-        await page.goto(url);
+        try {
+          await page.goto(url, { timeout: 60_000, waitUntil: 'domcontentloaded' });
+        } catch (err) {
+          logger.warn('job nav failed — skipping job', { jobId, url, error: String(err) });
+          if (!opts.dryRun) {
+            tracker.recordFailure({
+              jobId,
+              platform: platform.name,
+              title: '', company: '', location: '', salaryText: '', workType: '',
+              runId,
+              failureReason: 'nav_timeout',
+            });
+          }
+          runFailedCount++;
+          consecutiveFailures++;
+          continue;
+        }
         await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
 
         // Fetch details before applyToJob so tracker always has full metadata
@@ -262,6 +278,17 @@ async function main() {
           runFailedCount++;
           consecutiveFailures++;
           logger.warn('apply did not succeed', { jobId, search: search.name, failureReason: result.failureReason, consecutiveFailures });
+          // No valid resume in the SEEK profile — this will fire for every subsequent
+          // job in the run. Halt immediately (mirroring the session_expired pattern).
+          // Deliberately NOT adding to blocked_jobs.json: the issue is profile-side,
+          // not job-side — those jobs will succeed once resumes are re-uploaded.
+          if (result.failureReason === 'resume_no_valid_option') {
+            logger.error('resume_no_valid_option — SEEK profile likely has no active resumes; halting run', {
+              hint: 'Re-upload resume(s) on the SEEK profile page, then re-run.',
+            });
+            runFailed = true;
+            throw new Error('resume_no_valid_option');
+          }
           if (result.failureReason === 'session_expired') {
             logger.error('session expired mid-run — aborting all remaining searches', {
               hint: 'Re-run `npm run seek-login` locally and update the SEEK_SESSION_COOKIES secret.',
@@ -298,7 +325,12 @@ async function main() {
           if (total >= opts.maxAppsPerRun) break;
 
           logger.info('indeed search starting', { name: search.name });
-          await indeedPage.goto(search.url);
+          try {
+            await indeedPage.goto(search.url, { timeout: 60_000, waitUntil: 'domcontentloaded' });
+          } catch (err) {
+            logger.warn('indeed search nav failed — skipping search', { name: search.name, error: String(err) });
+            continue;
+          }
           await indeedPage.waitForLoadState('networkidle', { timeout: 8_000 }).catch(() => {});
 
           const links = await indeedPlatform.getJobLinks(indeedPage);
@@ -321,7 +353,23 @@ async function main() {
             if (seenThisRun.has(jobId)) { logger.info('indeed already seen this run — skipping', { jobId }); continue; }
             seenThisRun.add(jobId);
 
-            await indeedPage.goto(jobUrl);
+            try {
+              await indeedPage.goto(jobUrl, { timeout: 60_000, waitUntil: 'domcontentloaded' });
+            } catch (err) {
+              logger.warn('indeed job nav failed — skipping job', { jobId, jobUrl, error: String(err) });
+              if (!opts.dryRun) {
+                tracker.recordFailure({
+                  jobId,
+                  platform: indeedPlatform.name,
+                  title: '', company: '', location: '', salaryText: '', workType: '',
+                  runId,
+                  failureReason: 'nav_timeout',
+                });
+              }
+              runFailedCount++;
+              consecutiveFailures++;
+              continue;
+            }
             await indeedPage.waitForLoadState('networkidle', { timeout: 8_000 }).catch(() => {});
 
             let details: JobDetails = { title: '', company: '', description: '', location: '', salaryText: '', workType: '' };

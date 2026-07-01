@@ -54,6 +54,63 @@ const KEYWORDS: Record<ResumeVariant, string[]> = {
   se: ['software', 'engineer', 'developer', 'fullstack', 'backend', 'cloud', 'technical', 'engineering', 'stack'],
 };
 
+// Fully anchored (^…$) so we don't over-match real filenames like
+// "Select_Rumman_Data_Analyst.pdf" or "Pick — Backend Resume.pdf". SEEK's
+// "Please select a resumé" (accented é, trailing chars) still matches via the
+// `.*$` tail on the `please\s+select` / `select a resum` alternatives. The
+// empty/whitespace-only case is handled by the isPlaceholderLabel `!t`
+// early-return, so we don't need a `\s*` alternative here (which previously
+// matched zero-width and broke selectOption).
+export const PLACEHOLDER_RE = /^(--+.*|please\s+select.*|select a resum.*|select( one)?|choose( one)?|pick( one)?)$/i;
+
+export function isPlaceholderLabel(label: string): boolean {
+  const t = label.trim();
+  if (!t) return true;
+  return PLACEHOLDER_RE.test(t);
+}
+
+/**
+ * Pure scoring/index-picking logic for the resume dropdown, extracted so it can
+ * be unit-tested without a Playwright page. Returns the chosen option index.
+ *
+ * Throws `Error('resume_no_valid_option')` when there is no selectable
+ * non-placeholder option — this cascades into a `resume_no_valid_option`
+ * failureReason in the SEEK platform layer instead of a 30s selectOption timeout.
+ */
+export function pickResumeIndex(options: string[], variant: ResumeVariant): number {
+  if (options.length === 0) {
+    throw new Error('resume_no_valid_option');
+  }
+
+  const firstRealIdx = options.findIndex((o) => !isPlaceholderLabel(o));
+  const keywords = KEYWORDS[variant];
+  // Never default to index 0 when it's a placeholder — start at the first real option.
+  let bestIdx = firstRealIdx >= 0 ? firstRealIdx : 0;
+  let bestScore = 0;
+
+  options.forEach((text, i) => {
+    if (isPlaceholderLabel(text)) return;
+    const lower = text.toLowerCase();
+    let score = 0;
+    for (const k of keywords) {
+      if (lower.includes(k)) score += 1;
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      bestIdx = i;
+    }
+  });
+
+  // Invariant: never return an index that points at a placeholder — the option
+  // is disabled and selectOption would time out at 30s, cascading to
+  // unexpected_error for every job.
+  if (isPlaceholderLabel(options[bestIdx] ?? '')) {
+    throw new Error('resume_no_valid_option');
+  }
+
+  return bestIdx;
+}
+
 export async function selectResume(page: Page, variant: ResumeVariant): Promise<void> {
   const changeRadio = page.locator('input[name="resume-method"][value="change"]');
   if (await changeRadio.isVisible().catch(() => false)) {
@@ -83,40 +140,28 @@ export async function selectResume(page: Page, variant: ResumeVariant): Promise<
     return;
   }
 
-  // Detect placeholder options so we never accidentally select them as fallback.
-  const PLACEHOLDER_RE = /^(select|choose|pick|--|---|please select|--select--|\s*)$/i;
-  const firstRealIdx = options.findIndex((o) => o.trim() && !PLACEHOLDER_RE.test(o.trim()));
-  const keywords = KEYWORDS[variant];
-  let bestIdx = firstRealIdx >= 0 ? firstRealIdx : 0;
-  let bestScore = 0;
-
-  options.forEach((text, i) => {
-    const lower = text.toLowerCase();
-    let score = 0;
-    for (const k of keywords) {
-      if (lower.includes(k)) score += 1;
+  // Delegate the pure scoring/index-picking to pickResumeIndex so the same
+  // logic is exercised by unit tests without a live Playwright page.
+  let bestIdx: number;
+  try {
+    bestIdx = pickResumeIndex(options, variant);
+  } catch (err) {
+    if (err instanceof Error && err.message === 'resume_no_valid_option') {
+      logger.error('resume dropdown has no selectable non-placeholder option — aborting', {
+        variant,
+        options,
+        totalOptions: options.length,
+      });
     }
-    if (score > bestScore) {
-      bestScore = score;
-      bestIdx = i;
-    }
-  });
-
-  if (bestScore === 0) {
-    logger.warn('no resume option matched variant — falling back to first non-placeholder option', {
-      variant,
-      options,
-      chosenIndex: bestIdx,
-      chosenLabel: options[bestIdx] ?? '(none)',
-    });
-  } else {
-    logger.info('resume selected', {
-      variant,
-      score: bestScore,
-      chosenIndex: bestIdx,
-      chosenLabel: options[bestIdx],
-    });
+    throw err;
   }
+
+  logger.info('resume selected', {
+    variant,
+    chosenIndex: bestIdx,
+    chosenLabel: options[bestIdx],
+    totalOptions: options.length,
+  });
 
   await dropdown.selectOption({ index: bestIdx });
 }

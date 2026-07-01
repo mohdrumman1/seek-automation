@@ -56,6 +56,12 @@ export function isWorkdayApplyForm(u: string): boolean {
   } catch { return false; }
 }
 
+export interface ApplyToSingleUrlResult {
+  success: boolean;
+  status: 'applied' | 'skipped' | 'failed' | 'needs_manual_review';
+  reason?: string;
+}
+
 export async function applyToSingleUrl(
   platform: JobPlatform,
   page: Page,
@@ -65,8 +71,13 @@ export async function applyToSingleUrl(
   baseCoverLetter: string,
   dryRun: boolean,
   runId: string,
-): Promise<void> {
-  await page.goto(url);
+): Promise<ApplyToSingleUrlResult> {
+  try {
+    await page.goto(url, { timeout: 60_000, waitUntil: 'domcontentloaded' });
+  } catch (err) {
+    logger.warn('single-url nav failed', { url, error: String(err) });
+    return { success: false, status: 'failed', reason: 'nav_timeout' };
+  }
   await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
 
   const emptyDetails: JobDetails = { title: '', company: '', description: '', location: '', salaryText: '', workType: '' };
@@ -173,4 +184,20 @@ export async function applyToSingleUrl(
       tracker.recordFailure({ ...jobMeta, failureReason: result.failureReason ?? 'unknown' });
     }
   }
+
+  // Propagate the outcome to the caller so it can decide whether to write to
+  // the applied_jobs.json ledger. CSV side-effects already happened above via
+  // tracker.record*; callers must NOT duplicate those writes.
+  const status: ApplyToSingleUrlResult['status'] = result.success
+    ? 'applied'
+    : result.requiresManualReview
+      ? 'needs_manual_review'
+      : result.skipReason
+        ? 'skipped'
+        : 'failed';
+  return {
+    success: result.success,
+    status,
+    reason: result.skipReason ?? result.failureReason,
+  };
 }
