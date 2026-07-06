@@ -1,65 +1,5 @@
 [
   {
-    "timestamp": "2026-06-30T12:15:51.091Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Gameplay Developer",
-    "company": "Boeing Australia Holdings",
-    "url": "https://boeing.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREERS/job/AUS---Brisbane%2C-Australia/Gameplay-Developer_JR2026517017/apply/applyManually",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-30T12-15-50-880Z_ats_workday_wall_mid_apply.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-06-30T12:24:35.792Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "AI/ML Engineer",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1971835/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=EKMPkJVpHy3mEkBb3sTH6J",
-    "page_title": "AI/ML Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-30T12-24-35-404Z_ats_jobadder_no_submit.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-06-30T12:32:43.810Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Platform Data Engineer AWS",
-    "company": "DWS Limited",
-    "url": "https://apply.jobadder.com/16850/1971394/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=7hFP6znr3VXRL4dbM7nqoR",
-    "page_title": "Platform Data Engineer AWS",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-30T12-32-43-599Z_ats_jobadder_no_submit.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-06-30T12:40:31.534Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Security Engineer",
-    "company": "nib health funds limited",
-    "url": "https://nib.wd105.myworkdayjobs.com/en-US/careers/job/Newcastle%2C-Australia/Security-Engineer_JR104979-2/apply/applyManually?seek-token=4DqC4ZxKAc54UHRLwiCnnZ&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-30T12-40-31-287Z_ats_workday_wall_mid_apply.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-06-30T12:53:18.413Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Cyber Security Solution Architect",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1972144/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=LoEMRmTpR5de52jXxfBA88",
-    "page_title": "Cyber Security Solution Architect",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-30T12-53-18-167Z_ats_jobadder_no_submit.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-06-30T12:57:35.758Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Engineering Lead",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-06-30T12-57-35-560Z_ats_pageup_no_submit.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
     "timestamp": "2026-06-30T13:03:40.756Z",
     "error_type": "ats_cornerstone_no_submit",
     "job_title": "Senior Business Analyst",
@@ -4998,5 +4938,65 @@
     "page_title": "Platform Director - Cards & Agentic Payments",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-06T08-12-58-860Z_ats_jobadder_no_submit.png",
     "analysis": "1. The JobAdder application form is visible, mostly filled, with a resume uploaded. A \"Want to apply later?\" modal is still displayed, covering parts of the form. The \"I Consent\" checkbox is unticked, and the \"Apply Now\" button is grayed out, indicating it cannot be clicked.\n2. The error was caused by the bot not interacting with the \"Want to apply later?\" modal, not ticking the \"I Consent\" checkbox, and not filling the 'State' field.\n3. The bot should first close the \"Want to apply later?\" modal by clicking the 'X' button (selector: `button[aria-label='Close']`). Then, it needs to fill the 'State' field (e.g., `input[name='State']` or `input[id*='State']`), and finally, tick the \"I Consent\" checkbox (likely an `input[type='checkbox']` after text \"I Consent\")."
+  },
+  {
+    "timestamp": "2026-07-06T12:46:27.350Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "26071 Copilot Studio Technical SME/Senior Developer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://au.seek.com/awsk/authorize?id=46eef2eb-b212-4136-a3e5-b1342af127d7",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-06T12-46-25-839Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a Seek authorization page asking the user to confirm their email and allow \"Peoplebank Australia QLD via Idibu\" to access their SEEK Profile by clicking \"Allow access\".\n2. The bot failed to click the \"Allow access\" button on this authorization page.\n3. The bot should click the \"Allow access\" button, identified by its text content or the CSS selector `button:has-text(\"Allow access\")`."
+  },
+  {
+    "timestamp": "2026-07-06T12:47:39.207Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Data Science & AI Engineering Lead",
+    "company": "Little Company of Mary Health Care",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1106/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-06T12-47-37-250Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page with the title \"Uh oh...\", stating \"It looks like something has gone wrong,\" and showing a cartoon dog. It indicates \"Additional security check is required\" and presents an hCaptcha \"I am human\" checkbox.\n2. The bot encountered an hCaptcha security check from PageUp and failed to bypass or solve it.\n3. The bot should click the hCaptcha \"I am human\" checkbox, identified by the selector `div.h-captcha` or `input[type=\"checkbox\"]` or the text \"I am human\"."
+  },
+  {
+    "timestamp": "2026-07-06T12:55:22.627Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Business Analyst (Agentic workflows) - South Bank, QLD",
+    "company": "Flight Centre Travel Group",
+    "url": "https://secure.dc2.pageuppeople.com/apply/889/gateway/Default.aspx?c=apply&sJobIDs=530028&SourceTypeID=824&seek-token=Jw1UTjytMcPLFUrpfSVXUH",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-06T12-55-20-167Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page with the title \"Uh oh...\", stating \"It looks like something has gone wrong,\" and showing a cartoon dog. It indicates \"Additional security check is required\" and presents an hCaptcha \"I am human\" checkbox.\n2. The bot encountered an hCaptcha security check from PageUp and failed to bypass or solve it.\n3. The bot should click the hCaptcha \"I am human\" checkbox, identified by the selector `div.h-captcha` or `input[type=\"checkbox\"]` or by its text content \"I am human\"."
+  },
+  {
+    "timestamp": "2026-07-06T13:03:22.055Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Cloud Engineer - Azure",
+    "company": "hummgroup",
+    "url": "https://flexigroup.wd105.myworkdayjobs.com/en-US/Careers/job/Sydney%2C-New-South-Wales/Cloud-Engineer---Azure_JR10000612-1/apply/applyManually?seek-token=GEkoxY6kN6fHN61UKNBwzk&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-06T13-03-19-475Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" modal is visible, but a \"Sign In\" button has appeared unexpectedly next to the password input field. The email is pre-filled, and there are \"Sign In\" and \"Forgot your password?\" links below the \"Create Account\" button.\n2. The bot attempted to create an account (`mohdrumman1@gmail.com`), but the system likely inferred an existing account with that email, causing a \"Sign In\" button to be embedded within the create account form.\n3. The bot should click the \"Sign In\" button embedded next to the password field using a selector like `button[data-automation-id*=\"signInButton\"]` or the \"Sign In\" link below the \"Create Account\" button (e.g., `a[data-automation-id=\"signInLink\"]`)."
+  },
+  {
+    "timestamp": "2026-07-06T13:11:51.940Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "AI / Data Platform Engineer",
+    "company": "Covetrus",
+    "url": "https://covetrus.wd5.myworkdayjobs.com/en-US/CovetrusCareers/job/Brisbane%2C-Queensland-(AU)/AI---Data-Platform-Engineer_R-14398/apply/applyManually?seek-token=BvNacn92vQKu1nUYqkVpZg",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-06T13-11-48-912Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" modal is visible, with pre-filled email (`mohdrumman1@gmail.com`) and password fields. A \"Sign In\" button is present next to the \"Verify New Password\" field, and a \"Sign In\" link is also available below the \"Create Account\" button.\n2. The bot attempted to create an account, but the system inferred an existing account with that email due to the appearance of a \"Sign In\" button within the \"Create Account\" form.\n3. The bot should click the \"Sign In\" button adjacent to the \"Verify New Password\" field using `button[title=\"Sign In\"]` or the \"Sign In\" link below the \"Create Account\" button using `a[data-automation-id=\"signInLink\"]`."
+  },
+  {
+    "timestamp": "2026-07-06T13:15:31.532Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "AI / Data Platform Engineer (3-6 Month Contract)",
+    "company": "Covetrus",
+    "url": "https://covetrus.wd5.myworkdayjobs.com/en-US/CovetrusCareers/job/Brisbane%2C-Queensland-(AU)/AI---Data-Platform-Engineer_R-14398/apply/applyManually?seek-token=SSysdABKnBBbAvJLzCi3fh",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-06T13-15-28-865Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" modal is visible, with pre-filled email (`mohdrumman1@gmail.com`) and password fields. A \"Sign In\" button is present next to the \"Verify New Password\" field, and a \"Sign In\" link is also available below the \"Create Account\" button.\n2. The bot attempted to create an account, but the system inferred an existing account with that email due to the appearance of a \"Sign In\" button within the \"Create Account\" form.\n3. The bot should click the \"Sign In\" button adjacent to the \"Verify New Password\" field using `button.button[title=\"Sign In\"]` or the \"Sign In\" link below the \"Create Account\" button using `a[data-automation-id=\"signInLink\"]`."
   }
 ]
