@@ -1,55 +1,5 @@
 [
   {
-    "timestamp": "2026-07-01T11:59:49.217Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Staff Engineer - Cyber Security",
-    "company": "Launch Recruitment Pty Ltd",
-    "url": "https://au.seek.com/job/93030658/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T11-59-46-425Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Review and submit\" page is displayed, highlighting an error: the privacy policy checkbox is unchecked and a warning states \"You must accept to continue\".\n2. The error was caused by the bot failing to click the single, required privacy policy consent checkbox. The \"KNOWN FIX APPLIED\" was for multi-select checkbox groups, not individual consent checkboxes.\n3. The bot should try to click the checkbox associated with \"Do you agree with the privacy policy?\" using a CSS selector such as `input[type=\"checkbox\"][name*=\"privacy\"]` or by targeting its immediate parent div or label."
-  },
-  {
-    "timestamp": "2026-07-01T12:11:10.332Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Cyber Security Solution Architect",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1972144/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=GjGsK8igbqEiMnNNPdyn35",
-    "page_title": "Cyber Security Solution Architect",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-11-07-789Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible, partially obscured by a \"Want to apply later?\" modal window. The form has personal details and attachments sections, and some fields are pre-filled.\n2. The error was caused by the bot attempting to interact with the page while the \"Want to apply later?\" modal was open, preventing form submission.\n3. The bot should try clicking the \"X\" button on the modal (`button[aria-label=\"Close\"]` or similar) to close it before attempting to submit the form again."
-  },
-  {
-    "timestamp": "2026-07-01T12:14:29.804Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Data Engineer",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93031568/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-14-26-735Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Review and submit\" page is displayed, showing a general validation error and a specific error related to the privacy policy agreement. The error message \"Do you agree to the privacy policy of Marlin Human Capital? You must accept to continue\" is visible.\n2. The error is caused by not selecting the checkbox for the privacy policy agreement, which is a mandatory field to proceed with the application.\n3. The bot should attempt to click the checkbox associated with the label \"Do you agree to the privacy policy of Marlin Human Capital?\". A suitable CSS selector would be `input[type=\"checkbox\"][aria-label*=\"privacy policy\"]` or `[aria-label*=\"Do you agree to the privacy policy of Marlin Human Capital?\"]`."
-  },
-  {
-    "timestamp": "2026-07-01T12:14:33.035Z",
-    "error_type": "continue_button_not_found",
-    "job_title": "Data Engineer",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93031568/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-14-29-939Z_continue_button_not_found.png",
-    "analysis": "1. The \"Review and submit\" page of a job application on Seek.com.au is visible. There's a warning \"Before you can continue... please address the following issues\" and a specific highlighted issue: \"Do you agree to the privacy policy of Marlin Human Capital?\" with an un-checked box and an error message \"You must accept to continue.\"\n2. This error was caused because the bot did not agree to the privacy policy, which is a mandatory step before submitting the application.\n3. The bot should try clicking the checkbox associated with \"Do you agree to the privacy policy of Marlin Human Capital?\". A suitable CSS selector could be `input[type=\"checkbox\"][aria-labelledby]` or a specific selector for the unchecked box and its parent elements in that section."
-  },
-  {
-    "timestamp": "2026-07-01T12:14:45.222Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Data Engineer",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93031568/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-01T12-14-34-544Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Review and submit\" page is shown with a warning \"Before you can continue with the application, please address the following issues\", specifically pointing to an unchecked privacy policy consent checkbox with the text \"Do you agree to the privacy policy of Marlin Human Capital?\" and \"You must accept to continue\".\n2. The bot is blocked because it has not clicked the required single privacy policy consent checkbox. The fix for multi-select checkbox groups did not cover this specific single required checkbox.\n3. The bot should try to click the input element associated with the privacy policy consent using a CSS selector like `input[type=\"checkbox\"][aria-label*=\"privacy\"]` or `label:has(span:contains(\"privacy policy\")) input[type=\"checkbox\"]`."
-  },
-  {
     "timestamp": "2026-07-01T12:16:15.249Z",
     "error_type": "validation_errors_blocking_continue",
     "job_title": "Senior AI Engineer",
@@ -4998,5 +4948,55 @@
     "page_title": "Sign In",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-07T12-29-18-645Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. A \"Create Account\" page is visible, obscured by an overlay containing an email field (\"mohdrumman1@gmail.com\"), two password fields, and a \"Sign In\" button that's part of the red button.\n2. The bot is stuck in a loop, repeatedly attempting to create an account when a \"Sign In\" is required. The bot filled both password fields within the overlay, but failed to press the \"Sign In\" button within the red input field.\n3. The bot should click the \"Sign In\" button that accompanies the \"Verify New Password\" field, likely using a selector like `button[type=\"submit\"]` or a button containing the text \"Sign In\" immediately following the password fields within the overlay."
+  },
+  {
+    "timestamp": "2026-07-07T22:07:44.159Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Delivery Lead",
+    "company": "Toyota Finance Australia",
+    "url": "https://toyotaau.wd3.myworkdayjobs.com/en-US/broadbean_external/job/NSW---Grosvenor-Place/Delivery-Lead_R000007111-1/apply/applyManually?seek-token=8nCA9cq8KEsnRYBxZeCaNE&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-07T22-07-41-164Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An overlay is visible over a Workday application step, titled \"Create Account / Sign In.\" It shows pre-filled email and password fields, password requirements, and a \"Sign In\" button embedded within the email/password section, which is the primary form field block.\n\n2. The error is caused by the bot attempting to create an account, but due to an existing account with the provided email, Workday is presenting an overlay that functions as a \"Sign In\" window. The bot continues to fail to recognize and interact with this specific \"Sign In\" button within the overlay.\n\n3. The bot should input the password into the designated field, then click the \"Sign In\" button embedded within the primary form field block, likely identifiable via CSS selector `button[type=\"submit\"]` or a button with the text \"Sign In\" that is a direct child of the form containing the pre-filled email and password."
+  },
+  {
+    "timestamp": "2026-07-07T22:16:09.337Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Data Science & AI Engineering Lead",
+    "company": "Little Company of Mary Health Care",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1106/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-07T22-16-07-382Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page titled \"Uh oh...\", indicating \"It looks like something has gone wrong\" and requests an \"Additional security check.\" An hCaptcha \"I am human\" checkbox is visible.\n2. The bot encountered an hCaptcha security check from PageUp.\n3. The bot should click the hCaptcha \"I am human\" checkbox, identified by the CSS selector `div.h-captcha` or `input[type=\"checkbox\"]` or by its text content \"I am human\"."
+  },
+  {
+    "timestamp": "2026-07-07T22:27:21.324Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Lead Agentic AI Developer",
+    "company": "News Corp Australia",
+    "url": "https://dowjones.wd1.myworkdayjobs.com/en-US/News_Corp_Australia_Careers/job/NSW---SHS-2-Holt-Street-Surry-Hills/Lead-Agentic-AI-Developer_Job_Req_53310/apply/applyManually?seek-token=HfVd8xrso4ZjKTBTJZGzwy",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-07T22-27-18-857Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An overlay titled \"Create Account\" is visible, requesting account creation details including email, password, and password verification, while also showing a \"Sign In\" button inside the overlay itself, separate from the primary \"Create Account\" button at the bottom.\n2. The error is caused by the bot trying to create a new account when a sign-in is required due to the existing email, and failing to correctly identify and interact with the \"Sign In\" button embedded within the overlay.\n3. The bot should input the password into the `Password` field (the one below `Email Address`), then click the `Sign In` button that is part of the white overlay, which is not the main \"Create Account\" button.\n4. Specifically, the bot needs to click the \"Sign In\" button within the overlay, likely identifiable as `button[aria-label=\"Sign In\"]` or an equivalent selector targeting the button within the pop-up."
+  },
+  {
+    "timestamp": "2026-07-07T22:38:50.749Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Cloud Engineer - Azure",
+    "company": "hummgroup",
+    "url": "https://flexigroup.wd105.myworkdayjobs.com/en-US/Careers/job/Sydney%2C-New-South-Wales/Cloud-Engineer---Azure_JR10000612-1/apply/applyManually?seek-token=KxaqwqQFqNKWqryevXNiTb&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-07T22-38-48-675Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An overlay titled \"Create Account\" is visible, showing pre-filled email and password fields, creating an account options, and a \"Sign In\" button inside the overlay itself.\n2. The error persists because the bot is stuck in a loop, attempting to create an account while a sign-in is required due to the existing email, and it is failing to click the correct \"Sign In\" button within the overlay.\n3. The bot needs to click the \"Sign In\" button within the foreground overlay. A good selector would be a button containing the text \"Sign In\" that is a direct child of the form that contains the `Email Address` and `Password` input fields, specifically the one next to the password input field."
+  },
+  {
+    "timestamp": "2026-07-07T22:51:12.293Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "AI / Data Platform Engineer (3-6 Month Contract)",
+    "company": "Covetrus",
+    "url": "https://covetrus.wd5.myworkdayjobs.com/en-US/CovetrusCareers/job/Brisbane%2C-Queensland-(AU)/AI---Data-Platform-Engineer_R-14398/apply/applyManually?seek-token=X4Mep8LtnX4zF9ZFUrygdo",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-07T22-51-09-535Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" overlay is displayed, pre-filled with an email address and a password. It includes password requirements, a \"Sign In\" button embedded within the input fields, and a \"Create Account\" button at the bottom.\n2. The bot is trying to create an account for an existing email, resulting in the Workday system expecting a sign-in, which the bot is failing to correctly execute by not clicking the embedded \"Sign In\" button.\n3. The bot should input the pre-filled password, and then click the \"Sign In\" button that is located within the same form as the password input field, likely identifiable by looking for a button with the text \"Sign In\" combined with a CSS selector like `input[type=\"password\"] + button`."
   }
 ]
