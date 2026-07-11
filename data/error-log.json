@@ -1,85 +1,5 @@
 [
   {
-    "timestamp": "2026-07-02T12:45:37.652Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Data Products & AI Adoption Lead",
-    "company": "Rabobank",
-    "url": "https://wd3.myworkdaysite.com/en-US/recruiting/rabobank/jobs/job/Sydney---Darling-Park/Data-Products---AI-Adoption-Lead_JR_00142520/apply/applyManually",
-    "page_title": "Data Products & AI Adoption Lead",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T12-45-35-343Z_ats_workday_no_submit.png",
-    "analysis": "1. The \"My Information\" step of a Workday application form is visible, showing two \"Errors Found\" for \"How Did You Hear About Us?\" and \"Phone Number\", both marked as required but empty.\n2. The bot failed to input values for \"How Did You Hear About Us?\" and \"Phone Number\" before clicking \"Next\".\n3. The bot should select an option in the \"How Did You Hear About Us?\" dropdown (e.g., `div[data-automation-id=\"formField-howDidYouHearAboutUs\"] select`) and input a valid number into the \"Phone Number\" field (likely `input[data-automation-id=\"input-phoneNumber\"]`) before retrying the \"Next\" button."
-  },
-  {
-    "timestamp": "2026-07-02T12:51:01.456Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Data Modeller | Snowflake",
-    "company": "Billigence",
-    "url": "https://apply.jobadder.com/17858/4450709/sqnamq6rkfweplzicgktzku4we?site=au1&seek-token=CsgDXaLeMkDxpNJTRnZvPu",
-    "page_title": "Senior Data Modeller | Snowflake",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T12-50-59-064Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible with some fields pre-filled, but a \"Want to apply later?\" modal is obstructing the view, and the \"Apply Now\" button is grayed out.\n2. The error occurred because the \"Want to apply later?\" modal is still present, preventing interaction with the form and the \"Apply Now\" button.\n3. The bot should click the 'X' button on the modal to close it, using the CSS selector `button[aria-label=\"Close\"]`."
-  },
-  {
-    "timestamp": "2026-07-02T12:59:33.614Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Group Product Manager, Digital",
-    "company": "Sharp & Carter Sales and Marketing",
-    "url": "https://apply.jobadder.com/18325/1972382/yp2pouaulf3efo2xhahzelwk7y?site=au2&seek-token=TiCcue2AHVyFQ92Ecvh5UE",
-    "page_title": "Group Product Manager, Digital",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T12-59-30-981Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible, partially filled, and still obscured by the \"Want to apply later?\" modal. The \"Apply Now\" button is grayed out and not clickable.\n2. The error occurred because the \"Want to apply later?\" modal is still present, preventing interaction with the form and the \"Apply Now\" button at the bottom of the page.\n3. The bot should click the 'X' button on the modal to close it, using the CSS selector `button[aria-label=\"Close\"]`."
-  },
-  {
-    "timestamp": "2026-07-02T13:03:54.269Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Product Specialist",
-    "company": "Toyota Finance Australia",
-    "url": "https://toyotaau.wd3.myworkdayjobs.com/en-US/broadbean_external/job/NSW---Grosvenor-Place/Product-Specialist_R000007079-1/apply/applyManually?seek-token=Q97QWz68QtcebsqVvRESmq&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T13-03-50-610Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A Workday \"Create Account\" modal is displayed with email and password fields, and an embedded \"Sign In\" button, but it is trying to create an account. Below the modal, there are \"Already have an account? Sign In\" and \"Forgot your password?\" links.\n2. The error persists because the bot is attempting to create a new account instead of signing in with existing credentials, as evidenced by the \"Create Account\" modal appearing despite the URL indicating a sign-in context.\n3. The bot should click the \"Sign In\" link located outside the modal, specifically the one that says \"Already have an account? Sign In\". A robust CSS selector would be `a[aria-label=\"Sign In\"]` or an `<a>` tag with the text \"Sign In\" that is a sibling of \"Already have an account?\"."
-  },
-  {
-    "timestamp": "2026-07-02T13:07:39.411Z",
-    "error_type": "ats_workday_no_nav_button",
-    "job_title": "Digital & Tech Partner",
-    "company": "Haleon",
-    "url": "https://gsknch.wd3.myworkdayjobs.com/en-US/GSKCareers/job/Parramatta/Commercial-Site-Partner_543643-1/apply/applyManually",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T13-07-37-190Z_ats_workday_no_nav_button.png",
-    "analysis": "1. The screen displays a \"Sign In\" page for a job application on Workday, offering options to sign in with Apple, Google, LinkedIn, or Email. A progress bar shows \"Create Account/Sign In\" as the current step.\n2. The error \"ats_workday_no_nav_button\" likely occurred because the bot expected a navigational button (e.g., \"Next\" or \"Continue\") to proceed, but instead encountered a sign-in wall without such a button.\n3. The bot should try clicking the \"Sign in with email\" button to proceed, using a CSS selector such as `button[aria-label=\"Sign in with email\"]` or `button[data-automation-id=\"signInButton\"]` if available."
-  },
-  {
-    "timestamp": "2026-07-02T13:07:41.754Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Digital & Tech Partner",
-    "company": "Haleon",
-    "url": "https://gsknch.wd3.myworkdayjobs.com/en-US/GSKCareers/job/Parramatta/Commercial-Site-Partner_543643-1/apply/applyManually",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T13-07-39-415Z_ats_workday_no_submit.png",
-    "analysis": "1. The screen displays the \"Sign In\" step of the Workday application process. It offers options to sign in with Apple, Google, LinkedIn, or Email.\n2. The error occurred because the bot reached the \"Sign In\" step and did not proceed by selecting an authentication method or attempting to create an account. The previous fix about dismissing the \"Start Your Application\" modal applied to a later stage of the workflow.\n3. The bot should click the \"Sign in with email\" button to proceed with a standard sign-in or account creation workflow. Use `button[data-automation-id=\"signInButton\"]` or `button[title*=\"Sign in with email\"]`."
-  },
-  {
-    "timestamp": "2026-07-02T13:08:51.014Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Head of Technology - Strategic Planning",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T13-08-48-347Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp \"Uh oh...\" error page, stating \"It looks like something has gone wrong\" and that an \"Additional security check is required\". An \"I am human\" hCaptcha checkbox is visible.\n2. This error was caused by PageUp's security system detecting unusual activity, thereby triggering an hCaptcha verification requirement.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox.\n4. A suitable CSS selector for the checkbox is `input[type=\"checkbox\"]` or `div.h-captcha > div > iframe`."
-  },
-  {
-    "timestamp": "2026-07-02T21:35:46.078Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Portfolio Manager",
-    "company": "University of New South Wales",
-    "url": "https://secure.dc2.pageuppeople.com/apply/841/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T21-35-43-983Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp \"Uh oh...\" error page, stating \"It looks like something has gone wrong\" and that an \"Additional security check is required\". An \"I am human\" hCaptcha checkbox is visible.\n2. This error was caused by PageUp's security system detecting unusual activity, thereby triggering an hCaptcha verification requirement.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox, potentially within an iframe.\n4. A suitable CSS selector for the checkbox is `input[type=\"checkbox\"]`."
-  },
-  {
     "timestamp": "2026-07-02T21:40:09.582Z",
     "error_type": "ats_workday_wall_mid_apply",
     "job_title": "Delivery Manager - Integrated Delivery",
@@ -4998,5 +4918,85 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T11-11-17-068Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. A \"Create Account\" form is visible with pre-filled email and password fields, along with a \"Sign In\" overlay. A password requirements popup is also visible, and the \"I understand and agree to the Candidate Privacy Statement\" checkbox is unchecked.\n2. The bot failed to interact with the Workday account wall which reappeared mid-application, specifically not closing the password requirements popup, agreeing to the privacy statement, or clicking \"Create Account\".\n3. The bot should first click the 'x' button on the password requirements popup using `button[aria-label=\"Close\"]` or `button[data-automation-id='promptButton']`, then check the privacy statement with `input[data-automation-id='createAccountCheckbox']`, and finally click \"Create Account\" using `button[data-automation-id='createAccountButton']`."
+  },
+  {
+    "timestamp": "2026-07-11T21:23:20.677Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Project Manager",
+    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
+    "url": "https://apply.jobadder.com/18301/1975239/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=Rnqfqs7hV6K4ehGcFUXNun",
+    "page_title": "Project Manager",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T21-23-18-326Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form data is filled, and the \"Apply Now\" button is visible but inactive. The declaration about consent to the Privacy Policy is set to \"Yes\", and the date of consent is entered.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing interaction with the rest of the form to submit.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `div[class*='modal-header'] button`. After closing the modal, it should be able to click the \"Apply Now\" button."
+  },
+  {
+    "timestamp": "2026-07-11T21:36:28.537Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Program Manager",
+    "company": "Bolton Clarke",
+    "url": "https://boltonclarke.wd105.myworkdayjobs.com/en-US/Careers/job/Brisbane-CBD-%26-Inner-Suburbs-Brisbane-QLD/Program-Manager_JR001854/apply/applyManually?seek-token=NAaY4vi4U1XhPSDVGHf4qz&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T21-36-26-098Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" form with an email and password pre-filled, a \"Sign In\" overlay, and a password requirements popup with an 'x' button is visible. A \"Create Account\" button is also visible at the bottom of the form and is partially obscured.\n2. The bot failed to interact with the Workday account wall which reappeared mid-application. It did not close the password requirements popup, agree to a privacy statement (which is not visible in this screenshot), or click \"Create Account\".\n3. The bot should first click the 'x' button on the password requirements popup using `button[aria-label=\"Close\"]` or wait for the complete element: `button[data-automation-id='promptButton']`, then, if a privacy statement checkbox is present, check the privacy statement with `input[data-automation-id='createAccountCheckbox']`, and finally click \"Create Account\" using `button[data-automation-id='createAccountButton']`."
+  },
+  {
+    "timestamp": "2026-07-11T21:53:19.391Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Project Implementation Manager - Clinical Scheduling",
+    "company": "Suncare Community Services Ltd",
+    "url": "https://apply.jobadder.com/18298/880673/7cmmw36joe4u7i5yqpbf442xpq?site=au6&seek-token=6u8fk7YYjdvatJSRZrU2hK",
+    "page_title": "Project Implementation Manager - Clinical Scheduling",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T21-53-16-707Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form is mostly filled, but the \"Terms & Conditions\" checkbox is unchecked, making the \"Apply Now\" button inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal and then failed to engage with the \"Terms & Conditions\" checkbox, which is essential for activating the \"Apply Now\" button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']`. After closing, it needs to click the \"I accept the Terms & Conditions\" checkbox using `input[type=\"checkbox\"]` followed by clicking the \"Apply Now\" button."
+  },
+  {
+    "timestamp": "2026-07-11T21:57:31.696Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Manager Procurement, Delivery and Operations",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Manger-Procurement--Delivery-and-Operations_REQ262043/apply/applyManually?seek-token=3dzWzm4dN7f34jevXsdJ5G",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T21-57-29-573Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Acount\" form is visible with pre-filled email and password fields, along with a \"Sign In\" overlay and a password requirements popup. The \"I understand and agree to the Candidate Privacy Statement\" checkbox is unchecked.\n2. The bot failed to interact with the Workday account wall which reappeared mid-application, specifically not closing the password requirements popup, agreeing to the privacy statement, or clicking \"Create Account\".\n3. The bot should first click the 'x' button on the password requirements popup using `button[aria-label=\"Close\"]`, then check the privacy statement with `input[data-automation-id='createAccountCheckbox']`, and finally click \"Create Account\" using `button[data-automation-id='createAccountButton']`."
+  },
+  {
+    "timestamp": "2026-07-11T22:19:30.626Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior AI Solutions Engineer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://au.seek.com/awsk/authorize?id=7dbb352f-0530-4389-95d0-54f0f64c16c7",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T22-19-28-851Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a SEEK authorization page, asking the user to allow Peoplebank Australia QLD to access their SEEK profile.\n2. The error occurred because the bot did not proceed past this authorization page and failed to click \"Allow access\". Previous analyses were correct in identifying the page, but needed to ensure the correct element for interaction.\n3. The bot should click the \"Allow access\" button to continue the application process. The CSS selector `button:has-text(\"Allow access\")` is appropriate."
+  },
+  {
+    "timestamp": "2026-07-11T22:33:28.200Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Senior AWS Data Engineer",
+    "company": "DWS Limited",
+    "url": "https://apply.jobadder.com/16850/1975186/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=DBATp5nFq4iCmJrFwgmZYV",
+    "page_title": "Senior AWS Data Engineer",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T22-33-23-888Z_ats_jobadder_no_submit.png",
+    "analysis": "1.  A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form is mostly filled, the \"I have read and consent...\" checkbox is unchecked, and the \"Apply Now\" button is inactive.\n2.  The bot failed to close the initial \"Want to apply later?\" modal and then failed to interact with the privacy consent checkbox, which is essential for activating the \"Apply Now\" button.\n3.  The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']`. After closing, it needs to click the checkbox via `input#PrivacyCheck` or `input[type=\"checkbox\"][id=\"PrivacyCheck\"]`."
+  },
+  {
+    "timestamp": "2026-07-11T22:37:06.382Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Solution Engineer | Service Cloud",
+    "company": "Informatica",
+    "url": "https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/Australia---Sydney/Senior-Solution-Engineer---Service-Cloud_JR351157/apply/applyManually",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T22-37-03-779Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" form is visible with pre-filled email and obscured password fields, along with a \"Sign In\" overlay. A password requirements popup is also visible with an 'x' button, and the \"I acknowledge and agree to Salesforce's Candidate Privacy Notice\" checkbox is unchecked.\n2. The bot failed to interact with the Workday account wall, specifically not closing the password requirements popup, agreeing to the privacy statement, or clicking \"Create Account\". The applied fix did not fully resolve the issue as the bot did not proceed past the account wall.\n3. The bot should click the 'x' button on the password requirements popup using `[aria-label=\"Close\"]`, then check the privacy statement with `input[data-automation-id='createAccountCheckbox']` or the visible checkbox, and finally click \"Create Account\" using `button[data-automation-id='createAccountButton']` or the visible \"Create Account\" button."
+  },
+  {
+    "timestamp": "2026-07-11T22:54:01.369Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "3 x Senior Cloud Engineers (Azure & AWS) | 12-Month Contracts",
+    "company": "Profusion PAC Pty Ltd",
+    "url": "https://apply.jobadder.com/11139/4453258/hd3yljhmegbupmbenwiscs5hpa?site=au1&seek-token=PYaB9dbi4DGqNpwgy32kKE",
+    "page_title": "3 x Senior Cloud Engineers (Azure & AWS) | 12-Month Contracts",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T22-53-58-963Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form is mostly filled, the \"I Consent\" dropdown is at its default value instead of \"Yes,\" and the \"Apply Now\" button is inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal and then failed to appropriately interact with the privacy consent dropdown, which is essential for activating the \"Apply Now\" button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']`. After closing, it needs to select \"Yes\" from the \"I Consent\" dropdown (likely by `select[name*='Consent']`)."
   }
 ]
