@@ -1,75 +1,5 @@
 [
   {
-    "timestamp": "2026-07-02T08:31:15.073Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Cloud Platform Solution Architect",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93075774/apply/review",
-    "page_title": "Review and submit | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T08-31-04-588Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Review and submit\" page is shown, displaying a warning: \"Before you can continue... address the following issues.\" It highlights an unchecked privacy policy checkbox with the text \"Do you agree to the privacy policy of Marlin Human Capital?\" and a message \"You must accept to continue.\"\n2. The bot is blocked because it has yet again failed to click the required single privacy policy consent checkbox, as the previous fix focused on multi-select checkbox groups.\n3. The bot should try to click the input associated with the privacy policy consent using a CSS selector such as `input[type=\"checkbox\"][aria-label*=\"privacy\"]` or by targeting its immediate parent (e.g., `label:has(span:contains(\"privacy policy\")) input[type=\"checkbox\"]`)."
-  },
-  {
-    "timestamp": "2026-07-02T08:39:54.711Z",
-    "error_type": "cover_letter_fill_failed",
-    "job_title": "Head of Technology - Workplace Operations",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication.asp?lJobID=498817&sCompletionSignal=8hhNxYNUQjZVnQAeT8sWqp&sLanguage=en&sSourcePointer=aw&lJobSourceTypeID=804",
-    "page_title": "Begin application - iCare NSW",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T08-39-50-259Z_cover_letter_fill_failed.png",
-    "analysis": "1. The screen displays the \"Begin application\" page for iCare, prompting for an email address to start the application.\n2. The error occurred because the bot attempted to fill a cover letter on an initial application page requesting an email, instead of a form that requires a cover letter.\n3. The bot should either proceed by entering an email in the `input[type=\"email\"]` field and clicking \"Next\", or it should be configured to identify \"Powered By PageUp People\" in the footer, indicating a specific application system."
-  },
-  {
-    "timestamp": "2026-07-02T08:50:36.699Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Data Modeller | Snowflake",
-    "company": "Billigence",
-    "url": "https://apply.jobadder.com/17858/4450709/sqnamq6rkfweplzicgktzku4we?site=au1&seek-token=LcMHPdhqTNwVBeiNUWo51p",
-    "page_title": "Senior Data Modeller | Snowflake",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T08-50-34-561Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible with some fields pre-filled, but a \"Want to apply later?\" modal is obstructing the view, and the \"Apply Now\" button is grayed out.\n2. The error occurred because the \"Want to apply later?\" modal is still present, preventing interaction with the form and the \"Apply Now\" button.\n3. The bot should click the 'X' button on the modal to close it, using the CSS selector `button[aria-label=\"Close\"]`."
-  },
-  {
-    "timestamp": "2026-07-02T09:04:13.255Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Group Product Manager, Digital",
-    "company": "Sharp & Carter Sales and Marketing",
-    "url": "https://apply.jobadder.com/18325/1972382/yp2pouaulf3efo2xhahzelwk7y?site=au2&seek-token=JVJMvHRGr7nAzG9xS9LdGS",
-    "page_title": "Group Product Manager, Digital",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T09-04-11-314Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible with some fields pre-filled, but a \"Want to apply later?\" modal is obstructing the view. The \"Apply Now\" button is grayed out.\n2. The error occurred because the \"Want to apply later?\" modal is still present, preventing interaction with the form and the \"Apply Now\" button.\n3. The bot should click the 'X' button on the modal to close it, using the CSS selector `button[aria-label=\"Close\"]`."
-  },
-  {
-    "timestamp": "2026-07-02T09:05:49.991Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "IT Business Analyst (Digital)",
-    "company": "Motion Recruitment",
-    "url": "https://au.seek.com/job/93068615/apply/profile",
-    "page_title": "Update SEEK Profile | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T09-05-47-651Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Update SEEK Profile\" step of the application is shown, displaying an error message \"Before you can continue... please address the following issues.\" and highlighting \"Career History - Please update your career history\".\n2. The error is caused by missing or incomplete career history information in the SEEK profile.\n3. The bot needs to click a button or link to add/update career history. A likely CSS selector would be `button:contains(\"Add career history\")` or `a:contains(\"Update career history\")`."
-  },
-  {
-    "timestamp": "2026-07-02T09:09:44.890Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Product Specialist",
-    "company": "Toyota Finance Australia",
-    "url": "https://toyotaau.wd3.myworkdayjobs.com/en-US/broadbean_external/job/NSW---Grosvenor-Place/Product-Specialist_R000007079-1/apply/applyManually?seek-token=Rfa9zD8ijbKN2sSvtfkzEe&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T09-09-42-433Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" modal is displayed mid-application. It contains fields for \"Email Address\", \"Password*\", and \"Verify New Password\", with the email pre-filled and an embedded \"Sign In\" button visible within the email field. Additionally, there is a \"Sign In\" link at the very bottom of the modal, below \"Already have an account?\".\n2. The error is caused by the bot trying to create a new account when it should be signing in with existing credentials, as indicated by the \"Sign In\" text at the top and the \"Already have an account? Sign In\" link at the bottom.\n3. The bot should click the \"Sign In\" link at the very bottom of the modal, which is separate from the embedded button. A specific CSS selector for this would be `div[role=\"dialog\"] a[aria-label=\"Sign In\"]` or matching the text \"Sign In\" at the bottom of the modal."
-  },
-  {
-    "timestamp": "2026-07-02T11:06:29.796Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Portfolio Manager",
-    "company": "University of New South Wales",
-    "url": "https://secure.dc2.pageuppeople.com/apply/841/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T11-06-27-924Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp \"Uh oh...\" error page, stating \"It looks like something has gone wrong\" and that an \"Additional security check is required\". An \"I am human\" hCaptcha checkbox is visible.\n2. This error was caused by PageUp's security system detecting unusual activity, triggering an hCaptcha verification requirement.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox.\n4. A suitable CSS selector for the checkbox is `input[type=\"checkbox\"]`."
-  },
-  {
     "timestamp": "2026-07-02T11:10:57.922Z",
     "error_type": "ats_workday_wall_mid_apply",
     "job_title": "Delivery Manager - Integrated Delivery",
@@ -4998,5 +4928,75 @@
     "page_title": "Apply with SEEK",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-10T23-06-10-481Z_ats_pageup_no_submit.png",
     "analysis": "1. The screen displays a SEEK authorization page asking the user to allow Peoplebank Australia QLD access to their SEEK profile.\n2. The error occurred because the bot did not proceed past this authorization page, likely expecting a PageUp security check, which is not present here.\n3. The bot should click the \"Allow access\" button to continue the application process. The CSS selector `button:has-text(\"Allow access\")` would be appropriate."
+  },
+  {
+    "timestamp": "2026-07-11T05:42:57.916Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Project Manager",
+    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
+    "url": "https://apply.jobadder.com/18301/1975239/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=9vmzHvE7A9DD2Y6oF14xga",
+    "page_title": "Project Manager",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T05-42-55-871Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A \"Want to apply later?\" modal is overlapping the mostly filled JobAdder application form. The \"Apply Now\" button at the bottom is visible but inactive.\n2. The bot failed to close the modal, preventing interaction with the form elements underneath, specifically the checkbox required to activate the \"Apply Now\" button.\n3. The bot should click the 'X' button to close the modal using `button[aria-label='Close']` or `div[class*='modal-header'] button`. After closing, it needs to check the \"I consent\" checkbox if it's not already checked, using `input[type=\"checkbox\"][id=\"PrivacyCheck\"]` or similar."
+  },
+  {
+    "timestamp": "2026-07-11T05:54:45.826Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Program Manager",
+    "company": "Bolton Clarke",
+    "url": "https://boltonclarke.wd105.myworkdayjobs.com/en-US/Careers/job/Brisbane-CBD-%26-Inner-Suburbs-Brisbane-QLD/Program-Manager_JR001854/apply/applyManually?seek-token=AfAfCtyrawPJk9geRDeTvo&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T05-54-43-279Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" modal is visible, completely covering the intended \"Sign In\" button from a previous state. The email `mohdrumman1@gmail.com` is pre-filled, along with correctly filled password and verify new password fields that meet the displayed requirements. The \"Sign In\" text within the email input is still an unclickable placeholder, and a functional \"Sign In\" link is below the modal.\n2. The bot has successfully filled the required fields, but it still hasn't clicked the \"Create Account\" button to proceed. The previous error analyses identified the ambiguity of \"Sign In\" vs. \"Create Account\" buttons, but the bot is failing to act on the correct one.\n3. The bot should click the \"Create Account\" button within the modal. A reliable CSS selector for this would be `button[data-automation-id='createAccountButton']`."
+  },
+  {
+    "timestamp": "2026-07-11T06:01:01.669Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Canvas Tech Lead",
+    "company": "Torrens University Australia",
+    "url": "https://strayer.wd1.myworkdayjobs.com/en-US/ANZ_TUA_External1/job/Campus-Surry-Hills/Canvas-Tech-Lead_R30733/apply/applyManually?seek-token=GXk6HCKY2uB9yHseBktR6M",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T06-00-57-624Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" modal is visible, completely covering the intended \"Sign In\" button from a previous state. The email `mohdrumman1@gmail.com` is pre-filled, and the \"Password\" and \"Verify New Password\" fields are correctly filled, meeting all requirements.\n2. The bot successfully filled the required fields, but it still hasn't clicked the \"Create Account\" button to proceed, despite previous analyses identifying this issue.\n3. The bot should explicitly click the \"Create Account\" button within the modal using the CSS selector `button[data-automation-id='createAccountButton']`."
+  },
+  {
+    "timestamp": "2026-07-11T06:18:50.335Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Head of Service Operations",
+    "company": "Kin",
+    "url": "https://apply.jobadder.com/15715/1975056/yip6gx4mb22evlzk3wjtrqv5oa?site=au2&seek-token=MzTMATm2HaiSfB2wtZGt7f",
+    "page_title": "Head of Service Operations",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T06-18-48-288Z_ats_jobadder_no_submit.png",
+    "analysis": "1. The JobAdder application form is visible and mostly filled, but the \"Apply Now\" button is inactive. The \"I accept the Privacy Policy\" checkbox is unchecked. There is no modal overlapping the form this time.\n2. The bot failed to check the privacy policy checkbox, which is required to enable the \"Apply Now\" button.\n3. The bot should click the \"I accept the Privacy Policy.\" checkbox using `input[type=\"checkbox\"][id^=\"PrivacyCheck\"]` or `input[type=\"checkbox\"][name=\"AcceptTermsCheckbox\"]`."
+  },
+  {
+    "timestamp": "2026-07-11T06:29:00.150Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior AI Solutions Engineer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://au.seek.com/awsk/authorize?id=06cebf2a-eb87-4217-b961-5322772b64e7",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T06-28-58-507Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a SEEK authorization page asking the user to confirm they allow Peoplebank Australia QLD to access their SEEK profile.\n2. The error occurred because the bot did not proceed past this authorization page. The previous analyses incorrectly expected a PageUp security check, which is not present here.\n3. The bot should click the \"Allow access\" button to continue the application process. The CSS selector `button:has-text(\"Allow access\")` would be appropriate."
+  },
+  {
+    "timestamp": "2026-07-11T06:42:24.141Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Senior AWS Data Engineer",
+    "company": "DWS Limited",
+    "url": "https://apply.jobadder.com/16850/1975186/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=SGxPuBFsZB7CXV3G43h74w",
+    "page_title": "Senior AWS Data Engineer",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T06-42-21-757Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form is mostly filled, but the \"Accept Terms Checkbox\" - Privacy Policy is unchecked, making the \"Apply Now\" button inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal and then failed to engage with the privacy policy checkbox, which is essential for activating the \"Apply Now\" button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `div[class*='modal-header'] button`. After closing, it needs to check the \"I have read and consent to the DWS Candidate Data Privacy Notice\" checkbox using `input[type=\"checkbox\"][id^=\"PrivacyCheck\"]` or similar."
+  },
+  {
+    "timestamp": "2026-07-11T07:01:19.520Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "3 x Senior Cloud Engineers (Azure & AWS) | 12-Month Contracts",
+    "company": "Profusion PAC Pty Ltd",
+    "url": "https://apply.jobadder.com/11139/4453258/hd3yljhmegbupmbenwiscs5hpa?site=au1&seek-token=58YSA929buLQvYdRiQWtun",
+    "page_title": "3 x Senior Cloud Engineers (Azure & AWS) | 12-Month Contracts",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T07-01-17-137Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A \"Want to apply later?\" modal is open, overlapping the JobAdder application form. The application form is mostly filled but the \"I Consent\" checkbox and the \"Apply Now\" button are visible but the button is inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal. It also failed to interact with the \"I Consent\" checkbox which is essential for activating the \"Apply Now\" button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']`. After closing, it needs to click the \"I Consent\" checkbox using `input[type=\"checkbox\"][id=\"PrivacyCheck\"]` or similar."
   }
 ]
