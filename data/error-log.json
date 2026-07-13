@@ -1,45 +1,5 @@
 [
   {
-    "timestamp": "2026-07-02T23:46:27.545Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Head of Technology - Workplace Operations",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T23-46-23-864Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp \"Uh oh...\" error page, stating \"It looks like something has gone wrong\" and that an \"Additional security check is required\". An \"I am human\" hCaptcha checkbox is visible.\n2. This error was caused by PageUp's security system detecting unusual activity, thereby triggering an hCaptcha verification requirement.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox, potentially within an iframe.\n4. A suitable CSS selector for the checkbox is `input[type=\"checkbox\"]`."
-  },
-  {
-    "timestamp": "2026-07-02T23:47:25.868Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Network Automation Specialist",
-    "company": "ABC",
-    "url": "https://secure.dc2.pageuppeople.com/apply/516/gateway/Default.aspx?c=apply&sJobIDs=505410&SourceTypeID=815&seek-token=Uknvv15a5zj7KrWNMhhj8t",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T23-47-23-792Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp \"Uh oh...\" error page, stating \"It looks like something has gone wrong\" and that an \"Additional security check is required\". An \"I am human\" hCaptcha checkbox is visible.\n2. This error was caused by PageUp's security system detecting unusual activity, thereby triggering an hCaptcha verification requirement.\n3. The bot should attempt to solve the hCaptcha by clicking the \"I am human\" checkbox, potentially within an iframe.\n4. A suitable CSS selector for the checkbox is `input[type=\"checkbox\"]`."
-  },
-  {
-    "timestamp": "2026-07-02T23:58:28.349Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Group Product Manager, Digital",
-    "company": "Sharp & Carter Sales and Marketing",
-    "url": "https://apply.jobadder.com/18325/1972382/yp2pouaulf3efo2xhahzelwk7y?site=au2&seek-token=L4TZbHayFqviifE2mmCeCM",
-    "page_title": "Group Product Manager, Digital",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-02T23-58-26-307Z_ats_jobadder_no_submit.png",
-    "analysis": "1. The JobAdder application form is visible and mostly filled, but the \"Want to apply later?\" modal is still present, covering the top part of the form. The \"Apply Now\" button at the bottom is grayed out.\n2. The error occurred because the \"Want to apply later?\" modal is still obstructing the application form, preventing interaction and form submission.\n3. The bot should click the 'X' button on the modal to close it, using the CSS selector `button[aria-label=\"Close\"]`."
-  },
-  {
-    "timestamp": "2026-07-03T00:02:49.308Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Product Specialist",
-    "company": "Toyota Finance Australia",
-    "url": "https://toyotaau.wd3.myworkdayjobs.com/en-US/broadbean_external/job/NSW---Grosvenor-Place/Product-Specialist_R000007079-1/apply/applyManually?seek-token=TpRJ68uYW7LcjZEi3RV79g&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-03T00-02-46-820Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" modal overlay is visible, pre-filled with an email address and a password field, and a \"Sign In\" button embedded within. Below the modal, the full \"Create Account\" form is partially visible, and at the bottom of the page, \"Already have an account? Sign In\" and \"Forgot your password?\" links are present.\n2. The bot likely attempted to sign in via the embedded \"Sign In\" button on the modal, but the modal is still prompting for account creation or has triggered a state where a separate sign-in is needed.\n3. The bot should explicitly click the \"Sign In\" link located at the bottom of the page, outside the modal, with the text \"Sign In\" (which is part of \"Already have an account? Sign In\"). A robust selector could be `a:contains(\"Sign In\")[href*=\"signIn\"]` or similar to previous analyses."
-  },
-  {
     "timestamp": "2026-07-03T00:03:53.950Z",
     "error_type": "ats_pageup_no_submit",
     "job_title": "Head of Technology - Strategic Planning",
@@ -4998,5 +4958,45 @@
     "page_title": "",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T22-40-27-651Z_ats_pageup_no_submit.png",
     "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
+  },
+  {
+    "timestamp": "2026-07-13T06:14:19.436Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Head of AI Delivery & Integration",
+    "company": "icare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-13T06-14-17-174Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
+  },
+  {
+    "timestamp": "2026-07-13T06:37:57.887Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Technical Product Analyst",
+    "company": "nib health funds limited",
+    "url": "https://nib.wd105.myworkdayjobs.com/en-US/careers/job/Newcastle%2C-Australia/Technical-Product-Analyst_JR105141-5/apply/applyManually?seek-token=U4k8bAery882tSp6QnrAxS&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-13T06-37-55-735Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Sign In\" overlay is visible over a \"Create Account\" pop-up. The \"Sign In\" overlay has pre-filled email and password fields, password requirements, and a \"Sign In\" button, while the underlying Create Account form shows the checkbox and \"Create Account\" button.\n2. The bot failed to close the intrusive \"Sign In\" overlay, preventing interaction with the underlying \"Create Account\" form.\n3. The bot should click the 'x' button on the overlay using `button[aria-label=\"Close\"]` or `button[data-automation-id=\"closeButton\"]`."
+  },
+  {
+    "timestamp": "2026-07-13T06:48:18.721Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Quality Engineer - Integration",
+    "company": "WorkCover Queensland",
+    "url": "https://secure.dc2.pageuppeople.com/apply/615/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-13T06-48-16-866Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge.\n4. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
+  },
+  {
+    "timestamp": "2026-07-13T07:00:03.335Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Workplace AI Product Owner",
+    "company": "Anglicare",
+    "url": "https://anglicare.wd105.myworkdayjobs.com/en-US/Anglicare_Careers/job/Anglicare-Hub-Macquarie-Park/Workplace-AI-Product-Owner_JR7366-1/apply/applyManually?seek-token=Q6r58Duz38jKVKQQXUhFLD&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-13T07-00-01-195Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Sign In\" overlay is visible over a \"Create Account\" pop-up. The \"Sign In\" overlay has pre-filled email and password fields and password requirements. The underlying \"Create Account\" form's checkbox and \"Create Account\" button are partially obscured but visible.\n2. The bot failed to close the intrusive \"Sign In\" overlay, preventing interaction with the underlying \"Create Account\" form.\n3. The bot should click the 'x' button on the overlay using `button[aria-label=\"Close\"]` or `button[data-automation-id=\"closeButton\"]`."
   }
 ]
