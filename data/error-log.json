@@ -1,75 +1,5 @@
 [
   {
-    "timestamp": "2026-07-03T22:13:35.944Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Manager - Digital Products and Innovation",
-    "company": "Wesley Mission Queensland",
-    "url": "https://wmq.wd105.myworkdayjobs.com/en-US/wmq-careers/job/Chermside/Manager---Digital-Products-and-Innovation_JR102223-1/apply/applyManually?seek-token=7dDD6nyoVb6rSHLyENGyut",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-03T22-13-33-781Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" modal is visible, showing password requirements, pre-filled \"Email Address\", \"Password\", and \"Verify New Password\" fields. The \"Sign In\" button on the modal is overlaid by the \"Wesley Mission Queensland\" logo, and below the form, there's a clear \"Already have an account? Sign In\" link.\n2. The bot is again attempting to create a new account instead of signing into an existing one, likely confused by the multiple \"Sign In\" elements or failing to prioritize the existing account sign-in link. The overlay of the \"Wesley Mission Queensland\" logo on the \"Sign In\" button is also an issue making it inaccessible.\n3. The bot should click the explicitly visible and accessible \"Already have an account? Sign In\" link using a robust CSS selector like `a:contains(\"Sign In\")[href]` that specifically targets the link below the form."
-  },
-  {
-    "timestamp": "2026-07-03T22:17:37.087Z",
-    "error_type": "unanswered_questions",
-    "job_title": "PRINCIPAL AZURE AI CONSULTANT  - Remote",
-    "company": "Agile Analytics",
-    "url": "https://au.seek.com/job/93098907/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-03T22-17-34-017Z_unanswered_questions.png",
-    "analysis": "1. The \"Answer employer questions\" page is shown. Several questions have been answered, including \"Which city are you based?\", \"Do you have experience working for an IT consulting company?\", and a couple of \"Do you have...\" checkboxes. Unanswered questions include the salary selection, \"How many years' experience do you have as an Azure AI consultant?\", and \"Do you hold any Microsoft or Databricks certifications?\".\n2. The bot failed to select a salary range, input text into the \"how many years' experience\" dropdown, and input text into the \"certifications\" field due to a combination of not understanding the input type for the \"how many years\" question and the previous fix for salary fields not fully addressing range selection. The \"Working rights\" radio buttons are also unanswered.\n3. The bot should select a salary option by clicking a `span` containing a salary range (e.g., `span:contains(\"$120,000 + super\")`). It also needs to type into the \"How many years' experience...\" field using `input[name*=\"experience\"]` and into the \"Do you hold any Microsoft or Databricks certifications?\" field using `textarea[name*=\"certifications\"]`. Additionally, it needs to select a radio button for \"What are your working rights for Australia [Visa type etc]\" (e.g., `input[type='radio'][value='Citizen']`)."
-  },
-  {
-    "timestamp": "2026-07-03T22:18:12.602Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "PRINCIPAL AZURE AI CONSULTANT  - Remote",
-    "company": "Agile Analytics",
-    "url": "https://au.seek.com/job/93098907/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-03T22-18-10-138Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible, with a validation error indicating that a selection is required for \"How many years' experience do you have as an Azure AI consultant?\".\n2. The error was caused by not selecting an option from the dropdown menu for the question \"How many years' experience do you have as an Azure AI consultant?\".\n3. The bot should attempt to open the dropdown menu and select an appropriate option for the question \"How many years' experience do you have as an Azure AI consultant?\". A likely CSS selector for the dropdown would be an input or select element with a label or aria-label containing \"How many years' experience do you have as an Azure AI consultant?\"."
-  },
-  {
-    "timestamp": "2026-07-03T22:19:16.796Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "PRINCIPAL AZURE AI CONSULTANT  - Remote",
-    "company": "Agile Analytics",
-    "url": "https://au.seek.com/job/93098907/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-03T22-19-14-799Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Answer employer questions\" step is visible with an error message stating \"How many years' experience do you have as an Azure AI consultant? - Please make a selection.\"\n2. The bot failed to select an option from a dropdown (select element) for the \"How many years' experience do you have as an Azure AI consultant?\" question. The previous fix primarily addressed checkbox groups and single privacy checkboxes, not dropdowns.\n3. The bot should target the `select` element associated with the label \"How many years' experience do you have as an Azure AI consultant?\" and select an appropriate option."
-  },
-  {
-    "timestamp": "2026-07-03T22:24:39.416Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Business Lead - Projects and Operations",
-    "company": "Mirvac",
-    "url": "https://mirvac.csod.com/ux/ats/careersite/1/requisition/4958/application?c=mirvac&seek-token=PxZH23mjuNNVuPsu1j2Gta&source=seek_oz&jobboardid=0#1",
-    "page_title": "mirvac Career site",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-03T22-24-26-347Z_ats_cornerstone_no_submit.png",
-    "analysis": "1. The screen displays \"Step 1 of 4\" of an application form, showing contact information and numerous diversity and personal questions, many marked with \"This question is required\" errors. The \"Next\" button is visible at the bottom.\n2. The error was caused because the bot attempted to proceed to the next step without supplying answers to mandatory fields, resulting in validation errors.\n3. The bot needs to fill in all the fields marked as \"This question is required\" and then click the `button:has-text(\"Next\")`."
-  },
-  {
-    "timestamp": "2026-07-03T22:46:35.870Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Fraud Delivery Lead",
-    "company": "BCU Bank",
-    "url": "https://apply.jobadder.com/17646/4451346/hqpbknz6nh4erimnrf5r2iw7ki?site=au1&seek-token=RmS88piN1ZSRo6ynQLYERs",
-    "page_title": "Fraud Delivery Lead",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-03T22-46-33-282Z_ats_jobadder_no_submit.png",
-    "analysis": "The \"Want to apply later?\" modal is still open, obscuring the top of the form, and preventing interaction with the main form. The \"Apply Now\" button is also greyed out. This error is caused by the modal being open which needs to be closed before the bot can progress. The bot should click the 'X' button on the \"Want to apply later?\" modal to close it. The CSS selector for this would be `button.close`."
-  },
-  {
-    "timestamp": "2026-07-03T22:53:12.333Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Software Engineer",
-    "company": "Billigence",
-    "url": "https://apply.jobadder.com/17858/4451337/sqnamq6rkfweplzicgktzku4we?site=au1&seek-token=KZ2apNv5joXNGVxZWVq6hG",
-    "page_title": "Senior Software Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-03T22-52-59-630Z_ats_jobadder_no_submit.png",
-    "analysis": "1. The JobAdder application form is visible and mostly filled, but a \"Want to apply later?\" modal is still obscuring the top of the form and the \"Apply Now\" button is grayed out.\n2. The error is caused by the \"Want to apply later?\" modal being open, preventing interaction with the main form and submission.\n3. The bot should click the 'X' button on the \"Want to apply later?\" modal to close it. The CSS selector for this would be `.close` or `button.close`."
-  },
-  {
     "timestamp": "2026-07-03T23:01:54.424Z",
     "error_type": "ats_workday_wall_mid_apply",
     "job_title": "Senior DevOps Engineer",
@@ -4998,5 +4928,75 @@
     "page_title": "Senior Digital Product Owner",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T06-34-22-461Z_ats_jobadder_no_submit.png",
     "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The \"Apply Now\" button at the bottom is visible but inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing it from interacting with the underlying form and its submit button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']` to dismiss it."
+  },
+  {
+    "timestamp": "2026-07-15T10:41:38.899Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Delivery Lead",
+    "company": "Peoplebank Australia NSW",
+    "url": "https://au.seek.com/awsk/authorize?id=8d107330-b115-4ae2-a085-3255551c900b",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T10-41-36-907Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a consent page from Seek, asking the user to confirm allowing Peoplebank Australia NSW to access their SEEK Profile.\n2. The error occurred because the bot did not click the \"Allow access\" button to proceed, causing the automation flow to stall.\n3. The bot should click the \"Allow access\" button using the CSS selector `button:has-text(\"Allow access\")`."
+  },
+  {
+    "timestamp": "2026-07-15T10:57:12.491Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Full Stack Developer",
+    "company": "National Heavy Vehicle Regulator",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1123/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T10-57-10-499Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
+  },
+  {
+    "timestamp": "2026-07-15T11:10:08.701Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Principal Cloud Engineer (Azure)",
+    "company": "WorkCover Queensland",
+    "url": "https://secure.dc2.pageuppeople.com/apply/615/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T11-10-06-649Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
+  },
+  {
+    "timestamp": "2026-07-15T11:19:21.420Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Senior Cloud Engineer",
+    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
+    "url": "https://apply.jobadder.com/18301/1976476/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=XmmRfh5umgFr8qQxJDo7kB",
+    "page_title": "Senior Cloud Engineer",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T11-19-18-965Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The \"Apply Now\" button at the bottom is visible but inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing it from interacting with the underlying form and its submit button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']` to dismiss it."
+  },
+  {
+    "timestamp": "2026-07-15T11:38:38.729Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Senior Digital Product Owner",
+    "company": "Sharp & Carter Sales and Marketing",
+    "url": "https://apply.jobadder.com/18325/1975921/yp2pouaulf3efo2xhahzelwk7y?site=au2&seek-token=DLri7hcQTYnShKJgnkkVGP",
+    "page_title": "Senior Digital Product Owner",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T11-38-36-019Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The \"Apply Now\" button at the bottom is visible but inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing it from interacting with the underlying form and its submit button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` to dismiss it."
+  },
+  {
+    "timestamp": "2026-07-15T11:42:19.781Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Technical Product Analyst",
+    "company": "nib health funds limited",
+    "url": "https://nib.wd105.myworkdayjobs.com/en-US/careers/job/Newcastle%2C-Australia/Technical-Product-Analyst_JR105141-5/apply/applyManually?seek-token=CbqMnWkbCHHTBRW7KXfFnQ&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T11-42-17-446Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An intrusive \"Sign In\" overlay is visible over a \"Create Account\" form, with \"Sign In\" partially covering \"Email Address.\" The bot has partially filled both the overlay and background form fields.\n2. The bot attempted to create an account but an unexpected \"Sign In\" overlay appeared, leading it to incorrectly fill fields within the overlay instead of closing it.\n3. The bot should click the 'x' close button within the \"Sign In\" overlay using `button[aria-label=\"Close\"]` to dismiss it."
+  },
+  {
+    "timestamp": "2026-07-15T11:46:20.956Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Workplace AI Product Owner",
+    "company": "Anglicare",
+    "url": "https://anglicare.wd105.myworkdayjobs.com/en-US/Anglicare_Careers/job/Anglicare-Hub-Macquarie-Park/Workplace-AI-Product-Owner_JR7366-1/apply/applyManually?seek-token=BayCyWGw34mKJVeUtD6rdx&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T11-46-18-601Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The screen shows a \"Create Account\" form with an intrusive \"Sign In\" overlay covering most of it. The bot has filled in email and password fields in both the overlay and the background \"Create Account\" form.\n2. The bot was meant to create an account, but an intrusive \"Sign In\" overlay appeared, leading it to incorrectly enter information into the overlay fields instead of closing it.\n3. The bot should click the 'x' close button within the \"Sign In\" overlay using the CSS selector `button[aria-label=\"Close\"]`."
   }
 ]
