@@ -1,245 +1,5 @@
 [
   {
-    "timestamp": "2026-07-11T11:04:44.633Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Product Stream Lead, Growth",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Product-Stream-Lead--Growth_REQ261456/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T11-04-42-277Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form with pre-filled email and password fields is currently visible, partially obscured by a \"Sign In\" button. A password requirements popup is also visible, and the \"I understand and agree to the Candidate Privacy Statement\" checkbox is unchecked.\n2. The bot failed to interact with the Workday account wall which reappeared mid-application. Specifically, it did not close the password requirements popup, agree to the privacy statement, or click \"Create Account\".\n3. The bot should first click the 'x' button on the password requirements popup using `button[title='Close']` or `button[data-automation-id='promptButton']`, then check the privacy statement with `input[data-automation-id='createAccountCheckbox']`, and finally click \"Create Account\" using `button[data-automation-id='createAccountButton']`."
-  },
-  {
-    "timestamp": "2026-07-11T11:08:01.713Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Principal Data Scientist – Financial Crime Model Validation&nbsp;",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Principal-Data-Scientist---Financial-Crime-Model-Validation-_REQ259779/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T11-07-59-064Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form with an email and password pre-filled, a \"Sign In\" overlay, and a password requirements popup with an 'x' button is visible. The \"I understand and agree to the Candidate Privacy Statement\" checkbox is unchecked.\n2. The bot failed to interact with the Workday account wall which reappeared mid-application. It did not close the password requirements popup, agree to the privacy statement, or click \"Create Account\".\n3. The bot should first click the 'x' button on the password requirements popup using `button[aria-label=\"Close\"]` or `button[data-automation-id='promptButton']`, then check the privacy statement with `input[data-automation-id='createAccountCheckbox']`, and finally click \"Create Account\" using `button[data-automation-id='createAccountButton']`."
-  },
-  {
-    "timestamp": "2026-07-11T11:11:19.456Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Staff Software Engineer",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Staff-Software-Engineer_REQ260309-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T11-11-17-068Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form is visible with pre-filled email and password fields, along with a \"Sign In\" overlay. A password requirements popup is also visible, and the \"I understand and agree to the Candidate Privacy Statement\" checkbox is unchecked.\n2. The bot failed to interact with the Workday account wall which reappeared mid-application, specifically not closing the password requirements popup, agreeing to the privacy statement, or clicking \"Create Account\".\n3. The bot should first click the 'x' button on the password requirements popup using `button[aria-label=\"Close\"]` or `button[data-automation-id='promptButton']`, then check the privacy statement with `input[data-automation-id='createAccountCheckbox']`, and finally click \"Create Account\" using `button[data-automation-id='createAccountButton']`."
-  },
-  {
-    "timestamp": "2026-07-11T21:23:20.677Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Project Manager",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1975239/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=Rnqfqs7hV6K4ehGcFUXNun",
-    "page_title": "Project Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T21-23-18-326Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form data is filled, and the \"Apply Now\" button is visible but inactive. The declaration about consent to the Privacy Policy is set to \"Yes\", and the date of consent is entered.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing interaction with the rest of the form to submit.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `div[class*='modal-header'] button`. After closing the modal, it should be able to click the \"Apply Now\" button."
-  },
-  {
-    "timestamp": "2026-07-11T21:36:28.537Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Program Manager",
-    "company": "Bolton Clarke",
-    "url": "https://boltonclarke.wd105.myworkdayjobs.com/en-US/Careers/job/Brisbane-CBD-%26-Inner-Suburbs-Brisbane-QLD/Program-Manager_JR001854/apply/applyManually?seek-token=NAaY4vi4U1XhPSDVGHf4qz&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T21-36-26-098Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form with an email and password pre-filled, a \"Sign In\" overlay, and a password requirements popup with an 'x' button is visible. A \"Create Account\" button is also visible at the bottom of the form and is partially obscured.\n2. The bot failed to interact with the Workday account wall which reappeared mid-application. It did not close the password requirements popup, agree to a privacy statement (which is not visible in this screenshot), or click \"Create Account\".\n3. The bot should first click the 'x' button on the password requirements popup using `button[aria-label=\"Close\"]` or wait for the complete element: `button[data-automation-id='promptButton']`, then, if a privacy statement checkbox is present, check the privacy statement with `input[data-automation-id='createAccountCheckbox']`, and finally click \"Create Account\" using `button[data-automation-id='createAccountButton']`."
-  },
-  {
-    "timestamp": "2026-07-11T21:53:19.391Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Project Implementation Manager - Clinical Scheduling",
-    "company": "Suncare Community Services Ltd",
-    "url": "https://apply.jobadder.com/18298/880673/7cmmw36joe4u7i5yqpbf442xpq?site=au6&seek-token=6u8fk7YYjdvatJSRZrU2hK",
-    "page_title": "Project Implementation Manager - Clinical Scheduling",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T21-53-16-707Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form is mostly filled, but the \"Terms & Conditions\" checkbox is unchecked, making the \"Apply Now\" button inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal and then failed to engage with the \"Terms & Conditions\" checkbox, which is essential for activating the \"Apply Now\" button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']`. After closing, it needs to click the \"I accept the Terms & Conditions\" checkbox using `input[type=\"checkbox\"]` followed by clicking the \"Apply Now\" button."
-  },
-  {
-    "timestamp": "2026-07-11T21:57:31.696Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Manager Procurement, Delivery and Operations",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Manger-Procurement--Delivery-and-Operations_REQ262043/apply/applyManually?seek-token=3dzWzm4dN7f34jevXsdJ5G",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T21-57-29-573Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Acount\" form is visible with pre-filled email and password fields, along with a \"Sign In\" overlay and a password requirements popup. The \"I understand and agree to the Candidate Privacy Statement\" checkbox is unchecked.\n2. The bot failed to interact with the Workday account wall which reappeared mid-application, specifically not closing the password requirements popup, agreeing to the privacy statement, or clicking \"Create Account\".\n3. The bot should first click the 'x' button on the password requirements popup using `button[aria-label=\"Close\"]`, then check the privacy statement with `input[data-automation-id='createAccountCheckbox']`, and finally click \"Create Account\" using `button[data-automation-id='createAccountButton']`."
-  },
-  {
-    "timestamp": "2026-07-11T22:19:30.626Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Senior AI Solutions Engineer",
-    "company": "Peoplebank Australia QLD",
-    "url": "https://au.seek.com/awsk/authorize?id=7dbb352f-0530-4389-95d0-54f0f64c16c7",
-    "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T22-19-28-851Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a SEEK authorization page, asking the user to allow Peoplebank Australia QLD to access their SEEK profile.\n2. The error occurred because the bot did not proceed past this authorization page and failed to click \"Allow access\". Previous analyses were correct in identifying the page, but needed to ensure the correct element for interaction.\n3. The bot should click the \"Allow access\" button to continue the application process. The CSS selector `button:has-text(\"Allow access\")` is appropriate."
-  },
-  {
-    "timestamp": "2026-07-11T22:33:28.200Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior AWS Data Engineer",
-    "company": "DWS Limited",
-    "url": "https://apply.jobadder.com/16850/1975186/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=DBATp5nFq4iCmJrFwgmZYV",
-    "page_title": "Senior AWS Data Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T22-33-23-888Z_ats_jobadder_no_submit.png",
-    "analysis": "1.  A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form is mostly filled, the \"I have read and consent...\" checkbox is unchecked, and the \"Apply Now\" button is inactive.\n2.  The bot failed to close the initial \"Want to apply later?\" modal and then failed to interact with the privacy consent checkbox, which is essential for activating the \"Apply Now\" button.\n3.  The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']`. After closing, it needs to click the checkbox via `input#PrivacyCheck` or `input[type=\"checkbox\"][id=\"PrivacyCheck\"]`."
-  },
-  {
-    "timestamp": "2026-07-11T22:37:06.382Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Solution Engineer | Service Cloud",
-    "company": "Informatica",
-    "url": "https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/Australia---Sydney/Senior-Solution-Engineer---Service-Cloud_JR351157/apply/applyManually",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T22-37-03-779Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form is visible with pre-filled email and obscured password fields, along with a \"Sign In\" overlay. A password requirements popup is also visible with an 'x' button, and the \"I acknowledge and agree to Salesforce's Candidate Privacy Notice\" checkbox is unchecked.\n2. The bot failed to interact with the Workday account wall, specifically not closing the password requirements popup, agreeing to the privacy statement, or clicking \"Create Account\". The applied fix did not fully resolve the issue as the bot did not proceed past the account wall.\n3. The bot should click the 'x' button on the password requirements popup using `[aria-label=\"Close\"]`, then check the privacy statement with `input[data-automation-id='createAccountCheckbox']` or the visible checkbox, and finally click \"Create Account\" using `button[data-automation-id='createAccountButton']` or the visible \"Create Account\" button."
-  },
-  {
-    "timestamp": "2026-07-11T22:54:01.369Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "3 x Senior Cloud Engineers (Azure & AWS) | 12-Month Contracts",
-    "company": "Profusion PAC Pty Ltd",
-    "url": "https://apply.jobadder.com/11139/4453258/hd3yljhmegbupmbenwiscs5hpa?site=au1&seek-token=PYaB9dbi4DGqNpwgy32kKE",
-    "page_title": "3 x Senior Cloud Engineers (Azure & AWS) | 12-Month Contracts",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-11T22-53-58-963Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form is mostly filled, the \"I Consent\" dropdown is at its default value instead of \"Yes,\" and the \"Apply Now\" button is inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal and then failed to appropriately interact with the privacy consent dropdown, which is essential for activating the \"Apply Now\" button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']`. After closing, it needs to select \"Yes\" from the \"I Consent\" dropdown (likely by `select[name*='Consent']`)."
-  },
-  {
-    "timestamp": "2026-07-12T05:58:52.243Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Project Manager",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1975239/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=SfMvfCBLamuVpb9wWUNe8k",
-    "page_title": "Project Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T05-58-50-398Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The form appears mostly filled, and the \"Apply Now\" button is active.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing it from interacting with the main application form beyond basic filling.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` to close the modal, and then proceed with clicking the \"Apply Now\" button."
-  },
-  {
-    "timestamp": "2026-07-12T06:11:56.209Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Manager Procurement, Delivery and Operations",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Manger-Procurement--Delivery-and-Operations_REQ262043/apply/applyManually?seek-token=7ZhfZtk7yyrWfmgUDPpEVV",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T06-11-54-165Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form with an email and pre-filled password fields is visible. It is overlaid by a \"Sign In\" popup that also has a password requirements section and a close 'x' button. The \"I understand and agree to the Candidate Privacy Statement\" checkbox is unchecked.\n2. The bot failed to interact with the Workday account wall that reappeared mid-application. It did not close the password requirements popup, agree to the privacy statement, or click \"Create Account\".\n3. The bot should first click the 'x' button on the \"Sign In\" overlay's password requirements popup, then check the privacy statement with `input[type=\"checkbox\"]` within the \"Create Account\" section, and finally click \"Create Account\" using `button[type=\"submit\"]` or a similar selector that targets the \"Create Account\" button directly within the main `Create Account` form."
-  },
-  {
-    "timestamp": "2026-07-12T06:16:17.721Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Digital Automation Team Lead",
-    "company": "Ricoh Australia Pty Ltd",
-    "url": "https://ricohrap.wd3.myworkdayjobs.com/en-US/Ricoh_Careers/job/North-Ryde-Office/Digital-Automation-Team-Lead_R0002574/apply/applyManually?seek-token=45bptTvdq22Mp77B3Vwnum",
-    "page_title": "Digital Automation Team Lead",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T06-16-15-442Z_ats_workday_no_submit.png",
-    "analysis": "1. The \"My Information\" page of the Workday application form is visible, showing \"Errors Found\" for multiple required fields: \"How Did You Hear About Us?\", \"Phone Device Type\", and \"Phone Number\".\n2. The error occurred because the bot failed to populate mandatory dropdowns for \"How Did You Hear About Us?\", \"Phone Device Type\", and the \"Phone Number\" text field, resulting in validation errors upon attempting to proceed.\n3. The bot needs to select values for the dropdowns (e.g., `[data-automation-id=\"typeaheadInput_undefined\"]` for \"How Did You Hear About Us?\" and \"Phone Device Type\") and input a phone number (`input[data-automation-id=\"phoneNumber\"]`)."
-  },
-  {
-    "timestamp": "2026-07-12T06:21:07.185Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Program Manager",
-    "company": "Bolton Clarke",
-    "url": "https://boltonclarke.wd105.myworkdayjobs.com/en-US/Careers/job/Brisbane-CBD-%26-Inner-Suburbs-Brisbane-QLD/Program-Manager_JR001854/apply/applyManually?seek-token=Hu2FpY6jbu4VhVv92ttf9u&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T06-21-04-908Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" pop-up is visible within the application workflow, showing email and password fields, along with password requirements. The \"Sign In\" button is also present.\n2. The bot encountered the Workday account wall mid-application. It failed to interact with the \"Create Account\" form by not closing elements, agreeing to terms (which are not visible in this specific screenshot), or submitting the form.\n3. The bot should click the 'x' button on the pop-up using `button[aria-label=\"Close\"]`, fill in/confirm the password, and then click \"Create Account\" using `button[title=\"Create Account\"]` or `button[data-automation-id='createAccountButton']`."
-  },
-  {
-    "timestamp": "2026-07-12T06:36:08.676Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Senior AI Solutions Engineer",
-    "company": "Peoplebank Australia QLD",
-    "url": "https://au.seek.com/awsk/authorize?id=55131d4d-881c-4b1d-b2e0-d05315b6c0bc",
-    "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T06-36-06-769Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a SEEK authorization page, asking the user to allow Peoplebank Australia QLD to access their SEEK profile.\n2. The error occurred because the bot did not proceed past this authorization page by clicking \"Allow access\".\n3. The bot should click the \"Allow access\" button to continue the application process. The CSS selector `button:has-text(\"Allow access\")` is appropriate."
-  },
-  {
-    "timestamp": "2026-07-12T06:49:13.122Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior AWS Data Engineer",
-    "company": "DWS Limited",
-    "url": "https://apply.jobadder.com/16850/1975186/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=5JsmB7PCqYAC42JvcNmH5S",
-    "page_title": "Senior AWS Data Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T06-49-10-939Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form is mostly filled, the \"I have read and consent...\" checkbox is unchecked, and the \"Apply Now\" button is inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal and then failed to interact with the privacy consent checkbox, which is essential for activating the \"Apply Now\" button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']`. After closing, it needs to click the checkbox via `input#PrivacyCheck` or `input[type=\"checkbox\"][id=\"PrivacyCheck\"]`."
-  },
-  {
-    "timestamp": "2026-07-12T06:57:19.615Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Solution Engineer | Service Cloud",
-    "company": "Informatica",
-    "url": "https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/Australia---Sydney/Senior-Solution-Engineer---Service-Cloud_JR351157/apply/applyManually",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T06-57-17-392Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  A \"Sign In\" overlay is visible with pre-filled email and password fields, along with password requirements. Below the \"Sign In\" button, there's an option to \"Create Account\" and a checkbox for \"I acknowledge and agree to Salesforce's Candidate Privacy Notice\".\n2.  The bot failed at handling the re-encountered Workday account wall mid-application. It did not close the password requirements/Sign In overlay or acknowledge the privacy notice to proceed with \"Create Account.\"\n3.  The bot should close the current \"Sign In\" overlay by clicking the 'x' button (`button[aria-label=\"Close\"]`), then check the privacy statement checkbox using `input[type=\"checkbox\"]` or `input[data-automation-id='createAccountCheckbox']`, and finally click the \"Create Account\" button using `button[title=\"Create Account\"]` or `button[data-automation-id='createAccountButton']`."
-  },
-  {
-    "timestamp": "2026-07-12T07:11:06.512Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "3 x Senior Cloud Engineers (Azure & AWS) | 12-Month Contracts",
-    "company": "Profusion PAC Pty Ltd",
-    "url": "https://apply.jobadder.com/11139/4453258/hd3yljhmegbupmbenwiscs5hpa?site=au1&seek-token=ERAptnBUhSywYShqrKPuTV",
-    "page_title": "3 x Senior Cloud Engineers (Azure & AWS) | 12-Month Contracts",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T07-11-04-592Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The \"I Consent\" dropdown is at its default value and the \"Apply Now\" button is inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal and then failed to appropriately interact with the privacy consent dropdown, which is essential for activating the \"Apply Now\" button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']`. After closing, it needs to select \"Yes\" from the \"I Consent\" dropdown (likely by `select[name*='Consent']`)."
-  },
-  {
-    "timestamp": "2026-07-12T10:20:28.073Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Project Manager",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1975239/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=GwGQoekiJBEACFgwS52XDs",
-    "page_title": "Project Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T10-20-25-269Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The application form is mostly filled, the \"Declaration\"consent dropdown is set to \"Yes\", and the \"Apply Now\" button is active.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing it from interacting with the main application form beyond basic filling.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` to close the modal, and then proceed with clicking the \"Apply Now\" button."
-  },
-  {
-    "timestamp": "2026-07-12T10:33:37.409Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Manager Procurement, Delivery and Operations",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Manger-Procurement--Delivery-and-Operations_REQ262043/apply/applyManually?seek-token=WEH89fvRqjVoiAcsZgAqw9",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T10-33-34-918Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1.  A \"Create Account\" form is visible with pre-filled email and password fields, along with password requirements. An overlay with a \"Sign In\" button is also present, which obscures some of the main \"Create Account\" form content.\n2.  The bot failed to handle the re-encountered Workday account wall mid-application. It did not close the password requirements/Sign In overlay or acknowledge the privacy notice to proceed with \"Create Account\".\n3.  The bot should first click the 'x' button on the overlay using `button[aria-label=\"Close\"]`, then check the privacy statement checkbox using `input[type=\"checkbox\"]`, and finally click \"Create Account\" using `button[title=\"Create Account\"]` or `button[data-automation-id='createAccountButton']`."
-  },
-  {
-    "timestamp": "2026-07-12T10:44:28.703Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Program Manager",
-    "company": "Bolton Clarke",
-    "url": "https://boltonclarke.wd105.myworkdayjobs.com/en-US/Careers/job/Brisbane-CBD-%26-Inner-Suburbs-Brisbane-QLD/Program-Manager_JR001854/apply/applyManually?seek-token=Ta4tCCnN33ztYdCDL6gcVM&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T10-44-26-243Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" pop-up is visible within the application workflow, showing pre-filled email and password fields, along with password requirements. An 'x' button to close the pop-up and a \"Create Account\" button are also present.\n2. The bot encountered the Workday account wall mid-application and failed to interact with the \"Create Account\" form by not clicking the \"Create Account\" button after the email and password fields appear filled/validated.\n3. The bot should click \"Create Account\" using `button[title=\"Create Account\"]` or `button[data-automation-id='createAccountButton']`."
-  },
-  {
-    "timestamp": "2026-07-12T11:00:21.749Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Senior AI Solutions Engineer",
-    "company": "Peoplebank Australia QLD",
-    "url": "https://au.seek.com/awsk/authorize?id=45e4742b-49d6-4ed1-a38e-d4e1c9cde199",
-    "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T11-00-19-979Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a SEEK authorization page, asking the user to allow Peoplebank Australia QLD to access their SEEK profile.\n2. The error occurred because the bot did not proceed past this authorization page by clicking \"Allow access\".\n3. The bot should click the \"Allow access\" button to continue the application process. The CSS selector `button:has-text(\"Allow access\")` is appropriate."
-  },
-  {
-    "timestamp": "2026-07-12T11:12:32.922Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior AWS Data Engineer",
-    "company": "DWS Limited",
-    "url": "https://apply.jobadder.com/16850/1975186/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=QvKs724XXRiRJGP122AQyU",
-    "page_title": "Senior AWS Data Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-12T11-12-30-425Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the top of the JobAdder application form. The application form is mostly filled, the \"I have read and consent...\" checkbox is unchecked, and the \"Apply Now\" button is inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal and then failed to interact with the privacy consent checkbox, which is essential for activating the \"Apply Now\" button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']`. After closing, it needs to click the checkbox via `input#PrivacyCheck` or `input[type=\"checkbox\"][id=\"PrivacyCheck\"]`."
-  },
-  {
     "timestamp": "2026-07-12T11:30:13.994Z",
     "error_type": "ats_jobadder_no_submit",
     "job_title": "3 x Senior Cloud Engineers (Azure & AWS) | 12-Month Contracts",
@@ -4997,6 +4757,246 @@
     "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
     "page_title": "",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T11-35-52-672Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:06:44.482Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Program Manager",
+    "company": "Peoplebank Australia NSW",
+    "url": "https://au.seek.com/awsk/authorize?id=dc27719a-4240-49b8-ad24-2478acfb987b",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-06-44-365Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:07:41.807Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Principal Project Manager",
+    "company": "NSW Department of Climate Change, Energy, the Environment & Water",
+    "url": "https://secure.dc2.pageuppeople.com/apply/795/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-07-41-600Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:09:19.739Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Business Analyst",
+    "company": "NSW Department of Climate Change, Energy, the Environment & Water",
+    "url": "https://secure.dc2.pageuppeople.com/apply/795/gateway/Default.aspx?c=apply&sJobIDs=551700&SourceTypeID=810&seek-token=74reuKdqUaFVmFR1eHwCCn",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-09-19-530Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:17:51.636Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Delivery Manager - Data Migration",
+    "company": "DWS Limited",
+    "url": "https://apply.jobadder.com/16850/1977372/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=VxQXibXmibDQboLamr6ika",
+    "page_title": "Delivery Manager - Data Migration",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-17-51-425Z_ats_jobadder_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:26:07.251Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Program Coordinator",
+    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
+    "url": "https://apply.jobadder.com/18301/1976970/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=Q8ZMGiRFjBQUnDgrUiMYf9",
+    "page_title": "Program Coordinator",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-26-07-001Z_ats_jobadder_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:26:58.667Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Geospatial Manager",
+    "company": "Queensland Hydro Pty Ltd",
+    "url": "https://qldhydro.csod.com/ux/ats/careersite/1/requisition/39/application?c=qldhydro&seek-token=Lou8bgxPCTLHtM6nUsYVAw&source=seek_oz&jobboardid=0",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-26-57-392Z_ats_cornerstone_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:30:36.473Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Delivery Manager, Digital Archive",
+    "company": "Nine",
+    "url": "https://nine.wd105.myworkdayjobs.com/en-US/Nine_External_Career_Site/job/North-Sydney-New-South-Wales/Senior-Delivery-Manager--Digital-Archive_JR001005-2/apply/applyManually?seek-token=RfZDi8p1ATRmAS2yidhFSn&source=Seek_Source2",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-30-36-214Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:38:53.362Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Lead Pega Solution Architect",
+    "company": "DWS Limited",
+    "url": "https://apply.jobadder.com/16850/1977484/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=JbirRFQcSTWbLtUybJdALd",
+    "page_title": "Lead Pega Solution Architect",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-38-53-122Z_ats_jobadder_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:39:50.300Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Senior Project Manager",
+    "company": "EML Group",
+    "url": "https://eml.wd105.myworkdayjobs.com/en-US/EML/job/Sydney%2C-New-South-Wales/Senior-Project-Manager_JR5995/apply/applyManually?seek-token=TJ6qpBVEn5uhQZUPzXbbD2",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-39-50-129Z_ats_workday_no_nav_button.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:39:50.407Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Senior Project Manager",
+    "company": "EML Group",
+    "url": "https://eml.wd105.myworkdayjobs.com/en-US/EML/job/Sydney%2C-New-South-Wales/Senior-Project-Manager_JR5995/apply/applyManually?seek-token=TJ6qpBVEn5uhQZUPzXbbD2",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-39-50-305Z_ats_workday_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:40:37.127Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Project Manager",
+    "company": "NSW Department of Customer Service",
+    "url": "https://nswconnect.csod.com/ux/ats/careersite/2/requisition/53032/application?c=nswconnect&seek-token=NXXJXRBph9eU1grmp3tY3U&source=seek_oz&jobboardid=0",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-40-37-068Z_ats_cornerstone_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:42:19.731Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Innovation Analyst",
+    "company": "WorkCover Queensland",
+    "url": "https://secure.dc2.pageuppeople.com/apply/615/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-42-19-523Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:44:28.972Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Project Scheduler",
+    "company": "ASC",
+    "url": "https://secure.dc2.pageuppeople.com/apply/436/gateway/Default.aspx?c=apply&sJobIDs=977891&SourceTypeID=1264&seek-token=Vh2cHmJJxDqqcswX3a8Nxg",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-44-28-777Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:46:25.050Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Digital Engineering Lead",
+    "company": "Queensland Hydro Pty Ltd",
+    "url": "https://qldhydro.csod.com/ux/ats/careersite/1/requisition/40/application?c=qldhydro&seek-token=Fyn3k4bkXoC4uGqqBAK9kZ&source=seek_oz&jobboardid=0",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-46-24-986Z_ats_cornerstone_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T21:51:03.328Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Manager, Technology ANZ – Electrophysiology, Neurovascular",
+    "company": "Johnson & Johnson",
+    "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/North-Ryde-New-South-Wales-Australia/Manager--Technology-ANZ---Electrophysiology--Neurovascular_R-082916/apply/applyManually?source=Seek",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T21-51-03-074Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T22:04:53.642Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Test Automation Engineer - Playwright",
+    "company": "DWS Limited",
+    "url": "https://apply.jobadder.com/16850/1977354/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=Sa1q2SvErZxA6icuJBZHr3",
+    "page_title": "Test Automation Engineer - Playwright",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T22-04-53-443Z_ats_jobadder_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T22:09:24.662Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Software Engineer",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Senior-Software-Engineer--x15ventures_REQ262179/apply/applyManually?seek-token=XnTxaYUpFYP3v3HDpcWjoq",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T22-09-24-434Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T22:12:34.692Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Principal Software Engineer",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer_REQ259590/apply/applyManually?seek-token=3expdgRJ8kCoSxB6H1BvWh",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T22-12-34-431Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T22:16:18.441Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Machine Learning Engineering Manager",
+    "company": "icare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T22-16-18-225Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T22:17:11.520Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Release Lead/ Technical Specialist",
+    "company": "icare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/914/gateway/Default.aspx?c=apply&sJobIDs=498663&SourceTypeID=804&seek-token=GFZbqJe7MSDnGqB2fkyA83",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T22-17-11-318Z_ats_pageup_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T22:30:29.941Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Full Stack Developer",
+    "company": "Icon Group",
+    "url": "https://apply.jobadder.com/16858/1109364/wbollotuiuauhedvpi5vvromny?site=au3&seek-token=SceTkKVGiN9R76k3AeuVqM",
+    "page_title": "Full Stack Developer",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T22-30-29-808Z_ats_jobadder_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T22:39:25.504Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Cloud System Engineer",
+    "company": "HammondCare",
+    "url": "https://hammondcare.wd105.myworkdayjobs.com/en-US/External_Careers/job/St-Leonards-NSW/Cloud-System-Engineer_REQ2973/apply/applyManually?seek-token=TzLCYXdwa9k4DffukFTNyk&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T22-39-25-213Z_ats_workday_wall_mid_apply.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T22:43:42.971Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Data Architect & Governance Lead",
+    "company": "Mirvac",
+    "url": "https://mirvac.csod.com/ux/ats/careersite/1/requisition/4930/application?c=mirvac&seek-token=JNptmbR8VfccwRJHoqtVdi&source=seek_oz&jobboardid=0#1",
+    "page_title": "Apply for Data Architect & Governance Lead | Application",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T22-43-42-732Z_ats_cornerstone_no_submit.png",
+    "analysis": "AI analysis unavailable"
+  },
+  {
+    "timestamp": "2026-07-18T22:44:25.102Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior D365 Developer-ERP Solutions",
+    "company": "National Heavy Vehicle Regulator",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1123/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-18T22-44-24-869Z_ats_pageup_no_submit.png",
     "analysis": "AI analysis unavailable"
   }
 ]
