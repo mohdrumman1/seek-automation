@@ -1,65 +1,5 @@
 [
   {
-    "timestamp": "2026-07-15T06:16:26.118Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Principal Cloud Engineer (Azure)",
-    "company": "WorkCover Queensland",
-    "url": "https://secure.dc2.pageuppeople.com/apply/615/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T06-16-23-809Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
-  },
-  {
-    "timestamp": "2026-07-15T06:20:46.224Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Associate Business Systems Analyst",
-    "company": "University of New South Wales",
-    "url": "https://secure.dc2.pageuppeople.com/apply/841/gateway/Default.aspx?c=apply&sJobIDs=540655&SourceTypeID=807&seek-token=FA117veLMXRwBumDTvG4DV",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T06-20-44-347Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
-  },
-  {
-    "timestamp": "2026-07-15T06:34:25.192Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Digital Product Owner",
-    "company": "Sharp & Carter Sales and Marketing",
-    "url": "https://apply.jobadder.com/18325/1975921/yp2pouaulf3efo2xhahzelwk7y?site=au2&seek-token=4zPZG6nNE7DedB2gbhVBNQ",
-    "page_title": "Senior Digital Product Owner",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T06-34-22-461Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The \"Apply Now\" button at the bottom is visible but inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing it from interacting with the underlying form and its submit button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']` to dismiss it."
-  },
-  {
-    "timestamp": "2026-07-15T10:41:38.899Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Delivery Lead",
-    "company": "Peoplebank Australia NSW",
-    "url": "https://au.seek.com/awsk/authorize?id=8d107330-b115-4ae2-a085-3255551c900b",
-    "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T10-41-36-907Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a consent page from Seek, asking the user to confirm allowing Peoplebank Australia NSW to access their SEEK Profile.\n2. The error occurred because the bot did not click the \"Allow access\" button to proceed, causing the automation flow to stall.\n3. The bot should click the \"Allow access\" button using the CSS selector `button:has-text(\"Allow access\")`."
-  },
-  {
-    "timestamp": "2026-07-15T10:57:12.491Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Senior Full Stack Developer",
-    "company": "National Heavy Vehicle Regulator",
-    "url": "https://secure.dc2.pageuppeople.com/apply/1123/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T10-57-10-499Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
-  },
-  {
-    "timestamp": "2026-07-15T11:10:08.701Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Principal Cloud Engineer (Azure)",
-    "company": "WorkCover Queensland",
-    "url": "https://secure.dc2.pageuppeople.com/apply/615/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T11-10-06-649Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
-  },
-  {
     "timestamp": "2026-07-15T11:19:21.420Z",
     "error_type": "ats_jobadder_no_submit",
     "job_title": "Senior Cloud Engineer",
@@ -4998,5 +4938,65 @@
     "page_title": "Sign In",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T07-08-37-429Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. A pop-up \"Sign In\" overlay is visible with pre-filled email and password fields, obscuring the \"Create Account\" form which is also partially visible underneath. There's a \"Sign In\" button within the overlay.\n2. The error persists because the Workday account wall, specifically a sign-in overlay, has re-appeared mid-application while the bot is attempting to create an account, despite previous fixes. The URL indicates a sign-in page.\n3. The bot should click the \"Sign In\" button within the overlay using `button[data-automation-id='signInButton']`."
+  },
+  {
+    "timestamp": "2026-07-20T11:44:54.745Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Principal Adv Customer Service",
+    "company": "Aurizon",
+    "url": "https://secure.dc2.pageuppeople.com/apply/493/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T11-44-52-122Z_ats_pageup_no_submit.png",
+    "analysis": "1.  The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2.  The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3.  The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-20T11:49:14.388Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Junior Platform Engineer",
+    "company": "Peoplebank Australia NSW",
+    "url": "https://au.seek.com/awsk/authorize?id=227a2106-7697-4a35-aa3e-318e4662ac04",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T11-49-12-706Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a consent page from Seek, asking to allow Peoplebank Australia NSW to access the user's SEEK Profile.\n2. The error was caused by the bot not clicking the \"Allow access\" button to proceed with the job application.\n3. The bot should click the button with the text \"Allow access\" (`button:contains(\"Allow access\")`)."
+  },
+  {
+    "timestamp": "2026-07-20T11:50:22.450Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Artificial Intelligence (AI) Product Graduate",
+    "company": "Stanwell Corporation Limited",
+    "url": "https://secure.dc2.pageuppeople.com/apply/529/gateway/Default.aspx?c=apply&sJobIDs=497227&SourceTypeID=814&seek-token=Cu1dChNGMmz34YgkL1ufRj",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T11-50-20-323Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check, preventing the application form from loading.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-20T12:08:30.234Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Network Engineer",
+    "company": "Thiess",
+    "url": "https://secure.dc2.pageuppeople.com/apply/399/base1/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-08-28-190Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-20T12:15:26.648Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Software Architect / Technical Lead",
+    "company": "NTP Talent",
+    "url": "https://apply.jobadder.com/18406/883484/ff6yxt2xsuhufdf6ugk5sug2xy?site=au6&seek-token=Lc6FVEib75M3xFAJzgCo7f",
+    "page_title": "Software Architect / Technical Lead",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-15-23-694Z_ats_jobadder_no_submit.png",
+    "analysis": "1. The screen displays a JobAdder application form, largely filled, but obscured by a \"Want to apply later?\" modal. The \"I accept the Privacy Policy\" checkbox is unchecked and the \"Apply Now\" button is visible but grayed out beneath the modal.\n2. The error was caused by the bot not dismissing the modal and not checking the privacy policy checkbox, preventing submission.\n3. The bot should first click the 'X' button on the modal (`button[aria-label=\"Close\"]`), then check the \"I accept the Privacy Policy\" checkbox (`input[type=\"checkbox\"]`), and finally click the \"Apply Now\" button (`button[type='submit']`)."
+  },
+  {
+    "timestamp": "2026-07-20T12:24:05.171Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Product Manager | SEO and Distribution",
+    "company": "ABC",
+    "url": "https://secure.dc2.pageuppeople.com/apply/516/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-23-52-144Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, asking to make an additional security check by solving an hCaptcha.\n2. The error was caused by the bot failing to pass the hCaptcha security check.\n3. The bot should click the checkbox with the label \"I am human\" (i.e. the `input[type=\"checkbox\"]` or `div.h-captcha`) and subsequently resolve the hCaptcha challenge that appears."
   }
 ]
