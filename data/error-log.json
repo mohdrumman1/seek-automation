@@ -1,125 +1,5 @@
 [
   {
-    "timestamp": "2026-07-14T06:27:12.208Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Workplace AI Product Owner",
-    "company": "Anglicare",
-    "url": "https://anglicare.wd105.myworkdayjobs.com/en-US/Anglicare_Careers/job/Anglicare-Hub-Macquarie-Park/Workplace-AI-Product-Owner_JR7366-1/apply/applyManually?seek-token=PhtGBaYv7wxoWS6CQtb41h&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T06-27-09-947Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form with a \"Sign In\" overlay covering most of it. The bot has filled in email and password fields in both the overlay and the background \"Create Account\" form.\n2. The bot was meant to create an account, but an intrusive \"Sign In\" overlay appeared, leading it to incorrectly enter information into the overlay fields instead of closing it.\n3. The bot should click the 'x' close button within the \"Sign In\" overlay using the CSS selector `button[aria-label=\"Close\"]`."
-  },
-  {
-    "timestamp": "2026-07-14T10:35:46.673Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Head of AI Delivery & Integration",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T10-35-44-359Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
-  },
-  {
-    "timestamp": "2026-07-14T11:04:53.866Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Principal Cloud Engineer (Azure)",
-    "company": "WorkCover Queensland",
-    "url": "https://secure.dc2.pageuppeople.com/apply/615/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T11-04-47-876Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
-  },
-  {
-    "timestamp": "2026-07-14T11:13:49.160Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Cloud Engineer",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1976476/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=5HbMANDik4Vc5k5FmoCXjq",
-    "page_title": "Senior Cloud Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T11-13-46-381Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The \"Apply Now\" button is inactive, but a \"Declaration\" section for privacy consent is visible and shows \"Yes\".\n2. The bot failed to close the initial \"Want to apply later?\" modal, which prevents interaction with the underlying form, including finding the submit button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']` to dismiss it."
-  },
-  {
-    "timestamp": "2026-07-14T11:26:56.069Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Workplace AI Product Owner",
-    "company": "Anglicare",
-    "url": "https://anglicare.wd105.myworkdayjobs.com/en-US/Anglicare_Careers/job/Anglicare-Hub-Macquarie-Park/Workplace-AI-Product-Owner_JR7366-1/apply/applyManually?seek-token=CxHMzAceYPHRCCx7c4MUjU&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T11-26-53-484Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. The screen shows a \"Create Account\" form with an intrusive \"Sign In\" overlay covering most of it. The bot has filled in email and password fields in both the overlay and the background \"Create Account\" form.\n2. The bot was meant to create an account, but an intrusive \"Sign In\" overlay appeared, leading it to incorrectly enter information into the overlay fields instead of closing it.\n3. The bot should click the 'x' close button within the \"Sign In\" overlay using the CSS selector `button[aria-label=\"Close\"]`."
-  },
-  {
-    "timestamp": "2026-07-14T11:38:35.687Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Digital Product Owner",
-    "company": "Sharp & Carter Sales and Marketing",
-    "url": "https://apply.jobadder.com/18325/1975921/yp2pouaulf3efo2xhahzelwk7y?site=au2&seek-token=KojmfRTbJuCY3JDKYf1T17",
-    "page_title": "Senior Digital Product Owner",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T11-38-33-636Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The \"Apply Now\" button is greyed out/inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing interaction with the underlying form and its submit button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']`."
-  },
-  {
-    "timestamp": "2026-07-14T11:42:15.996Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Technical Product Analyst",
-    "company": "nib health funds limited",
-    "url": "https://nib.wd105.myworkdayjobs.com/en-US/careers/job/Newcastle%2C-Australia/Technical-Product-Analyst_JR105141-5/apply/applyManually?seek-token=PsaEtmvvhBRqS4sb1kHRm5&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T11-42-13-841Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. An intrusive \"Sign In\" overlay is visible over a \"Create Account\" form. The bot has partially filled both the overlay and background form fields.\n2. The bot attempted to create an account but an unexpected \"Sign In\" overlay appeared, leading it to incorrectly fill fields within the overlay instead of closing it.\n3. The bot should click the 'x' close button within the \"Sign In\" overlay using `button[aria-label=\"Close\"]` to dismiss it."
-  },
-  {
-    "timestamp": "2026-07-14T22:15:10.387Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Cloud Engineer",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1976476/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=YRdi6EvSFL4v1uomQ27KHm",
-    "page_title": "Senior Cloud Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T22-15-08-101Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The \"Apply Now\" button is greyed out/inactive.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing interaction with the underlying form and its submit button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']`."
-  },
-  {
-    "timestamp": "2026-07-14T22:16:15.818Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Principal Cloud Engineer (Azure)",
-    "company": "WorkCover Queensland",
-    "url": "https://secure.dc2.pageuppeople.com/apply/615/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T22-16-13-720Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error page with the message \"Uh oh... It looks like something has gone wrong.\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
-  },
-  {
-    "timestamp": "2026-07-14T22:35:35.745Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Technical Lead",
-    "company": "SG Fleet Group Ltd",
-    "url": "https://apply.jobadder.com/17676/1976310/3sjekiyd5lsuxe5gbyjyey5wxu?site=au2&seek-token=N9qnZeeuEp6yAZjNS6DU7S",
-    "page_title": "Technical Lead",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T22-35-33-534Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The \"Apply Now\" button is active at the bottom, but potentially obscured by the modal.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing interaction with the underlying form and its submit button if it can't be clicked due to overlapping elements.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']` to dismiss it."
-  },
-  {
-    "timestamp": "2026-07-14T22:52:30.273Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Digital Product Owner",
-    "company": "Sharp & Carter Sales and Marketing",
-    "url": "https://apply.jobadder.com/18325/1975921/yp2pouaulf3efo2xhahzelwk7y?site=au2&seek-token=69qznQQH7rd1UKjtekFrYM",
-    "page_title": "Senior Digital Product Owner",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-14T22-52-27-812Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is visible, obscuring the \"Upload your resume\" section and the \"Apply Now\" button at the bottom of the form.\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing it from interacting with the underlying form and its submit button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']` to dismiss it."
-  },
-  {
-    "timestamp": "2026-07-15T06:15:17.460Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Cloud Engineer",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1976476/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=7CMn7MNZQwTNF5boBNtdCs",
-    "page_title": "Senior Cloud Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-15T06-15-15-403Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A \"Want to apply later?\" modal is open, obscuring the upper part of the JobAdder application form. The \"Apply Now\" button at the bottom is visible but inactive (greyed out).\n2. The bot failed to close the initial \"Want to apply later?\" modal, preventing interaction with the underlying form and its submit button.\n3. The bot should click the 'X' button of the modal using `button[aria-label='Close']` or `xpath=//button[@aria-label='Close']` to dismiss it."
-  },
-  {
     "timestamp": "2026-07-15T06:16:26.118Z",
     "error_type": "ats_pageup_no_submit",
     "job_title": "Principal Cloud Engineer (Azure)",
@@ -4998,5 +4878,125 @@
     "page_title": "Apply for Senior Cyber Security Engineer | Application",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T23-07-11-031Z_ats_cornerstone_no_submit.png",
     "analysis": "1. The screen displays the header \"Senior Cyber Security Engineer,\" a blank text area, \"Cancel\" and \"Save\" buttons, a privacy notice, and a loading spinner in the center.\n2. The error was caused by the page getting stuck during loading, indicated by the persistent loading spinner and the partially rendered content.\n3. The bot should explicitly wait for the loading spinner to disappear using a CSS selector such as `div.load-spinner` or check for the visibility of the \"Save\" button to ensure the page has finished loading before attempting further actions."
+  },
+  {
+    "timestamp": "2026-07-20T06:06:39.617Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Delivery Manager, Digital Archive",
+    "company": "Nine",
+    "url": "https://nine.wd105.myworkdayjobs.com/en-US/Nine_External_Career_Site/job/North-Sydney-New-South-Wales/Senior-Delivery-Manager--Digital-Archive_JR001005-2/apply/applyManually?seek-token=66gWfsMHrD3k9BBcXiR1YV&source=Seek_Source2",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-06-37-569Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" form is visible, partially obscured by a greyed-out \"Sign In\" overlay with pre-filled email and password fields. There is also a \"Sign In\" button within the overlay.\n2. The error persists because the Workday account wall, specifically a sign-in overlay, has reappeared mid-application while the bot is attempting to create an account, despite previous fixes. The URL indicates a sign-in page.\n3. The bot should click the \"Sign In\" button within the overlay using an appropriate CSS selector, for example, `button[data-automation-id='signInButton']`."
+  },
+  {
+    "timestamp": "2026-07-20T06:07:45.314Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Business Analyst",
+    "company": "NSW Department of Climate Change, Energy, the Environment & Water",
+    "url": "https://secure.dc2.pageuppeople.com/apply/795/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-07-43-251Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check, preventing the application form from loading.\n3. The bot should click the checkbox with the label \"I am human\" (e.g., the `input[type=\"checkbox\"]` element or a `div` containing \"I am human\" and the hCaptcha logo) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-20T06:19:40.890Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Manager Infrastructure Operations - Clerk Grade 11/12 - Parliament of NSW",
+    "company": "Parliament of NSW",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1224/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-19-38-868Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e. the `input[type=\"checkbox\"]` element or the enclosing `div`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-20T06:23:53.359Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Product Manager | SEO and Distribution",
+    "company": "ABC",
+    "url": "https://secure.dc2.pageuppeople.com/apply/516/gateway/Default.aspx?c=apply&sJobIDs=505520&SourceTypeID=817&seek-token=L7aTXu1xEwx9F58LvzfsWZ",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-23-51-390Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]` element or the enclosing `div`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-20T06:26:23.355Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Junior Platform Engineer",
+    "company": "Peoplebank Australia NSW",
+    "url": "https://au.seek.com/awsk/authorize?id=a376a2d8-dd19-442f-987d-b8cadef758ef",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-26-21-770Z_ats_pageup_no_submit.png",
+    "analysis": "1. A Seek consent screen is visible, asking to \"Allow access\" for Peoplebank Australia NSW to pre-fill the job application using the SEEK Profile.\n2. The error occurred because the bot did not click \"Allow access\" on the Seek consent screen, which is required to proceed with the application.\n3. The bot should click the \"Allow access\" button (e.g., `button:contains(\"Allow access\")`)."
+  },
+  {
+    "timestamp": "2026-07-20T06:28:49.676Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Artificial Intelligence (AI) Product Graduate",
+    "company": "Stanwell Corporation Limited",
+    "url": "https://secure.dc2.pageuppeople.com/apply/529/gateway/Default.aspx?c=apply&sJobIDs=497227&SourceTypeID=814&seek-token=2ZE91iVottX4hhwnJyQD3N",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-28-47-871Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]` element or the enclosing `div`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-20T06:41:54.069Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Software Architect / Technical Lead",
+    "company": "NTP Talent",
+    "url": "https://apply.jobadder.com/18406/883484/ff6yxt2xsuhufdf6ugk5sug2xy?site=au6&seek-token=KjN5TBJTH2Q3g2SkxwdxQq",
+    "page_title": "Software Architect / Technical Lead",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-41-51-901Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A JobAdder application form is visible, mostly filled, with a \"Want to apply later?\" modal covering the \"Apply Now\" button and the \"Accept Terms Checkbox\".\n2. The error was caused because the bot did not dismiss the \"Want to apply later?\" modal. Additionally, the \"I accept the Privacy Policy\" checkbox is unchecked.\n3. The bot should first click the 'X' button on the modal (`button[aria-label=\"Close\"]`), then check the \"I accept the Privacy Policy\" checkbox (`input[type=\"checkbox\"]`), and finally click the \"Apply Now\" button (`button[type='submit']`)."
+  },
+  {
+    "timestamp": "2026-07-20T06:53:06.945Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Information Analyst",
+    "company": "NSW Department of Climate Change, Energy, the Environment & Water",
+    "url": "https://secure.dc2.pageuppeople.com/apply/795/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-53-05-100Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-20T06:56:16.671Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Principal Software Engineer",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer_REQ259590/apply/applyManually?seek-token=Hxje54Ki4yYFKSxJB5hdQ9",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-56-14-111Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" form is visible, partially obscured by a \"Sign In\" overlay. The overlay has pre-filled email and password fields, and a \"Sign In\" button within it. There is also a small \"X\" button to close the overlay.\n2. This error was caused by the Workday account wall (a \"Sign In\" overlay) reappearing mid-application during the account creation process, indicating a failed session or a requirement to sign in despite being in the \"Create Account/Sign In\" stage. The URL confirms a sign-in page.\n3. The bot should attempt to click the \"Sign In\" button within the overlay using a specific selector like `button[data-automation-id='signInButton']` (based on previous analyses). Alternatively, it could try to close the overlay using the \"X\" button and then attempt to sign in via the \"Sign In\" link at the bottom of the form."
+  },
+  {
+    "timestamp": "2026-07-20T07:01:25.222Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Product Manager | SEO and Distribution",
+    "company": "ABC",
+    "url": "https://secure.dc2.pageuppeople.com/apply/516/gateway/Default.aspx?c=apply&sJobIDs=505520&SourceTypeID=816&seek-token=VFHmceLgLA9xhmGtQNpsbi",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T07-01-22-796Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-20T07:05:03.322Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Enterprise Transformation Specialist",
+    "company": "ASX",
+    "url": "https://asx.wd105.myworkdayjobs.com/en-US/ASX_Careers/job/Sydney-Office/Senior-Enterprise-Transformation-Specialist_JR101742/apply/applyManually",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T07-05-01-248Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" form is visible, with a \"Sign In\" overlay appearing *on top* of the form's password fields. The overlay has pre-filled email and password fields, and a \"Sign In\" button within it.\n2. The error persists because the Workday account wall, specifically a sign-in overlay, has re-appeared mid-application while the bot is attempting to create an account, despite previous fixes.\n3. The bot should click the \"Sign In\" button within the overlay using `button[data-automation-id='signInButton']`.\n4. If that fails, it should then attempt to click the \"Sign In\" link at the bottom of the \"Create Account\" form using `a[data-automation-id='loginButton']`."
+  },
+  {
+    "timestamp": "2026-07-20T07:08:39.521Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Digital Principal Engineer",
+    "company": "ASX",
+    "url": "https://asx.wd105.myworkdayjobs.com/en-US/ASX_Careers/job/Sydney-Office/Digital-Principal-Engineer_JR101700/apply/applyManually",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T07-08-37-429Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A pop-up \"Sign In\" overlay is visible with pre-filled email and password fields, obscuring the \"Create Account\" form which is also partially visible underneath. There's a \"Sign In\" button within the overlay.\n2. The error persists because the Workday account wall, specifically a sign-in overlay, has re-appeared mid-application while the bot is attempting to create an account, despite previous fixes. The URL indicates a sign-in page.\n3. The bot should click the \"Sign In\" button within the overlay using `button[data-automation-id='signInButton']`."
   }
 ]
