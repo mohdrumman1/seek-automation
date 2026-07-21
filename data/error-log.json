@@ -1,65 +1,5 @@
 [
   {
-    "timestamp": "2026-07-16T10:24:07.526Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Senior Project Manager",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93331038/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T10-24-05-318Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible with an error stating two radio button questions are unanswered.\n2. The bot failed to select options for both \"Do you have full, unrestricted working rights in Australia...\" and \"This position requires you to be based in NSW...\" radio button questions.\n3. The bot should specifically use CSS selectors like `input[type=\"radio\"][name*=\"unrestricted working rights\"]` and `input[type=\"radio\"][name*=\"based in NSW\"]` to select appropriate \"Yes\" or \"No\" options for each question."
-  },
-  {
-    "timestamp": "2026-07-16T10:25:15.530Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Senior IT Project Manager – Infrastructure",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93332723/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T10-25-13-449Z_unanswered_questions.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible with two radio button questions about working rights in Australia and willingness to work in NSW. The bot has not selected any of the radio buttons.\n2. This error was caused by the bot failing to select the appropriate radio buttons for these basic binary questions. The previous fixes did not fully address all types of radio button questions.\n3. The bot should select the appropriate radio buttons, for example, `label:contains(\"Do you have full, unrestricted working rights in Australia\") + div input[type=\"radio\"][value=\"Yes\"]` and `label:contains(\"Are you able to work in NSW\") + div input[type=\"radio\"][value=\"Yes\"]`."
-  },
-  {
-    "timestamp": "2026-07-16T10:25:20.631Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Senior IT Project Manager – Infrastructure",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93332723/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T10-25-18-229Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Answer employer questions\" page is shown, displaying an error message about unaddressed mandatory questions and two radio button questions which both read \"Please make a selection\".\n2. The bot failed to select an option for \"Do you have full, unrestricted working rights in Australia (no sponsorship required now or in the future)?\" and \"This position requires you to be based in NSW. Are you able to work in NSW (either currently located or willing to relocate)?\".\n3. The bot should attempt to click the \"Yes\" or \"No\" label associated with each of these two radio button questions.\n4. If this is a repeat failure, it's possible the `name` attribute grouping or label-first click for radio buttons has not worked, and a specific KB entry for these questions with a preferred answer (e.g., 'Yes') needs to be added."
-  },
-  {
-    "timestamp": "2026-07-16T10:25:24.469Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Senior IT Project Manager – Infrastructure",
-    "company": "Marlin Human Capital",
-    "url": "https://au.seek.com/job/93332723/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T10-25-22-482Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible with an error stating two radio button questions are unanswered.\n2. The bot failed to select options for both \"Do you have full, unrestricted working rights in Australia...\" and \"This position requires you to be based in NSW...\" radio button questions.\n3. The bot should specifically use CSS selectors like `input[type=\"radio\"][name*=\"unrestricted working rights\"]` and `input[type=\"radio\"][name*=\"based in NSW\"]` to select appropriate \"Yes\" or \"No\" options for each question."
-  },
-  {
-    "timestamp": "2026-07-16T10:30:25.289Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Delivery Lead",
-    "company": "Peoplebank Australia NSW",
-    "url": "https://au.seek.com/awsk/authorize?id=eb5c4189-e6a4-4652-ab0e-02735c311fe6",
-    "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T10-30-23-297Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a SEEK access request, asking the user to confirm allowing Peoplebank Australia NSW to access their SEEK Profile.\n2. The error occurred because the bot did not click \"Allow access\" to proceed with the application. The previous analyses are not relevant here.\n3. The bot needs to click the \"Allow access\" button, using the CSS selector `button:contains(\"Allow access\")`."
-  },
-  {
-    "timestamp": "2026-07-16T10:32:53.187Z",
-    "error_type": "unanswered_questions",
-    "job_title": "AI & Drone Technology Lead – Precision Livestock Monitoring",
-    "company": "Ravensworth Agricultural Company",
-    "url": "https://au.seek.com/job/93370141/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T10-32-50-458Z_unanswered_questions.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible, showing a mix of dropdowns, radio buttons, and checkboxes. Several questions, including \"How many years' experience do you have as a Technology Lead?\" and \"Which of the following data mining tools are you experienced with?\", are unanswered.\n2. The bot successfully answered the \"Do you have experience using Microsoft Excel?\" radio button question, but failed to interact with dropdown menus for experience levels and the multi-select checkbox for data mining tools.\n3. The bot should target the `select` elements for experience questions (e.g., `label:contains(\"How many years' experience do you have as a Technology Lead?\") + div select`) and individual `input[type=\"checkbox\"]` elements within the data mining tools question (e.g., `label:contains(\"Weka\") + input[type=\"checkbox\"]`)."
-  },
-  {
     "timestamp": "2026-07-16T10:32:58.198Z",
     "error_type": "validation_errors_blocking_continue",
     "job_title": "AI & Drone Technology Lead – Precision Livestock Monitoring",
@@ -4998,5 +4938,65 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T11-54-44-798Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. A \"Sign In\" overlay is visible over a partially filled \"Create Account\" form with pre-filled email and password fields. The overlay has a close ('X') button.\n2. The bot was interrupted mid-account creation by a re-appearing \"Sign In\" overlay, indicating a session issue or re-login attempt.\n3. The bot should click the 'X' button of the overlay (xpath: `//button[@aria-label='Close']`) to dismiss it and continue with the \"Create Account\" form."
+  },
+  {
+    "timestamp": "2026-07-21T21:53:02.350Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "AO7 Principal Service Delivery Officer - Projects",
+    "company": "Chandler Macleod",
+    "url": "https://au.seek.com/awsk/authorize?id=dee61043-c1ce-4adc-a61e-a05d5e48fab7",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T21-53-00-614Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a Seek authorization page, prompting the user to \"Allow access\" for Chandler Macleod via Idibu to access their SEEK Profile.\n2. The bot failed to click the \"Allow access\" button on the Seek authorization page. The previous error analyses about hCaptcha are no longer relevant to this current page.\n3. The bot should click the \"Allow access\" button (CSS selector: `button:contains(\"Allow access\")`)."
+  },
+  {
+    "timestamp": "2026-07-21T22:10:02.134Z",
+    "error_type": "ats_teamtailor_no_submit",
+    "job_title": "Senior Software Engineer",
+    "company": "Magentus",
+    "url": "https://magentus.teamtailor.com/jobs/7905881-senior-software-engineer/applications/new?promotion=2109069-seek-incl-jobstreet-and-jobsdb&seek-token=YBo1eS3CwAdJS1MGx8Nc6X",
+    "page_title": "Senior Software Engineer - Magentus",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T22-09-59-457Z_ats_teamtailor_no_submit.png",
+    "analysis": "1. The application form for Senior Software Engineer is displayed, showing several \"Text can't be blank\" validation errors for \"Availability\", \"Remuneration\", and \"Work Rights\" input fields. The \"Upload resume\" field is filled, and the privacy policy checkbox is ticked.\n2. The error was caused by the bot attempting to submit the form without filling in all required text fields.\n3. The bot should input appropriate text into the `input[name=\"custom_fields.228205\"]` (Availability), `input[name=\"custom_fields.228206\"]` (Remuneration), and `input[name=\"custom_fields.228207\"]` (Work Rights) fields, then re-attempt submission."
+  },
+  {
+    "timestamp": "2026-07-21T22:11:07.581Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Artificial Intelligence (AI) Product Graduate",
+    "company": "Stanwell Corporation Limited",
+    "url": "https://secure.dc2.pageuppeople.com/apply/529/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T22-11-05-613Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]` or the enclosing `div`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-21T22:21:34.701Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Software Architect / Technical Lead",
+    "company": "NTP Talent",
+    "url": "https://apply.jobadder.com/18406/883771/ff6yxt2xsuhufdf6ugk5sug2xy?site=au6&seek-token=EnPkgJkbh6SXzdoFvw15FM",
+    "page_title": "Software Architect / Technical Lead",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T22-21-32-981Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A JobAdder application form is visible, mostly filled, with a \"Want to apply later?\" modal covering the \"Apply Now\" button and the \"Accept Terms Checkbox\".\n2. The error was caused because the bot did not dismiss the \"Want to apply later?\" modal. Additionally, the \"I accept the Privacy Policy\" checkbox is unchecked.\n3. The bot should first click the 'X' button on the modal (`button[aria-label=\"Close\"]`), then check the \"I accept the Privacy Policy\" checkbox (`input[type=\"checkbox\"]`), and finally click the \"Apply Now\" button (`button[type='submit']`)."
+  },
+  {
+    "timestamp": "2026-07-21T22:31:49.018Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Cloud DevOps Engineer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://au.seek.com/awsk/authorize?id=c4b734ce-01a7-46fb-b4e8-d539fce8b3f6",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T22-31-47-564Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a Seek authorization page, prompting the user to \"Allow access\" for Peoplebank Australia QLD via Idibu to access their SEEK Profile.\n2. The bot failed to click the \"Allow access\" button on the Seek authorization page. The previous error analyses about hCaptcha are no longer relevant to this current page.\n3. The bot should click the \"Allow access\" button (CSS selector: `button:contains(\"Allow access\")`)."
+  },
+  {
+    "timestamp": "2026-07-21T22:34:16.721Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior AI Applications Engineer",
+    "company": "University of New South Wales",
+    "url": "https://secure.dc2.pageuppeople.com/apply/841/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T22-34-14-864Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"secure.dc2.pageuppeople.com Additional security check is required\" and \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]` or the enclosing `div`) and subsequently resolve the hCaptcha challenge that appears."
   }
 ]
