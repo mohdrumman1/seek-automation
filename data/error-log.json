@@ -1,75 +1,5 @@
 [
   {
-    "timestamp": "2026-07-16T06:53:35.289Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Principal Data Engineer - Principal Consultant - Brisbane & Sydney",
-    "company": "Agile Analytics",
-    "url": "https://au.seek.com/job/93334140/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T06-53-32-651Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible with a warning indicating four unanswered questions: \"Do you have experience working for an IT consulting company?\", \"Do you hold any Microsoft or Databricks certifications?\", \"Technical Skills\", and \"Soft Skills\".\n2. The bot failed to select an option for a radio button question and to select options for two multi-select checkbox questions, despite previous fixes for checkbox groups.\n3. The bot needs to specifically identify and select an option for the radio button question \"Do you have experience working for an IT consulting company?\" (e.g., using `input[name*=\"IT consulting company\"][value=\"Yes\"]`). For the Technical Skills and Soft Skills multi-select checkboxes, the bot must ensure the `name` attributes are correctly identified and `aiAnswerCheckboxes()` is invoked and selections are made."
-  },
-  {
-    "timestamp": "2026-07-16T06:57:29.770Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Systems Engineer",
-    "company": "Cochlear Limited.",
-    "url": "https://cochlear.wd3.myworkdayjobs.com/en-US/Cochlear_Careers/job/Sydney/Senior-Systems-Engineer_R-623664/apply/applyManually?seek-token=GBtB3w249EkK4S3VaNwnjd&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T06-57-27-615Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. An overlay titled \"Sign In\" is obscuring a \"Create Account\" form. The bot has input credentials into the \"Sign In\" overlay instead of ignoring it.\n2. The error was caused by the bot trying to \"Sign In\" on an unexpected overlay that appeared while attempting to create an account. It incorrectly filled the email and password fields in the \"Sign In\" overlay.\n3. The bot should attempt to close the \"Sign In\" overlay by clicking the \"X\" button (CSS selector `button[aria-label=\"Close\"]`) or by selecting a \"Create Account\" button if available in the main form window."
-  },
-  {
-    "timestamp": "2026-07-16T07:02:20.283Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Education Systems Analyst",
-    "company": "Macquarie University",
-    "url": "https://mq.wd3.myworkdayjobs.com/en-US/CareersatMQ/job/Wallumattagal-Campus-Macquarie-University/Education-Systems-Analyst_R000023880/apply/applyManually?source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T07-02-18-257Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form is visible, but a \"Sign In\" overlay has appeared on top of it, partially obscuring the fields for account creation. The bot has already typed an email into the \"Email Address\" field within the \"Sign In\" overlay.\n2. The bot incorrectly interacted with the unexpected \"Sign In\" overlay by attempting to input credentials there instead of closing it or continuing with the \"Create Account\" form.\n3. The bot should click the 'x' close button within the \"Sign In\" overlay using `button[aria-label=\"Close\"]` to dismiss it."
-  },
-  {
-    "timestamp": "2026-07-16T07:04:31.149Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Technical Specialist",
-    "company": "ELO Digital Office AU/NZ Pty Ltd",
-    "url": "https://au.seek.com/job/93296902/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T07-04-28-995Z_unanswered_questions.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible with several questions about right to work, salary, police checks, technical documentation, years of experience in various roles, VMware certifications, and Linux distributions.\n2. The bot failed to answer the checkbox questions for VMware certifications and Linux distributions.\n3. The bot should select applicable checkboxes for VMware certifications (e.g., `input[type=\"checkbox\"][value=\"VMware Certified Professional 6 - Cloud Management and Automation (VCP6-CMA)\"]`) and Linux distributions (e.g., `input[type=\"checkbox\"][value=\"Ubuntu\"]`)."
-  },
-  {
-    "timestamp": "2026-07-16T07:04:36.057Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Technical Specialist",
-    "company": "ELO Digital Office AU/NZ Pty Ltd",
-    "url": "https://au.seek.com/job/93296902/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T07-04-33-812Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible with a validation error blocking continuation, specifically complaining about the question \"Which of the following VMware certifications for Cloud Management and Automation have you completed?\".\n2. The bot failed to select an option for the mandatory checkbox group question regarding VMware certifications.\n3. The bot should attempt to click the label corresponding to the desired option (e.g., \"No such certification\") for \"Which of the following VMware certifications for Cloud Management and Automation have you completed?\". A suitable CSS selector is `label:contains(\"No such certification\")`."
-  },
-  {
-    "timestamp": "2026-07-16T07:04:40.541Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Technical Specialist",
-    "company": "ELO Digital Office AU/NZ Pty Ltd",
-    "url": "https://au.seek.com/job/93296902/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T07-04-38-041Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible with an error stating \"Which of the following VMware certifications for Cloud Management and Automation have you completed? - Please make a selection\".\n2. The bot failed to select an option for the checkbox group question regarding \"VMware certifications for Cloud Management and Automation\". Although 'None of these' for Linux distributions was selected, the VMware certifications question, which is a set of radio buttons, was entirely missed.\n3. The bot should identify the input elements for the VMware certification question, which are radio buttons, not checkboxes as previously assumed. It should specifically try to click `input[type=\"radio\"][name*=\"VMware certifications\"]` where a relevant value or \"No such certification\" is present."
-  },
-  {
-    "timestamp": "2026-07-16T07:06:19.477Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Senior Functional Analyst",
-    "company": "University of New South Wales",
-    "url": "https://secure.dc2.pageuppeople.com/apply/841/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T07-06-17-504Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a PageUp error message \"Uh oh... It looks like something has gone wrong,\" and an hCaptcha challenge \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented, and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. The CSS selector `input[type=\"checkbox\"]` is appropriate for this action."
-  },
-  {
     "timestamp": "2026-07-16T07:12:33.112Z",
     "error_type": "ats_cornerstone_no_submit",
     "job_title": "Data Architect & Governance Lead",
@@ -4998,5 +4928,75 @@
     "page_title": "Software Architect / Technical Lead",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T06-44-25-430Z_ats_jobadder_no_submit.png",
     "analysis": "1. A JobAdder application form is visible, mostly filled, with a \"Want to apply later?\" modal covering the \"Apply Now\" button and the \"Accept Terms Checkbox\".\n2. The error was caused because the bot did not dismiss the \"Want to apply later?\" modal. Additionally, the \"I accept the Privacy Policy\" checkbox is unchecked.\n3. The bot should first click the 'X' button on the modal (`button[aria-label=\"Close\"]`), then check the \"I accept the Privacy Policy\" checkbox (`input[type=\"checkbox\"]`), and finally click the \"Apply Now\" button (`button[type='submit']`)."
+  },
+  {
+    "timestamp": "2026-07-21T11:01:01.726Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "AO7 Principal Service Delivery Officer - Projects",
+    "company": "Chandler Macleod",
+    "url": "https://au.seek.com/awsk/authorize?id=ca9690e4-c9fc-4570-8f88-36380d87d1df",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T11-00-59-615Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a SEEK authorization request, asking the user to allow Chandler Macleod via Idibu to access their SEEK Profile. It prompts the user to select \"Allow access\" or \"Not now\".\n2. The bot failed to proceed with the application because it did not click the \"Allow access\" button to grant permission for SEEK Profile access.\n3. The bot should click the button with the text \"Allow access\" (e.g., `button:contains(\"Allow access\")`)."
+  },
+  {
+    "timestamp": "2026-07-21T11:11:14.285Z",
+    "error_type": "ats_teamtailor_no_submit",
+    "job_title": "Senior Software Engineer",
+    "company": "Magentus",
+    "url": "https://magentus.teamtailor.com/jobs/7905881-senior-software-engineer/applications/new?promotion=2109069-seek-incl-jobstreet-and-jobsdb&seek-token=MY2SFw6q2yj2jTsv1G7Ka",
+    "page_title": "Senior Software Engineer - Magentus",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T11-11-11-953Z_ats_teamtailor_no_submit.png",
+    "analysis": "1. The screen displays a partially filled Teamtailor application form with validation errors for \"Availability\", \"Remuneration\", and \"Work Rights\" fields, all marked as \"Text can't be blank\".\n2. The error was caused by the bot attempting to submit the form without providing input values for the required \"Availability\", \"Remuneration\", and \"Work Rights\" text fields.\n3. The bot should input text into the following fields before attempting to submit: `input[name=\"response_fields[availability]\"]`, `input[name=\"response_fields[salary_expectation]\"]`, and `input[name=\"response_fields[work_rights]\"]`."
+  },
+  {
+    "timestamp": "2026-07-21T11:12:21.208Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Artificial Intelligence (AI) Product Graduate",
+    "company": "Stanwell Corporation Limited",
+    "url": "https://secure.dc2.pageuppeople.com/apply/529/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T11-12-19-206Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, along with a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check, preventing the application form from loading.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., `input[type=\"checkbox\"]` or the enclosing `div`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-21T11:13:27.447Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Data Engineer",
+    "company": "Sime",
+    "url": "https://simedarby.wd3.myworkdayjobs.com/en-US/SimeCareerSite/job/Australia-%7C-SEQ-%7C-Brisbane---146-Kerry-Rd/Senior-Data-Engineer_JR120483/apply/applyManually?source=seek_oz",
+    "page_title": "Data Engineer",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T11-13-23-554Z_ats_workday_no_submit.png",
+    "analysis": "1. The screen displays the Workday \"My Information\" application page with validation errors for \"How Did You Hear About Us?\", \"Phone Device Type\", and \"Phone Number\", which are all marked as required fields.\n2. The bot failed because it attempted to submit the form without filling in all the required fields on the \"My Information\" section, specifically those related to how the applicant heard about the job and their phone details.\n3. The bot needs to select values for the \"How Did You Hear About Us?\" dropdown (`select[data-automation-id*=\"answer-How_Did_You_Hear_About_Us\"]`), \"Phone Device Type\" dropdown (`select[data-automation-id*=\"phone-device-type\"]`), and input a value into the \"Phone Number\" field (`input[data-automation-id*=\"phone-number\"]`)."
+  },
+  {
+    "timestamp": "2026-07-21T11:26:43.646Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Cloud DevOps Engineer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://au.seek.com/awsk/authorize?id=e7d3c22b-d44a-421c-a0ae-69493e79361c",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T11-26-42-125Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a SEEK authorization request, asking the user to allow Peoplebank Australia QLD via Idibu to access their SEEK Profile. It prompts the user to select \"Allow access\" or \"Not now\".\n2. The bot failed to proceed because it did not click the \"Allow access\" button.\n3. The bot should click the button with the text \"Allow access\" (e.g., `button:contains(\"Allow access\")`)."
+  },
+  {
+    "timestamp": "2026-07-21T11:29:14.368Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior AI Applications Engineer",
+    "company": "University of New South Wales",
+    "url": "https://secure.dc2.pageuppeople.com/apply/841/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T11-29-12-385Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, along with a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check, preventing the application form from loading.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., `div.h-captcha`) and subsequently resolve the hCaptcha challenge."
+  },
+  {
+    "timestamp": "2026-07-21T11:39:48.178Z",
+    "error_type": "ats_jobadder_no_submit",
+    "job_title": "Software Architect / Technical Lead",
+    "company": "NTP Talent",
+    "url": "https://apply.jobadder.com/18406/883771/ff6yxt2xsuhufdf6ugk5sug2xy?site=au6&seek-token=QWBmn72JQLYeTAfNSB5KtW",
+    "page_title": "Software Architect / Technical Lead",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-21T11-39-45-498Z_ats_jobadder_no_submit.png",
+    "analysis": "1. A JobAdder application form, largely filled, is visible with a \"Want to apply later?\" modal covering the \"Apply Now\" button and the \"Accept Terms Checkbox\".\n2. The error was caused because the bot did not dismiss the \"Want to apply later?\" modal and thus couldn't access the \"Accept Terms Checkbox\" or the \"Apply Now\" button.\n3. The bot should first click the 'X' button (`button[aria-label=\"Close\"]`) on the modal to dismiss it. Then, the bot should click the checkbox next to \"I accept the Privacy Policy\" (`input[type=\"checkbox\"]`), and finally click the \"Apply Now\" button (`button[type='submit']`)."
   }
 ]
