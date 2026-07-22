@@ -1,75 +1,5 @@
 [
   {
-    "timestamp": "2026-07-16T12:22:46.571Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Principal Cloud Engineer (Azure)",
-    "company": "WorkCover Queensland",
-    "url": "https://secure.dc2.pageuppeople.com/apply/615/gateway/Default.aspx?c=apply&sJobIDs=494256&SourceTypeID=804&seek-token=JkXg1SyGPuvBsUywiCthyD",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T12-22-44-446Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong.\" error message from PageUp, alongside an hCaptcha challenge with the text \"I am human\".\n2. The error occurred because an additional security check (hCaptcha) was presented, and the bot did not interact with it.\n3. The bot needs to click the \"I am human\" checkbox to attempt to pass the hCaptcha challenge. Use the CSS selector `input[type=\"checkbox\"]` to click the checkbox."
-  },
-  {
-    "timestamp": "2026-07-16T12:24:12.528Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Cybersecurity DevOps Engineer - 12 Months Fixed Term",
-    "company": "Datacom",
-    "url": "https://au.seek.com/job/93331868/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T12-24-09-142Z_unanswered_questions.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible with several questions pre-filled, but the \"Which of the following statements best describes your right to work in Australia/New Zealand?\" dropdown, the \"Are you a citizen or resident of Australia?\" radio buttons, the \"This role is a 12 months Fixed Term role...\" radio buttons, and the \"What is your expected annual salary range?\" field remain unanswered preventing continuation.\n2. The bot failed to interact with dropdowns, select radio buttons, and the salary field is a range dropdown instead of a simple text input for a single value. The fix applied targeted a specific salary *number field* and did not account for salary *dropdowns* or *ranges*.\n3. The bot should select an option from the \"right to work\" dropdown (e.g., \"I have a family/partner visa with no restrictions\"). It needs to select \"No\" for \"Are you a citizen or resident of Australia?\" and \"Yes\" for understanding the fixed-term role. For the salary, it should select one of the provided range options from the dropdown, such as \"$110k - $120k\"."
-  },
-  {
-    "timestamp": "2026-07-16T12:24:17.695Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Cybersecurity DevOps Engineer - 12 Months Fixed Term",
-    "company": "Datacom",
-    "url": "https://au.seek.com/job/93331868/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T12-24-15-306Z_validation_errors_blocking_continue.png",
-    "analysis": "1. Four mandatory questions (\"Do you identify as First Nations People...\", \"Which of the following statements...\", \"Are you a citizen...\", \"This role is a 12 months Fixed Term...\") are unselected and causing validation errors.\n2. The bot failed to select options for these four radio button/dropdown questions, likely due to missing or incorrect Knowledge Base entries or an inability to interact with these specific question types.\n3. The bot needs to click the `<label>` elements for the radio button options and open the dropdown and select an option for the dropdown question, according to KB."
-  },
-  {
-    "timestamp": "2026-07-16T12:24:52.648Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Cybersecurity DevOps Engineer - 12 Months Fixed Term",
-    "company": "Datacom",
-    "url": "https://au.seek.com/job/93331868/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T12-24-50-012Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible with a red alert indicating four unanswered questions, three of which are radio groups and one is a dropdown.\n2. The error was caused by the bot failing to answer four questions: \"Do you identify as First Nations People...\", \"Which of the following statements best describes your right to work...\", \"Are you a citizen or resident...\", and \"This role is a 12 months Fixed Term...\". The multi-select checkbox fix was not relevant here.\n3. The bot needs to select options for the three radio groups using CSS selectors like `input[type=\"radio\"][name*=\"First Nations\"]`, `input[type=\"radio\"][name*=\"citizen or resident\"]`, and `input[type=\"radio\"][name*=\"12 months Fixed Term\"]`. It also needs to interact with the dropdown element for the right-to-work question."
-  },
-  {
-    "timestamp": "2026-07-16T12:33:53.410Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Senior Cloud Engineer",
-    "company": "Sharp & Carter Technology, Projects & Digital Brisbane",
-    "url": "https://apply.jobadder.com/18301/1976476/ty5zfoiz72hutfzq6cqzaxmx6u?site=au2&seek-token=MQAUAoJSXKZdUGvCp53WNv",
-    "page_title": "Senior Cloud Engineer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T12-33-50-883Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A partially filled JobAdder application form is visible, obscured by a \"Want to apply later?\" modal.\n2. The bot failed to close the \"Want to apply later?\" modal, preventing interaction with the underlying form and its \"Apply Now\" button.\n3. The bot should click the 'X' button of the modal using the `button[aria-label=\"Close\"]` CSS selector."
-  },
-  {
-    "timestamp": "2026-07-16T12:40:42.193Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Cloud System Engineer",
-    "company": "HammondCare",
-    "url": "https://hammondcare.wd105.myworkdayjobs.com/en-US/External_Careers/job/St-Leonards-NSW/Cloud-System-Engineer_REQ2973/apply/applyManually?seek-token=3b69AMXHgCwjym2Pf2E1BV&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T12-40-40-048Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form is visible, but a \"Sign In\" overlay has appeared on top of it, obscuring fields. The bot has already typed an email into the \"Email Address\" field and filled the password fields within the \"Sign In\" overlay.\n2. The bot incorrectly interacted with the unexpected \"Sign In\" overlay by attempting to input credentials there instead of closing it or continuing with the \"Create Account\" form.\n3. The bot should click the 'x' close button within the \"Sign In\" overlay using `button[aria-label=\"Close\"]` to dismiss it."
-  },
-  {
-    "timestamp": "2026-07-16T12:44:56.483Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Team Leader - Systems Services",
-    "company": "Reserve Bank of Australia",
-    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Team-Leader---Systems-Services_JR4679/apply/applyManually?seek-token=uYt3mdfrZUVB7gHYqiZXJ&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T12-44-54-674Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form is visible, but a \"Sign In\" overlay has appeared on top of it, partially obscuring the fields for account creation. The bot has already typed an email into the \"Email Address\" field and filled the password fields within the \"Sign In\" overlay.\n2. The bot incorrectly interacted with the unexpected \"Sign In\" overlay by attempting to input credentials there instead of closing it or continuing with the \"Create Account\" form.\n3. The bot should click the 'x' close button within the \"Sign In\" overlay using `button[aria-label=\"Close\"]` to dismiss it."
-  },
-  {
     "timestamp": "2026-07-16T12:48:59.324Z",
     "error_type": "unanswered_questions",
     "job_title": "Cloud Architect (Operational Technology)",
@@ -4998,5 +4928,75 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T11-56-26-696Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. A \"Sign In\" overlay is visible over a partially filled \"Create Account\" form, with an 'X' button, pre-filled email and password fields, and a \"Sign In\" button, obscuring the \"Create Account\" button beneath it.\n2. This error was caused by the \"Sign In\" overlay unexpectedly reappearing mid-account creation, despite the previous fix, indicating a persistent session issue or unforeseen navigation within Workday.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to dismiss it. A suitable CSS selector is `button[aria-label='Close (Esc)']` or the visible 'X' button."
+  },
+  {
+    "timestamp": "2026-07-22T21:39:40.462Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "General Manager - Digital Products & Platforms",
+    "company": "HammondCare",
+    "url": "https://hammondcare.wd105.myworkdayjobs.com/en-US/External_Careers/job/St-Leonards-NSW/General-Manager---Digital-Products---Platforms_REQ3131/apply/applyManually?seek-token=BE5gWGKAaehsGxUgbWVxcD&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T21-39-38-181Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Sign In\" overlay is visible over a partially filled \"Create Account\" form, with an 'X' button, pre-filled email and password fields, and a \"Sign In\" button, obscuring the \"Create Account\" button beneath it.\n2. This error was caused by the \"Sign In\" overlay unexpectedly reappearing mid-account creation, despite the previous fix, indicating a persistent session issue or unforeseen navigation within Workday.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to dismiss it. A suitable CSS selector is `button[aria-label='Close (Esc)']` or a more general `button[data-automation-id='promptDismissButton']`."
+  },
+  {
+    "timestamp": "2026-07-22T22:03:52.896Z",
+    "error_type": "ats_teamtailor_no_submit",
+    "job_title": "Senior Software Engineer",
+    "company": "Magentus",
+    "url": "https://magentus.teamtailor.com/jobs/7905881-senior-software-engineer/applications/new?promotion=2109069-seek-incl-jobstreet-and-jobsdb&seek-token=V9tBJfvy29vAaHHrevSvYF",
+    "page_title": "Senior Software Engineer - Magentus",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T22-03-50-015Z_ats_teamtailor_no_submit.png",
+    "analysis": "1. The screen displays a partially filled application form with validation errors for \"Availability\", \"Remuneration\", and \"Work Rights\", all marked \"Text can't be blank\".\n2. The error was caused by the bot attempting to submit the form without providing input for these mandatory text fields.\n3. The bot should input appropriate text into the `input` fields for \"Availability\", \"Remuneration\" (likely `input[name=\"custom_fields.228224\"]` and `input[name=\"custom_fields.228225\"]` from past analyses or similar), and \"Work Rights\" before re-attempting submission."
+  },
+  {
+    "timestamp": "2026-07-22T22:04:58.710Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Artificial Intelligence (AI) Product Graduate",
+    "company": "Stanwell Corporation Limited",
+    "url": "https://secure.dc2.pageuppeople.com/apply/529/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T22-04-56-567Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, and states that an \"Additional security check is required\" with an hCaptcha challenge.\n2. The error was caused by the bot failing to pass the hCaptcha security check, preventing the application form from loading.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., `input[type=\"checkbox\"]` or the enclosing `div`) and subsequently resolve the hCaptcha challenge that appears."
+  },
+  {
+    "timestamp": "2026-07-22T22:31:40.160Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Principal Software Engineer, Customer Channels, Data & AI",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer--Customer-Channels--Data---AI_REQ262667-1/apply/applyManually?seek-token=PDYvnVzRcNRqSA1BT26CCz",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T22-31-37-793Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The \"Create Account\" form with an active \"Sign In\" overlay obscuring parts of it is visible. The overlay shows pre-filled email and password fields, and a \"Sign In\" button, along with a close 'X' button.\n2. This error was caused by the \"Sign In\" overlay unexpectedly reappearing mid-account creation, despite the previous fix, indicating a persistent session issue or unforeseen navigation within Workday.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to dismiss it. A suitable CSS selector is `button[aria-label='Close (Esc)']` or the visible 'X' button."
+  },
+  {
+    "timestamp": "2026-07-22T22:35:21.801Z",
+    "error_type": "cover_letter_fill_failed",
+    "job_title": "Senior Data Engineer",
+    "company": "TEKsystems",
+    "url": "https://jobs.en-au.teksystems.com/kni7TZ/senior-data-engineer-tek-data-analytics-insights-dai-sydney-cbd-new-south-wales-australia-a5uw20000001yljiaq?sref=seek.com.au&directToApply=true",
+    "page_title": "403 Forbidden",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T22-35-19-801Z_cover_letter_fill_failed.png",
+    "analysis": "1. The screen currently displays a \"403 Forbidden\" error message, indicating that access to the requested resource is denied by the server, specifically managed by nginx.\n2. This error was caused by the server explicitly denying access to the URL, likely due to security restrictions, IP blocking, or incorrect request headers from the bot.\n3. The bot should try to navigate back to the previous page on Seek.com.au and attempt to apply for the job again, ensuring it mimics a human user's browsing behavior and common headers. If the issue persists, the bot might need to change its IP address or user agent, or consider that direct application to this employer might be blocked for automated systems."
+  },
+  {
+    "timestamp": "2026-07-22T22:35:23.505Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Senior Data Engineer",
+    "company": "TEKsystems",
+    "url": "https://jobs.en-au.teksystems.com/kni7TZ/senior-data-engineer-tek-data-analytics-insights-dai-sydney-cbd-new-south-wales-australia-a5uw20000001yljiaq?sref=seek.com.au&directToApply=true",
+    "page_title": "403 Forbidden",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T22-35-21-813Z_continue_button_not_found.png",
+    "analysis": "1.  The screen displays a \"403 Forbidden\" error message, indicating access to the requested page is denied, served by nginx.\n2.  The error was caused by a server-side permission issue that prevented the bot from accessing the job application page directly.\n3.  The bot should not attempt to find a \"continue button\" here as this is a server error page. Instead, it should log the failure and attempt to navigate back to the previous page on Seek.com.au."
+  },
+  {
+    "timestamp": "2026-07-22T22:35:26.970Z",
+    "error_type": "continue_button_not_found",
+    "job_title": "Senior Data Engineer",
+    "company": "TEKsystems",
+    "url": "https://jobs.en-au.teksystems.com/kni7TZ/senior-data-engineer-tek-data-analytics-insights-dai-sydney-cbd-new-south-wales-australia-a5uw20000001yljiaq?sref=seek.com.au&directToApply=true",
+    "page_title": "403 Forbidden",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T22-35-25-528Z_continue_button_not_found.png",
+    "analysis": "1. The screen displays a \"403 Forbidden\" error, served by Nginx.\n2. The error was caused by a server-side permission issue that denied the bot access to the requested job application page.\n3. The bot should not look for a \"continue button\" here. Instead, it should log this \"403 Forbidden\" error and navigate back to the previous page (seek.com.au) using the browser's back functionality."
   }
 ]
