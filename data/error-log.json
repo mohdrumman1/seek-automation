@@ -1,45 +1,5 @@
 [
   {
-    "timestamp": "2026-07-16T11:41:16.175Z",
-    "error_type": "unanswered_questions",
-    "job_title": "General Manager Operations",
-    "company": "Karakan",
-    "url": "https://au.seek.com/job/93351880/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T11-41-13-491Z_unanswered_questions.png",
-    "analysis": "1. The screen shows the \"Answer employer questions\" section of a job application for \"General Manager Operations\". Several questions with dropdowns and radio buttons are partially filled or awaiting a response.\n2. The bot failed to answer two binary radio button questions: \"Do you have experience working in the not-for-profit sector?\" and \"Do you have a current Police Check (National Police Certificate) for employment?\".\n3. For these questions, the bot should select the appropriate radio button (Yes/No or specific option) using a selector like `label:contains(\"No\") input[type=\"radio\"]` for the not-for-profit question and `label:contains(\"I am willing to undertake a National Police Check if required\") input[type=\"radio\"]` for the Police Check question based on the candidate's profile."
-  },
-  {
-    "timestamp": "2026-07-16T11:41:21.027Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "General Manager Operations",
-    "company": "Karakan",
-    "url": "https://au.seek.com/job/93351880/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T11-41-18-845Z_validation_errors_blocking_continue.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible, showing a validation error for the mandatory radio button question \"Do you have experience working in the not-for-profit sector?\".\n2. The bot failed to select either \"Yes\" or \"No\" for the radio button question, resulting in the \"Please make a selection\" message.\n3. The bot should click the `<label>` element for \"No\" (or \"Yes\" if preferred through KB) corresponding to the question \"Do you have experience working in the not-for-profit sector?\"."
-  },
-  {
-    "timestamp": "2026-07-16T11:41:25.406Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "General Manager Operations",
-    "company": "Karakan",
-    "url": "https://au.seek.com/job/93351880/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T11-41-22-814Z_auto_skip_still_blocked.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible, showing a red error alert for the radio button question \"Do you have experience working in the not-for-profit sector?\"\n2. This error was caused by the bot failing to answer a simple radio button question, despite previous fixes for similar issues.\n3. The bot should try selecting an option for the specific radio group using CSS selector `input[type=\"radio\"][name*=\"not-for-profit sector\"]` or by identifying the radio input fields associated with the displayed error."
-  },
-  {
-    "timestamp": "2026-07-16T11:41:45.201Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Senior Full Stack Engineer (React, Angular, Next.js, TypeScript, GraphQL)",
-    "company": "Software At Scale",
-    "url": "https://au.seek.com/job/93345948/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T11-41-43-293Z_unanswered_questions.png",
-    "analysis": "1. The \"Answer employer questions\" page is shown, displaying two binary radio button questions and one text input question.\n2. The bot failed to answer the two radio button questions: \"Are you based in Sydney or Melbourne Australia?\" and \"Do you have hand-on experience with Angular JS in a commercial setting?\". The text input was pre-filled with \"11-20\".\n3. The bot should use a specific selector like `label:contains(\"Sydney or Melbourne\") ~ div input[type=\"radio\"][value=\"Yes\"]` or `label:contains(\"Angular JS\") ~ div input[type=\"radio\"][value=\"No\"]` to answer the radio button questions based on the candidate's profile."
-  },
-  {
     "timestamp": "2026-07-16T11:41:50.018Z",
     "error_type": "validation_errors_blocking_continue",
     "job_title": "Senior Full Stack Engineer (React, Angular, Next.js, TypeScript, GraphQL)",
@@ -4998,5 +4958,45 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T06-42-06-792Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. A \"Sign In\" overlay is visible over a partially filled \"Create Account\" form. The overlay has an \"X\" button, pre-filled email and password fields, and a \"Sign In\" button, partially obscuring the \"Create Account\" button beneath it.\n2. This error was caused by the \"Sign In\" overlay reappearing mid-application during the account creation process, consistent with previous analyses suggesting a persistent session issue or unexpected Workday navigation.\n3. The bot should click the \"X\" button on the \"Sign In\" overlay to dismiss it. A suitable CSS selector is `button[aria-label='Close (Esc)']` or `button[data-automation-id='promptHeaderButton']`."
+  },
+  {
+    "timestamp": "2026-07-22T11:09:30.045Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Platform Lead",
+    "company": "WorkCover Queensland",
+    "url": "https://secure.dc2.pageuppeople.com/apply/615/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T11-09-27-814Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error from PageUp, with a dog illustration and a message stating \"Additional security check is required\" alongside an hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check, which is preventing access to the application form.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., `input[type=\"checkbox\"]`) to initiate the hCaptcha resolution."
+  },
+  {
+    "timestamp": "2026-07-22T11:15:29.650Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Staff Software Engineer, Customer Channel, Data & AI",
+    "company": "Commonwealth Bank",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Staff-Software-Engineer--Customer-Channel--Data---AI_REQ262672-1/apply/applyManually?seek-token=12anDA7Mf8udSXvxBTMwHo",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T11-15-27-086Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A partially obscured \"Create Account\" form is visible, with a \"Sign In\" overlay covering a portion of it. The overlay includes an \"X\" button to close it.\n2. The \"Sign In\" overlay reappeared during the account creation process, indicating a potential session expiration or an attempt by Workday to force re-authentication.\n3. The bot should click the \"X\" button on the \"Sign In\" overlay to dismiss it. Use the CSS selector `button[aria-label='Close (Esc)']` or `button[data-automation-id='promptHeaderButton']`."
+  },
+  {
+    "timestamp": "2026-07-22T11:19:19.325Z",
+    "error_type": "ats_teamtailor_no_submit",
+    "job_title": "Senior Software Engineer",
+    "company": "Magentus",
+    "url": "https://magentus.teamtailor.com/jobs/7905881-senior-software-engineer/applications/new?promotion=2109069-seek-incl-jobstreet-and-jobsdb&seek-token=KFNKSfWE47KeN67DQUK7qG",
+    "page_title": "Senior Software Engineer - Magentus",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T11-19-16-492Z_ats_teamtailor_no_submit.png",
+    "analysis": "1. The screen currently displays an application form with validation errors for \"Availability\", \"Remuneration\", and \"Work Rights\", all marked \"Text can't be blank\". The \"Locations\" checkboxes have Brisbane and Sydney selected.\n2. The bot attempted to submit the form without providing values for the required text input fields for \"Availability\", \"Remuneration\", and \"Work Rights\".\n3. The bot should input appropriate text into the `input[placeholder=\"\"]` fields associated with \"Availability\", \"Remuneration\", and \"Work Rights\" (e.g., `input[name=\"custom_fields.228222\"]`, `input[name=\"custom_fields.228223\"]`, `input[name=\"custom_fields.228224\"]`) before re-attempting submission."
+  },
+  {
+    "timestamp": "2026-07-22T11:22:22.206Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Artificial Intelligence (AI) Product Graduate",
+    "company": "Stanwell Corporation Limited",
+    "url": "https://secure.dc2.pageuppeople.com/apply/529/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-22T11-22-20-020Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, with a dog illustration and a message stating \"Additional security check is required\" alongside an hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check, which is preventing access to the application form.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., `[aria-label=\"I am human\"]` or `input[type=\"checkbox\"]`) to initiate the hCaptcha resolution."
   }
 ]
