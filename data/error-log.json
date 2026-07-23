@@ -1,55 +1,5 @@
 [
   {
-    "timestamp": "2026-07-16T21:37:10.853Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Digital and eCommerce Transformation, Associate Manager",
-    "company": "SC Johnson Professional PTY LTD",
-    "url": "https://au.seek.com/job/93297427/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T21-37-08-357Z_unanswered_questions.png",
-    "analysis": "1. The \"Answer employer questions\" page is visible. Several dropdowns and checkboxes have been filled, but the radio buttons for \"Which of the following Customer Relationship Management (CRM) systems do you have experience using?\" remain unanswered.\n2. The bot failed to select any of the CRM options despite having multiple choice options, indicating it's not recognizing or interacting with this specific checkbox group.\n3. The bot needs to identify and click the relevant checkboxes for CRM systems, specifically targeting `input[type='checkbox']` elements within the section for \"Which of the following Customer Relationship Management (CRM) systems do you have experience using?\" based on the candidate's profile."
-  },
-  {
-    "timestamp": "2026-07-16T21:37:16.412Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Digital and eCommerce Transformation, Associate Manager",
-    "company": "SC Johnson Professional PTY LTD",
-    "url": "https://au.seek.com/job/93297427/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T21-37-13-550Z_validation_errors_blocking_continue.png",
-    "analysis": "1.  The \"Answer employer questions\" page is visible, showing a validation error for a mandatory checkbox group question that remains unselected.\n2.  The bot failed to select an option for the checkbox group question: \"Which of the following Customer Relationship Management (CRM) systems do you have experience using?\". The prior fix for radio/checkbox assumed a successful label-click would mark it selected, but this was likely not confirmed for this specific question.\n3.  The bot should confirm the `isChecked()` status after clicking each checkbox label and if (unconfirmed), try clicking the underlying `input` element directly."
-  },
-  {
-    "timestamp": "2026-07-16T21:37:21.447Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Digital and eCommerce Transformation, Associate Manager",
-    "company": "SC Johnson Professional PTY LTD",
-    "url": "https://au.seek.com/job/93297427/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T21-37-18-343Z_auto_skip_still_blocked.png",
-    "analysis": "1.  The \"Answer employer questions\" page is displayed with a red error alert indicating one unanswered multi-select checkbox group. Several questions have already been answered (dropdowns and checkboxes).\n2.  The error is caused by the bot failing to select an option for the multi-select radio button group \"Which of the following Customer Relationship Management (CRM) systems do you have experience using?\". This is a multi-select radio button group, not typical checkboxes, which is why the previous checkbox fix didn't fully resolve it.\n3.  The bot should select one or more options for CRM systems in the group with the label \"Which of the following Customer Relationship Management (CRM) systems do you have experience using?\", using CSS selector `input[type=\"radio\"][name*=\"Customer Relationship Management (CRM) systems\"]` and confirming that these are in fact radio buttons and not checkboxes for the fix."
-  },
-  {
-    "timestamp": "2026-07-16T21:39:11.105Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Delivery Lead",
-    "company": "Peoplebank Australia NSW",
-    "url": "https://au.seek.com/awsk/authorize?id=77d8ced3-ec91-4732-9e31-71e83daeaff2",
-    "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T21-38-56-174Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a Seek.com.au authorization request asking the user to \"Allow access\" for Peoplebank Australia NSW to access their SEEK Profile.\n2. The error occurred because the bot did not interact with this authorization page, which is a necessary step before proceeding to the actual application.\n3. The bot needs to click the \"Allow access\" button to continue. Use the CSS selector `button:contains(\"Allow access\")` or `[data-automation=\"allow-access-button\"]` to click the button."
-  },
-  {
-    "timestamp": "2026-07-16T21:43:09.392Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Team Lead - Quality Engineering",
-    "company": "Reserve Bank of Australia",
-    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Team-Lead---Quality-Engineering_JR4730/apply/applyManually?seek-token=FGPprpeD7CLsoG1AgZ8Vio&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T21-43-07-150Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. An application wizard is visible, with a \"Create Account\" page partially obscured by a \"Sign In\" overlay. The bot has already populated the email and password fields within the \"Sign In\" overlay.\n2. The bot incorrectly interacted with the unexpected \"Sign In\" overlay by attempting to input credentials there instead of closing it or continuing with the \"Create Account\" form.\n3. The bot should next click the 'x' close button within the \"Sign In\" overlay using `button[aria-label=\"Close\"]` to dismiss it and continue with the original \"Create Account\" form."
-  },
-  {
     "timestamp": "2026-07-16T21:46:06.491Z",
     "error_type": "ats_workday_wall_mid_apply",
     "job_title": "IT Operations Analyst",
@@ -4998,5 +4948,55 @@
     "page_title": "Sign In",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T06-48-08-523Z_ats_workday_no_submit.png",
     "analysis": "1. On screen is the Workday \"Sign In\" page for \"Integration Engineer - Cloud iPaaS Full Stack\", offering options to \"Sign in with Google\" or \"Sign in with email\".\n2. The bot is stuck at the sign-in step, which the previous fix for the \"Start Your Application\" modal did not address and no specific action was taken in the wizard loop to handle this sign-in page.\n3. The bot should click the \"Sign in with email\" button to proceed. A suitable CSS selector is `button:contains('Sign in with email')` or `[data-automation-id=\"signInWithEmailButton\"]` if present."
+  },
+  {
+    "timestamp": "2026-07-23T10:48:52.667Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Project Manager",
+    "company": "Bolton Clarke",
+    "url": "https://boltonclarke.wd105.myworkdayjobs.com/en-US/Careers/job/Brisbane-CBD-%26-Inner-Suburbs-Brisbane-QLD/Senior-Project-Manager_JR001931-1/apply/applyManually?seek-token=FfyCD6z481YDQEzghESLzB&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T10-48-50-422Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Sign In\" overlay is visible over a partially filled \"Create Account\" form with an 'X' button. The \"Create Account\" form shows password requirements and email/password fields.\n2. The \"Sign In\" overlay unexpectedly reappeared mid-account creation, specifically after the form had transitioned to password creation. This indicates a persistent session issue or unforeseen navigation within Workday.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to dismiss it, then continue with the \"Create Account\" form. A suitable CSS selector is `button[aria-label='Close']` or `button[data-automation-id='closeButton']`."
+  },
+  {
+    "timestamp": "2026-07-23T10:49:30.266Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Project Officer",
+    "company": "National Heavy Vehicle Regulator",
+    "url": "https://secure.dc2.pageuppeople.com/apply/1123/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T10-49-28-181Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check, preventing the application form from loading.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]` or an enclosing `div`) and subsequently resolve the hCaptcha challenge."
+  },
+  {
+    "timestamp": "2026-07-23T11:18:44.692Z",
+    "error_type": "ats_teamtailor_no_submit",
+    "job_title": "Senior Software Engineer",
+    "company": "Magentus",
+    "url": "https://magentus.teamtailor.com/jobs/7905881-senior-software-engineer/applications/new?promotion=2109069-seek-incl-jobstreet-and-jobsdb&seek-token=D65bc7VghjvBrBuS6ogEaS",
+    "page_title": "Senior Software Engineer - Magentus",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T11-18-41-483Z_ats_teamtailor_no_submit.png",
+    "analysis": "1. The screen displays a partially filled Teamtailor application form with validation errors for \"Availability,\" \"Remuneration,\" and \"Work Rights,\" all stating \"Text can't be blank.\" The \"Melbourne\" location checkbox is visibly unticked, while \"Brisbane\" and \"Sydney\" are ticked.\n2. The error was caused by the bot attempting to submit the form without filling in the required \"Availability,\" \"Remuneration,\" and \"Work Rights\" text fields, and without ticking all location checkboxes.\n3. The bot should input text into the `input[name=\"custom_fields.228222\"]` (Availability), `input[name=\"custom_fields.228220\"]` (Remuneration), and `input[name=\"custom_fields.228221\"]` (Work Rights) fields, and ensure the \"Melbourne\" checkbox for locations (`#locations-Melbourne`) is clicked/ticked before re-attempting submission."
+  },
+  {
+    "timestamp": "2026-07-23T11:35:59.241Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Cloud DevOps Engineer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://au.seek.com/awsk/authorize?id=84945cef-c18b-41ea-b3b1-49c6933d239c",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T11-35-57-024Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a Seek \"Allow access\" page asking the user to confirm sharing their SEEK profile with Peoplebank Australia QLD via Idibu. It presents \"Allow access\" and \"Not now\" buttons.\n2. The error was caused by the bot failing to click the \"Allow access\" button to proceed with the application.\n3. The bot should click the \"Allow access\" button with the CSS selector `button:has-text(\"Allow access\")` to continue the application process."
+  },
+  {
+    "timestamp": "2026-07-23T11:44:45.554Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Senior Implementation Consultant (Software / SaaS)",
+    "company": "Peoplebank Australia SA",
+    "url": "https://au.seek.com/awsk/authorize?id=bb1e38cc-548e-4738-a810-5f0615ca758d",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T11-44-43-466Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a Seek \"Allow access\" page, requesting the user to confirm sharing their SEEK profile with Peoplebank Australia SA via Idibu. It presents \"Allow access\" and \"Not now\" buttons.\n2. The error was caused by the bot failing to click the \"Allow access\" button to proceed with the application. This is similar to previous analyses.\n3. The bot should click the \"Allow access\" button using the CSS selector `button:has-text(\"Allow access\")` to continue the application process."
   }
 ]
