@@ -1,65 +1,5 @@
 [
   {
-    "timestamp": "2026-07-16T22:29:03.578Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Contract Manager",
-    "company": "EPEC Group",
-    "url": "https://apply.jobadder.com/18158/882216/xuslnigijp3uniucg7byhvsvoq?site=au6&seek-token=BV892AQXc1PE77BCu1Hymu",
-    "page_title": "Contract Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T22-29-01-569Z_ats_jobadder_no_submit.png",
-    "analysis": "1. The \"Want to apply later?\" modal is still visible, covering a partially filled JobAdder application form. The 'Apply Now' button at the bottom of the form is also visible.\n2. The bot failed to close the \"Want to apply later?\" modal, preventing it from interacting with and submitting the underlying form.\n3. The bot should click the 'X' button of the modal using the CSS selector `button[aria-label='Close']` to close it."
-  },
-  {
-    "timestamp": "2026-07-16T22:31:26.846Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Governance and Change Manager",
-    "company": "Queensland Hydro Pty Ltd",
-    "url": "https://qldhydro.csod.com/ux/ats/careersite/1/requisition/38/application?c=qldhydro&seek-token=GUvE98yF53cmkQV1mMAjF8&source=seek_oz&jobboardid=0",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T22-31-26-759Z_ats_cornerstone_no_submit.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-07-16T22:35:50.045Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Software Engineer",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/x15_Careers/job/Sydney-CBD-Area/Senior-Software-Engineer--x15ventures_REQ262179/apply/applyManually?seek-token=RucD4d6Jegiqe3jdtfeDvW",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T22-35-49-831Z_ats_workday_wall_mid_apply.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-07-16T22:36:33.441Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Senior QA Automation Engineer",
-    "company": "Kablamo",
-    "url": "https://au.seek.com/job/93338514/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T22-36-33-284Z_unanswered_questions.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-07-16T22:36:36.267Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Senior QA Automation Engineer",
-    "company": "Kablamo",
-    "url": "https://au.seek.com/job/93338514/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T22-36-36-111Z_validation_errors_blocking_continue.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-07-16T22:36:38.201Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Senior QA Automation Engineer",
-    "company": "Kablamo",
-    "url": "https://au.seek.com/job/93338514/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-16T22-36-38-024Z_auto_skip_still_blocked.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
     "timestamp": "2026-07-16T22:38:33.850Z",
     "error_type": "ats_pageup_no_submit",
     "job_title": "Software Developer in Test",
@@ -4998,5 +4938,65 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T11-57-58-969Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. A semi-transparent \"Sign In\" overlay is visible over a partially filled \"Create Account\" form with password requirements. The overlay has pre-filled email and password fields, a \"Sign In\" button, and an 'X' button to close it.\n2. The error was caused by the \"Sign In\" overlay unexpectedly appearing mid-account creation, interrupting the process defined by the screenshot URL indicating an \"applyManually\" step.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to dismiss it.\n4. Use the CSS selector `button[aria-label='Close']` or `[data-automation-id='closeButton']`."
+  },
+  {
+    "timestamp": "2026-07-23T21:35:20.115Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Project Manager",
+    "company": "Bolton Clarke",
+    "url": "https://boltonclarke.wd105.myworkdayjobs.com/en-US/Careers/job/Brisbane-CBD-%26-Inner-Suburbs-Brisbane-QLD/Senior-Project-Manager_JR001931-1/apply/applyManually?seek-token=VWnf7HoKZomyh5vJteqAYM&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T21-35-17-594Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A semi-transparent Workday \"Sign In\" overlay is visible over a partially completed \"Create Account\" form, interrupting the application flow. The \"Sign In\" overlay has a pre-filled email, password field, a \"Sign In\" button, and an 'X' button. The background \"Create Account\" form still shows password requirements and fields.\n2. The error was caused by the \"Sign In\" overlay unexpectedly appearing mid-account creation, suggesting a persistent session issue or unhandled navigation.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to dismiss it.\n4. Using the CSS selector `button[aria-label='Close']` or `[data-automation-id='closeButton']` should address this."
+  },
+  {
+    "timestamp": "2026-07-23T22:08:07.179Z",
+    "error_type": "ats_teamtailor_no_submit",
+    "job_title": "Senior Software Engineer",
+    "company": "Magentus",
+    "url": "https://magentus.teamtailor.com/jobs/7905881-senior-software-engineer/applications/new?promotion=2109069-seek-incl-jobstreet-and-jobsdb&seek-token=PqTwL7XrfiCpsnJEM6UpJd",
+    "page_title": "Senior Software Engineer - Magentus",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T22-08-04-780Z_ats_teamtailor_no_submit.png",
+    "analysis": "1. The screen displays a Teamtailor application form with validation errors for \"Availability\", \"Remuneration\", and \"Work Rights\", all requiring text input. The \"Melbourne\" location checkbox is unticked.\n2. The bot attempted to submit the form without providing values for the required text fields or ticking all location checkboxes.\n3. The bot should input text into `input[name=\"custom_fields.228222\"]` (Availability), `input[name=\"custom_fields.228220\"]` (Remuneration), `input[name=\"custom_fields.228221\"]` (Work Rights), and tick the checkbox for \"Melbourne\" (likely `input[type=\"checkbox\"][value=\"Melbourne\"]`)."
+  },
+  {
+    "timestamp": "2026-07-23T22:22:42.662Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Cloud Platform Engineer Lead",
+    "company": "Cochlear Limited.",
+    "url": "https://cochlear.wd3.myworkdayjobs.com/en-US/Cochlear_Careers/job/Sydney/Cloud-Platform-Engineer-Lead_R-623877/apply/applyManually?seek-token=XyU4K3EF2X1E1d8xtY5CNd&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T22-22-40-420Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Sign In\" overlay is visible *over* a \"Create Account\" form. The overlay has pre-filled email and password fields, a \"Sign In\" button, and an 'X' button to close it. The \"Create Account\" form still shows password requirements and email/password fields behind.\n2. The error was caused by the \"Sign In\" overlay unexpectedly appearing mid-account creation, suggesting a persistent session issue or unhandled navigation.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to dismiss it, using the CSS selector `button[aria-label='Close']` or `[data-automation-id='closeButton']`.\n4. This scenario perfectly matches previous analyses, indicating the prior fix did not fully resolve the issue."
+  },
+  {
+    "timestamp": "2026-07-23T22:27:41.003Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Integration Engineer",
+    "company": "Mirvac",
+    "url": "https://mirvac.csod.com/ux/ats/careersite/1/requisition/4991/application?c=mirvac&seek-token=QJGnRGVdToBx8Uic2ReJAG&source=seek_oz&jobboardid=0#1",
+    "page_title": "Apply for Solution Engineer, Integration & DevOps | Application",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T22-27-37-958Z_ats_cornerstone_no_submit.png",
+    "analysis": "1. The screen displays an application form with \"Contact information\" and \"Diversity Questions\" sections, partially filled biographical details, and several dropdowns and text fields, many marked as required, along with \"Cancel,\" \"Save,\" and \"Next\" buttons.\n2. The error was caused by the bot attempting to submit the form without completing all required fields, as indicated by the numerous \"This question is required\" messages.\n3. The bot should identify all required input fields and dropdowns, fill them with appropriate data, and then click the \"Next\" button using a CSS selector such as `.form-actions button.next`."
+  },
+  {
+    "timestamp": "2026-07-23T22:31:37.131Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Cloud DevOps Engineer",
+    "company": "Peoplebank Australia QLD",
+    "url": "https://au.seek.com/awsk/authorize?id=97e0d61f-69ed-4d2a-919a-15fda6308e18",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T22-31-34-907Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a Seek \"Allow access\" page asking to confirm sharing the SEEK profile with Peoplebank Australia QLD via Idibu, with \"Allow access\" and \"Not now\" buttons.\n2. The error was caused by the bot failing to click the \"Allow access\" button to proceed.\n3. The bot should click the \"Allow access\" button with the CSS selector `button:has-text(\"Allow access\")`."
+  },
+  {
+    "timestamp": "2026-07-23T22:42:00.188Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Solution Architect, Digital",
+    "company": "News Corp Australia",
+    "url": "https://dowjones.wd1.myworkdayjobs.com/en-US/News_Corp_Australia_Careers/job/NSW---SHS-2-Holt-Street-Surry-Hills/Solution-Architect_Job_Req_54274/apply/applyManually?seek-token=C3v51bs4uVDD7q1YEzo8gF",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-23T22-41-57-816Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Sign In\" overlay is visible over a partially filled \"Create Account\" form. The overlay has pre-filled email and password fields, a \"Sign In\" button, and an 'X' button to close it.\n2. The error was caused by the \"Sign In\" overlay unexpectedly appearing mid-account creation, interrupting the process, despite the prior fix.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to dismiss it, using the CSS selector `button[aria-label='Close']` or `[data-automation-id='closeButton']`.\n4. This scenario explicitly confirms that the previous fix for the \"ats_workday_wall_mid_apply\" error did not fully resolve the issue, as the wall continues to appear during account creation."
   }
 ]
