@@ -1,35 +1,5 @@
 [
   {
-    "timestamp": "2026-07-17T05:47:32.535Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Geospatial Manager",
-    "company": "Queensland Hydro Pty Ltd",
-    "url": "https://qldhydro.csod.com/ux/ats/careersite/1/requisition/39/application?c=qldhydro&seek-token=EsAFK4hyCeup2upMP5xoG1&source=seek_oz&jobboardid=0#1",
-    "page_title": "Apply for Geospatial Manager | Application",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-17T05-47-32-452Z_ats_cornerstone_no_submit.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-07-17T05:48:45.437Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Senior Project Manager – Network Transformation",
-    "company": "PM-Partners Group",
-    "url": "https://au.seek.com/job/93391933/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-17T05-48-45-289Z_unanswered_questions.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-07-17T05:48:48.302Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Senior Project Manager – Network Transformation",
-    "company": "PM-Partners Group",
-    "url": "https://au.seek.com/job/93391933/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-17T05-48-48-168Z_validation_errors_blocking_continue.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
     "timestamp": "2026-07-17T05:49:20.314Z",
     "error_type": "auto_skip_still_blocked",
     "job_title": "Senior Project Manager – Network Transformation",
@@ -4998,5 +4968,35 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-24T11-53-32-143Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. A \"Create Account\" form is visible with password requirements. Overlaid on top is a \"Sign In\" pop-up with a pre-filled email and an 'X' button to close it.\n2. The error was caused by the \"Sign In\" overlay appearing unexpectedly during the account creation process, interrupting the flow.\n3. The bot should click the 'X' button on the \"Sign In\" overlay. A reliable CSS selector to try is `button[aria-label='Close'][data-automation-id='closeButton']`."
+  },
+  {
+    "timestamp": "2026-07-24T21:28:48.914Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Lead ServiceNow Engineer",
+    "company": "Reserve Bank of Australia",
+    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Technical-Lead---ServiceNow_JR4275/apply/applyManually?seek-token=8YCsLgXev8nxgiTNGMvDR&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-24T21-28-46-815Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" form is visible, overlaid by a \"Sign In\" pop-up. The pop-up has a pre-filled email, password fields, and an 'X' button to close it.\n2. The error was caused by the \"Sign In\" overlay appearing unexpectedly, obstructing interaction with the underlying form during the application process.\n3. The bot should click the 'X' button on the \"Sign In\" overlay. A reliable CSS selector to try is `div[role='dialog'] button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-07-24T21:37:32.886Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Senior Engineer, Platform Engineering",
+    "company": "News Corp Australia",
+    "url": "https://dowjones.wd1.myworkdayjobs.com/News_Corp_Australia_Careers/job/NSW---SHS-2-Holt-Street-Surry-Hills/Senior-Engineer--Platform-Engineering_Job_Req_53145?seek-token=53M2xhrfJHpMigsmpuGdfV",
+    "page_title": "Careers",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-24T21-37-30-426Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The screen displays an error page stating \"The page you are looking for doesn't exist.\", accompanied by a magnifying glass icon. There's a \"Search for Jobs\" button and social media links.\n2. The error was caused because the provided URL led to a non-existent job page, not the expected Workday sign-in screen, preventing the bot from finding any navigation buttons.\n3. The bot should click the \"Search for Jobs\" button to navigate away from the error page. A suitable CSS selector would be `button[aria-label=\"Search for Jobs\"]` or based on its text content."
+  },
+  {
+    "timestamp": "2026-07-24T21:37:35.149Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Senior Engineer, Platform Engineering",
+    "company": "News Corp Australia",
+    "url": "https://dowjones.wd1.myworkdayjobs.com/News_Corp_Australia_Careers/job/NSW---SHS-2-Holt-Street-Surry-Hills/Senior-Engineer--Platform-Engineering_Job_Req_53145?seek-token=53M2xhrfJHpMigsmpuGdfV",
+    "page_title": "Careers",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-24T21-37-32-890Z_ats_workday_no_submit.png",
+    "analysis": "1. The screen displays a Workday error page stating \"The page you are looking for doesn't exist.\", with a \"Search for Jobs\" button.\n2. This error was caused because the bot landed on a non-existent page, indicating a navigation issue rather than a wizard form-filling or sign-in step problem.\n3. The bot should investigate why it navigated to a broken link. It should click the \"Search for Jobs\" button (CSS selector: `button:contains('Search for Jobs')` or `[data-automation-id=\"searchJobsButton\"]`) to return to a valid page."
   }
 ]
