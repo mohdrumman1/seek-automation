@@ -1,45 +1,5 @@
 [
   {
-    "timestamp": "2026-07-17T06:30:47.955Z",
-    "error_type": "unanswered_questions",
-    "job_title": "Senior Manager (Workforce Advisory)",
-    "company": "PeopleBench",
-    "url": "https://au.seek.com/job/93380383/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-17T06-30-47-754Z_unanswered_questions.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-07-17T06:30:50.763Z",
-    "error_type": "validation_errors_blocking_continue",
-    "job_title": "Senior Manager (Workforce Advisory)",
-    "company": "PeopleBench",
-    "url": "https://au.seek.com/job/93380383/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-17T06-30-50-614Z_validation_errors_blocking_continue.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-07-17T06:31:23.045Z",
-    "error_type": "auto_skip_still_blocked",
-    "job_title": "Senior Manager (Workforce Advisory)",
-    "company": "PeopleBench",
-    "url": "https://au.seek.com/job/93380383/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-17T06-31-22-455Z_auto_skip_still_blocked.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
-    "timestamp": "2026-07-17T06:32:50.375Z",
-    "error_type": "unanswered_questions",
-    "job_title": "AI & Automation Specialist",
-    "company": "Housing Australia",
-    "url": "https://au.seek.com/job/93391320/apply/role-requirements",
-    "page_title": "Answer employer questions | SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-17T06-32-50-183Z_unanswered_questions.png",
-    "analysis": "AI analysis unavailable"
-  },
-  {
     "timestamp": "2026-07-17T06:32:53.430Z",
     "error_type": "validation_errors_blocking_continue",
     "job_title": "AI & Automation Specialist",
@@ -4998,5 +4958,45 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-24T22-50-55-306Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. A \"Create Account\" form is visible, but an unexpected transparent \"Sign In\" overlay with pre-filled email and password fields, and an 'X' button to close it, has appeared mid-process.\n2. The bot was within the account creation wizard, but a \"Sign In\" overlay appeared mid-process, likely due to a session issue or Workday's dynamic workflow, blocking the primary form.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to close it. A reliable CSS selector is the `button` with the `x` character as its content or `button[aria-label='Close_X']` or `[data-automation-id='closeButton']`."
+  },
+  {
+    "timestamp": "2026-07-25T05:28:50.355Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Lead ServiceNow Engineer",
+    "company": "Reserve Bank of Australia",
+    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Technical-Lead---ServiceNow_JR4275/apply/applyManually?seek-token=4NySBr7VmGAMhnf7mDL1Fv&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-25T05-28-47-821Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. The \"Create Account\" page is visible, but a \"Sign In\" overlay with pre-filled email and password fields is obscuring it. An 'X' button is present within the overlay to close it.\n2. The bot was within the account creation wizard, but an unexpected \"Sign In\" overlay appeared, likely due to a session issue or Workday's dynamic workflow, blocking the primary form. The fix from 2026-05-22 did not fully resolve this.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to close it, using the CSS selector `button[aria-label='Close']` or `[data-automation-id='closeButton']`."
+  },
+  {
+    "timestamp": "2026-07-25T05:45:18.023Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Senior Engineer, Platform Engineering",
+    "company": "News Corp Australia",
+    "url": "https://dowjones.wd1.myworkdayjobs.com/News_Corp_Australia_Careers/job/NSW---SHS-2-Holt-Street-Surry-Hills/Senior-Engineer--Platform-Engineering_Job_Req_53145?seek-token=bDeNDHqbYitqzgxoMq3iL",
+    "page_title": "Careers",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-25T05-45-15-761Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The screen displays an error page stating \"The page you are looking for doesn't exist.\", indicated by a magnifying glass icon and a \"Search for Jobs\" button.\n2. The error occurred because the provided URL led to a non-existent job page, not the expected application page.\n3. The bot should click the \"Search for Jobs\" button to navigate away from the error page. A suitable CSS selector would be `button[aria-label=\"Search for Jobs\"]` or `button.wd-primary-on-dark-background`."
+  },
+  {
+    "timestamp": "2026-07-25T05:45:20.002Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Senior Engineer, Platform Engineering",
+    "company": "News Corp Australia",
+    "url": "https://dowjones.wd1.myworkdayjobs.com/News_Corp_Australia_Careers/job/NSW---SHS-2-Holt-Street-Surry-Hills/Senior-Engineer--Platform-Engineering_Job_Req_53145?seek-token=bDeNDHqbYitqzgxoMq3iL",
+    "page_title": "Careers",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-25T05-45-18-027Z_ats_workday_no_submit.png",
+    "analysis": "1. The screen displays a Workday error page stating \"The page you are looking for doesn't exist.\", with a prominent \"Search for Jobs\" button.\n2. This error was caused because the bot landed on a non-existent page, indicating a navigation issue rather than a wizard form-filling or sign-in step problem.\n3. The bot should click the \"Search for Jobs\" button to return to a valid page. A suitable CSS selector is `button:contains('Search for Jobs')`."
+  },
+  {
+    "timestamp": "2026-07-25T05:49:13.608Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Asset Renewal Specialist - 12 Month Fixed Term",
+    "company": "Reserve Bank of Australia",
+    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Asset-Renewal-Specialist---12-Month-Fixed-Term_JR4577-1/apply/applyManually?seek-token=6hk8RJNDNnnmtqKNeSucEg&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-25T05-49-11-632Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" form is visible, but a \"Sign In\" overlay with pre-filled email and password fields, and an 'X' button to close it, has appeared mid-process.\n2. The bot was within the account creation wizard, but a \"Sign In\" overlay appeared, likely due to a session issue or Workday's dynamic workflow, blocking the primary form.\n3. The bot should click the 'X' button on the \"Sign In\" overlay to close it. The reliable CSS selector is the `button` with the `x` character as its content or `button[aria-label='Close_X']` or `[data-automation-id='closeButton']`."
   }
 ]
