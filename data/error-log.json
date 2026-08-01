@@ -1,135 +1,5 @@
 [
   {
-    "timestamp": "2026-07-19T21:55:39.352Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Continuous Improvement Manager",
-    "company": "Corporate Travel Management",
-    "url": "https://apply.jobadder.com/17611/912370/shpemy6ib4iejpzipv4w7dweqe?site=au5&seek-token=7hPARWRgU6rcqfRrjPJ5zo",
-    "page_title": "Continuous Improvement Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T21-55-37-096Z_ats_jobadder_no_submit.png",
-    "analysis": "1. The screen displays a fully completed JobAdder application form for \"Continuous Improvement Manager,\" with all details, including attachments, filled out. The \"I accept the Terms & Conditions\" checkbox is unchecked, and the \"Apply Now\" button is visible but likely unclickable until the checkbox is marked.\n2. This error was caused because the bot did not check the \"I accept the Terms & Conditions\" checkbox before attempting to click the \"Apply Now\" button.\n3. The bot should ensure the checkbox `input[type=\"checkbox\"]` (specifically the one next to \"I accept the Terms & Conditions\") is checked, and then click the \"Apply Now\" button `button:contains(\"Apply Now\")`."
-  },
-  {
-    "timestamp": "2026-07-19T21:58:07.815Z",
-    "error_type": "ats_teamtailor_no_submit",
-    "job_title": "SES2L Senior Development Manager",
-    "company": "Troocoo People Advisory",
-    "url": "https://economicdevelopmentqueensland.au.teamtailor.com/jobs/554-ses2l-senior-development-manager/applications/new?promotion=39-seek-incl-jobstreet-and-jobsdb&seek-token=LD2oYj2dNMx3BujibR8UuP",
-    "page_title": "SES2L Senior Development Manager - Economic Development Queensland",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T21-58-05-046Z_ats_teamtailor_no_submit.png",
-    "analysis": "1. The screen shows a partially filled application form on Teamtailor, with validation errors for \"Source\", \"Salary Expectation\", and \"Australian work rights\" indicating these fields \"Can't be blank\" or \"Number can't be blank\".\n2. The error is caused by the bot attempting to submit the form without providing values for all required fields, specifically the dropdowns for \"Source\" and \"Australian work rights\", and the input for \"Salary Expectation\".\n3. The bot should select an option for the dropdowns `select[name=\"custom_fields.228224\"]` (Source) and `select[name=\"custom_fields.228226\"]` (Australian work rights), and input a number into the `input[name=\"custom_fields.228225\"]` (Salary Expectation) field before attempting to submit."
-  },
-  {
-    "timestamp": "2026-07-19T22:00:31.406Z",
-    "error_type": "ats_workday_no_nav_button",
-    "job_title": "Applications Manager, Perpetual Wealth Management",
-    "company": "Perpetual Services Pty Limited",
-    "url": "https://perpetual.wd3.myworkdayjobs.com/en-US/External/job/Sydney/Applications-Manager--Perpetual-Wealth-Management_R8818/apply/applyManually?seek-token=7EegQpiwyug7Vv2v4jMpXH&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T22-00-29-778Z_ats_workday_no_nav_button.png",
-    "analysis": "1. The screen displays the \"Sign In\" step of a Workday job application process, offering options to sign in with Apple, Google, or Email, along with an application progress bar.\n2. The error \"ats_workday_no_nav_button\" occurred because the bot expected a navigation button but encountered a sign-in wall as the first step of the application.\n3. The bot should attempt to click the \"Sign in with email\" button using a CSS selector such as `button[aria-label=\"Sign in with email\"]` or `button[data-automation-id=\"signInWithEmailButton\"]` to proceed."
-  },
-  {
-    "timestamp": "2026-07-19T22:00:33.225Z",
-    "error_type": "ats_workday_no_submit",
-    "job_title": "Applications Manager, Perpetual Wealth Management",
-    "company": "Perpetual Services Pty Limited",
-    "url": "https://perpetual.wd3.myworkdayjobs.com/en-US/External/job/Sydney/Applications-Manager--Perpetual-Wealth-Management_R8818/apply/applyManually?seek-token=7EegQpiwyug7Vv2v4jMpXH&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T22-00-31-410Z_ats_workday_no_submit.png",
-    "analysis": "1. The screen displays the Workday \"Sign In\" page for \"Applications Manager, Perpetual Wealth Management\", offering options to \"Sign in with Apple\", \"Sign in with Google\", or \"Sign in with email\".\n2. This error was caused because the bot reached a sign-in step without attempting to proceed, similar to previous analyses, and the fix for the \"Start Your Application\" modal did not address this.\n3. The bot should click the \"Sign in with email\" button. A strong CSS selector would be `button:contains('Sign in with email')` or `[data-automation-id*=\"emailSignInButton\"]`."
-  },
-  {
-    "timestamp": "2026-07-19T22:01:37.928Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Machine Learning Engineering Manager",
-    "company": "icare",
-    "url": "https://secure.dc2.pageuppeople.com/apply/914/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T22-01-36-194Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e. `div.h-captcha` or `span.h-captcha-box`) and subsequently resolve the hCaptcha challenge that appears."
-  },
-  {
-    "timestamp": "2026-07-19T22:06:04.466Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "IT Procurement and Vendor Contracts Specialist",
-    "company": "hummgroup",
-    "url": "https://flexigroup.wd105.myworkdayjobs.com/en-US/Careers/job/Sydney%2C-New-South-Wales/IT-Procurement-and-Vendor-Contracts-Specialist_JR10000620-1/apply/applyManually?seek-token=5uQL2V9gj8UDe9kKj13xFq&source=seek_oz",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T22-06-02-111Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. On screen is a \"Create Account\" form with an active \"Sign In\" button largely obscuring the password field. The \"Sign In\" text is part of a button element within the create account form. The email field is pre-filled, and there are password requirements listed.\n2. The error was caused by the Workday account wall appearing mid-application. The bot is trying to create an account, but there's a \"Sign In\" button that visually obstructs the \"password\" field. This button is confusing for the bot to differentiate from the actual \"Sign In\" link.\n3. The bot should attempt to click the \"Sign In\" link at the bottom of the \"Create Account\" form using `a[data-automation-id='loginButton']` or text content that states \"Sign In\". It should avoid clicking the \"Sign In\" *button* within the password field itself."
-  },
-  {
-    "timestamp": "2026-07-19T22:23:23.217Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Continuous Improvement Manager",
-    "company": "Corporate Travel Management",
-    "url": "https://apply.jobadder.com/17611/912369/shpemy6ib4iejpzipv4w7dweqe?site=au5&seek-token=4PJUoryZRon9SL4ZpKHGgB",
-    "page_title": "Continuous Improvement Manager",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T22-23-21-097Z_ats_jobadder_no_submit.png",
-    "analysis": "1. The screen displays a fully completed JobAdder application form for \"Continuous Improvement Manager\", with all details filled. The \"I accept the Terms & Conditions\" checkbox is unchecked, and the \"Apply Now\" button is visible but greyed out/unclickable.\n2. The error was caused because the bot did not check the \"I accept the Terms & Conditions\" checkbox before attempting to click the \"Apply Now\" button.\n3. The bot should ensure the checkbox `input[type=\"checkbox\"][name=\"accept_terms\"]` is checked, and then click the \"Apply Now\" button `button[type=\"submit\"]`."
-  },
-  {
-    "timestamp": "2026-07-19T22:24:47.721Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Principal Adv Customer Service",
-    "company": "Aurizon",
-    "url": "https://secure.dc2.pageuppeople.com/apply/493/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T22-24-45-985Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e. the checkbox element itself, or the `div` containing \"I am human\" and the hCaptcha logo) and subsequently resolve the hCaptcha challenge that appears."
-  },
-  {
-    "timestamp": "2026-07-19T22:38:12.877Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Test Automation Engineer - Playwright",
-    "company": "DWS Limited",
-    "url": "https://apply.jobadder.com/16850/1977354/devo76qn6equ7apg4b5b7rpnse?site=au2&seek-token=48k2v5wLTRzGdGJVzBgbC2",
-    "page_title": "Test Automation Engineer - Playwright",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T22-38-10-309Z_ats_jobadder_no_submit.png",
-    "analysis": "1. The screen displays a JobAdder application form for \"Test Automation Engineer - Playwright\" with the \"Want to apply later?\" modal open. The form appears mostly filled, but the \"I have read and consent...\" checkbox is unchecked and the \"Apply Now\" button is enabled but covered by the modal.\n2. The error was caused because the bot did not dismiss the \"Want to apply later?\" modal, which prevents interaction with the final submission elements.\n3. The bot should first click the 'X' button on the modal (`button[aria-label=\"Close\"]`), then ensure the \"I have read and consent...\" checkbox (`input[type=\"checkbox\"]`) is checked, and finally click the \"Apply Now\" button (`button[type=\"submit\"]`)."
-  },
-  {
-    "timestamp": "2026-07-19T22:43:34.759Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Principal Software Engineer",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer_REQ259590/apply/applyManually?seek-token=FcbxD7FW6k99Jcvoku7NE1",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T22-43-32-809Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form is visible, with a \"Sign In\" overlay appearing *on top* of the form's password fields. The overlay has pre-filled email and password fields, and a \"Sign In\" button within it.\n2. The error persists because the Workday account wall, specifically a sign-in overlay, has re-appeared mid-application while the bot is attempting to create an account, despite previous fixes.\n3. The bot should click the \"Sign In\" button within the overlay using `button[data-automation-id='signInButton']`.\n4. If that fails, it should then attempt to click the \"Sign In\" link at the bottom of the \"Create Account\" form using `a[data-automation-id='loginButton']`."
-  },
-  {
-    "timestamp": "2026-07-19T22:58:52.993Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Full Stack Developer",
-    "company": "Icon Group",
-    "url": "https://apply.jobadder.com/16858/1109364/wbollotuiuauhedvpi5vvromny?site=au3&seek-token=7BFGxTS6u7M2Zwwr2kPebV",
-    "page_title": "Full Stack Developer",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T22-58-51-064Z_ats_jobadder_no_submit.png",
-    "analysis": "1. The screen displays a fully completed JobAdder application form for \"Full Stack Developer\" with all details filled. The \"I accept the privacy policy\" checkbox is unchecked, and the \"Apply Now\" button is visible but appears greyed out or unclickable.\n2. The error was caused because the bot did not check the \"I accept the privacy policy\" checkbox before attempting to click the \"Apply Now\" button.\n3. The bot should ensure the checkbox next to \"I accept the privacy policy\" (specifically `input[type=\"checkbox\"]` within the 'Accept Terms Checkbox' section) is checked, and then click the \"Apply Now\" button (`button[type=\"submit\"]`)."
-  },
-  {
-    "timestamp": "2026-07-19T23:04:45.565Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Senior Database Engineer",
-    "company": "NSW Department of Customer Service",
-    "url": "https://nswconnect.csod.com/ux/ats/careersite/2/requisition/52322/application?c=nswconnect&seek-token=HdHQ1XMZmGqRcamK97xwg&source=seek_oz&jobboardid=0",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T23-04-43-825Z_ats_cornerstone_no_submit.png",
-    "analysis": "1. The screen is blank and white in the provided screenshot.\n2. The error was likely caused by the page failing to load correctly, as indicated by the blank screen despite the URL pointing to an application page.\n3. The bot should try waiting for the page to load by looking for a common element, like the `body` tag, or any `div` element, using CSS selectors such as `body` or `div`. If the element is not found, a refresh might be needed."
-  },
-  {
-    "timestamp": "2026-07-19T23:07:13.250Z",
-    "error_type": "ats_cornerstone_no_submit",
-    "job_title": "Senior Cyber Security Engineer",
-    "company": "NSW Department of Customer Service",
-    "url": "https://nswconnect.csod.com/ux/ats/careersite/2/requisition/52157/application?c=nswconnect&seek-token=HcEEmaVtWL53ULfLDsqKFD&source=seek_oz&jobboardid=0#1",
-    "page_title": "Apply for Senior Cyber Security Engineer | Application",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-19T23-07-11-031Z_ats_cornerstone_no_submit.png",
-    "analysis": "1. The screen displays the header \"Senior Cyber Security Engineer,\" a blank text area, \"Cancel\" and \"Save\" buttons, a privacy notice, and a loading spinner in the center.\n2. The error was caused by the page getting stuck during loading, indicated by the persistent loading spinner and the partially rendered content.\n3. The bot should explicitly wait for the loading spinner to disappear using a CSS selector such as `div.load-spinner` or check for the visibility of the \"Save\" button to ensure the page has finished loading before attempting further actions."
-  },
-  {
     "timestamp": "2026-07-20T06:06:39.617Z",
     "error_type": "ats_workday_wall_mid_apply",
     "job_title": "Senior Delivery Manager, Digital Archive",
@@ -4998,5 +4868,135 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-31T22-51-29-252Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. An unexpected \"Sign In\" modal with a pre-filled email and password fields is overlapping the \"Create Account\" form, obscuring critical fields for account creation. The \"Password Requirements\" are visible behind the modal.\n2. This error is caused by the \"Sign In\" modal appearing unexpectedly during the account creation process, indicating a persistent session or navigation issue, despite previous fixes for similar problems. The pre-filled email and password suggest a failed attempt or a session persistence conflict.\n3. The bot should click the 'X' button inside the unexpected \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T05:45:59.917Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Executive Advisor",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Executive-Advisor_REQ262754/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T05-45-57-934Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An unexpected \"Sign In\" modal with a pre-filled email address and password fields is overlapping the \"Create Account\" form, which is visible in the background along with \"Password Requirements.\"\n2. This error is caused by the \"Sign In\" modal appearing unexpectedly during the account creation process, obstructing the ability to create a new account. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button inside the unexpected \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T05:49:14.868Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Executive Advisor",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Executive-Advisor_REQ263013/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T05-49-12-967Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An unexpected \"Sign In\" modal with pre-filled email and password fields is overlapping the \"Create Account\" form, which is visible in the background along with \"Password Requirements.\"\n2. This error is caused by the \"Sign In\" modal appearing unexpectedly during the account creation process, obstructing the ability to create a new account. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button inside the unexpected \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T05:52:29.111Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Chapter Lead - AI - Home Buying",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Chapter-Lead---AI---Home-Buying_REQ261439/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T05-52-26-928Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An unexpected \"Sign In\" modal with pre-filled email and password fields is overlapping the \"Create Account\" form, which is visible in the background along with \"Password Requirements.\"\n2. This error is caused by the \"Sign In\" modal appearing unexpectedly during the account creation process, obstructing the ability to create a new account. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button inside the unexpected \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T05:55:44.108Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Chapter Lead Everyday Banking L1 Risk",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Chapter-Lead-Everyday-Banking-L1-Risk_REQ262348/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T05-55-41-293Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An unexpected \"Sign In\" modal with pre-filled email and password fields is overlapping the \"Create Account\" form, which is visible in the background along with \"Password Requirements.\"\n2. This error is caused by the \"Sign In\" modal appearing unexpectedly during the account creation process, obstructing the ability to create a new account. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button inside the unexpected \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T05:58:57.789Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Experience Designer, Learning",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Experience-Designer--Learning_REQ262690/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T05-58-55-918Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An unexpected \"Sign In\" modal with pre-filled email and password fields is overlapping the \"Create Account\" form, which is visible in the background along with \"Password Requirements.\"\n2. This error is caused by the \"Sign In\" modal appearing unexpectedly during the account creation process, obstructing the ability to create a new account. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button inside the unexpected \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T06:02:13.836Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Control Manager Security Posture Management",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/VIC-CBD-Melbourne-Area/Senior-Secure-Configuration-Specialist_REQ262140/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T06-02-11-896Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An unexpected \"Sign In\" modal with pre-filled email and password fields is overlapping the \"Create Account\" form, which is visible in the background along with \"Password Requirements.\"\n2. This error is caused by the \"Sign In\" modal appearing unexpectedly during the account creation process, obstructing the ability to create a new account. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button inside the unexpected \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T06:05:29.116Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Chapter Lead, Data Science (Operations)",
+    "company": "Commonwealth Bank of Australia",
+    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Chapter-Lead--Data-Science--Operations-_REQ248859/apply/applyManually?q=project+manager&locationCountry=d903bb3fedad45039383f6de334ad4db",
+    "page_title": "Sign In - Logo",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T06-05-27-050Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. An unexpected \"Sign In\" modal with pre-filled email and password fields is overlapping the \"Create Account\" form, which is visible in the background along with \"Password Requirements.\"\n2. This error is caused by the \"Sign In\" modal appearing unexpectedly during the account creation process, obstructing the ability to create a new account. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button inside the unexpected \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T06:06:02.494Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "We’ll be back soon…promise!",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T06-06-00-243Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The screen displays a \"We'll be back soon...promise!\" message from CommBank, indicating their careers site is temporarily down for improvements. It provides links to their YouTube and LinkedIn channels.\n2. This error was caused because the job application URL led to a temporary maintenance page, preventing access to the job application itself.\n3. The bot should try to find another application method for the job or skip this job for now and retry later when the site is back online. There is no actionable element to progress the application."
+  },
+  {
+    "timestamp": "2026-08-01T06:06:04.704Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "We’ll be back soon…promise!",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T06-06-02-498Z_ats_workday_no_submit.png",
+    "analysis": "1. The screen displays a \"We'll be back soon...promise!\" message, indicating the CommBank careers site is temporarily unavailable for improvements.\n2. The error occurred because the application process cannot be initiated, as the careers site is down for maintenance. The bot encountered a holding page instead of the expected Workday application flow.\n3. No action can fix this currently; the bot should be configured to detect maintenance pages and retry later or skip these jobs."
+  },
+  {
+    "timestamp": "2026-08-01T06:06:35.820Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T06-06-33-417Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The screen displays a \"We'll be back soon...promise!\" message from CommBank, indicating their careers site is temporarily down for improvements. It provides links to their YouTube and LinkedIn channels.\n2. This error was caused because the job application URL led to a temporary maintenance page, preventing access to the job application itself.\n3. The bot should try to find another application method for the job or skip this job for now and retry later when the site is back online. There is no actionable element to progress the application."
+  },
+  {
+    "timestamp": "2026-08-01T06:06:37.876Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "We’ll be back soon…promise! ",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T06-06-35-825Z_ats_workday_no_submit.png",
+    "analysis": "1. The screen displays a \"We'll be back soon...promise!\" message, indicating the CommBank careers site is temporarily unavailable for improvements.\n2. The error occurred because the application process cannot be initiated, as the careers site is down for maintenance. The bot encountered a holding page instead of the expected Workday application flow.\n3. No action can fix this currently; the bot should be configured to detect maintenance pages and retry later or skip these jobs."
+  },
+  {
+    "timestamp": "2026-08-01T06:07:10.125Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "We’ll be back soon…promise!",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T06-07-07-196Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The screen displays a \"We'll be back soon...promise!\" message from CommBank, indicating their careers site is temporarily down for improvements. It provides links to their YouTube and LinkedIn channels.\n2. This error was caused because the job application URL led to a temporary maintenance page, preventing access to the job application itself.\n3. The bot should try to find another application method for the job or skip this job for now and retry later when the site is back online. There is no actionable element to progress the application."
+  },
+  {
+    "timestamp": "2026-08-01T06:07:12.486Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "We’ll be back soon…promise!",
+    "company": "CommBank",
+    "url": "https://www.commbank.com.au/about-us/careers/back-soon.html",
+    "page_title": "Back soon - CommBank",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T06-07-10-129Z_ats_workday_no_submit.png",
+    "analysis": "1. The screen displays a \"We'll be back soon...promise!\" message, indicating the CommBank careers site is temporarily unavailable.\n2. The error is caused by the application process being stalled because the careers site is down for maintenance, preventing access to the Workday application flow.\n3. No action can fix this currently; the bot should be configured to detect maintenance pages (e.g., by looking for the \"We'll be back soon...promise!\" text) and retry later or skip these jobs."
   }
 ]
