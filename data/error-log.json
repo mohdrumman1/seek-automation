@@ -1,85 +1,5 @@
 [
   {
-    "timestamp": "2026-07-20T06:23:53.359Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Product Manager | SEO and Distribution",
-    "company": "ABC",
-    "url": "https://secure.dc2.pageuppeople.com/apply/516/gateway/Default.aspx?c=apply&sJobIDs=505520&SourceTypeID=817&seek-token=L7aTXu1xEwx9F58LvzfsWZ",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-23-51-390Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]` element or the enclosing `div`) and subsequently resolve the hCaptcha challenge that appears."
-  },
-  {
-    "timestamp": "2026-07-20T06:26:23.355Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Junior Platform Engineer",
-    "company": "Peoplebank Australia NSW",
-    "url": "https://au.seek.com/awsk/authorize?id=a376a2d8-dd19-442f-987d-b8cadef758ef",
-    "page_title": "Apply with SEEK",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-26-21-770Z_ats_pageup_no_submit.png",
-    "analysis": "1. A Seek consent screen is visible, asking to \"Allow access\" for Peoplebank Australia NSW to pre-fill the job application using the SEEK Profile.\n2. The error occurred because the bot did not click \"Allow access\" on the Seek consent screen, which is required to proceed with the application.\n3. The bot should click the \"Allow access\" button (e.g., `button:contains(\"Allow access\")`)."
-  },
-  {
-    "timestamp": "2026-07-20T06:28:49.676Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Artificial Intelligence (AI) Product Graduate",
-    "company": "Stanwell Corporation Limited",
-    "url": "https://secure.dc2.pageuppeople.com/apply/529/gateway/Default.aspx?c=apply&sJobIDs=497227&SourceTypeID=814&seek-token=2ZE91iVottX4hhwnJyQD3N",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-28-47-871Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]` element or the enclosing `div`) and subsequently resolve the hCaptcha challenge that appears."
-  },
-  {
-    "timestamp": "2026-07-20T06:41:54.069Z",
-    "error_type": "ats_jobadder_no_submit",
-    "job_title": "Software Architect / Technical Lead",
-    "company": "NTP Talent",
-    "url": "https://apply.jobadder.com/18406/883484/ff6yxt2xsuhufdf6ugk5sug2xy?site=au6&seek-token=KjN5TBJTH2Q3g2SkxwdxQq",
-    "page_title": "Software Architect / Technical Lead",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-41-51-901Z_ats_jobadder_no_submit.png",
-    "analysis": "1. A JobAdder application form is visible, mostly filled, with a \"Want to apply later?\" modal covering the \"Apply Now\" button and the \"Accept Terms Checkbox\".\n2. The error was caused because the bot did not dismiss the \"Want to apply later?\" modal. Additionally, the \"I accept the Privacy Policy\" checkbox is unchecked.\n3. The bot should first click the 'X' button on the modal (`button[aria-label=\"Close\"]`), then check the \"I accept the Privacy Policy\" checkbox (`input[type=\"checkbox\"]`), and finally click the \"Apply Now\" button (`button[type='submit']`)."
-  },
-  {
-    "timestamp": "2026-07-20T06:53:06.945Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Information Analyst",
-    "company": "NSW Department of Climate Change, Energy, the Environment & Water",
-    "url": "https://secure.dc2.pageuppeople.com/apply/795/aw/applicationForm/initApplication_p.asp",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-53-05-100Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]`) and subsequently resolve the hCaptcha challenge that appears."
-  },
-  {
-    "timestamp": "2026-07-20T06:56:16.671Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Principal Software Engineer",
-    "company": "Commonwealth Bank",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Principal-Software-Engineer_REQ259590/apply/applyManually?seek-token=Hxje54Ki4yYFKSxJB5hdQ9",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T06-56-14-111Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form is visible, partially obscured by a \"Sign In\" overlay. The overlay has pre-filled email and password fields, and a \"Sign In\" button within it. There is also a small \"X\" button to close the overlay.\n2. This error was caused by the Workday account wall (a \"Sign In\" overlay) reappearing mid-application during the account creation process, indicating a failed session or a requirement to sign in despite being in the \"Create Account/Sign In\" stage. The URL confirms a sign-in page.\n3. The bot should attempt to click the \"Sign In\" button within the overlay using a specific selector like `button[data-automation-id='signInButton']` (based on previous analyses). Alternatively, it could try to close the overlay using the \"X\" button and then attempt to sign in via the \"Sign In\" link at the bottom of the form."
-  },
-  {
-    "timestamp": "2026-07-20T07:01:25.222Z",
-    "error_type": "ats_pageup_no_submit",
-    "job_title": "Product Manager | SEO and Distribution",
-    "company": "ABC",
-    "url": "https://secure.dc2.pageuppeople.com/apply/516/gateway/Default.aspx?c=apply&sJobIDs=505520&SourceTypeID=816&seek-token=VFHmceLgLA9xhmGtQNpsbi",
-    "page_title": "",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T07-01-22-796Z_ats_pageup_no_submit.png",
-    "analysis": "1. The screen displays a \"Uh oh... It looks like something has gone wrong\" error message from PageUp, alongside a hCaptcha challenge that says \"I am human\".\n2. The error was caused by the bot failing to pass the hCaptcha security check. The application form could not load because the captcha was not resolved.\n3. The bot should click the checkbox with the label \"I am human\" (i.e., the `input[type=\"checkbox\"]`) and subsequently resolve the hCaptcha challenge that appears."
-  },
-  {
-    "timestamp": "2026-07-20T07:05:03.322Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Enterprise Transformation Specialist",
-    "company": "ASX",
-    "url": "https://asx.wd105.myworkdayjobs.com/en-US/ASX_Careers/job/Sydney-Office/Senior-Enterprise-Transformation-Specialist_JR101742/apply/applyManually",
-    "page_title": "Sign In",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T07-05-01-248Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Create Account\" form is visible, with a \"Sign In\" overlay appearing *on top* of the form's password fields. The overlay has pre-filled email and password fields, and a \"Sign In\" button within it.\n2. The error persists because the Workday account wall, specifically a sign-in overlay, has re-appeared mid-application while the bot is attempting to create an account, despite previous fixes.\n3. The bot should click the \"Sign In\" button within the overlay using `button[data-automation-id='signInButton']`.\n4. If that fails, it should then attempt to click the \"Sign In\" link at the bottom of the \"Create Account\" form using `a[data-automation-id='loginButton']`."
-  },
-  {
     "timestamp": "2026-07-20T07:08:39.521Z",
     "error_type": "ats_workday_wall_mid_apply",
     "job_title": "Digital Principal Engineer",
@@ -4998,5 +4918,85 @@
     "page_title": "Senior Product Manager",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T11-36-11-240Z_ats_jobadder_no_submit.png",
     "analysis": "1. A fully filled JobAdder application form is visible, but a \"Want to apply later?\" modal is still obscuring the page. The \"Apply Now\" button is enabled at the bottom of the form.\n2. The bot failed to dismiss the \"Want to apply later?\" modal, preventing it from interacting with the underlying form and clicking the \"Apply Now\" button.\n3. The bot should click the 'X' button on the modal (`[aria-label=\"Close\"]`), and then click the \"Apply Now\" button (`button[type=\"submit\"]`)."
+  },
+  {
+    "timestamp": "2026-08-01T21:21:50.396Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Technology Project Lead",
+    "company": "Reserve Bank of Australia",
+    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Technology-Project-Lead_JR4775/apply/applyManually?seek-token=UsnXWxdE6BUmR2n2YM17tW&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T21-21-48-309Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Sign In\" modal with pre-filled email and password fields is currently overlapping the \"Create Account\" form, which is visible in the background along with \"Password Requirements.\"\n2. The error is caused by the unexpected appearance of the \"Sign In\" modal during the account creation process, obstructing the ability to create a new account, despite previous fixes. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button in the top right corner of the \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T21:41:26.579Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Senior Release Manager - Business Banking & Embedded Finance",
+    "company": "Great Southern Bank",
+    "url": "https://gsb.csod.com/ux/ats/careersite/1/requisition/6404/application?c=gsb&seek-token=8xVH6dch2vF7YKWvKCLoex&source=seek_oz&jobboardid=0#1",
+    "page_title": "Apply for Senior Release Manager - Business Banking & Embedded Finance | Application",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T21-41-24-244Z_ats_cornerstone_no_submit.png",
+    "analysis": "1.  The screen shows the Great Southern Bank logo and job title, a large grey rectangle with a loading spinner, and \"Cancel\" and \"Save\" buttons in a black bar below it. The footer information is also visible.\n2.  The error was caused by the application form failing to fully load, leaving the page stuck in a loading state with incomplete form elements.\n3.  The bot should implement a waiting mechanism for the loading spinner to disappear and for the \"Save\" button to become clickable. If the page remains unloaded after a timeout, a refresh might be needed."
+  },
+  {
+    "timestamp": "2026-08-01T21:55:55.208Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "ASP Developer",
+    "company": "Peoplebank Australia NSW",
+    "url": "https://au.seek.com/awsk/authorize?id=a46fd377-a49a-4e92-92e6-9708fadc6f12",
+    "page_title": "Apply with SEEK",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T21-55-53-289Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a SEEK authorization page asking the user to grant Peoplebank Australia NSW access to their SEEK profile to pre-fill a job application.\n2. The error was caused by the bot failing to click the \"Allow access\" button to proceed with the application.\n3. The bot should click the \"Allow access\" button using a CSS selector such as `button:contains(\"Allow access\")` or `.job-apply-page-content button:first-of-type`."
+  },
+  {
+    "timestamp": "2026-08-01T22:08:02.522Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Infrastructure Engineer",
+    "company": "Lindsay Australia Limited",
+    "url": "https://lindsayaustralia.wd105.myworkdayjobs.com/en-US/Lindsay_Australia_External_Site/job/Brisbane-Queensland/Senior-Infrastructure-Engineer_JR-26-198/apply/applyManually?seek-token=XwhGLxvtFaUP68HsjQK15F&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T22-08-00-432Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Sign In\" modal with pre-filled email and password fields is currently overlapping the \"Create Account\" form, which is visible in the background along with \"Password Requirements.\"\n2. The error is caused by the unexpected appearance of the \"Sign In\" modal during the account creation process, obstructing the ability to create a new account, despite previous fixes. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button in the top right corner of the \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T22:12:58.504Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Infrastructure Engineer",
+    "company": "Lindsay Australia Limited",
+    "url": "https://lindsayaustralia.wd105.myworkdayjobs.com/en-US/Lindsay_Australia_External_Site/job/Brisbane-Queensland/Senior-Infrastructure-Engineer_JR-26-198/apply/applyManually?seek-token=TkUFGoxbAM5kUaojBxvSzi&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T22-12-55-683Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Sign In\" modal with pre-filled email and password fields is currently overlapping the \"Create Account\" form, which is visible in the background.\n2. The error is caused by the unexpected appearance of the \"Sign In\" modal during the account creation process, obstructing the ability to create a new account, despite previous fixes. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button in the top right corner of the \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-01T22:26:04.113Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Applications Analyst",
+    "company": "BaptistCare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/999/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T22-26-01-576Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp \"Uh oh...\" error page indicating something went wrong, and an hCaptcha \"I am human\" checkbox with \"Additional security check is required.\"\n2. The bot encountered an error on the PageUp application form and is now presented with a security challenge (hCaptcha).\n3. The bot needs to click the \"I am human\" checkbox to proceed.\n4. The bot should use the CSS selector `div.rc-anchor-content` to click the checkbox."
+  },
+  {
+    "timestamp": "2026-08-01T22:30:25.406Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Mid-Level Project Manager",
+    "company": "EML Group",
+    "url": "https://eml.wd105.myworkdayjobs.com/en-US/EML/job/Sydney%2C-New-South-Wales/Mid-Level-Project-Manager_JR6074/apply/applyManually?seek-token=UsKkH1T6TJnWRmre6C9iRV",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T22-30-23-454Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The screen displays a Workday \"Sign In\" page, which is the first step of a multi-step application for the \"Mid-Level Project Manager\" role, offering sign-in options via Apple, Google, LinkedIn, or email.\n2. This is not an error; it's a standard Workday application workflow requiring the user to sign in or create an account to proceed.\n3. The bot should click the \"Sign in with email\" button to continue the application process, using the CSS selector `button[data-automation-id='emailLink']` or `button.uit-primaryButton` with the text \"Sign in with email\"."
+  },
+  {
+    "timestamp": "2026-08-01T22:30:27.582Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Mid-Level Project Manager",
+    "company": "EML Group",
+    "url": "https://eml.wd105.myworkdayjobs.com/en-US/EML/job/Sydney%2C-New-South-Wales/Mid-Level-Project-Manager_JR6074/apply/applyManually?seek-token=UsKkH1T6TJnWRmre6C9iRV",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T22-30-25-412Z_ats_workday_no_submit.png",
+    "analysis": "1. The screen displays the \"Sign In\" step of the Workday application wizard, offering social sign-in options (Apple, Google, LinkedIn) and a \"Sign in with email\" button.\n2. The bot is stuck at this initial sign-in page, which is a required step before proceeding with the application, indicating the previous fix did not fully resolve this scenario.\n3. The bot should click the \"Sign in with email\" button to bypass social sign-in and continue the application.\n4. The CSS selector for this button is `button[data-automation-id=\"createAccountSignInEmailButton\"]`."
   }
 ]
