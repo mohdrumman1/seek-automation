@@ -1,85 +1,5 @@
 [
   {
-    "timestamp": "2026-07-20T12:07:32.525Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Chief Engineer",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Chief-Engineer_REQ259012-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-07-29-323Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" overlay with pre-filled fields is visible and partially overlaps a \"Password Requirements\" section and the main \"Create Account\" form. The 'X' button of the \"Sign In\" overlay is visible.\n2. The bot is encountering a re-login prompt / account wall mid-application, specifically a \"Sign In\" overlay appearing while it is likely attempting to create an account, thereby obscuring necessary elements for either action.\n3. The bot should click the 'X' button (xpath: `//button[@aria-label=\"Close\"]`) on the \"Sign In\" overlay to close it and then proceed with either \"Create Account\" or \"Sign In\" by targeting `a[data-automation-id='loginButton']` if an account already exists."
-  },
-  {
-    "timestamp": "2026-07-20T12:10:59.227Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Principal Software Engineer",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Melbourne%2C-VIC---357-Collins-Street/Principal-Software-Engineer_REQ261838/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-10-51-990Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" overlay with pre-filled email and password fields is visible, partially obscuring the \"Password Requirements\" details of an underlying \"Create Account\" form. The 'X' button of the \"Sign In\" overlay is visible.\n2. The bot is encountering an unexpected \"Sign In\" overlay mid-application, appearing while it is likely attempting to create an account, thereby obscuring necessary elements for either action.\n3. The bot should click the 'X' button (xpath: `//button[@aria-label=\"Close\"]`) on the \"Sign In\" overlay to close it. Then, based on whether an account exists, it should click \"Create Account\" or \"Sign In\" (selector: `a[data-automation-id='loginButton']`)."
-  },
-  {
-    "timestamp": "2026-07-20T12:14:19.012Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Staff Software Engineer",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Staff-Software-Engineer_REQ260309-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-14-13-607Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" overlay with pre-filled email and password fields is partially obscuring the \"Password Requirements\" and the \"Create Account\" form which also has pre-filled email, password, and verify new password fields. The 'X' button of the \"Sign In\" overlay is visible.\n2. The bot encountered an unexpected \"Sign In\" overlay mid-application, likely while attempting to create an account, thereby obscuring necessary elements for either action. The previous fix involving checking for \"signIn\" in the URL was insufficient.\n3. The bot should click the 'X' button (xpath: `//button[@aria-label=\"Close\"]`) on the \"Sign In\" overlay to close it. Then, it should proceed by filling the \"Create Account\" form, as it appears the bot was in the middle of creating an account.\n4. The fix applied on 2026-05-22 did not fully resolve the issue because the bot is still getting stuck on an unexpected re-login or sign-in overlay when it should be creating an account."
-  },
-  {
-    "timestamp": "2026-07-20T12:17:40.961Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Audit Manager Technology Audit",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Audit-Manager-Technology-Audit_REQ262429/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-17-36-013Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" overlay with pre-filled email and password fields is visible, partially obscuring the \"Password Requirements\" and the \"Create Account\" form which also has pre-filled email, password, and verify new password fields. The 'X' button of the \"Sign In\" overlay is visible.\n2. The bot encountered an unexpected \"Sign In\" overlay mid-application, likely while attempting to create an account, thereby obscuring necessary elements for either action. The previous fix involving checking for \"signIn\" in the URL was insufficient.\n3. The bot should click the 'X' button (xpath: `//button[@aria-label=\"Close\"]`) on the \"Sign In\" overlay to close it. Then, it should proceed by filling the \"Create Account\" form, as it appears the bot was in the middle of creating an account."
-  },
-  {
-    "timestamp": "2026-07-20T12:21:02.652Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Engineering Manager / Chapter Lead (Data Engineering)",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Engineering-Manager---Chapter-Lead--Data-Engineering-_REQ260793/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-20-59-831Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. An unexpected \"Sign In\" overlay with pre-filled email and password fields is visible, obscuring a \"Create Account\" form, specifically the password requirements and a \"Create Account\" button. The 'X' button of the \"Sign In\" overlay is clearly visible.\n2. The bot encountered an unexpected \"Sign In\" overlay mid-application, appearing while it was likely attempting to create an account, thereby blocking further progress. The previous fix was insufficient as the bot is still getting stuck on this overlay.\n3. The bot should click the 'X' button (xpath: `//button[@data-automation-id='panelDismissButton']`) on the \"Sign In\" overlay to close it. Then, it should verify the presence of and click the \"Create Account\" button (xpath: `//button[@data-automation-id='createAccountButton']`) to proceed with account creation."
-  },
-  {
-    "timestamp": "2026-07-20T12:24:17.966Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Crew Tech Lead - Customer Service Channels",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Crew-Tech-Lead---CSN-Assisted-Technology_REQ259643/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-24-15-674Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" overlay with pre-filled email and password fields is completely obscuring the \"Password Requirements\" and the \"Create Account\" form. The 'X' button of the \"Sign In\" overlay is visible.\n2. The bot encountered an unexpected \"Sign In\" overlay mid-account creation, effectively blocking further progress as it cannot interact with the underlying \"Create Account\" form.\n3. The bot should click the 'X' button (xpath: `//button[@aria-label=\"Close\"]`) on the \"Sign In\" overlay to close it.\n4. Then, it should proceed by filling the \"Create Account\" form, as it appears the bot was in the middle of creating an account."
-  },
-  {
-    "timestamp": "2026-07-20T12:27:44.747Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Software Engineer, x15ventures",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/Sydney-CBD-Area/Senior-Software-Engineer--x15ventures_REQ262179-1/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-27-31-151Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" overlay with pre-filled email and obscured password fields is visible, partially obscuring the \"Password Requirements\" and the \"Create Account\" form which also has pre-filled email, password, and verify new password fields. The 'X' button of the \"Sign In\" overlay is visible.\n2. The bot encountered an unexpected \"Sign In\" overlay mid-application, obscuring necessary elements for account creation.\n3. The bot should click the 'X' button (xpath: `//button[@aria-label=\"Close\"]` or `//button[@data-automation-id='panelDismissButton']`) on the \"Sign In\" overlay to close it. Then, it should proceed by filling the \"Create Account\" form."
-  },
-  {
-    "timestamp": "2026-07-20T12:31:01.354Z",
-    "error_type": "ats_workday_wall_mid_apply",
-    "job_title": "Senior Security Engineer",
-    "company": "Commonwealth Bank of Australia",
-    "url": "https://cba.wd3.myworkdayjobs.com/en-US/CommBank_Careers/job/VIC-CBD-Melbourne-Area/Senior-Security-Engineer_REQ261201/apply/applyManually?q=software+engineer&locationCountry=d903bb3fedad45039383f6de334ad4db",
-    "page_title": "Sign In - Logo",
-    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-07-20T12-30-59-287Z_ats_workday_wall_mid_apply.png",
-    "analysis": "1. A \"Sign In\" overlay with pre-filled email and password fields is partially visible over a \"Create Account\" form, also with partially pre-filled email, password, and verify new password fields. The 'X' button of the \"Sign In\" overlay is visible.\n2. The bot encountered an unexpected \"Sign In\" overlay mid-account creation, obscuring necessary elements for creating an account.\n3. The bot should click the 'X' button (xpath: `//button[@aria-label='Close']`) on the \"Sign In\" overlay to close it. Then, it should proceed by filling the \"Create Account\" form."
-  },
-  {
     "timestamp": "2026-07-20T12:34:21.732Z",
     "error_type": "ats_workday_wall_mid_apply",
     "job_title": "Senior Audit Manager Technology Audit",
@@ -4998,5 +4918,85 @@
     "page_title": "Sign In - Logo",
     "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-01T22-42-12-087Z_ats_workday_wall_mid_apply.png",
     "analysis": "1. The \"Create Account\" form is visible in the background, along with password requirements. A \"Sign In\" modal, with a partially obscured \"Email Address\" field, a \"Password\" field, and a \"Sign In\" button, is overlapping the \"Create Account\" form.\n2. The error was caused by the unexpected appearance of the \"Sign In\" modal during the account creation process, obstructing the ability to create a new account, despite previous fixes. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button in the top right corner of the \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-02T05:48:27.885Z",
+    "error_type": "ats_cornerstone_no_submit",
+    "job_title": "Senior Release Manager - Business Banking & Embedded Finance",
+    "company": "Great Southern Bank",
+    "url": "https://gsb.csod.com/ux/ats/careersite/1/requisition/6404/application?c=gsb&seek-token=Zu7mkuzBt6GNZjbrAHtSb&source=seek_oz&jobboardid=0",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-02T05-48-25-585Z_ats_cornerstone_no_submit.png",
+    "analysis": "1. The screen is mostly grey with a loading spinner in the center, and partially loaded form elements (a large gray rectangle, a black bar with 'Cancel' and 'Save' buttons) are visible.\n2. The error was caused by the application form failing to load, leaving the page stuck in a loading state with incomplete elements.\n3. The bot should implement a waiting mechanism for the loading spinner to disappear and for the \"Save\" button to become clickable. If the page remains unloaded after a timeout, a refresh might be needed."
+  },
+  {
+    "timestamp": "2026-08-02T05:49:38.341Z",
+    "error_type": "ats_workday_no_nav_button",
+    "job_title": "Mid-Level Project Manager",
+    "company": "EML Group",
+    "url": "https://eml.wd105.myworkdayjobs.com/en-US/EML/job/Sydney%2C-New-South-Wales/Mid-Level-Project-Manager_JR6074/apply/applyManually?seek-token=J7jDUUzYYcseTR1hnJjw6F",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-02T05-49-36-543Z_ats_workday_no_nav_button.png",
+    "analysis": "1. The screen displays a Workday \"Sign In\" page, offering options to sign in with Apple, Google, LinkedIn, or email for the \"Mid-Level Project Manager\" job application.\n2. This is not an error; it's a standard Workday application workflow requiring the user to sign in or create an account to proceed.\n3. The bot should click the \"Sign in with email\" button using the CSS selector `button[data-automation-id='emailLink']` to continue the application process."
+  },
+  {
+    "timestamp": "2026-08-02T05:49:40.086Z",
+    "error_type": "ats_workday_no_submit",
+    "job_title": "Mid-Level Project Manager",
+    "company": "EML Group",
+    "url": "https://eml.wd105.myworkdayjobs.com/en-US/EML/job/Sydney%2C-New-South-Wales/Mid-Level-Project-Manager_JR6074/apply/applyManually?seek-token=J7jDUUzYYcseTR1hnJjw6F",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-02T05-49-38-346Z_ats_workday_no_submit.png",
+    "analysis": "1. The screen displays the \"Sign In\" page of the Workday application process, offering options to sign in with Apple, Google, LinkedIn, or email.\n2. The bot is stuck at this initial sign-in page, which is the first step of the application wizard, preventing it from proceeding.\n3. The bot should click the \"Sign in with email\" button to bypass social sign-in options and continue. The CSS selector for this button is `button[data-automation-id=\"createAccountSignInEmailButton\"]`."
+  },
+  {
+    "timestamp": "2026-08-02T06:01:43.740Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Technology Project Lead",
+    "company": "Reserve Bank of Australia",
+    "url": "https://rba.wd105.myworkdayjobs.com/en-US/RBA_Careers/job/Sydney/Technology-Project-Lead_JR4775/apply/applyManually?seek-token=WUVrtAauGgHH9qpNJdUJe1&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-02T06-01-41-813Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Sign In\" modal with partially visible pre-filled email and password fields is overlapping the \"Create Account\" form, which is also visible in the background along with \"Password Requirements.\"\n2. The error was caused by the unexpected appearance of the \"Sign In\" modal during the account creation process, obstructing the ability to create a new account, despite previous fixes. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button in the top right corner of the \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-02T06:29:45.490Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Ellucian Banner Tech Lead",
+    "company": "Torrens University Australia",
+    "url": "https://strayer.wd1.myworkdayjobs.com/en-US/ANZ_TUA_External1/job/Campus-Surry-Hills/Ellucian-Banner-Tech-Lead_R30616-1/apply/applyManually?seek-token=HvhMmHm34UeMoty8XPZyyB",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-02T06-29-43-579Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" form with \"Password Requirements\" is visible, and overlapping it is a \"Sign In\" modal with pre-filled email and password fields.\n2. The error was caused by the unexpected appearance of the \"Sign In\" modal during the account creation process, obstructing the ability to create a new account, despite previous fixes. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button in the top right corner of the \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-02T06:39:58.865Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Infrastructure Engineer",
+    "company": "Lindsay Australia Limited",
+    "url": "https://lindsayaustralia.wd105.myworkdayjobs.com/en-US/Lindsay_Australia_External_Site/job/Brisbane-Queensland/Senior-Infrastructure-Engineer_JR-26-198/apply/applyManually?seek-token=T31Y4zqq7JJnJEj2EPZ3u6&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-02T06-39-56-893Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" form with \"Password Requirements\" is visible, and overlapping it is a \"Sign In\" modal with pre-filled email and password fields.\n2. The error was caused by the unexpected appearance of the \"Sign In\" modal during the account creation process, obstructing the ability to create a new account, despite previous fixes. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button in the top right corner of the \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-02T06:43:03.891Z",
+    "error_type": "ats_workday_wall_mid_apply",
+    "job_title": "Senior Infrastructure Engineer",
+    "company": "Lindsay Australia Limited",
+    "url": "https://lindsayaustralia.wd105.myworkdayjobs.com/en-US/Lindsay_Australia_External_Site/job/Brisbane-Queensland/Senior-Infrastructure-Engineer_JR-26-198/apply/applyManually?seek-token=LSfbQ62gQ9bWZraHUtdWBb&source=seek_oz",
+    "page_title": "Sign In",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-02T06-43-01-456Z_ats_workday_wall_mid_apply.png",
+    "analysis": "1. A \"Create Account\" form with \"Password Requirements\" is visible, and overlapping it is a \"Sign In\" modal with partially pre-filled email and password fields.\n2. The error was caused by the unexpected appearance of the \"Sign In\" modal during the account creation process, obstructing the ability to create a new account, despite previous fixes. The URL does not contain \"signIn,\" indicating a session persistence conflict rather than a dropped session.\n3. The bot should click the 'X' button in the top right corner of the \"Sign In\" modal to close it. A reliable CSS selector for this action is `button[aria-label='Close']`."
+  },
+  {
+    "timestamp": "2026-08-02T06:56:21.834Z",
+    "error_type": "ats_pageup_no_submit",
+    "job_title": "Applications Analyst",
+    "company": "BaptistCare",
+    "url": "https://secure.dc2.pageuppeople.com/apply/999/aw/applicationForm/initApplication_p.asp",
+    "page_title": "",
+    "screenshot": "/home/runner/work/seek-automation/seek-automation/screenshots/errors/2026-08-02T06-56-19-939Z_ats_pageup_no_submit.png",
+    "analysis": "1. The screen displays a PageUp \"Uh oh...\" error page indicating something went wrong, and an hCaptcha \"I am human\" checkbox with \"Additional security check is required.\"\n2. The bot encountered an error on the PageUp application form and is now presented with a security challenge (hCaptcha).\n3. The bot needs to click the \"I am human\" checkbox to proceed.\n4. The bot should try clicking the hCaptcha checkbox, using a CSS selector such as `input[type=\"checkbox\"]` or `div.hcaptcha-box`."
   }
 ]
