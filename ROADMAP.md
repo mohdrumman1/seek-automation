@@ -35,7 +35,6 @@ Running 3×/day via GitHub Actions (6:17am, 12:17pm, 6:17pm AEST).
 | External apply jobs always skipped | 78% of skips — needs ATS engine (Phase 5) |
 | Resume not tailored per job | Env var `RESUME_TAILORING_ENABLED` is set — implementation is Phase 4 |
 | OpenRouter calls have no retry/backoff | 429/5xx failures are silent — Phase 7 |
-| `error-log.json` grows unbounded | Needs rotation at ~500 entries — Phase 7 |
 | Date pickers / file upload fields | Not handled — those jobs will always fail |
 
 ---
