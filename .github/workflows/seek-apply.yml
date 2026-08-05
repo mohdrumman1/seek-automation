@@ -170,6 +170,63 @@ jobs:
         shell: bash -eo pipefail {0}
         run: npm run analyze 2>&1 | tee tmp/analyze.log
 
+      # scripts/apply.ts writes tmp/run-summary.json (see lib/run-summary.ts)
+      # in its finally block, so this runs regardless of whether the bot step
+      # above succeeded or failed. Reuses those pre-computed numbers instead
+      # of re-deriving them from logs.
+      - name: Write job summary
+        if: always()
+        run: |
+          if [ ! -f tmp/run-summary.json ]; then
+            echo "## Seek Auto Apply — no run summary produced" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          STATUS=$(jq -r '.status' tmp/run-summary.json)
+          JOBS_FOUND=$(jq -r '.jobsFound' tmp/run-summary.json)
+          APPLIED=$(jq -r '.applied' tmp/run-summary.json)
+          SKIPPED=$(jq -r '.skipped' tmp/run-summary.json)
+          FAILED=$(jq -r '.failed' tmp/run-summary.json)
+          MESSAGE=$(jq -r '.message' tmp/run-summary.json)
+          {
+            echo "## Seek Auto Apply — **${STATUS}**"
+            echo ""
+            echo "- Jobs found: ${JOBS_FOUND}"
+            echo "- Applied: ${APPLIED}"
+            echo "- Skipped: ${SKIPPED}"
+            echo "- Failed: ${FAILED}"
+            echo "- ${MESSAGE}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Optional — only fires if the WEBHOOK_URL secret is set, and only on
+      # WARN/FAIL so healthy runs never spam the channel. Discord incoming
+      # webhook format ({"content": "..."}) also works unmodified for a Slack
+      # incoming webhook URL. Silently skipped (no error) when unset.
+      - name: Webhook alert on WARN/FAIL
+        if: always()
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        run: |
+          if [ -z "${WEBHOOK_URL}" ]; then
+            echo "WEBHOOK_URL not set — skipping webhook alert."
+            exit 0
+          fi
+          if [ ! -f tmp/run-summary.json ]; then
+            exit 0
+          fi
+          STATUS=$(jq -r '.status' tmp/run-summary.json)
+          if [ "$STATUS" != "WARN" ] && [ "$STATUS" != "FAIL" ]; then
+            echo "Status is ${STATUS} — no alert needed."
+            exit 0
+          fi
+          MESSAGE=$(jq -r '.message' tmp/run-summary.json)
+          APPLIED=$(jq -r '.applied' tmp/run-summary.json)
+          JOBS_FOUND=$(jq -r '.jobsFound' tmp/run-summary.json)
+          BODY=$(jq -n \
+            --arg content "**Seek Auto Apply — ${STATUS}**: ${MESSAGE} (jobs found: ${JOBS_FOUND}, applied: ${APPLIED}) — run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
+            '{content: $content}')
+          curl -sf -X POST -H "Content-Type: application/json" -d "$BODY" "$WEBHOOK_URL" \
+            || echo "::warning::Webhook POST failed — continuing (non-fatal)."
+
       # Runs on every execution (not just failure()) because getJobLinks now
       # captures a zero-links diagnostic screenshot even on runs that don't
       # cross the 3-consecutive-zero-result failure threshold — those

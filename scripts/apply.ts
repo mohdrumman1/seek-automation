@@ -23,6 +23,7 @@ import { logger } from '../lib/logger';
 import * as tracker from '../lib/tracker';
 import { reportSearchResult, checkZeroResultStreak } from '../lib/run-health';
 import { isDailyCapReached, incrementDailyCount, DAILY_APPLICATION_CAP } from '../lib/daily-cap';
+import { computeRunStatus, writeRunSummary } from '../lib/run-summary';
 import {
   APPLIED_LOG, BLOCKED_LOG,
   loadApplied, saveApplied, loadBlocked, saveBlocked,
@@ -115,6 +116,7 @@ async function main() {
   let runPrefiltered = 0;  // trivial pre-filters (location, already-applied, expired) — not in summary
   let runFailedCount = 0;
   let runFailed = false;
+  let runJobsFound = 0;    // total jobs seen across all searches this run, for the alerting summary
 
   // SeekPlatform exposes loginAndVerify — other platforms can add their own auth step
   const seekPlatform = platform as SeekPlatform & { loginAndVerify?: (p: Page) => Promise<boolean>; readBaseCoverLetter?: () => string };
@@ -171,6 +173,7 @@ async function main() {
       const links = await platform.getJobLinks(page);
       logger.info('search jobs found', { name: search.name, count: links.length });
       reportSearchResult(search.name, links.length, false);
+      runJobsFound += links.length;
 
       let countThisSearch = 0;
       let consecutiveFailures = 0;
@@ -360,6 +363,7 @@ async function main() {
 
           const links = await indeedPlatform.getJobLinks(indeedPage);
           logger.info('indeed search jobs found', { name: search.name, count: links.length });
+          runJobsFound += links.length;
 
           let countThisSearch = 0;
           let consecutiveFailures = 0;
@@ -466,8 +470,10 @@ async function main() {
     // Zero-result-streak check — only meaningful for a real search-loop run
     // (single-URL mode and SEEK_DISABLED runs never call reportSearchResult,
     // so skip them rather than letting an empty result set reset the streak).
+    let consecutiveZeroRuns = 0;
     if (!opts.singleUrl && !seekDisabled) {
       const streakCheck = checkZeroResultStreak();
+      consecutiveZeroRuns = streakCheck.consecutiveZeroRuns;
       if (!streakCheck.isHealthy) {
         logger.error('run-health: zero-result streak — failing run', {
           consecutiveZeroRuns: streakCheck.consecutiveZeroRuns,
@@ -481,6 +487,25 @@ async function main() {
         });
       }
     }
+
+    // Structured summary for the CI workflow step to read and format into
+    // GITHUB_STEP_SUMMARY / an optional webhook alert — see lib/run-summary.ts.
+    // Written even in dry-run mode (harmless; dry-run CI invocations are rare
+    // and the file is scratch-only tmp/ output, never committed).
+    const runStatus = computeRunStatus(runFailed, consecutiveZeroRuns);
+    writeRunSummary({
+      status: runStatus,
+      jobsFound: runJobsFound,
+      applied: total,
+      skipped: runSkipped,
+      failed: runFailedCount,
+      consecutiveZeroRuns,
+      message: runFailed
+        ? 'Run failed — see logs for details.'
+        : consecutiveZeroRuns > 0
+          ? `Zero jobs found this run (streak: ${consecutiveZeroRuns}/3).`
+          : 'Run completed normally.',
+    });
 
     logger.info('apply bot done', { platform: platform.name, applied: total, skipped: runSkipped, prefiltered: runPrefiltered, failed: runFailedCount, durationSec, runFailed });
     if (!opts.dryRun) {

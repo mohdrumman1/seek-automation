@@ -17,6 +17,7 @@ import { loadKB, saveKB } from '../lib/questions-kb';
 import { logger } from '../lib/logger';
 import * as tracker from '../lib/tracker';
 import { isDailyCapReached, incrementDailyCount, DAILY_APPLICATION_CAP } from '../lib/daily-cap';
+import { computeRunStatus, writeRunSummary } from '../lib/run-summary';
 import {
   loadApplied, saveApplied, loadBlocked,
   applyToSingleUrl,
@@ -119,6 +120,7 @@ async function main() {
   let skipped_count = 0;
   let failed_count = 0;
   let runFailed = false;
+  let jobsFound = 0;
 
   try {
     for (const search of crawler.searches) {
@@ -140,6 +142,7 @@ async function main() {
       await listingPage.close();
 
       logger.info('jobs found', { name: search.name, count: links.length });
+      jobsFound += links.length;
       let countThisSearch = 0;
 
       for (const { url, title, jobId } of links) {
@@ -191,6 +194,22 @@ async function main() {
   } finally {
     await browser.close();
     const durationSec = Math.round((Date.now() - runStart) / 1000);
+
+    // Structured summary for the CI workflow step to read and format into
+    // GITHUB_STEP_SUMMARY / an optional webhook alert — see lib/run-summary.ts.
+    // company-apply.ts has no zero-result-streak concept (that's a
+    // SEEK-search-loop signal from lib/run-health.ts, out of scope here), so
+    // status is derived from runFailed alone.
+    writeRunSummary({
+      status: computeRunStatus(runFailed, 0),
+      jobsFound,
+      applied: applied_count,
+      skipped: skipped_count,
+      failed: failed_count,
+      consecutiveZeroRuns: 0,
+      message: runFailed ? 'Run failed — see logs for details.' : 'Run completed normally.',
+    });
+
     logger.info(
       `company-apply: ${opts.company} done — applied:${applied_count} skipped:${skipped_count} failed:${failed_count}`,
       { company: opts.company, applied: applied_count, skipped: skipped_count, failed: failed_count, durationSec }
