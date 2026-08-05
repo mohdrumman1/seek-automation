@@ -90,28 +90,6 @@ jobs:
           fi
           npm run company -- $ARGS 2>&1 | tee tmp/cba-bot.log
 
-      - name: Commit updated data
-        if: always() && github.event.inputs.dry_run != 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add \
-            data/applied_jobs.json \
-            data/blocked_jobs.json \
-            data/applications.csv \
-            data/skipped_jobs.csv \
-            data/failed_jobs.csv \
-            data/runs.csv \
-            data/error-log.json \
-            data/questions_kb.json 2>/dev/null || true
-          if git diff --staged --quiet; then
-            echo "No data changes to commit."
-          else
-            git commit -m "bot: update data (cba) [skip ci]"
-            git pull --no-rebase -X ours origin main
-            git push
-          fi
-
       - name: Upload logs and debug artifacts
         if: always()
         uses: actions/upload-artifact@v7
