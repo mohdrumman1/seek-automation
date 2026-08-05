@@ -1,0 +1,16 @@
+<!-- Regression fixture for the 2026-07-01 Teamtailor selector-drift incident
+     (LEARNINGS.md "JobAdder/Cornerstone/Teamtailor/Workday intermittent submit
+     failures from similar selector drift"). Old selector was
+     `button:has-text("Send application"), button:has-text("Submit application"),
+     button:has-text("Submit"), button[type="submit"]` — a tenant rendering the
+     CTA as a native `<input type="submit">` with custom copy in `value` (no
+     wrapping <button>) was invisible to it. The broadened TEAMTAILOR_SUBMIT_SELECTOR
+     added `input[type="submit"]` to close this gap. -->
+<!DOCTYPE html>
+<html>
+<body>
+  <form>
+    <input type="submit" value="Apply for this role" />
+  </form>
+</body>
+</html>

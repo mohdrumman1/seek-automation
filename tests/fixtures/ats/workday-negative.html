@@ -1,0 +1,16 @@
+<!-- Regression fixture for the 2026-07-01 Workday selector-drift incident
+     (LEARNINGS.md "JobAdder/Cornerstone/Teamtailor/Workday intermittent submit
+     failures from similar selector drift"). Old selector was
+     `[data-automation-id="bottom-navigation-next-button"], button:has-text("Save and
+     Continue"), button:has-text("Next"), button:has-text("Submit"), button[type="submit"]`
+     — a tenant's final "Review and Submit" step renders the CTA via Workday's
+     generic OK-button automation id with plain "OK" copy (no "Next"/"Submit" text,
+     different automation-id than bottom-navigation-next-button) and was invisible
+     to it. The broadened WORKDAY_NAV_SELECTOR added
+     `[data-automation-id="wd-CommandButton_uic_okButton"]` to close this gap. -->
+<!DOCTYPE html>
+<html>
+<body>
+  <button data-automation-id="wd-CommandButton_uic_okButton">OK</button>
+</body>
+</html>

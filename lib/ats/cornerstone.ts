@@ -9,6 +9,20 @@ import {
 import { captureAndAnalyze } from '../error-analyzer';
 import { logger } from '../logger';
 
+// Exported for unit-test regression coverage (tests/unit/ats/cornerstone.test.ts) —
+// combined with common.ts's clickSubmit() base selector list at the real call site below.
+export const CORNERSTONE_SUBMIT_EXTRAS = [
+  'button:has-text("Submit application")',
+  'button:has-text("Apply now")',
+  'button:has-text("Apply Now")',
+  '[data-test-id*="submit" i]',
+  '[data-testid*="submit" i]',
+  '[data-cy*="submit" i]',
+  '[role="button"]:has-text("Submit")',
+  '#btnSubmitApplication',
+  '.js-submit-application',
+];
+
 export async function applyCornerstone(
   page: Page,
   details: JobDetails,
@@ -97,17 +111,7 @@ export async function applyCornerstone(
 
     // Try Submit first (single-page forms); fall through to Next for multi-step.
     // Broadened extras — Cornerstone CSOD uses varied button attrs across tenants.
-    const submitted = await clickSubmit(page, [
-      'button:has-text("Submit application")',
-      'button:has-text("Apply now")',
-      'button:has-text("Apply Now")',
-      '[data-test-id*="submit" i]',
-      '[data-testid*="submit" i]',
-      '[data-cy*="submit" i]',
-      '[role="button"]:has-text("Submit")',
-      '#btnSubmitApplication',
-      '.js-submit-application',
-    ]);
+    const submitted = await clickSubmit(page, CORNERSTONE_SUBMIT_EXTRAS);
     if (!submitted) {
       const advanced = await clickNext(page);
       if (!advanced) break;

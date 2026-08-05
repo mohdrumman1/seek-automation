@@ -336,16 +336,23 @@ export async function clickNext(page: Page, extraSelectors?: string[]): Promise<
   return false;
 }
 
+// Base selector list shared by clickSubmit() across ATS handlers that pass
+// extraSelectors (e.g. cornerstone.ts). Exported for unit-test regression
+// coverage — tests build the full selector as [...extras, ...CLICK_SUBMIT_BASE_SELECTORS].
+export const CLICK_SUBMIT_BASE_SELECTORS = [
+  'button:has-text("Submit application")',
+  'button:has-text("Submit Application")',
+  'button:has-text("Submit")',
+  'button[type="submit"]',
+  'input[type="submit"][value*="Submit" i]',
+  '#btnSubmit',
+];
+
 // Click the first visible Submit button.
 export async function clickSubmit(page: Page, extraSelectors?: string[]): Promise<boolean> {
   const selectors = [
     ...(extraSelectors ?? []),
-    'button:has-text("Submit application")',
-    'button:has-text("Submit Application")',
-    'button:has-text("Submit")',
-    'button[type="submit"]',
-    'input[type="submit"][value*="Submit" i]',
-    '#btnSubmit',
+    ...CLICK_SUBMIT_BASE_SELECTORS,
   ];
   for (const sel of selectors) {
     const btn = page.locator(sel).first();

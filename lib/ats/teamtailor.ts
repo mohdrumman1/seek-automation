@@ -9,6 +9,18 @@ import {
 import { captureAndAnalyze } from '../error-analyzer';
 import { logger } from '../logger';
 
+// Exported for unit-test regression coverage (tests/unit/ats/teamtailor.test.ts).
+export const TEAMTAILOR_SUBMIT_SELECTOR =
+  'button:has-text("Send application"), button:has-text("Submit application"), ' +
+  'button:has-text("Submit Application"), button:has-text("Submit"), ' +
+  'button:has-text("Apply now"), button:has-text("Apply Now"), ' +
+  // `input[value*="Submit" i]` intentionally omitted — it can match hidden/text
+  // inputs whose value happens to contain "Submit" (e.g. type="button"). The
+  // `input[type="submit"]` above already covers the real submit-input case.
+  'button[type="submit"], input[type="submit"], ' +
+  '[data-test-id*="submit" i], [data-testid*="submit" i], [data-cy*="submit" i], ' +
+  '[role="button"]:has-text("Send application")';
+
 export async function applyTeamtailor(
   page: Page,
   details: JobDetails,
@@ -99,17 +111,7 @@ export async function applyTeamtailor(
   // Submit — Teamtailor disables the submit button until consent is ticked.
   // Scroll into view and wait for it to become enabled before clicking.
   // Broadened selector list — Teamtailor tenant CSS varies.
-  const submitBtn = page.locator(
-    'button:has-text("Send application"), button:has-text("Submit application"), ' +
-    'button:has-text("Submit Application"), button:has-text("Submit"), ' +
-    'button:has-text("Apply now"), button:has-text("Apply Now"), ' +
-    // `input[value*="Submit" i]` intentionally omitted — it can match hidden/text
-    // inputs whose value happens to contain "Submit" (e.g. type="button"). The
-    // `input[type="submit"]` above already covers the real submit-input case.
-    'button[type="submit"], input[type="submit"], ' +
-    '[data-test-id*="submit" i], [data-testid*="submit" i], [data-cy*="submit" i], ' +
-    '[role="button"]:has-text("Send application")'
-  ).first();
+  const submitBtn = page.locator(TEAMTAILOR_SUBMIT_SELECTOR).first();
   const submitVisible = await submitBtn.waitFor({ state: 'visible', timeout: 6_000 }).then(() => true).catch(() => false);
   if (!submitVisible) {
     await captureAndAnalyze(page, 'ats_teamtailor_no_submit', ctx);

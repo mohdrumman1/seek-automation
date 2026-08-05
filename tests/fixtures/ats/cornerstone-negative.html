@@ -1,0 +1,17 @@
+<!-- Regression fixture for the 2026-07-01 Cornerstone selector-drift incident
+     (LEARNINGS.md "JobAdder/Cornerstone/Teamtailor/Workday intermittent submit
+     failures from similar selector drift"). Before commit 54692cb, cornerstone.ts
+     called `clickSubmit(page)` with NO extra selectors — only the common.ts base
+     list (`Submit application`, `Submit Application`, `Submit`, button[type=submit],
+     input[type=submit][value*=Submit], #btnSubmit). A CSOD tenant using
+     "Apply now" wording with an id-based CTA (#btnSubmitApplication) was invisible
+     to it. The broadened CORNERSTONE_SUBMIT_EXTRAS list added
+     `button:has-text("Apply now")` and `#btnSubmitApplication` to close this gap. -->
+<!DOCTYPE html>
+<html>
+<body>
+  <form>
+    <button type="button" id="btnSubmitApplication">Apply now</button>
+  </form>
+</body>
+</html>

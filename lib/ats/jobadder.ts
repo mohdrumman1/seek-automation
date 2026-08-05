@@ -9,6 +9,18 @@ import {
 import { captureAndAnalyze } from '../error-analyzer';
 import { logger } from '../logger';
 
+// Exported for unit-test regression coverage (tests/unit/ats/jobadder.test.ts).
+export const JOBADDER_SUBMIT_SELECTOR =
+  'button:has-text("Submit application"), button:has-text("Submit Application"), ' +
+  'button:has-text("Submit"), button:has-text("Send application"), ' +
+  'button:has-text("Apply now"), button:has-text("Apply Now"), button:has-text("Apply"), ' +
+  // `input[value*="Submit" i]` intentionally omitted — it can match hidden/text
+  // inputs whose value happens to contain "Submit" (e.g. type="button"). The
+  // `input[type="submit"]` above already covers the real submit-input case.
+  'button[type="submit"], input[type="submit"], ' +
+  '[data-test-id*="submit" i], [data-testid*="submit" i], [data-cy*="submit" i], ' +
+  '.js-submit-application, [role="button"]:has-text("Submit")';
+
 export async function applyJobAdder(
   page: Page,
   details: JobDetails,
@@ -70,17 +82,7 @@ export async function applyJobAdder(
   }
 
   // Submit. Broadened selector list — JobAdder tenants vary in button copy/attrs.
-  const submitBtn = page.locator(
-    'button:has-text("Submit application"), button:has-text("Submit Application"), ' +
-    'button:has-text("Submit"), button:has-text("Send application"), ' +
-    'button:has-text("Apply now"), button:has-text("Apply Now"), button:has-text("Apply"), ' +
-    // `input[value*="Submit" i]` intentionally omitted — it can match hidden/text
-    // inputs whose value happens to contain "Submit" (e.g. type="button"). The
-    // `input[type="submit"]` above already covers the real submit-input case.
-    'button[type="submit"], input[type="submit"], ' +
-    '[data-test-id*="submit" i], [data-testid*="submit" i], [data-cy*="submit" i], ' +
-    '.js-submit-application, [role="button"]:has-text("Submit")'
-  ).first();
+  const submitBtn = page.locator(JOBADDER_SUBMIT_SELECTOR).first();
   if (!(await submitBtn.isVisible({ timeout: 4_000 }).catch(() => false))) {
     await captureAndAnalyze(page, 'ats_jobadder_no_submit', ctx);
     return { status: 'failed', reason: 'ats_jobadder_no_submit' };

@@ -9,6 +9,26 @@ import {
 import { captureAndAnalyze, appendErrorLogEntry } from '../error-analyzer';
 import { logger } from '../logger';
 
+// Exported for unit-test regression coverage (tests/unit/ats/workday.test.ts) —
+// same selector string used at the actual navBtn locator further down this file.
+// NB: intentionally NOT including `input[value*="Submit" i]` (matches hidden/text
+// inputs whose value contains "Submit", e.g. <input type="button" value="Submit CV via email">)
+// or `[role="button"]:has-text("Submit")` — Workday renders step-nav pills as
+// <div role="button">Submit</div> which appear before the real CTA in DOM order,
+// causing `.first()` to click the pill and never submit. The explicit selectors
+// below (bottom-navigation-next-button, wd-CommandButton_uic_okButton, Submit
+// application, Review and Submit) cover the real cases.
+export const WORKDAY_NAV_SELECTOR =
+  '[data-automation-id="bottom-navigation-next-button"], ' +
+  '[data-automation-id="wd-CommandButton_uic_okButton"], ' +
+  '[data-automation-id*="submit" i], ' +
+  'button:has-text("Save and Continue"), button:has-text("Next"), ' +
+  'button:has-text("Continue"), button:has-text("Submit application"), ' +
+  'button:has-text("Submit Application"), button:has-text("Submit"), ' +
+  'button:has-text("Review and Submit"), button:has-text("Apply now"), ' +
+  'button[type="submit"], input[type="submit"], ' +
+  '[data-test-id*="submit" i], [data-testid*="submit" i], [data-cy*="submit" i]';
+
 // Discriminated reason codes returned by `attemptSignInWithPassword`. Every
 // distinct return path emits one of these and logs a matching one-liner:
 //   `ats: workday — sign-in failed: <reason>`
@@ -265,24 +285,7 @@ export async function applyWorkday(
 
     // Click the primary navigation button (Next / Save and Continue / Submit).
     // Broadened selector list — Workday tenant customisation varies.
-    const navBtn = page.locator(
-      '[data-automation-id="bottom-navigation-next-button"], ' +
-      '[data-automation-id="wd-CommandButton_uic_okButton"], ' +
-      '[data-automation-id*="submit" i], ' +
-      'button:has-text("Save and Continue"), button:has-text("Next"), ' +
-      'button:has-text("Continue"), button:has-text("Submit application"), ' +
-      'button:has-text("Submit Application"), button:has-text("Submit"), ' +
-      'button:has-text("Review and Submit"), button:has-text("Apply now"), ' +
-      'button[type="submit"], input[type="submit"], ' +
-      '[data-test-id*="submit" i], [data-testid*="submit" i], [data-cy*="submit" i]'
-      // NB: intentionally NOT including `input[value*="Submit" i]` (matches hidden/text
-      // inputs whose value contains "Submit", e.g. <input type="button" value="Submit CV via email">)
-      // or `[role="button"]:has-text("Submit")` — Workday renders step-nav pills as
-      // <div role="button">Submit</div> which appear before the real CTA in DOM order,
-      // causing `.first()` to click the pill and never submit. The explicit selectors
-      // above (bottom-navigation-next-button, wd-CommandButton_uic_okButton, Submit
-      // application, Review and Submit) cover the real cases.
-    ).first();
+    const navBtn = page.locator(WORKDAY_NAV_SELECTOR).first();
 
     if (await navBtn.isVisible({ timeout: 4_000 }).catch(() => false)) {
       await navBtn.click().catch(() => {});
