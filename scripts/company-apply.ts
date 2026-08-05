@@ -12,7 +12,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { SeekPlatform } from '../lib/platforms/seek';
 import { CompanyCrawler } from '../lib/crawlers/types';
-import { CbaCrawler } from '../lib/crawlers/cba';
+import { CbaCrawler, preAuthCba } from '../lib/crawlers/cba';
 import { loadKB, saveKB } from '../lib/questions-kb';
 import { logger } from '../lib/logger';
 import * as tracker from '../lib/tracker';
@@ -86,13 +86,39 @@ async function main() {
   const seekPlatform = platform as SeekPlatform & { readBaseCoverLetter?: () => string };
   const baseCoverLetter = seekPlatform.readBaseCoverLetter?.() ?? '';
 
-  let total = 0;
+  // Phase 10 shift 2026-07-19: pre-authenticate ONCE on the Workday search page
+  // instead of fighting the sign-in modal per-job inside lib/ats/workday.ts.
+  // Workday session cookies live on the browser context; every downstream Apply
+  // click then sees an active session and skips the sign-in wall entirely.
+  // The workday.ts sign-in path stays as a per-job fallback for the rare case
+  // where the session drops mid-run. If pre-auth fails, abort — proceeding
+  // would just replay the per-job sign-in loop we're trying to escape.
+  if (opts.company === 'cba' && !opts.dryRun) {
+    const wdEmail = process.env.SEEK_EMAIL ?? 'mohdrumman1@gmail.com';
+    const wdPassword = process.env.WORKDAY_PASSWORD ?? '';
+    if (!wdPassword) {
+      logger.error('cba: WORKDAY_PASSWORD not set — cannot pre-authenticate, aborting run', {});
+      await browser.close();
+      process.exit(1);
+    }
+    const preAuthed = await preAuthCba(page, wdEmail, wdPassword);
+    if (!preAuthed) {
+      logger.error('cba: pre-authentication failed — aborting run (see prior "cba: pre-auth" warnings for reason)', {});
+      await browser.close();
+      process.exit(1);
+    }
+  }
+
+  let applied_count = 0;
+  let skipped_count = 0;
+  let failed_count = 0;
   let runFailed = false;
 
   try {
     for (const search of crawler.searches) {
-      if (total >= opts.maxApps) {
-        logger.info('hit maxApps — stopping', { total, cap: opts.maxApps });
+      const attempted = applied_count + skipped_count + failed_count;
+      if (attempted >= opts.maxApps) {
+        logger.info('hit maxApps — stopping', { attempted, cap: opts.maxApps });
         break;
       }
 
@@ -105,7 +131,7 @@ async function main() {
       let countThisSearch = 0;
 
       for (const { url, title, jobId } of links) {
-        if (total >= opts.maxApps) break;
+        if ((applied_count + skipped_count + failed_count) >= opts.maxApps) break;
         if (countThisSearch >= opts.maxPerSearch) {
           logger.info('hit maxPerSearch', { name: search.name, cap: opts.maxPerSearch });
           break;
@@ -128,7 +154,14 @@ async function main() {
         } else if (!opts.dryRun) {
           logger.info('not adding to applied ledger', { jobId, status: result.status, reason: result.reason });
         }
-        total++;
+
+        // 2026-07-19: was `total++` regardless of outcome, then logged as
+        // `applied:${total}` — CI showed "applied:20" when 0/20 actually
+        // applied. Bucket needs_manual_review under skipped (not a hard fail).
+        if (result.status === 'applied') applied_count++;
+        else if (result.status === 'failed') failed_count++;
+        else skipped_count++; // 'skipped' or 'needs_manual_review'
+
         countThisSearch++;
         await page.waitForTimeout(DELAY_BETWEEN_APPS_MS);
       }
@@ -139,14 +172,17 @@ async function main() {
   } finally {
     await browser.close();
     const durationSec = Math.round((Date.now() - runStart) / 1000);
-    logger.info('company-apply done', { company: opts.company, applied: total, durationSec });
+    logger.info(
+      `company-apply: ${opts.company} done — applied:${applied_count} skipped:${skipped_count} failed:${failed_count}`,
+      { company: opts.company, applied: applied_count, skipped: skipped_count, failed: failed_count, durationSec }
+    );
     if (!opts.dryRun) {
       tracker.recordRun({
         runId,
         startedAt: new Date(runStart).toISOString(),
-        applied: total,
-        skipped: 0,
-        failed: 0,
+        applied: applied_count,
+        skipped: skipped_count,
+        failed: failed_count,
         dryRun: false,
         status: runFailed ? 'failed' : 'success',
       });

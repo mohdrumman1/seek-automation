@@ -200,6 +200,34 @@ function saveErrorLog(log: ErrorEntry[]): void {
   fs.writeFileSync(ERROR_LOG_PATH, JSON.stringify(trimErrorLog(log), null, 2), 'utf-8');
 }
 
+// Lightweight diagnostic append — no screenshot, no AI call. Use when we want
+// to record a DOM/state snapshot (e.g. Workday sign-in race timeout modal HTML)
+// without paying the vision-model cost. Same file / same schema as captureAndAnalyze
+// so existing loaders and getPastAnalyses keep working. `analysis` here carries
+// the raw diagnostic payload instead of an AI summary.
+export function appendErrorLogEntry(entry: {
+  error_type: string;
+  analysis: string;
+  url?: string;
+  page_title?: string;
+  job_title?: string;
+  company?: string;
+  screenshot?: string;
+}): void {
+  const log = loadErrorLog();
+  log.push({
+    timestamp: new Date().toISOString(),
+    error_type: entry.error_type,
+    job_title: entry.job_title,
+    company: entry.company,
+    url: entry.url ?? '',
+    page_title: entry.page_title ?? '',
+    screenshot: entry.screenshot ?? '',
+    analysis: entry.analysis,
+  });
+  saveErrorLog(log);
+}
+
 // Returns the AI analyses from the last N occurrences of a given error type
 export function getPastAnalyses(errorType: string, limit = 3): string[] {
   return loadErrorLog()

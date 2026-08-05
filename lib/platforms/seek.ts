@@ -13,6 +13,7 @@ import { captureAndAnalyze, getPastAnalyses } from '../error-analyzer';
 import { findKBAnswer, aiAnswerQuestion, aiAnswerCheckboxes, selectBestOption } from '../questions-kb';
 import { tailorCoverLetter, callOpenRouter } from '../openrouter';
 import { tailorResume, TailoredContent } from '../resume-tailor';
+import { extractPortfolioIdeas, appendIdeas, generateDigest } from '../portfolio-ideas';
 import { generateTailoredDocx } from '../resume-generator';
 import { cleanTailoredResumes, uploadTailoredResume, shouldCleanTailored, resetTailoredCount, incrementTailoredCount } from '../resume-manager';
 import { logger } from '../logger';
@@ -394,7 +395,12 @@ async function answerEmployerQuestions(
     else unanswered.push({ label, type: 'textarea' });
   }
 
-  for (const inp of await page.locator('input[type="text"], input[type="number"]').all()) {
+  // Broadened 2026-07-17: SEEK forms now include tel/email/url/date inputs on some
+  // pre-screening pages. Missing any of these leaves the field blank and the retry
+  // loop misdiagnoses it as seek_profile_incomplete.
+  for (const inp of await page
+    .locator('input[type="text"], input[type="number"], input[type="tel"], input[type="email"], input[type="url"], input[type="date"], input:not([type])')
+    .all()) {
     if (!(await inp.isVisible().catch(() => false))) continue;
     if (await inp.inputValue().catch(() => '')) continue;
     const label = await getQuestionLabel(page, inp);
@@ -406,6 +412,37 @@ async function answerEmployerQuestions(
       else await inp.fill(answer).catch(() => {});
     } else {
       unanswered.push({ label, type: 'input' });
+    }
+  }
+
+  // ── [role="combobox"] typeahead / custom dropdowns ─────────────────────────
+  // Added 2026-07-17: SEEK/Braid ships an AutosuggestField (role="combobox")
+  // for typeahead pickers (skills, certifications, location). These are NOT
+  // <select> and NOT <input type=text>, so the prior scans missed them entirely.
+  // Strategy: type the answer, wait for the listbox, click the first matching
+  // option (fall back to first option if no match).
+  for (const cb of await page.locator('[role="combobox"]').all()) {
+    if (!(await cb.isVisible().catch(() => false))) continue;
+    // Skip if it already has a value (native input, contenteditable, or chip list).
+    const currentVal = await cb.inputValue().catch(() => '');
+    if (currentVal) continue;
+    const textFilled = (await cb.textContent().catch(() => '')) ?? '';
+    if (textFilled.trim().length > 2 && !/select|choose/i.test(textFilled)) continue;
+    const label = await getQuestionLabel(page, cb);
+    if (!label) continue;
+    const answer = findKBAnswer(label, kb) ?? (await aiAnswerQuestion(label, null, kb, CANDIDATE_PROFILE));
+    if (!answer) { unanswered.push({ label, type: 'input' }); continue; }
+    await cb.click().catch(() => {});
+    await cb.fill(answer).catch(async () => {
+      // fill may not work on non-input comboboxes; type as fallback.
+      await cb.pressSequentially(answer, { delay: 30 }).catch(() => {});
+    });
+    await page.waitForTimeout(500);
+    const option = page.locator('[role="option"]').first();
+    if (await option.isVisible({ timeout: 1_500 }).catch(() => false)) {
+      await option.click().catch(() => {});
+    } else {
+      await cb.press('Enter').catch(() => {});
     }
   }
 
@@ -447,6 +484,55 @@ async function answerEmployerQuestions(
       }
       await radio.click().catch(() => {});
       clicked = true;
+      break;
+    }
+    if (!clicked) unanswered.push({ label, type: 'select', options: optionLabels.filter(Boolean) });
+  }
+
+  // ── [role="radiogroup"] with [role="radio"] (button-based radios) ──────────
+  // Added 2026-07-17: SEEK's newer Braid RadioTileGroup renders each option as
+  // <button role="radio"> inside <div role="radiogroup">, NOT input[type=radio].
+  // Same failure signature as the 2026-05-18 issue but with a different DOM shape.
+  for (const group of await page.locator('[role="radiogroup"]').all()) {
+    if (!(await group.isVisible().catch(() => false))) continue;
+    const radios = group.locator('[role="radio"]');
+    const count = await radios.count();
+    if (count === 0) continue;
+    // Skip if any option is already selected.
+    let anyChecked = false;
+    for (let i = 0; i < count; i++) {
+      const ariaChecked = await radios.nth(i).getAttribute('aria-checked').catch(() => null);
+      if (ariaChecked === 'true') { anyChecked = true; break; }
+    }
+    if (anyChecked) continue;
+    // Group label — try aria-labelledby / aria-label on the group first, then walk up.
+    let label = (await group.getAttribute('aria-label').catch(() => null)) ?? '';
+    if (!label.trim()) {
+      const labelledBy = await group.getAttribute('aria-labelledby').catch(() => null);
+      if (labelledBy) label = (await page.locator(`#${labelledBy}`).textContent().catch(() => '')) ?? '';
+    }
+    if (!label.trim()) label = await getQuestionLabel(page, radios.first());
+    if (!label.trim()) continue;
+    const optionLabels: string[] = [];
+    for (let i = 0; i < count; i++) {
+      const r = radios.nth(i);
+      let optLabel = (await r.getAttribute('aria-label').catch(() => null)) ?? '';
+      if (!optLabel.trim()) optLabel = ((await r.textContent().catch(() => '')) ?? '').trim();
+      if (!optLabel.trim()) optLabel = (await r.getAttribute('value').catch(() => '')) ?? '';
+      optionLabels.push(optLabel.trim());
+    }
+    const answer = findKBAnswer(label, kb) ?? (await aiAnswerQuestion(label, optionLabels.filter(Boolean), kb, CANDIDATE_PROFILE));
+    if (!answer) { unanswered.push({ label, type: 'select', options: optionLabels.filter(Boolean) }); continue; }
+    const best = selectBestOption(optionLabels.filter(Boolean), answer);
+    let clicked = false;
+    for (let i = 0; i < count; i++) {
+      if (optionLabels[i].toLowerCase() !== best.toLowerCase()) continue;
+      await radios.nth(i).click({ timeout: 3_000 }).catch(() => {});
+      clicked = (await radios.nth(i).getAttribute('aria-checked').catch(() => null)) === 'true';
+      if (!clicked) {
+        await radios.nth(i).click({ force: true, timeout: 3_000 }).catch(() => {});
+        clicked = (await radios.nth(i).getAttribute('aria-checked').catch(() => null)) === 'true';
+      }
       break;
     }
     if (!clicked) unanswered.push({ label, type: 'select', options: optionLabels.filter(Boolean) });
@@ -767,6 +853,27 @@ export class SeekPlatform implements JobPlatform {
 
     console.log(`  Applying: ${details.title} @ ${details.company}`);
 
+    // Portfolio-idea side-quest: ask the LLM to propose 1-3 solo-buildable
+    // portfolio projects from this JD and append to data/portfolio_ideas.json.
+    // Best-effort ONLY — every failure path swallows the error inside
+    // extractPortfolioIdeas so apply flow never regresses on this feature.
+    // Fires for every job we're about to attempt (before internal-vs-external
+    // ATS branching), once per unique jobUrl (dedup lives in the module).
+    // ponytail: gated by env — default on. Flip EXTRACT_PORTFOLIO_IDEAS=false
+    // to shut off without a code change. Upgrade path: promote to a per-run
+    // CSV output if the user wants the ideas in reporting instead of JSON.
+    if (process.env.EXTRACT_PORTFOLIO_IDEAS !== 'false') {
+      try {
+        const ideas = await extractPortfolioIdeas(details.title, details.description, page.url());
+        if (ideas.length > 0) {
+          appendIdeas(ideas);
+          generateDigest();
+        }
+      } catch (err) {
+        logger.info('portfolio-ideas: extraction threw, swallowed', { error: String(err).slice(0, 200) });
+      }
+    }
+
     if (CLEARANCE_RE.test(details.description)) {
       console.log('  Skipping - job requires security clearance');
       logger.info('skip: security clearance required', { title: details.title, company: details.company });
@@ -922,9 +1029,38 @@ export class SeekPlatform implements JobPlatform {
     await dismissBraidModal(applyPage);
 
     const clChangeRadio = applyPage.locator('input[name="coverLetter-method"][value="change"]');
-    if (await clChangeRadio.isVisible().catch(() => false)) {
-      await clChangeRadio.click();
-      await applyPage.waitForTimeout(500);
+    if (await clChangeRadio.count() > 0) {
+      // Regression 2026-07-16 (runs 29473665051 / 29407461665 / 29390768274):
+      // SEEK now often renders this radio already in the "change" state
+      // (<input checked aria-checked="true">), AND a `<div aria-hidden="true">`
+      // backdrop inside #braid-modal-container intercepts pointer events on it.
+      // Playwright's isVisible() doesn't see the backdrop as blocking, so the
+      // click times out for a full 30s and throws — killing ~30-40% of applies
+      // on affected runs. Skip the click when already checked; otherwise dismiss
+      // the modal first and use the label-first pattern from the 2026-05-18 fix.
+      const alreadyChecked = await clChangeRadio.isChecked().catch(() => false);
+      if (!alreadyChecked && await clChangeRadio.isVisible().catch(() => false)) {
+        await dismissBraidModal(applyPage);
+        const id = await clChangeRadio.getAttribute('id').catch(() => null);
+        let clicked = false;
+        if (id) {
+          const lbl = applyPage.locator(`label[for="${id}"]`);
+          if (await lbl.isVisible({ timeout: 1_000 }).catch(() => false)) {
+            await lbl.click({ timeout: 5_000 }).catch(() => {});
+            clicked = await clChangeRadio.isChecked().catch(() => false);
+          }
+        }
+        if (!clicked) {
+          // Force-click bypasses the intercept check; capped timeout so we don't
+          // regress into the original 30s-per-job hang.
+          await clChangeRadio.click({ force: true, timeout: 5_000 }).catch(() => {});
+          clicked = await clChangeRadio.isChecked().catch(() => false);
+        }
+        if (!clicked) {
+          await clChangeRadio.dispatchEvent('click').catch(() => {});
+        }
+        await applyPage.waitForTimeout(500);
+      }
       console.log('  Cover letter mode: enter text');
     }
 

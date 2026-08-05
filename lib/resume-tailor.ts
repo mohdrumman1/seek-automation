@@ -7,6 +7,94 @@ import type { ResumeVariant } from './resume-selector';
 
 const RESUMES_DIR = path.resolve(__dirname, '../data/resumes');
 const QUESTIONS_PATH = path.resolve(__dirname, '../data/resume-questions.json');
+const FAILURE_COUNTS_PATH = path.resolve(__dirname, '../data/tailor_failure_counts.json');
+const BLOCKED_JOBS_PATH = path.resolve(__dirname, '../data/blocked_jobs.json');
+
+// After N consecutive AI-tailoring failures on the same job, add it to
+// blocked_jobs.json so future runs skip it before wasting another AI call.
+// Threshold intentionally small: 3 same-job failures across runs almost
+// always means the JD is malformed or the model can't produce valid JSON
+// for it — no amount of retrying will change that.
+const TAILOR_FAILURE_THRESHOLD = 3;
+
+// Job id used for blocklist/counter keys. MUST match the format used by
+// scripts/apply.ts:172 (`url.match(/\/job\/(\d+)/)?.[1] ?? url`) so that an
+// entry we add to data/blocked_jobs.json is also honored by the SEEK main
+// loop's pre-nav skip check (apply.ts:174) — saving the page.goto too.
+function jobIdForBlocklist(url: string): string {
+  const seek = url.match(/\/job\/(\d+)/);
+  if (seek) return seek[1];
+  try {
+    const p = new URL(url);
+    return `${p.hostname}${p.pathname}`.slice(0, 120);
+  } catch {
+    return url.slice(0, 120);
+  }
+}
+
+function loadFailureCounts(): Record<string, number> {
+  if (!fs.existsSync(FAILURE_COUNTS_PATH)) return {};
+  try {
+    const raw = fs.readFileSync(FAILURE_COUNTS_PATH, 'utf-8');
+    const parsed = JSON.parse(raw) as Record<string, number>;
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveFailureCounts(counts: Record<string, number>): void {
+  fs.writeFileSync(FAILURE_COUNTS_PATH, JSON.stringify(counts), 'utf-8');
+}
+
+function loadBlockedSet(): Set<string> {
+  if (!fs.existsSync(BLOCKED_JOBS_PATH)) return new Set();
+  try {
+    const raw = fs.readFileSync(BLOCKED_JOBS_PATH, 'utf-8');
+    const arr = JSON.parse(raw) as string[];
+    return Array.isArray(arr) ? new Set(arr) : new Set();
+  } catch {
+    return new Set();
+  }
+}
+
+function saveBlockedSet(blocked: Set<string>): void {
+  fs.writeFileSync(BLOCKED_JOBS_PATH, JSON.stringify([...blocked]), 'utf-8');
+}
+
+// Wraps failure-count bookkeeping. Called on both AI network failure and
+// AI-JSON-parse failure (both wasted the OpenRouter call).
+function recordTailorFailure(jobId: string, jobTitle: string): void {
+  const counts = loadFailureCounts();
+  const next = (counts[jobId] ?? 0) + 1;
+  counts[jobId] = next;
+  saveFailureCounts(counts);
+  logger.warn('resume-tailor: failure count incremented', {
+    jobId, title: jobTitle, count: next, threshold: TAILOR_FAILURE_THRESHOLD,
+  });
+  if (next >= TAILOR_FAILURE_THRESHOLD) {
+    const blocked = loadBlockedSet();
+    if (!blocked.has(jobId)) {
+      blocked.add(jobId);
+      saveBlockedSet(blocked);
+      logger.warn(
+        `resume-tailor: blocklisted ${jobId} (${jobTitle}) after ${TAILOR_FAILURE_THRESHOLD} failed AI calls — added to blocked_jobs.json`,
+        { jobId, title: jobTitle, count: next },
+      );
+    }
+    // Counter can now be cleared — the blocklist gate takes over from here.
+    delete counts[jobId];
+    saveFailureCounts(counts);
+  }
+}
+
+function clearTailorFailure(jobId: string): void {
+  const counts = loadFailureCounts();
+  if (counts[jobId] !== undefined) {
+    delete counts[jobId];
+    saveFailureCounts(counts);
+  }
+}
 
 export interface ExperienceRole {
   company: string;
@@ -113,6 +201,18 @@ export async function tailorResume(
   jobDescription: string,
   url: string,
 ): Promise<TailoredContent | null> {
+  // Skip check: bail BEFORE any expensive work if this job has already
+  // burned through the failure threshold on prior runs.
+  const jobId = jobIdForBlocklist(url);
+  const blocked = loadBlockedSet();
+  if (blocked.has(jobId)) {
+    logger.info(
+      `resume-tailor: skipping ${jobId} (${jobTitle}) — blocklisted after ${TAILOR_FAILURE_THRESHOLD} failed AI calls`,
+      { jobId, title: jobTitle, url },
+    );
+    return null;
+  }
+
   const baseText = await extractResumeText(variant);
   if (!baseText) return null;
 
@@ -167,7 +267,8 @@ Return ONLY valid JSON (no markdown fences, no explanation) in this exact shape:
   try {
     raw = await callOpenRouter(prompt);
   } catch (err) {
-    logger.error('resume-tailor: AI call failed', { job: jobTitle }, err);
+    logger.error('resume-tailor: AI call failed', { job: jobTitle, jobId }, err);
+    recordTailorFailure(jobId, jobTitle);
     return null;
   }
 
@@ -185,7 +286,13 @@ Return ONLY valid JSON (no markdown fences, no explanation) in this exact shape:
   try {
     parsed = JSON.parse(stripJson(raw));
   } catch {
-    logger.error('resume-tailor: failed to parse AI response as JSON', { raw: raw.slice(0, 200) });
+    logger.error('resume-tailor: failed to parse AI response as JSON', {
+      raw: raw.slice(0, 200), jobId, job: jobTitle,
+    });
+    // JSON-parse failures also waste the AI call — count them the same as
+    // network failures so a job that keeps eliciting garbage from the model
+    // gets blocklisted too.
+    recordTailorFailure(jobId, jobTitle);
     return null;
   }
 
@@ -221,6 +328,9 @@ Return ONLY valid JSON (no markdown fences, no explanation) in this exact shape:
   }
 
   logQuestions(result.questions, { job_title: jobTitle, company, url });
+
+  // Success — reset the failure counter for this job.
+  clearTailorFailure(jobId);
 
   return result;
 }

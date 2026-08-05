@@ -23,15 +23,31 @@ export async function applyPageUp(
   const url = page.url();
   const isApplrIo = url.includes('applr.io');
 
-  // Click the Apply/Begin button.
+  // SEEK OAuth authorization wall (au.seek.com/awsk/authorize) — `applr.io` and
+  // some PageUp partner tenants route the user through SEEK OAuth to grant the
+  // employer access to their SEEK profile before the actual form loads. If we
+  // don't click "Allow access" here the URL never advances and every subsequent
+  // wizard iteration bails as ats_pageup_no_submit. Confirmed root cause of the
+  // Peoplebank / applr.io failure cluster in run 29535279622 (2026-07-16).
+  await handleSeekOAuthAuthorize(page, ctx);
+
+  // Click the Apply/Begin button. Broadened to cover PageUp gateway landing
+  // pages (pageuppeople.com/apply/<tenant>/gateway/Default.aspx) that use
+  // "Start application" / "Apply now" / "Apply for this job" wording.
   const applyBtn = page.locator(
     'button:has-text("Apply"), button:has-text("Begin application"), ' +
-    'a:has-text("Apply"), a:has-text("Begin")'
+    'button:has-text("Start application"), button:has-text("Apply now"), ' +
+    'button:has-text("Apply for this job"), ' +
+    'a:has-text("Apply"), a:has-text("Begin"), a:has-text("Start application"), ' +
+    'a:has-text("Apply now"), a:has-text("Apply for this job"), ' +
+    'input[type="submit"][value*="Apply" i], input[type="button"][value*="Apply" i]'
   ).first();
   if (await applyBtn.isVisible({ timeout: 5_000 }).catch(() => false)) {
     await applyBtn.click().catch(() => {});
     await page.waitForLoadState('networkidle', { timeout: 10_000 }).catch(() => {});
     await page.waitForTimeout(1_000);
+    // The Apply click can itself redirect to the SEEK OAuth authorize wall.
+    await handleSeekOAuthAuthorize(page, ctx);
   }
 
   // Account-creation wall check (classic PageUp).
@@ -59,12 +75,23 @@ export async function applyPageUp(
     await page.waitForTimeout(1_500);
     const currentUrl = page.url();
 
-    // hCaptcha challenge page ("Uh oh... It looks like something has gone wrong" + CAPTCHA).
-    // Bail immediately — we cannot solve CAPTCHAs and looping just wastes time.
-    const hasHCaptcha = await page.locator('iframe[src*="hcaptcha"], .h-captcha, #hcaptcha').first()
-      .isVisible({ timeout: 500 }).catch(() => false);
-    if (hasHCaptcha) {
-      logger.info('ats: pageup — hCaptcha detected, skipping', ctx);
+    // hCaptcha / error challenge page. Bail immediately — CAPTCHAs are unsolvable
+    // and looping burns 8×1.5s + submit-timeout budget per job. Two fingerprints:
+    // (1) the iframe (title-based match added — the previous `src*="hcaptcha"` /
+    //     `.h-captcha` / `#hcaptcha` set missed PageUp's rendering, which is why
+    //     run 29535279622 logged the "Uh oh" page as ats_pageup_no_submit rather
+    //     than ats_pageup_captcha);
+    // (2) the distinctive "Uh oh... It looks like something has gone wrong" text
+    //     PageUp shows above the widget — reliable even when the iframe hasn't
+    //     mounted yet on our first read.
+    const hasHCaptcha = await page.locator(
+      'iframe[src*="hcaptcha"], iframe[title*="hCaptcha" i], iframe[title*="captcha" i], ' +
+      '.h-captcha, #hcaptcha, [data-hcaptcha-widget-id], [data-sitekey]'
+    ).first().isVisible({ timeout: 500 }).catch(() => false);
+    const hasErrorBanner = await page.locator('text=/uh\\s*oh.{0,60}gone wrong/i').first()
+      .isVisible({ timeout: 200 }).catch(() => false);
+    if (hasHCaptcha || hasErrorBanner) {
+      logger.info('ats: pageup — hCaptcha/error page detected, skipping', ctx);
       return { status: 'failed', reason: 'ats_pageup_captcha' };
     }
 
@@ -108,6 +135,8 @@ export async function applyPageUp(
     const submitBtn = page.locator(
       'button:has-text("Submit application"), button:has-text("Submit Application"), ' +
       'button:has-text("Submit"), button:has-text("Apply now"), button:has-text("Apply Now"), ' +
+      'button:has-text("Send application"), button:has-text("Complete application"), ' +
+      'button:has-text("Confirm and submit"), button:has-text("Finish application"), ' +
       '#submitButton, .js-submit-application, .submit-btn, ' +
       // `input[value*="Submit" i]` intentionally omitted — it can match hidden/text
       // inputs whose value happens to contain "Submit" (e.g. type="button"). The
@@ -127,6 +156,32 @@ export async function applyPageUp(
 
   await captureAndAnalyze(page, 'ats_pageup_no_submit', ctx);
   return { status: 'failed', reason: 'ats_pageup_no_submit' };
+}
+
+// SEEK OAuth "Allow access" wall shown at au.seek.com/awsk/authorize.
+// Idempotent: no-op when we're not on the authorize URL.
+async function handleSeekOAuthAuthorize(
+  page: Page,
+  ctx: { job_title?: string; company?: string },
+): Promise<void> {
+  const url = page.url();
+  const onAuthorize = /seek\.com(?:\.au)?\/(?:awsk|oauth)\/authorize/i.test(url);
+  if (!onAuthorize) return;
+
+  const allowBtn = page.locator(
+    'button:has-text("Allow access"), button:has-text("Allow"), ' +
+    'button:has-text("Authorise"), button:has-text("Authorize"), ' +
+    'button:has-text("Grant access"), button:has-text("Continue"), ' +
+    '[data-automation*="allow" i], [data-testid*="allow" i], ' +
+    'input[type="submit"][value*="Allow" i]'
+  ).first();
+
+  if (await allowBtn.isVisible({ timeout: 5_000 }).catch(() => false)) {
+    logger.info('ats: pageup — clicking SEEK OAuth Allow access', ctx);
+    await allowBtn.click().catch(() => {});
+    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+    await page.waitForTimeout(1_000);
+  }
 }
 
 async function tickConsentCheckboxes(page: Page): Promise<void> {
