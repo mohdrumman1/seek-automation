@@ -16,6 +16,7 @@ import { CbaCrawler, preAuthCba } from '../lib/crawlers/cba';
 import { loadKB, saveKB } from '../lib/questions-kb';
 import { logger } from '../lib/logger';
 import * as tracker from '../lib/tracker';
+import { isDailyCapReached, incrementDailyCount, DAILY_APPLICATION_CAP } from '../lib/daily-cap';
 import {
   loadApplied, saveApplied, loadBlocked,
   applyToSingleUrl,
@@ -44,7 +45,12 @@ function parseArgs() {
   };
 }
 
-const DELAY_BETWEEN_APPS_MS = 6_000;
+// Randomized per-application delay (45-180s) instead of a fixed interval —
+// makes request pacing look less like a bot. Picked fresh per application
+// (same pattern as scripts/apply.ts).
+function randomDelayMs(): number {
+  return 45_000 + Math.floor(Math.random() * 135_000);
+}
 
 // ── MAIN ──────────────────────────────────────────────────────────────────────
 
@@ -121,6 +127,12 @@ async function main() {
         logger.info('hit maxApps — stopping', { attempted, cap: opts.maxApps });
         break;
       }
+      if (!opts.dryRun && isDailyCapReached()) {
+        logger.info('daily application cap reached — stopping search loop for the rest of this run (not a failure)', {
+          cap: DAILY_APPLICATION_CAP,
+        });
+        break;
+      }
 
       logger.info('crawling search', { name: search.name, variant: search.resumeVariant });
       const listingPage = await context.newPage();
@@ -134,6 +146,12 @@ async function main() {
         if ((applied_count + skipped_count + failed_count) >= opts.maxApps) break;
         if (countThisSearch >= opts.maxPerSearch) {
           logger.info('hit maxPerSearch', { name: search.name, cap: opts.maxPerSearch });
+          break;
+        }
+        if (!opts.dryRun && isDailyCapReached()) {
+          logger.info('daily application cap reached mid-search — stopping (not a failure)', {
+            name: search.name, cap: DAILY_APPLICATION_CAP,
+          });
           break;
         }
         if (applied.has(jobId)) { logger.debug('already applied', { jobId, title }); continue; }
@@ -151,6 +169,7 @@ async function main() {
           applied.add(jobId);
           saveApplied(applied);
           saveKB(kb);
+          incrementDailyCount();
         } else if (!opts.dryRun) {
           logger.info('not adding to applied ledger', { jobId, status: result.status, reason: result.reason });
         }
@@ -163,7 +182,7 @@ async function main() {
         else skipped_count++; // 'skipped' or 'needs_manual_review'
 
         countThisSearch++;
-        await page.waitForTimeout(DELAY_BETWEEN_APPS_MS);
+        await page.waitForTimeout(randomDelayMs());
       }
     }
   } catch (err) {

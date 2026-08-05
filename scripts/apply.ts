@@ -22,6 +22,7 @@ import { loadKB, saveKB } from '../lib/questions-kb';
 import { logger } from '../lib/logger';
 import * as tracker from '../lib/tracker';
 import { reportSearchResult, checkZeroResultStreak } from '../lib/run-health';
+import { isDailyCapReached, incrementDailyCount, DAILY_APPLICATION_CAP } from '../lib/daily-cap';
 import {
   APPLIED_LOG, BLOCKED_LOG,
   loadApplied, saveApplied, loadBlocked, saveBlocked,
@@ -65,7 +66,11 @@ function parseArgs(): {
 
 // ── MAIN LOOP (platform-agnostic) ─────────────────────────────────────────────
 
-const DELAY_BETWEEN_APPS_MS = 6_000;
+// Randomized per-application delay (45-180s) instead of a fixed interval —
+// makes request pacing look less like a bot. Picked fresh per application.
+function randomDelayMs(): number {
+  return 45_000 + Math.floor(Math.random() * 135_000);
+}
 const CIRCUIT_BREAKER_THRESHOLD = 3;
 
 async function main() {
@@ -146,6 +151,12 @@ async function main() {
         logger.info('hit maxAppsPerRun — stopping', { total, cap: opts.maxAppsPerRun });
         break;
       }
+      if (!opts.dryRun && isDailyCapReached()) {
+        logger.info('daily application cap reached — stopping search loop for the rest of this run (not a failure)', {
+          cap: DAILY_APPLICATION_CAP,
+        });
+        break;
+      }
 
       logger.info('search starting', { name: search.name, variant: search.resumeVariant });
       try {
@@ -167,6 +178,12 @@ async function main() {
       for (const url of links) {
         if (total >= opts.maxAppsPerRun) { logger.info('hit maxAppsPerRun inside search', { name: search.name, total }); break; }
         if (countThisSearch >= opts.maxAppsPerSearch) { logger.info('hit maxAppsPerSearch', { name: search.name, cap: opts.maxAppsPerSearch }); break; }
+        if (!opts.dryRun && isDailyCapReached()) {
+          logger.info('daily application cap reached mid-search — stopping (not a failure)', {
+            name: search.name, cap: DAILY_APPLICATION_CAP,
+          });
+          break;
+        }
         if (consecutiveFailures >= CIRCUIT_BREAKER_THRESHOLD) {
           logger.warn('circuit breaker tripped — moving to next search', { name: search.name, consecutiveFailures });
           break;
@@ -237,12 +254,13 @@ async function main() {
             saveApplied(applied);
             saveKB(kb);
             tracker.recordApplication({ ...jobMeta, resumeVariant: result.variant ?? search.resumeVariant });
+            incrementDailyCount();
           }
           countThisSearch++;
           total++;
           consecutiveFailures = 0;
           logger.info('applied', { jobId, search: search.name, totalThisRun: total });
-          await page.waitForTimeout(DELAY_BETWEEN_APPS_MS);
+          await page.waitForTimeout(randomDelayMs());
         } else if (result.skipReason) {
           if (!opts.dryRun) tracker.recordSkip({ ...jobMeta, skipReason: result.skipReason });
           // SEEK showed "You applied" — mark as applied so future runs skip immediately.
@@ -326,6 +344,10 @@ async function main() {
 
         for (const search of indeedPlatform.searches) {
           if (total >= opts.maxAppsPerRun) break;
+          if (!opts.dryRun && isDailyCapReached()) {
+            logger.info('daily application cap reached — stopping Indeed loop (not a failure)', { cap: DAILY_APPLICATION_CAP });
+            break;
+          }
 
           logger.info('indeed search starting', { name: search.name });
           try {
@@ -345,6 +367,12 @@ async function main() {
           for (const jobUrl of links) {
             if (total >= opts.maxAppsPerRun) break;
             if (countThisSearch >= opts.maxAppsPerSearch) break;
+            if (!opts.dryRun && isDailyCapReached()) {
+              logger.info('daily application cap reached mid-search — stopping Indeed loop (not a failure)', {
+                name: search.name, cap: DAILY_APPLICATION_CAP,
+              });
+              break;
+            }
             if (consecutiveFailures >= CIRCUIT_BREAKER_THRESHOLD) {
               logger.warn('indeed circuit breaker — moving to next search', { name: search.name });
               break;
@@ -405,12 +433,13 @@ async function main() {
                 saveApplied(applied);
                 saveKB(kb);
                 tracker.recordApplication({ ...jobMeta, resumeVariant: result.variant ?? search.resumeVariant });
+                incrementDailyCount();
               }
               countThisSearch++;
               total++;
               consecutiveFailures = 0;
               logger.info('indeed applied', { jobId, search: search.name, totalThisRun: total });
-              await indeedPage.waitForTimeout(DELAY_BETWEEN_APPS_MS);
+              await indeedPage.waitForTimeout(randomDelayMs());
             } else if (result.skipReason) {
               if (!opts.dryRun) tracker.recordSkip({ ...jobMeta, skipReason: result.skipReason });
               if (TRIVIAL_SKIP_REASONS.has(result.skipReason)) { runPrefiltered++; } else { runSkipped++; }

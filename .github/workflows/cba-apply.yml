@@ -36,8 +36,11 @@ jobs:
       CANDIDATE_WEBSITE: ${{ secrets.CANDIDATE_WEBSITE }}
       WORKDAY_PASSWORD: ${{ secrets.WORKDAY_PASSWORD }}
       WORKDAY_PASSWORD_FALLBACK: ${{ secrets.WORKDAY_PASSWORD_FALLBACK }}
-      MAX_APPS_PER_RUN: '20'
-      MAX_APPS_PER_SEARCH: '10'
+      # Lowered from 20/10 — this workflow draws from the same shared 30/day
+      # hard cap (lib/daily-cap.ts) as seek-apply.yml, so a single CBA run
+      # should not be able to consume most of that budget by itself.
+      MAX_APPS_PER_RUN: '8'
+      MAX_APPS_PER_SEARCH: '4'
       RESUME_TAILORING_ENABLED: 'true'
       AUTO_SUBMIT_ENABLED: 'true'
       DRY_RUN: 'false'
@@ -77,6 +80,18 @@ jobs:
 
       - name: Ensure runtime directories exist
         run: mkdir -p data/sessions tmp
+
+      # Same actions/cache pattern + key prefix as seek-apply.yml, so the 30/day
+      # hard application cap (lib/daily-cap.ts) is shared across ALL workflows
+      # combined, not just this one — company-apply.ts calls incrementDailyCount()
+      # too.
+      - name: Restore daily-application-count cache
+        uses: actions/cache@v4
+        with:
+          path: data/daily-application-count.json
+          key: daily-application-count-${{ github.run_id }}
+          restore-keys: |
+            daily-application-count-
 
       - name: Run CBA crawler
         id: bot

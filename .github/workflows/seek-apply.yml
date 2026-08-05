@@ -2,10 +2,17 @@ name: Seek Auto Apply
 
 on:
   schedule:
-    # 6:17am, 12:17pm, 6:17pm AEST (UTC+10) — note: times shift 1h during AEDT (Oct–Apr)
-    - cron: '17 20 * * *'
-    - cron: '17 2 * * *'
+    # 6 runs/day, spaced evenly every 4h (UTC). AEST (UTC+10) equivalents:
+    # 10:17am, 2:17pm, 6:17pm, 10:17pm, 2:17am, 6:17am — note: times shift 1h
+    # during AEDT (Oct–Apr). Raised from 3x/day to spread the daily application
+    # budget across more, smaller runs (see MAX_APPS_PER_RUN/MAX_APPS_PER_SEARCH
+    # below and lib/daily-cap.ts for the 30/day hard backstop).
+    - cron: '17 0 * * *'
+    - cron: '17 4 * * *'
     - cron: '17 8 * * *'
+    - cron: '17 12 * * *'
+    - cron: '17 16 * * *'
+    - cron: '17 20 * * *'
   workflow_dispatch:
     inputs:
       job_url:
@@ -43,8 +50,12 @@ jobs:
       WORKDAY_PASSWORD: ${{ secrets.WORKDAY_PASSWORD }}
       WORKDAY_PASSWORD_FALLBACK: ${{ secrets.WORKDAY_PASSWORD_FALLBACK }}
       INDEED_ENABLED: 'false'
-      MAX_APPS_PER_RUN: '100'
-      MAX_APPS_PER_SEARCH: '30'
+      # Lowered from 100/30 now that this workflow runs 6x/day instead of 3x —
+      # the real backstop is the 30/day hard cap in lib/daily-cap.ts (persisted
+      # via the cache step below), but a single run should not be able to blow
+      # through most of that budget by itself.
+      MAX_APPS_PER_RUN: '10'
+      MAX_APPS_PER_SEARCH: '5'
       RESUME_TAILORING_ENABLED: 'true'
       AUTO_SUBMIT_ENABLED: 'true'
       DRY_RUN: 'false'
@@ -97,6 +108,18 @@ jobs:
           key: zero-result-streak-${{ github.run_id }}
           restore-keys: |
             zero-result-streak-
+
+      # Same actions/cache pattern as zero-result-streak above, persisting the
+      # 30/day hard application cap (lib/daily-cap.ts) across ephemeral runners.
+      # Uses the SAME key prefix as cba-apply.yml's cache step so the count is
+      # shared across ALL workflows/runs combined, not just this one.
+      - name: Restore daily-application-count cache
+        uses: actions/cache@v4
+        with:
+          path: data/daily-application-count.json
+          key: daily-application-count-${{ github.run_id }}
+          restore-keys: |
+            daily-application-count-
 
       - name: Run bot
         id: bot
