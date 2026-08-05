@@ -26,6 +26,13 @@ export interface ApplyConfig {
   searchName: string;
   baseCoverLetter: string;
   kb: Array<{ keywords: string[]; answer: string }>;
+  /**
+   * Called immediately before the real final-submit click (never before a
+   * "Next"/"Continue" navigation step). Handles pacing delay + daily-cap
+   * reservation. Returns false when the cap is reached — the caller must
+   * skip the click and return a `daily_cap_reached` result instead.
+   */
+  beforeSubmit?: () => Promise<boolean>;
 }
 
 export interface ApplyResult {

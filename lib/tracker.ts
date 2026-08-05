@@ -17,7 +17,8 @@ export function deriveJobId(url: string): string {
 }
 
 export function escapeCsv(val: unknown): string {
-  const s = String(val ?? '');
+  const raw = String(val ?? '');
+  const s = /^[=+\-@]/.test(raw) ? `'${raw}` : raw;
   if (s.includes(',') || s.includes('"') || s.includes('\n') || s.includes('\r')) {
     return '"' + s.replace(/"/g, '""') + '"';
   }

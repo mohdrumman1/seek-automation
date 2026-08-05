@@ -1,0 +1,72 @@
+name: Weekly Job Digest
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: job-apply
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Restore weekly stats
+        uses: actions/cache@v4
+        with:
+          path: data/weekly-stats.json
+          key: weekly-stats-${{ github.run_id }}
+          restore-keys: |
+            weekly-stats-
+
+      - name: Write weekly digest
+        id: digest
+        run: |
+          mkdir -p tmp
+          DIGEST=$(npm run weekly-review --silent)
+          echo "$DIGEST" | jq -e '
+            .runs, .jobsFound, .applied, .skipped, .failed,
+            .recentZeroResultStreak, .maxZeroResultStreak | numbers
+          ' >/dev/null
+          {
+            echo "## Weekly Job Digest"
+            echo ""
+            echo "$DIGEST" | jq -r '
+              "- Runs: \(.runs)",
+              "- Jobs found: \(.jobsFound)",
+              "- Applied: \(.applied)",
+              "- Skipped: \(.skipped)",
+              "- Failed: \(.failed)",
+              "- Recent zero-result streak: \(.recentZeroResultStreak)",
+              "- Max zero-result streak: \(.maxZeroResultStreak)"
+            '
+          } >> "$GITHUB_STEP_SUMMARY"
+          printf '%s' "$DIGEST" > tmp/weekly-digest.json
+
+      - name: Optional digest webhook
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        run: |
+          if [ -z "$WEBHOOK_URL" ]; then
+            exit 0
+          fi
+          BODY=$(jq -n --argjson digest "$(cat tmp/weekly-digest.json)" \
+            '{content: ("Weekly Job Digest: runs \($digest.runs), jobs found \($digest.jobsFound), applied \($digest.applied), skipped \($digest.skipped), failed \($digest.failed), recent zero-result streak \($digest.recentZeroResultStreak), max zero-result streak \($digest.maxZeroResultStreak)")}')
+          curl -sf -X POST -H 'Content-Type: application/json' -d "$BODY" "$WEBHOOK_URL" \
+            || echo '::warning::Webhook POST failed — continuing (non-fatal).'

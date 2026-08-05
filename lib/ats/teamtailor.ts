@@ -129,6 +129,9 @@ export async function applyTeamtailor(
     }
     await page.waitForTimeout(500);
   }
+  if (!(await config.beforeSubmit?.() ?? true)) {
+    return { status: 'skipped', reason: 'daily_cap_reached' };
+  }
   await submitBtn.click({ force: true }).catch(() => {});
   await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
   await page.waitForTimeout(2_000);

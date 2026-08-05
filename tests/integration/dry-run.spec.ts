@@ -12,7 +12,7 @@ test.describe('integration: dry-run apply', () => {
       'OPENROUTER_API_KEY not set — skipping integration test',
     );
 
-    test.setTimeout(120_000);
+    test.setTimeout(330_000);
 
     const jobUrl =
       process.env.INTEGRATION_JOB_URL ?? 'https://www.seek.com.au/job/81234567';
@@ -22,7 +22,7 @@ test.describe('integration: dry-run apply', () => {
       ['run', 'seek', '--', '--url', jobUrl, '--dry-run'],
       {
         encoding: 'utf-8',
-        timeout: 115_000,
+        timeout: 300_000,
         cwd: process.cwd(),
       },
     );

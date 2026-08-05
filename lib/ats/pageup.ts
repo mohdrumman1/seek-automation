@@ -149,6 +149,9 @@ export async function applyPageUp(
     // Try Submit then Next. Broadened selector list — PageUp tenant CSS varies widely.
     const submitBtn = page.locator(PAGEUP_SUBMIT_SELECTOR).first();
     if (await submitBtn.isVisible({ timeout: 2_000 }).catch(() => false)) {
+      if (!(await config.beforeSubmit?.() ?? true)) {
+        return { status: 'skipped', reason: 'daily_cap_reached' };
+      }
       await submitBtn.click().catch(() => {});
       await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
     } else {

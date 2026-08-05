@@ -22,8 +22,9 @@ import { loadKB, saveKB } from '../lib/questions-kb';
 import { logger } from '../lib/logger';
 import * as tracker from '../lib/tracker';
 import { reportSearchResult, checkZeroResultStreak } from '../lib/run-health';
-import { isDailyCapReached, incrementDailyCount, DAILY_APPLICATION_CAP } from '../lib/daily-cap';
+import { isDailyCapReached, reserveDailyApplication, DAILY_APPLICATION_CAP } from '../lib/daily-cap';
 import { computeRunStatus, writeRunSummary } from '../lib/run-summary';
+import { recordWeeklyRun } from '../lib/weekly-stats';
 import {
   APPLIED_LOG, BLOCKED_LOG,
   loadApplied, saveApplied, loadBlocked, saveBlocked,
@@ -143,7 +144,12 @@ async function main() {
 
     // Single-URL mode
     if (opts.singleUrl) {
-      await applyToSingleUrl(platform, page, context, opts.singleUrl, kb, baseCoverLetter, opts.dryRun, runId);
+      const beforeSubmit = async (): Promise<boolean> => {
+        if (opts.dryRun) return false;
+        await page.waitForTimeout(randomDelayMs());
+        return reserveDailyApplication();
+      };
+      await applyToSingleUrl(platform, page, context, opts.singleUrl, kb, baseCoverLetter, opts.dryRun, runId, beforeSubmit);
       return;
     }
 
@@ -221,6 +227,12 @@ async function main() {
         let details: JobDetails = { title: '', company: '', description: '', location: '', salaryText: '', workType: '' };
         try { details = await platform.getJobDetails(page); } catch {}
 
+        const beforeSubmit = async (): Promise<boolean> => {
+          if (opts.dryRun) return false;
+          await page.waitForTimeout(randomDelayMs());
+          return reserveDailyApplication();
+        };
+
         let result: ApplyResult = { success: false, failureReason: 'unexpected_error' };
         try {
           result = await platform.applyToJob(page, context, details, {
@@ -228,6 +240,7 @@ async function main() {
             searchName: search.name,
             baseCoverLetter,
             kb,
+            beforeSubmit,
           });
         } catch (e) {
           logger.error('apply threw', { jobId, url }, e);
@@ -257,13 +270,11 @@ async function main() {
             saveApplied(applied);
             saveKB(kb);
             tracker.recordApplication({ ...jobMeta, resumeVariant: result.variant ?? search.resumeVariant });
-            incrementDailyCount();
           }
           countThisSearch++;
           total++;
           consecutiveFailures = 0;
           logger.info('applied', { jobId, search: search.name, totalThisRun: total });
-          await page.waitForTimeout(randomDelayMs());
         } else if (result.skipReason) {
           if (!opts.dryRun) tracker.recordSkip({ ...jobMeta, skipReason: result.skipReason });
           // SEEK showed "You applied" — mark as applied so future runs skip immediately.
@@ -410,6 +421,12 @@ async function main() {
             let details: JobDetails = { title: '', company: '', description: '', location: '', salaryText: '', workType: '' };
             try { details = await indeedPlatform.getJobDetails(indeedPage); } catch {}
 
+            const beforeSubmit = async (): Promise<boolean> => {
+              if (opts.dryRun) return false;
+              await indeedPage.waitForTimeout(randomDelayMs());
+              return reserveDailyApplication();
+            };
+
             let result: ApplyResult = { success: false, failureReason: 'unexpected_error' };
             try {
               result = await indeedPlatform.applyToJob(indeedPage, indeedContext, details, {
@@ -417,6 +434,7 @@ async function main() {
                 searchName: search.name,
                 baseCoverLetter,
                 kb,
+                beforeSubmit,
               });
             } catch (e) {
               logger.error('indeed apply threw', { jobId, jobUrl }, e);
@@ -437,13 +455,11 @@ async function main() {
                 saveApplied(applied);
                 saveKB(kb);
                 tracker.recordApplication({ ...jobMeta, resumeVariant: result.variant ?? search.resumeVariant });
-                incrementDailyCount();
               }
               countThisSearch++;
               total++;
               consecutiveFailures = 0;
               logger.info('indeed applied', { jobId, search: search.name, totalThisRun: total });
-              await indeedPage.waitForTimeout(randomDelayMs());
             } else if (result.skipReason) {
               if (!opts.dryRun) tracker.recordSkip({ ...jobMeta, skipReason: result.skipReason });
               if (TRIVIAL_SKIP_REASONS.has(result.skipReason)) { runPrefiltered++; } else { runSkipped++; }
@@ -509,6 +525,16 @@ async function main() {
 
     logger.info('apply bot done', { platform: platform.name, applied: total, skipped: runSkipped, prefiltered: runPrefiltered, failed: runFailedCount, durationSec, runFailed });
     if (!opts.dryRun) {
+      recordWeeklyRun({
+        jobsFound: runJobsFound,
+        applied: total,
+        skipped: runSkipped,
+        failed: runFailedCount,
+        zeroResultStreak: consecutiveZeroRuns,
+      });
+
+
+
       tracker.recordRun({
         runId,
         startedAt: new Date(runStart).toISOString(),

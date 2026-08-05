@@ -1,24 +1,25 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import * as fs from 'fs';
+import * as os from 'os';
 import * as path from 'path';
 
-// daily-cap.ts resolves its state file relative to __dirname at import time
-// (same pattern as lib/run-health.ts's STREAK_PATH). Point at the real path
-// and clean up before/after each test so this never collides with actual bot
-// state on disk.
-const CAP_PATH = path.resolve(__dirname, '../../data/daily-application-count.json');
+let CAP_PATH = '';
 
 function removeCapFile(): void {
   if (fs.existsSync(CAP_PATH)) fs.unlinkSync(CAP_PATH);
 }
 
 beforeEach(() => {
-  removeCapFile();
+  CAP_PATH = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'seek-daily-cap-')), 'daily-application-count.json');
+  process.env.DAILY_CAP_PATH = CAP_PATH;
   vi.resetModules();
 });
 
 afterEach(() => {
   removeCapFile();
+  fs.rmdirSync(path.dirname(CAP_PATH));
+  delete process.env.DAILY_CAP_PATH;
+  vi.resetModules();
 });
 
 describe('daily application cap', () => {
@@ -68,5 +69,29 @@ describe('daily application cap', () => {
     const { loadDailyCount } = await import('../../lib/daily-cap');
     const loaded = loadDailyCount();
     expect(loaded.count).toBe(0);
+  });
+
+  it.each([-5, 1.5, NaN, Infinity, -Infinity])('treats invalid stored count %p as zero', async (badCount) => {
+    fs.mkdirSync(path.dirname(CAP_PATH), { recursive: true });
+    fs.writeFileSync(CAP_PATH, JSON.stringify({ date: new Date().toISOString().slice(0, 10), count: badCount }), 'utf-8');
+    const { loadDailyCount } = await import('../../lib/daily-cap');
+    expect(loadDailyCount().count).toBe(0);
+  });
+
+  describe('reserveDailyApplication', () => {
+    it('reserves successfully from 0 up through the cap', async () => {
+      const { reserveDailyApplication, loadDailyCount, DAILY_APPLICATION_CAP } = await import('../../lib/daily-cap');
+      for (let i = 0; i < DAILY_APPLICATION_CAP; i++) {
+        expect(reserveDailyApplication()).toBe(true);
+      }
+      expect(loadDailyCount().count).toBe(DAILY_APPLICATION_CAP);
+    });
+
+    it('denies the reservation once the cap is reached, without over-counting', async () => {
+      const { reserveDailyApplication, loadDailyCount, DAILY_APPLICATION_CAP } = await import('../../lib/daily-cap');
+      for (let i = 0; i < DAILY_APPLICATION_CAP; i++) reserveDailyApplication();
+      expect(reserveDailyApplication()).toBe(false);
+      expect(loadDailyCount().count).toBe(DAILY_APPLICATION_CAP);
+    });
   });
 });

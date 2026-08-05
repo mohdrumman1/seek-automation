@@ -29,6 +29,11 @@ export const WORKDAY_NAV_SELECTOR =
   'button[type="submit"], input[type="submit"], ' +
   '[data-test-id*="submit" i], [data-testid*="submit" i], [data-cy*="submit" i]';
 
+export function isWorkdayFinalSubmit(navText: string, submitMarker = ''): boolean {
+  const target = `${navText} ${submitMarker}`;
+  return /submit|apply now|wd-commandbutton_uic_okbutton/i.test(target);
+}
+
 // Discriminated reason codes returned by `attemptSignInWithPassword`. Every
 // distinct return path emits one of these and logs a matching one-liner:
 //   `ats: workday — sign-in failed: <reason>`
@@ -288,6 +293,23 @@ export async function applyWorkday(
     const navBtn = page.locator(WORKDAY_NAV_SELECTOR).first();
 
     if (await navBtn.isVisible({ timeout: 4_000 }).catch(() => false)) {
+      // WORKDAY_NAV_SELECTOR matches Next/Continue AND the final Submit button
+      // in one locator (Workday tenants vary in which one appears at any given
+      // step). Only gate on the daily cap when this specific click is the real
+      // final submit — Next/Continue/Save-and-Continue must never be blocked
+      // by the cap, since they don't submit anything.
+      const navText = (await navBtn.textContent().catch(() => '')) ?? '';
+      const submitMarker = (await Promise.all([
+        navBtn.getAttribute('data-automation-id'),
+        navBtn.getAttribute('data-test-id'),
+        navBtn.getAttribute('data-testid'),
+        navBtn.getAttribute('data-cy'),
+        navBtn.getAttribute('type'),
+      ])).filter(Boolean).join(' ');
+      const isFinalSubmit = isWorkdayFinalSubmit(navText, submitMarker);
+      if (isFinalSubmit && !(await config.beforeSubmit?.() ?? true)) {
+        return { status: 'skipped', reason: 'daily_cap_reached' };
+      }
       await navBtn.click().catch(() => {});
       await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
     } else {

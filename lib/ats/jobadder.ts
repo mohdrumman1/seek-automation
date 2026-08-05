@@ -88,6 +88,9 @@ export async function applyJobAdder(
     return { status: 'failed', reason: 'ats_jobadder_no_submit' };
   }
   await submitBtn.scrollIntoViewIfNeeded().catch(() => {});
+  if (!(await config.beforeSubmit?.() ?? true)) {
+    return { status: 'skipped', reason: 'daily_cap_reached' };
+  }
   await submitBtn.click().catch(() => {});
   await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
   await page.waitForTimeout(2_000);

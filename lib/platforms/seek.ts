@@ -1144,6 +1144,10 @@ export class SeekPlatform implements JobPlatform {
         .first();
       if (await submitBtn.isVisible({ timeout: 3_000 }).catch(() => false)) {
         await submitBtn.scrollIntoViewIfNeeded();
+        if (!(await config.beforeSubmit?.() ?? true)) {
+          if (newPage) await newPage.close().catch(() => {});
+          return { success: false, skipReason: 'daily_cap_reached' };
+        }
         await submitBtn.click();
         console.log('  Applied!');
         if (newPage) await newPage.close().catch(() => {});

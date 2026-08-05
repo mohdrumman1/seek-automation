@@ -10,7 +10,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const CAP_PATH = path.resolve(__dirname, '../data/daily-application-count.json');
+const CAP_PATH = process.env.DAILY_CAP_PATH ?? path.resolve(__dirname, '../data/daily-application-count.json');
 
 // The real backstop against over-applying in a single day, regardless of how
 // many scheduled runs fire or how large any single run's own cap is.
@@ -31,7 +31,7 @@ export function loadDailyCount(): DailyCount {
   try {
     const parsed = JSON.parse(fs.readFileSync(CAP_PATH, 'utf-8')) as Partial<DailyCount>;
     const date = typeof parsed.date === 'string' ? parsed.date : today;
-    const count = typeof parsed.count === 'number' ? parsed.count : 0;
+    const count = Number.isInteger(parsed.count) && (parsed.count as number) >= 0 ? (parsed.count as number) : 0;
     // Roll over when the UTC date has changed since the last write.
     if (date !== today) return { date: today, count: 0 };
     return { date, count };
@@ -54,4 +54,18 @@ export function incrementDailyCount(): DailyCount {
   const next: DailyCount = { date: current.date, count: current.count + 1 };
   saveDailyCount(next);
   return next;
+}
+
+// Atomically check-and-increment, meant to be called immediately before the
+// real final-submit click (not after a navigation button, not after the
+// application result is known). Returns false when the cap is already
+// reached — callers must treat that as a skip, not a failure, and must NOT
+// click submit. This is the only call site that should count against the
+// cap; isDailyCapReached()/incrementDailyCount() above remain for cheap
+// early-exit loop checks that don't themselves consume quota.
+export function reserveDailyApplication(): boolean {
+  const current = loadDailyCount();
+  if (current.count >= DAILY_APPLICATION_CAP) return false;
+  saveDailyCount({ date: current.date, count: current.count + 1 });
+  return true;
 }

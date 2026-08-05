@@ -11,6 +11,7 @@ import { applyViaATS, detectATS } from './ats/index';
 import { loadKB } from './questions-kb';
 import { logger } from './logger';
 import * as tracker from './tracker';
+import { isCircuitOpen } from './run-health';
 
 export const APPLIED_LOG = path.resolve(__dirname, '../data/applied_jobs.json');
 export const BLOCKED_LOG = path.resolve(__dirname, '../data/blocked_jobs.json');
@@ -71,6 +72,7 @@ export async function applyToSingleUrl(
   baseCoverLetter: string,
   dryRun: boolean,
   runId: string,
+  beforeSubmit?: () => Promise<boolean>,
 ): Promise<ApplyToSingleUrlResult> {
   try {
     await page.goto(url, { timeout: 60_000, waitUntil: 'domcontentloaded' });
@@ -125,10 +127,19 @@ export async function applyToSingleUrl(
       searchName: 'manual',
       baseCoverLetter,
       kb,
+      beforeSubmit,
     });
   } else {
+    // OpenRouter circuit breaker open — AI is sustained-down for this run.
+    // Skip and let the next scheduled run retry rather than submitting an
+    // untailored base-template application.
+    if (isCircuitOpen()) {
+      logger.warn('single-url: openrouter circuit open — skipping', { url: applyUrl.slice(0, 80) });
+      return { success: false, status: 'skipped', reason: 'openrouter_circuit_open' };
+    }
+
     const variant = resolveResumeVariant(details.title, 'manual');
-    const config = { resumeVariant: variant, searchName: 'manual', baseCoverLetter, kb };
+    const config = { resumeVariant: variant, searchName: 'manual', baseCoverLetter, kb, beforeSubmit };
     const jobId = tracker.deriveJobId(applyUrl);
 
     let coverLetter = baseCoverLetter;

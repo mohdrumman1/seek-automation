@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { recordApplication, recordSkip, recordFailure, recordRun } from '../lib/tracker';
+import { escapeCsv, recordApplication, recordSkip, recordFailure, recordRun } from '../lib/tracker';
 
 function makeTmpDir(): string {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'tracker-test-'));
@@ -30,6 +30,14 @@ const baseMeta = {
   workType: 'Full time',
   runId: '2026-01-01T00:00:00.000Z',
 };
+
+test.describe('tracker — CSV escaping', () => {
+  for (const value of ['=SUM(A1:A2)', '+value', '-value', '@value']) {
+    test(`prefixes ${value[0]} values to prevent spreadsheet formulas`, () => {
+      expect(escapeCsv(value)).toBe(`'${value}`);
+    });
+  }
+});
 
 test.describe('tracker — recordApplication', () => {
   test('creates applications.csv with header on first write', () => {

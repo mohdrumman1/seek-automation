@@ -26,7 +26,7 @@ on:
         default: false
 
 concurrency:
-  group: seek-apply
+  group: job-apply
   cancel-in-progress: false
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 300
     permissions:
-      contents: write
+      contents: read
 
     env:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -54,7 +54,7 @@ jobs:
       # the real backstop is the 30/day hard cap in lib/daily-cap.ts (persisted
       # via the cache step below), but a single run should not be able to blow
       # through most of that budget by itself.
-      MAX_APPS_PER_RUN: '10'
+      MAX_APPS_PER_RUN: '6'
       MAX_APPS_PER_SEARCH: '5'
       RESUME_TAILORING_ENABLED: 'true'
       AUTO_SUBMIT_ENABLED: 'true'
@@ -120,6 +120,14 @@ jobs:
           key: daily-application-count-${{ github.run_id }}
           restore-keys: |
             daily-application-count-
+
+      - name: Restore weekly stats cache
+        uses: actions/cache@v4
+        with:
+          path: data/weekly-stats.json
+          key: weekly-stats-${{ github.run_id }}
+          restore-keys: |
+            weekly-stats-
 
       - name: Run bot
         id: bot
@@ -239,10 +247,8 @@ jobs:
           path: |
             tmp/bot.log
             tmp/analyze.log
-            screenshots/errors/
-          # Explicitly exclude seek-cookies.b64 — it contains live auth tokens.
-          # The glob above only matches *.log and screenshots/, so it is already
-          # excluded, but this comment documents the intent clearly.
+          # Screenshots may capture completed-form PII, so retain them only on
+          # runner disk for troubleshooting and never upload them as artifacts.
           if-no-files-found: ignore
           retention-days: 7
 

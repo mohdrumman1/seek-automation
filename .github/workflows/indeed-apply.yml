@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     permissions:
-      contents: write
+      contents: read
 
     env:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -111,8 +111,8 @@ jobs:
           path: |
             tmp/bot.log
             tmp/analyze.log
-            screenshots/errors/
-            screenshots/indeed-debug/
+          # Screenshots may capture completed-form PII, so retain them only on
+          # runner disk for troubleshooting and never upload them as artifacts.
           if-no-files-found: ignore
           retention-days: 7
 

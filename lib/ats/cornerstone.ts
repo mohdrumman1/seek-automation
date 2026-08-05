@@ -111,8 +111,11 @@ export async function applyCornerstone(
 
     // Try Submit first (single-page forms); fall through to Next for multi-step.
     // Broadened extras — Cornerstone CSOD uses varied button attrs across tenants.
-    const submitted = await clickSubmit(page, CORNERSTONE_SUBMIT_EXTRAS);
-    if (!submitted) {
+    const submitResult = await clickSubmit(page, CORNERSTONE_SUBMIT_EXTRAS, config);
+    if (submitResult === 'daily_cap_reached') {
+      return { status: 'skipped', reason: 'daily_cap_reached' };
+    }
+    if (submitResult === 'not_found') {
       const advanced = await clickNext(page);
       if (!advanced) break;
     }

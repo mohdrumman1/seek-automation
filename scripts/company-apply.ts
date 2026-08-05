@@ -16,8 +16,9 @@ import { CbaCrawler, preAuthCba } from '../lib/crawlers/cba';
 import { loadKB, saveKB } from '../lib/questions-kb';
 import { logger } from '../lib/logger';
 import * as tracker from '../lib/tracker';
-import { isDailyCapReached, incrementDailyCount, DAILY_APPLICATION_CAP } from '../lib/daily-cap';
+import { isDailyCapReached, reserveDailyApplication, DAILY_APPLICATION_CAP } from '../lib/daily-cap';
 import { computeRunStatus, writeRunSummary } from '../lib/run-summary';
+import { recordWeeklyRun } from '../lib/weekly-stats';
 import {
   loadApplied, saveApplied, loadBlocked,
   applyToSingleUrl,
@@ -79,10 +80,18 @@ async function main() {
   const blocked = loadBlocked();
 
   const interactive = process.stdin.isTTY === true;
-  const browser: Browser = await chromium.launch({
-    headless: !interactive,
-    args: interactive ? ['--start-maximized'] : [],
-  });
+  let browser: Browser | undefined;
+  let applied_count = 0;
+  let skipped_count = 0;
+  let failed_count = 0;
+  let runFailed = false;
+  let jobsFound = 0;
+
+  try {
+    browser = await chromium.launch({
+      headless: !interactive,
+      args: interactive ? ['--start-maximized'] : [],
+    });
 
   // SeekPlatform.authenticate sets up the browser context + loads SEEK cookies
   // (stale cookies don't affect Workday navigation — they're scoped to seek.com.au).
@@ -104,25 +113,14 @@ async function main() {
     const wdEmail = process.env.SEEK_EMAIL ?? 'mohdrumman1@gmail.com';
     const wdPassword = process.env.WORKDAY_PASSWORD ?? '';
     if (!wdPassword) {
-      logger.error('cba: WORKDAY_PASSWORD not set — cannot pre-authenticate, aborting run', {});
-      await browser.close();
-      process.exit(1);
+      throw new Error('cba: WORKDAY_PASSWORD not set — cannot pre-authenticate');
     }
     const preAuthed = await preAuthCba(page, wdEmail, wdPassword);
     if (!preAuthed) {
-      logger.error('cba: pre-authentication failed — aborting run (see prior "cba: pre-auth" warnings for reason)', {});
-      await browser.close();
-      process.exit(1);
+      throw new Error('cba: pre-authentication failed');
     }
   }
 
-  let applied_count = 0;
-  let skipped_count = 0;
-  let failed_count = 0;
-  let runFailed = false;
-  let jobsFound = 0;
-
-  try {
     for (const search of crawler.searches) {
       const attempted = applied_count + skipped_count + failed_count;
       if (attempted >= opts.maxApps) {
@@ -162,7 +160,13 @@ async function main() {
 
         logger.info('applying', { company: opts.company, search: search.name, jobId, title });
 
-        const result = await applyToSingleUrl(platform, page, context, url, kb, baseCoverLetter, opts.dryRun, runId);
+        const beforeSubmit = async (): Promise<boolean> => {
+          if (opts.dryRun) return false;
+          await page.waitForTimeout(randomDelayMs());
+          return reserveDailyApplication();
+        };
+
+        const result = await applyToSingleUrl(platform, page, context, url, kb, baseCoverLetter, opts.dryRun, runId, beforeSubmit);
 
         // Only mark the ledger when the apply actually landed. Bug fixed
         // 2026-06-02: previously every visited job was recorded as applied
@@ -172,7 +176,6 @@ async function main() {
           applied.add(jobId);
           saveApplied(applied);
           saveKB(kb);
-          incrementDailyCount();
         } else if (!opts.dryRun) {
           logger.info('not adding to applied ledger', { jobId, status: result.status, reason: result.reason });
         }
@@ -185,14 +188,13 @@ async function main() {
         else skipped_count++; // 'skipped' or 'needs_manual_review'
 
         countThisSearch++;
-        await page.waitForTimeout(randomDelayMs());
       }
     }
   } catch (err) {
     runFailed = true;
     logger.error('company-apply crashed', {}, err);
   } finally {
-    await browser.close();
+    await browser?.close();
     const durationSec = Math.round((Date.now() - runStart) / 1000);
 
     // Structured summary for the CI workflow step to read and format into
@@ -215,6 +217,13 @@ async function main() {
       { company: opts.company, applied: applied_count, skipped: skipped_count, failed: failed_count, durationSec }
     );
     if (!opts.dryRun) {
+      recordWeeklyRun({
+        jobsFound,
+        applied: applied_count,
+        skipped: skipped_count,
+        failed: failed_count,
+      });
+
       tracker.recordRun({
         runId,
         startedAt: new Date(runStart).toISOString(),

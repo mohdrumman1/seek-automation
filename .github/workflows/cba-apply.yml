@@ -15,7 +15,7 @@ on:
         default: false
 
 concurrency:
-  group: cba-apply
+  group: job-apply
   cancel-in-progress: false
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     permissions:
-      contents: write
+      contents: read
 
     env:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -36,10 +36,10 @@ jobs:
       CANDIDATE_WEBSITE: ${{ secrets.CANDIDATE_WEBSITE }}
       WORKDAY_PASSWORD: ${{ secrets.WORKDAY_PASSWORD }}
       WORKDAY_PASSWORD_FALLBACK: ${{ secrets.WORKDAY_PASSWORD_FALLBACK }}
-      # Lowered from 20/10 — this workflow draws from the same shared 30/day
-      # hard cap (lib/daily-cap.ts) as seek-apply.yml, so a single CBA run
-      # should not be able to consume most of that budget by itself.
-      MAX_APPS_PER_RUN: '8'
+      # Lowered from 20/10, then again from 8/4 — this workflow draws from the
+      # same shared 30/day hard cap (lib/daily-cap.ts) as seek-apply.yml, so a
+      # single CBA run should not be able to consume most of that budget by itself.
+      MAX_APPS_PER_RUN: '6'
       MAX_APPS_PER_SEARCH: '4'
       RESUME_TAILORING_ENABLED: 'true'
       AUTO_SUBMIT_ENABLED: 'true'
@@ -83,8 +83,8 @@ jobs:
 
       # Same actions/cache pattern + key prefix as seek-apply.yml, so the 30/day
       # hard application cap (lib/daily-cap.ts) is shared across ALL workflows
-      # combined, not just this one — company-apply.ts calls incrementDailyCount()
-      # too.
+      # combined, not just this one. company-apply.ts reserves quota before its
+      # final submit click too.
       - name: Restore daily-application-count cache
         uses: actions/cache@v4
         with:
@@ -92,6 +92,14 @@ jobs:
           key: daily-application-count-${{ github.run_id }}
           restore-keys: |
             daily-application-count-
+
+      - name: Restore weekly stats cache
+        uses: actions/cache@v4
+        with:
+          path: data/weekly-stats.json
+          key: weekly-stats-${{ github.run_id }}
+          restore-keys: |
+            weekly-stats-
 
       - name: Run CBA crawler
         id: bot
@@ -164,9 +172,9 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: cba-bot-logs
-          path: |
-            tmp/cba-bot.log
-            screenshots/errors/
+          path: tmp/cba-bot.log
+          # Screenshots may capture completed-form PII, so retain them only on
+          # runner disk for troubleshooting and never upload them as artifacts.
           if-no-files-found: ignore
           retention-days: 7
 

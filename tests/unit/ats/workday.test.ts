@@ -7,7 +7,7 @@ vi.mock('../../../lib/openrouter', () => ({
   tailorCoverLetter: vi.fn().mockResolvedValue(''),
 }));
 
-import { WORKDAY_NAV_SELECTOR } from '../../../lib/ats/workday';
+import { WORKDAY_NAV_SELECTOR, isWorkdayFinalSubmit } from '../../../lib/ats/workday';
 import { newPage, closeBrowser, loadFixture, selectorFindsVisibleMatch } from './selector-harness';
 
 // The old, narrower selector in place before commit 54692cb (2026-07-01 audit fix).
@@ -36,5 +36,31 @@ describe('ats/workday nav/submit-button selector', () => {
     const html = loadFixture('workday-negative');
     expect(await selectorFindsVisibleMatch(page, html, OLD_WORKDAY_NAV_SELECTOR)).toBe(false);
     expect(await selectorFindsVisibleMatch(page, html, WORKDAY_NAV_SELECTOR)).toBe(true);
+  });
+});
+
+describe('ats/workday isWorkdayFinalSubmit', () => {
+  it('treats "Submit" as the final submit', () => {
+    expect(isWorkdayFinalSubmit('Submit')).toBe(true);
+  });
+
+  it('treats "Review and Submit" as the final submit', () => {
+    expect(isWorkdayFinalSubmit('Review and Submit')).toBe(true);
+  });
+
+  it('treats Workday’s generic OK CTA automation id as the final submit', () => {
+    expect(isWorkdayFinalSubmit('OK', 'wd-CommandButton_uic_okButton')).toBe(true);
+  });
+
+  it('does not treat "Save and Continue" as the final submit', () => {
+    expect(isWorkdayFinalSubmit('Save and Continue')).toBe(false);
+  });
+
+  it('does not treat "Next" as the final submit', () => {
+    expect(isWorkdayFinalSubmit('Next')).toBe(false);
+  });
+
+  it('treats "Continue to Submit Application" as final', () => {
+    expect(isWorkdayFinalSubmit('Continue to Submit Application')).toBe(true);
   });
 });

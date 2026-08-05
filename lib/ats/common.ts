@@ -348,8 +348,17 @@ export const CLICK_SUBMIT_BASE_SELECTORS = [
   '#btnSubmit',
 ];
 
-// Click the first visible Submit button.
-export async function clickSubmit(page: Page, extraSelectors?: string[]): Promise<boolean> {
+export type ClickSubmitResult = 'submitted' | 'not_found' | 'daily_cap_reached';
+
+// Click the first visible Submit button. When `beforeSubmit` is provided on
+// config, it runs immediately before the click (pacing + daily-cap
+// reservation) — a `false` return means the cap is reached and the click is
+// skipped entirely.
+export async function clickSubmit(
+  page: Page,
+  extraSelectors?: string[],
+  config?: ApplyConfig,
+): Promise<ClickSubmitResult> {
   const selectors = [
     ...(extraSelectors ?? []),
     ...CLICK_SUBMIT_BASE_SELECTORS,
@@ -357,12 +366,15 @@ export async function clickSubmit(page: Page, extraSelectors?: string[]): Promis
   for (const sel of selectors) {
     const btn = page.locator(sel).first();
     if (await btn.isVisible({ timeout: 2_000 }).catch(() => false)) {
+      if (!(await config?.beforeSubmit?.() ?? true)) {
+        return 'daily_cap_reached';
+      }
       await btn.click().catch(() => {});
       await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
-      return true;
+      return 'submitted';
     }
   }
-  return false;
+  return 'not_found';
 }
 
 // Check if the current page looks like a successful submission.
