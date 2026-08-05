@@ -85,6 +85,19 @@ jobs:
       - name: Ensure runtime directories exist
         run: mkdir -p data/sessions tmp
 
+      # actions/cache never overwrites an existing exact-match key, so the primary
+      # key includes run_id (always a miss -> always saves post-job) while
+      # restore-keys prefix-matches the most recent prior run's cache to restore
+      # the running consecutive-zero-result-runs counter. This is the standard
+      # pattern for persisting small mutable state across ephemeral runners.
+      - name: Restore zero-result-streak cache
+        uses: actions/cache@v4
+        with:
+          path: data/zero-result-streak.json
+          key: zero-result-streak-${{ github.run_id }}
+          restore-keys: |
+            zero-result-streak-
+
       - name: Run bot
         id: bot
         # pipefail ensures the step fails if npm run seek exits non-zero,
@@ -134,8 +147,12 @@ jobs:
         shell: bash -eo pipefail {0}
         run: npm run analyze 2>&1 | tee tmp/analyze.log
 
-      - name: Upload logs on failure
-        if: failure()
+      # Runs on every execution (not just failure()) because getJobLinks now
+      # captures a zero-links diagnostic screenshot even on runs that don't
+      # cross the 3-consecutive-zero-result failure threshold — those
+      # screenshots are still useful for catching a scraper break early.
+      - name: Upload logs and diagnostics
+        if: always()
         uses: actions/upload-artifact@v7
         with:
           name: seek-bot-logs

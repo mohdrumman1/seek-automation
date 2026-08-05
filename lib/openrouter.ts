@@ -1,4 +1,5 @@
 import { logger } from './logger';
+import { reportOpenRouterFailure, reportOpenRouterSuccess } from './run-health';
 
 if (!process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY.trim() === '') {
   throw new Error('Missing OPENROUTER_API_KEY. Add it to .env locally or GitHub Actions secrets.');
@@ -16,7 +17,9 @@ async function withRetry<T>(fn: () => Promise<T>, label: string): Promise<T> {
   let lastErr: unknown;
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
-      return await fn();
+      const result = await fn();
+      reportOpenRouterSuccess();
+      return result;
     } catch (err) {
       lastErr = err;
       const msg = (err as Error).message ?? '';
@@ -34,7 +37,13 @@ async function withRetry<T>(fn: () => Promise<T>, label: string): Promise<T> {
           message: msg.slice(0, 200),
         });
       }
-      if (!retryable || attempt === maxRetries) throw err;
+      if (!retryable || attempt === maxRetries) {
+        // Call-level retries are exhausted (or the error isn't retryable) —
+        // this call is a confirmed failure. Report it to the run-level
+        // circuit breaker; per-call retry/backoff above is unchanged.
+        reportOpenRouterFailure();
+        throw err;
+      }
       const delayMs = Math.min(baseMs * 2 ** attempt, 8000) + Math.random() * 250;
       logger.warn('openrouter retry', { label, attempt: attempt + 1, status: status || 'network', delayMs: Math.round(delayMs) });
       await new Promise((r) => setTimeout(r, delayMs));

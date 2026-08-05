@@ -21,6 +21,7 @@ import { IndeedPlatform } from '../lib/platforms/indeed';
 import { loadKB, saveKB } from '../lib/questions-kb';
 import { logger } from '../lib/logger';
 import * as tracker from '../lib/tracker';
+import { reportSearchResult, checkZeroResultStreak } from '../lib/run-health';
 import {
   APPLIED_LOG, BLOCKED_LOG,
   loadApplied, saveApplied, loadBlocked, saveBlocked,
@@ -151,12 +152,14 @@ async function main() {
         await page.goto(search.url, { timeout: 60_000, waitUntil: 'domcontentloaded' });
       } catch (err) {
         logger.warn('search nav failed — skipping search', { name: search.name, error: String(err) });
+        reportSearchResult(search.name, 0, true);
         continue;
       }
       await page.waitForLoadState('networkidle', { timeout: 5_000 }).catch(() => {});
 
       const links = await platform.getJobLinks(page);
       logger.info('search jobs found', { name: search.name, count: links.length });
+      reportSearchResult(search.name, links.length, false);
 
       let countThisSearch = 0;
       let consecutiveFailures = 0;
@@ -430,6 +433,26 @@ async function main() {
     try { await platform.persistSession(context); } catch (err) { logger.error('persistSession failed', {}, err); }
     await browser.close();
     const durationSec = Math.round((Date.now() - runStart) / 1000);
+
+    // Zero-result-streak check — only meaningful for a real search-loop run
+    // (single-URL mode and SEEK_DISABLED runs never call reportSearchResult,
+    // so skip them rather than letting an empty result set reset the streak).
+    if (!opts.singleUrl && !seekDisabled) {
+      const streakCheck = checkZeroResultStreak();
+      if (!streakCheck.isHealthy) {
+        logger.error('run-health: zero-result streak — failing run', {
+          consecutiveZeroRuns: streakCheck.consecutiveZeroRuns,
+          message: streakCheck.message,
+        });
+        runFailed = true;
+      } else if (streakCheck.consecutiveZeroRuns > 0) {
+        logger.warn('run-health: zero-result run (within grace period)', {
+          consecutiveZeroRuns: streakCheck.consecutiveZeroRuns,
+          message: streakCheck.message,
+        });
+      }
+    }
+
     logger.info('apply bot done', { platform: platform.name, applied: total, skipped: runSkipped, prefiltered: runPrefiltered, failed: runFailedCount, durationSec, runFailed });
     if (!opts.dryRun) {
       tracker.recordRun({

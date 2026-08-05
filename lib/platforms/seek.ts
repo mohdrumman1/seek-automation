@@ -13,6 +13,7 @@ import { captureAndAnalyze, getPastAnalyses } from '../error-analyzer';
 import { findKBAnswer, aiAnswerQuestion, aiAnswerCheckboxes, selectBestOption } from '../questions-kb';
 import { tailorCoverLetter, callOpenRouter } from '../openrouter';
 import { tailorResume, TailoredContent } from '../resume-tailor';
+import { isCircuitOpen } from '../run-health';
 import { extractPortfolioIdeas, appendIdeas, generateDigest } from '../portfolio-ideas';
 import { generateTailoredDocx } from '../resume-generator';
 import { cleanTailoredResumes, uploadTailoredResume, shouldCleanTailored, resetTailoredCount, incrementTailoredCount } from '../resume-manager';
@@ -787,6 +788,36 @@ export class SeekPlatform implements JobPlatform {
       await page.waitForSelector('[data-automation="normalJob"], [data-automation="premiumJob"]', { timeout: 15_000 });
     } catch {
       console.log('  No job cards found.');
+      // Diagnostic: capture page state on timeout so we can tell whether SEEK
+      // served a captcha, an empty SERP, a redirect, or something else —
+      // ported from lib/platforms/indeed.ts's zero-links diagnostic. Screenshot
+      // goes to a gitignored dir (screenshots/errors/), never committed — the
+      // repo is public and pages may contain PII. CI uploads it as a short-lived
+      // build artifact instead (see .github/workflows/seek-apply.yml).
+      try {
+        const diag = await page.evaluate(() => ({
+          title: document.title,
+          url: location.href,
+          bodyLen: document.body?.innerText?.length ?? 0,
+          h1: document.querySelector('h1')?.textContent?.slice(0, 200) ?? null,
+          hasCaptcha: /captcha|verify you are human|just a moment|cf-challenge/i.test(
+            document.body?.innerText ?? ''
+          ),
+          hasNoResults: /no jobs found|did not match any jobs|0 jobs/i.test(
+            document.body?.innerText ?? ''
+          ),
+          bodySnippet: (document.body?.innerText ?? '').slice(0, 400),
+        }));
+        logger.warn('seek: zero links collected — page diagnostic', diag);
+        const dir = path.resolve(__dirname, '../../screenshots/errors');
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        const ts = new Date().toISOString().replace(/[:.]/g, '-');
+        await page
+          .screenshot({ path: path.join(dir, `zero-links-${ts}.png`), fullPage: false })
+          .catch(() => {});
+      } catch (err) {
+        logger.warn('seek: diagnostic capture failed', { error: String(err) });
+      }
       return [];
     }
     const links = await page.$$eval(
@@ -932,6 +963,16 @@ export class SeekPlatform implements JobPlatform {
       const externalUrl = applyPage.url();
       console.log(`  External ATS redirect: ${externalUrl.slice(0, 80)}`);
 
+      // OpenRouter circuit breaker open — AI is sustained-down for this run.
+      // Skip and let the next scheduled run retry, rather than submitting an
+      // untailored base-template application (worse than no application).
+      if (isCircuitOpen()) {
+        console.log('  Skipping - OpenRouter circuit breaker open (AI down this run)');
+        logger.warn('skip: openrouter circuit open', { title: details.title, company: details.company });
+        if (newPage) await newPage.close().catch(() => {});
+        return { success: false, skipReason: 'openrouter_circuit_open' };
+      }
+
       // Build tailored resume + cover letter for the ATS handler.
       const atsCoverLetter = await tailorCoverLetter(config.baseCoverLetter, details.title, details.company, details.description);
       let atsResumePath: string | null = null;
@@ -970,6 +1011,16 @@ export class SeekPlatform implements JobPlatform {
       });
       if (newPage) await newPage.close().catch(() => {});
       return { success: false, failureReason: 'session_expired' };
+    }
+
+    // OpenRouter circuit breaker open — AI is sustained-down for this run.
+    // Skip and let the next scheduled run retry, rather than submitting an
+    // untailored base-template application (worse than no application).
+    if (isCircuitOpen()) {
+      console.log('  Skipping - OpenRouter circuit breaker open (AI down this run)');
+      logger.warn('skip: openrouter circuit open', { title: details.title, company: details.company });
+      if (newPage) await newPage.close().catch(() => {});
+      return { success: false, skipReason: 'openrouter_circuit_open' };
     }
 
     await dismissBraidModal(applyPage);
