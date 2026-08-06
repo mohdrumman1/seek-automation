@@ -171,8 +171,26 @@ export async function preAuthCba(
     logger.warn('cba: pre-auth — submit button not visible');
     return false;
   }
-  await submit.click().catch((err) => {
-    logger.warn('cba: pre-auth — submit click threw', { error: String(err).slice(0, 200) });
+  await submit.scrollIntoViewIfNeeded().catch(() => {});
+  await submit.click().catch(async (err) => {
+    // Click's own actionability wait already retried for the full timeout, so
+    // a throw here means the button stayed non-actionable (covered, disabled,
+    // or off-screen) the whole time — log what's actually sitting at its
+    // center point so the next failure's logs say why, instead of just that.
+    const blocker = await page.evaluate(() => {
+      const el = document.querySelector('[data-automation-id="signInSubmitButton"]');
+      if (!el) return 'submit_button_not_in_dom';
+      const r = el.getBoundingClientRect();
+      const top = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+      if (!top) return 'no_element_at_point';
+      return top === el || el.contains(top)
+        ? 'button_itself'
+        : `${top.tagName.toLowerCase()}.${Array.from(top.classList).join('.')}`;
+    }).catch(() => 'evaluate_failed');
+    logger.warn('cba: pre-auth — submit click threw', {
+      error: String(err).slice(0, 200),
+      blocker,
+    });
   });
 
   // Race the terminal signals. Rejection/lockout regexes are scoped to the
